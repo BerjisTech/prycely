@@ -16,7 +16,7 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create wallet" do
-    assert_difference('Wallet.count') do
+    assert_difference("Wallet.count") do
       post wallets_url, params: { wallet: { currency: @wallet.currency, user_id: @wallet.user_id } }
     end
 
@@ -39,7 +39,7 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy wallet" do
-    assert_difference('Wallet.count', -1) do
+    assert_difference("Wallet.count", -1) do
       delete wallet_url(@wallet)
     end
 

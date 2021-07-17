@@ -22,9 +22,9 @@
         <td><%= login.ip %></td>
         <td><%= login.success %></td>
         <td><%= login.password_attempt %></td>
-        <td><%= link_to 'Show', login %></td>
-        <td><%= link_to 'Edit', edit_login_path(login) %></td>
-        <td><%= link_to 'Destroy', login, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", login %></td>
+        <td><%= link_to "Edit", edit_login_path(login) %></td>
+        <td><%= link_to "Destroy", login, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Login', new_login_path %>
+<%= link_to "New Login", new_login_path %>

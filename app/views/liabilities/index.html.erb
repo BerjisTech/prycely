@@ -26,9 +26,9 @@
         <td><%= liability.date_sold %></td>
         <td><%= liability.added_by %></td>
         <td><%= liability.price %></td>
-        <td><%= link_to 'Show', liability %></td>
-        <td><%= link_to 'Edit', edit_liability_path(liability) %></td>
-        <td><%= link_to 'Destroy', liability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", liability %></td>
+        <td><%= link_to "Edit", edit_liability_path(liability) %></td>
+        <td><%= link_to "Destroy", liability, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Liability', new_liability_path %>
+<%= link_to "New Liability", new_liability_path %>

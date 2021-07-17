@@ -32,9 +32,9 @@
         <td><%= loancategory.interest_rule %></td>
         <td><%= loancategory.required_guarantos %></td>
         <td><%= loancategory.requirements %></td>
-        <td><%= link_to 'Show', loancategory %></td>
-        <td><%= link_to 'Edit', edit_loancategory_path(loancategory) %></td>
-        <td><%= link_to 'Destroy', loancategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", loancategory %></td>
+        <td><%= link_to "Edit", edit_loancategory_path(loancategory) %></td>
+        <td><%= link_to "Destroy", loancategory, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Loancategory', new_loancategory_path %>
+<%= link_to "New Loancategory", new_loancategory_path %>

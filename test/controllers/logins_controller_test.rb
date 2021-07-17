@@ -16,7 +16,7 @@ class LoginsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create login" do
-    assert_difference('Login.count') do
+    assert_difference("Login.count") do
       post logins_url, params: { login: { ip: @login.ip, password_attempt: @login.password_attempt, success: @login.success, time: @login.time, user_id: @login.user_id } }
     end
 
@@ -39,7 +39,7 @@ class LoginsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy login" do
-    assert_difference('Login.count', -1) do
+    assert_difference("Login.count", -1) do
       delete login_url(@login)
     end
 

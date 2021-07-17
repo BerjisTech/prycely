@@ -16,7 +16,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create transaction" do
-    assert_difference('Transaction.count') do
+    assert_difference("Transaction.count") do
       post transactions_url, params: { transaction: { amount: @transaction.amount, category: @transaction.category, description: @transaction.description, group_id: @transaction.group_id, status: @transaction.status, sub_category: @transaction.sub_category, transaction_mode: @transaction.transaction_mode, transaction_reference: @transaction.transaction_reference, transaction_type: @transaction.transaction_type, user_id: @transaction.user_id, wallet_id: @transaction.wallet_id } }
     end
 
@@ -39,7 +39,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy transaction" do
-    assert_difference('Transaction.count', -1) do
+    assert_difference("Transaction.count", -1) do
       delete transaction_url(@transaction)
     end
 

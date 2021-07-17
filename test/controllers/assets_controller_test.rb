@@ -16,7 +16,7 @@ class AssetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create asset" do
-    assert_difference('Asset.count') do
+    assert_difference("Asset.count") do
       post assets_url, params: { asset: { added_by: @asset.added_by, date_bought: @asset.date_bought, date_sold: @asset.date_sold, description: @asset.description, group_id: @asset.group_id, name: @asset.name, price: @asset.price } }
     end
 
@@ -39,7 +39,7 @@ class AssetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy asset" do
-    assert_difference('Asset.count', -1) do
+    assert_difference("Asset.count", -1) do
       delete asset_url(@asset)
     end
 

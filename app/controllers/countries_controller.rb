@@ -58,13 +58,14 @@ class CountriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_country
-      @country = Country.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def country_params
-      params.require(:country).permit(:phone_code, :country_code, :country_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_country
+    @country = Country.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def country_params
+    params.require(:country).permit(:phone_code, :country_code, :country_name)
+  end
 end

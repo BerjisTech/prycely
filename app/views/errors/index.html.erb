@@ -16,9 +16,9 @@
       <tr>
         <td><%= error.error %></td>
         <td><%= error.time %></td>
-        <td><%= link_to 'Show', error %></td>
-        <td><%= link_to 'Edit', edit_error_path(error) %></td>
-        <td><%= link_to 'Destroy', error, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", error %></td>
+        <td><%= link_to "Edit", edit_error_path(error) %></td>
+        <td><%= link_to "Destroy", error, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Error', new_error_path %>
+<%= link_to "New Error", new_error_path %>

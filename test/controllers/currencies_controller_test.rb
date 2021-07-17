@@ -16,7 +16,7 @@ class CurrenciesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create currency" do
-    assert_difference('Currency.count') do
+    assert_difference("Currency.count") do
       post currencies_url, params: { currency: { code: @currency.code, country: @currency.country, country_code: @currency.country_code, currency: @currency.currency } }
     end
 
@@ -39,7 +39,7 @@ class CurrenciesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy currency" do
-    assert_difference('Currency.count', -1) do
+    assert_difference("Currency.count", -1) do
       delete currency_url(@currency)
     end
 

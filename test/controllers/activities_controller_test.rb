@@ -16,7 +16,7 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create activity" do
-    assert_difference('Activity.count') do
+    assert_difference("Activity.count") do
       post activities_url, params: { activity: { created_by: @activity.created_by, date: @activity.date, description: @activity.description, fine: @activity.fine, group_id: @activity.group_id, host: @activity.host, host_contact: @activity.host_contact, price: @activity.price, title: @activity.title } }
     end
 
@@ -39,7 +39,7 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy activity" do
-    assert_difference('Activity.count', -1) do
+    assert_difference("Activity.count", -1) do
       delete activity_url(@activity)
     end
 

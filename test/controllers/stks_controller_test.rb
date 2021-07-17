@@ -16,7 +16,7 @@ class StksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create stk" do
-    assert_difference('Stk.count') do
+    assert_difference("Stk.count") do
       post stks_url, params: { stk: { checkout_request_id: @stk.checkout_request_id, custom_message: @stk.custom_message, merchant_request_id: @stk.merchant_request_id, phone: @stk.phone, response_code: @stk.response_code, response_description: @stk.response_description, response_result_code: @stk.response_result_code, response_result_description: @stk.response_result_description, status: @stk.status, transaction_reference: @stk.transaction_reference } }
     end
 
@@ -39,7 +39,7 @@ class StksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy stk" do
-    assert_difference('Stk.count', -1) do
+    assert_difference("Stk.count", -1) do
       delete stk_url(@stk)
     end
 

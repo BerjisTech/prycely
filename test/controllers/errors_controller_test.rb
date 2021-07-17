@@ -16,7 +16,7 @@ class ErrorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create error" do
-    assert_difference('Error.count') do
+    assert_difference("Error.count") do
       post errors_url, params: { error: { error: @error.error, time: @error.time } }
     end
 
@@ -39,7 +39,7 @@ class ErrorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy error" do
-    assert_difference('Error.count', -1) do
+    assert_difference("Error.count", -1) do
       delete error_url(@error)
     end
 

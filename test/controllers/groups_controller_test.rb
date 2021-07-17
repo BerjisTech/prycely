@@ -16,7 +16,7 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create group" do
-    assert_difference('Group.count') do
+    assert_difference("Group.count") do
       post groups_url, params: { group: { created_by: @group.created_by, currency: @group.currency, membership: @group.membership, type: @group.type } }
     end
 
@@ -39,7 +39,7 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy group" do
-    assert_difference('Group.count', -1) do
+    assert_difference("Group.count", -1) do
       delete group_url(@group)
     end
 

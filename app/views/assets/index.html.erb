@@ -26,9 +26,9 @@
         <td><%= asset.date_sold %></td>
         <td><%= asset.added_by %></td>
         <td><%= asset.price %></td>
-        <td><%= link_to 'Show', asset %></td>
-        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
-        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", asset %></td>
+        <td><%= link_to "Edit", edit_asset_path(asset) %></td>
+        <td><%= link_to "Destroy", asset, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Asset', new_asset_path %>
+<%= link_to "New Asset", new_asset_path %>

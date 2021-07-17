@@ -16,7 +16,7 @@ class LoancategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create loancategory" do
-    assert_difference('Loancategory.count') do
+    assert_difference("Loancategory.count") do
       post loancategories_url, params: { loancategory: { amount: @loancategory.amount, created_by: @loancategory.created_by, decsription: @loancategory.decsription, group_id: @loancategory.group_id, interest: @loancategory.interest, interest_rule: @loancategory.interest_rule, name: @loancategory.name, period: @loancategory.period, required_guarantos: @loancategory.required_guarantos, requirements: @loancategory.requirements } }
     end
 
@@ -39,7 +39,7 @@ class LoancategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy loancategory" do
-    assert_difference('Loancategory.count', -1) do
+    assert_difference("Loancategory.count", -1) do
       delete loancategory_url(@loancategory)
     end
 

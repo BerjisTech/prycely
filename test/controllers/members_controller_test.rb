@@ -16,7 +16,7 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create member" do
-    assert_difference('Member.count') do
+    assert_difference("Member.count") do
       post members_url, params: { member: { accepted_on: @member.accepted_on, amount: @member.amount, designation: @member.designation, group_id: @member.group_id, invited_by: @member.invited_by, invited_on: @member.invited_on, paid_member: @member.paid_member, status: @member.status, user_id: @member.user_id } }
     end
 
@@ -39,7 +39,7 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy member" do
-    assert_difference('Member.count', -1) do
+    assert_difference("Member.count", -1) do
       delete member_url(@member)
     end
 

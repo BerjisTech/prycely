@@ -58,13 +58,14 @@ class StksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stk
-      @stk = Stk.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def stk_params
-      params.require(:stk).permit(:transaction_reference, :merchant_request_id, :checkout_request_id, :response_code, :response_description, :custom_message, :status, :response_result_code, :response_result_description, :phone)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stk
+    @stk = Stk.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def stk_params
+    params.require(:stk).permit(:transaction_reference, :merchant_request_id, :checkout_request_id, :response_code, :response_description, :custom_message, :status, :response_result_code, :response_result_description, :phone)
+  end
 end

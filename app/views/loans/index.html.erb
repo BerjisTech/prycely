@@ -38,9 +38,9 @@
         <td><%= loan.date_due %></td>
         <td><%= loan.date_paid %></td>
         <td><%= loan.requirements %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", loan %></td>
+        <td><%= link_to "Edit", edit_loan_path(loan) %></td>
+        <td><%= link_to "Destroy", loan, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,4 +48,4 @@
 
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+<%= link_to "New Loan", new_loan_path %>

@@ -58,13 +58,14 @@ class LoginsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_login
-      @login = Login.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def login_params
-      params.require(:login).permit(:user_id, :time, :ip, :success, :password_attempt)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_login
+    @login = Login.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def login_params
+    params.require(:login).permit(:user_id, :time, :ip, :success, :password_attempt)
+  end
 end

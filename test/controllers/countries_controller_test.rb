@@ -16,7 +16,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create country" do
-    assert_difference('Country.count') do
+    assert_difference("Country.count") do
       post countries_url, params: { country: { country_code: @country.country_code, country_name: @country.country_name, phone_code: @country.phone_code } }
     end
 
@@ -39,7 +39,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy country" do
-    assert_difference('Country.count', -1) do
+    assert_difference("Country.count", -1) do
       delete country_url(@country)
     end
 

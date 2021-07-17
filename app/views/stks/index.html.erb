@@ -32,9 +32,9 @@
         <td><%= stk.response_result_code %></td>
         <td><%= stk.response_result_description %></td>
         <td><%= stk.phone %></td>
-        <td><%= link_to 'Show', stk %></td>
-        <td><%= link_to 'Edit', edit_stk_path(stk) %></td>
-        <td><%= link_to 'Destroy', stk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", stk %></td>
+        <td><%= link_to "Edit", edit_stk_path(stk) %></td>
+        <td><%= link_to "Destroy", stk, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Stk', new_stk_path %>
+<%= link_to "New Stk", new_stk_path %>

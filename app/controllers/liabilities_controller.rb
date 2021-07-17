@@ -57,13 +57,14 @@ class LiabilitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_liability
-      @liability = Liability.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def liability_params
-      params.require(:liability).permit(:name, :description, :group_id, :date_bought, :date_sold, :added_by, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_liability
+    @liability = Liability.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def liability_params
+    params.require(:liability).permit(:name, :description, :group_id, :date_bought, :date_sold, :added_by, :price)
+  end
 end

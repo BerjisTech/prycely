@@ -58,13 +58,14 @@ class PaybillsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_paybill
-      @paybill = Paybill.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def paybill_params
-      params.require(:paybill).permit(:request, :type, :transaction_reference, :paybill_balance, :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_paybill
+    @paybill = Paybill.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def paybill_params
+    params.require(:paybill).permit(:request, :type, :transaction_reference, :paybill_balance, :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
+  end
 end

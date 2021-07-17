@@ -16,7 +16,7 @@ class PaymentcategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create paymentcategory" do
-    assert_difference('Paymentcategory.count') do
+    assert_difference("Paymentcategory.count") do
       post paymentcategories_url, params: { paymentcategory: { created_by: @paymentcategory.created_by, group_id: @paymentcategory.group_id, name: @paymentcategory.name, type: @paymentcategory.type } }
     end
 
@@ -39,7 +39,7 @@ class PaymentcategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy paymentcategory" do
-    assert_difference('Paymentcategory.count', -1) do
+    assert_difference("Paymentcategory.count", -1) do
       delete paymentcategory_url(@paymentcategory)
     end
 

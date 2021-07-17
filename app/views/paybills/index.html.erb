@@ -38,9 +38,9 @@
         <td><%= paybill.phone %></td>
         <td><%= paybill.short_code %></td>
         <td><%= paybill.account_number %></td>
-        <td><%= link_to 'Show', paybill %></td>
-        <td><%= link_to 'Edit', edit_paybill_path(paybill) %></td>
-        <td><%= link_to 'Destroy', paybill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", paybill %></td>
+        <td><%= link_to "Edit", edit_paybill_path(paybill) %></td>
+        <td><%= link_to "Destroy", paybill, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,4 +48,4 @@
 
 <br>
 
-<%= link_to 'New Paybill', new_paybill_path %>
+<%= link_to "New Paybill", new_paybill_path %>

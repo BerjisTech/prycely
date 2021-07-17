@@ -30,9 +30,9 @@
         <td><%= member.accepted_on %></td>
         <td><%= member.paid_member %></td>
         <td><%= member.amount %></td>
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", member %></td>
+        <td><%= link_to "Edit", edit_member_path(member) %></td>
+        <td><%= link_to "Destroy", member, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Member', new_member_path %>
+<%= link_to "New Member", new_member_path %>

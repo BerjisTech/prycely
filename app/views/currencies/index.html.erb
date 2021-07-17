@@ -20,9 +20,9 @@
         <td><%= currency.code %></td>
         <td><%= currency.country %></td>
         <td><%= currency.country_code %></td>
-        <td><%= link_to 'Show', currency %></td>
-        <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
-        <td><%= link_to 'Destroy', currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", currency %></td>
+        <td><%= link_to "Edit", edit_currency_path(currency) %></td>
+        <td><%= link_to "Destroy", currency, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Currency', new_currency_path %>
+<%= link_to "New Currency", new_currency_path %>

@@ -58,13 +58,14 @@ class ErrorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_error
-      @error = Error.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def error_params
-      params.require(:error).permit(:error, :time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_error
+    @error = Error.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def error_params
+    params.require(:error).permit(:error, :time)
+  end
 end

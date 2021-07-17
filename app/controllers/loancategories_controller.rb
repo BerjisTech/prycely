@@ -58,13 +58,14 @@ class LoancategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_loancategory
-      @loancategory = Loancategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def loancategory_params
-      params.require(:loancategory).permit(:group_id, :created_by, :name, :period, :decsription, :amount, :interest, :interest_rule, :required_guarantos, :requirements)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_loancategory
+    @loancategory = Loancategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def loancategory_params
+    params.require(:loancategory).permit(:group_id, :created_by, :name, :period, :decsription, :amount, :interest, :interest_rule, :required_guarantos, :requirements)
+  end
 end
