@@ -1,27 +1,27 @@
-<%= form_with(model: wallet) do |form| %>
-  <% if wallet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(wallet.errors.count, "error") %> prohibited this wallet from being saved:</h2>
+<div class="row">
+  <%= form_with(model: wallet) do |form| %>
+    <% if wallet.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(wallet.errors.count, "error") %> prohibited this wallet from being saved:</h2>
 
-      <ul>
-        <% wallet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% wallet.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="col-sm-6">
+      <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+
+      <div class="field form-group form-floating col my-3">
+        <%= form.text_area :currency, class: "form-control", placeholder: "Choose Wallet Currency" %>
+        <%= form.label :currency %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-outline-primary btn-md my-3" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :currency %>
-    <%= form.text_area :currency %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

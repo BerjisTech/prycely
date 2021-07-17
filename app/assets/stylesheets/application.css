@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.material-icons {
+    font-size: 16px!important;
+}
