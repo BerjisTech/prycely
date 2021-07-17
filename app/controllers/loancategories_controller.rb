@@ -1,4 +1,5 @@
 class LoancategoriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_loancategory, only: %i[ show edit update destroy ]
 
   # GET /loancategories or /loancategories.json

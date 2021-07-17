@@ -1,4 +1,5 @@
 class ErrorsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_error, only: %i[ show edit update destroy ]
 
   # GET /errors or /errors.json

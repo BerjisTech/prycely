@@ -1,4 +1,5 @@
 class LoginsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_login, only: %i[ show edit update destroy ]
 
   # GET /logins or /logins.json

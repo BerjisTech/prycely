@@ -1,4 +1,5 @@
 class StksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_stk, only: %i[ show edit update destroy ]
 
   # GET /stks or /stks.json

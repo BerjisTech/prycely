@@ -1,4 +1,5 @@
 class PaybillsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_paybill, only: %i[ show edit update destroy ]
 
   # GET /paybills or /paybills.json
