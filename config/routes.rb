@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "dashboard/index"
+  get "api/index"
+  get "home/index"
+  get "home/about"
+  get "home/pricing"
+  get "home/about"
+
   resources :liabilities
   resources :assets
   resources :activities
@@ -17,8 +24,7 @@ Rails.application.routes.draw do
   resources :members
   resources :groups
   resources :wallets
-  devise_for :users
-  get "home/index"
+  devise_for :users, controllers: { confirmations: "confirmations" }
 
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

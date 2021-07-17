@@ -1,2 +1,384 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div id="preloader">
+  <div id="ctn-preloader" class="ctn-preloader">
+    <div class="animation-preloader">
+      <div class="spinner"></div>
+      <div class="txt-loading">
+        <span data-text-preloader="T" class="letters-loading">
+          T
+        </span>
+        <span data-text-preloader="H" class="letters-loading">
+          H
+        </span>
+        <span data-text-preloader="E" class="letters-loading">
+          E
+        </span>
+        <span data-text-preloader="C" class="letters-loading">
+          C
+        </span>
+        <span data-text-preloader="H" class="letters-loading">
+          H
+        </span>
+        <span data-text-preloader="A" class="letters-loading">
+          A
+        </span>
+        <span data-text-preloader="M" class="letters-loading">
+          M
+        </span>
+        <span data-text-preloader="A" class="letters-loading">
+          A
+        </span>
+      </div>
+      <p class="text-center">Loading</p>
+    </div>
+    <div class="loader">
+      <div class="row">
+        <div class="col-3 loader-section section-left">
+          <div class="bg"></div>
+        </div>
+        <div class="col-3 loader-section section-left">
+          <div class="bg"></div>
+        </div>
+        <div class="col-3 loader-section section-right">
+          <div class="bg"></div>
+        </div>
+        <div class="col-3 loader-section section-right">
+          <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body_wrapper">
+  <header class="header_area">
+    <nav class="navbar navbar-expand-lg menu_one menu_four">
+      <div class="container">
+        <a class="navbar-brand sticky_logo" href="#"><img src="https://prycely.com/assets/images/logo.png" srcset="https://prycely.com/assets/images/logo.png" alt="logo" style="width: 70px;"><img src="https://prycely.com/assets/images/logo.png" srcset="img/logo2x.png 2x" alt="" style="width: 70px;"></a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="menu_toggle">
+            <span class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="hamburger-cross">
+              <span></span>
+              <span></span>
+            </span>
+          </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav menu w_menu ml-auto mr-auto">
+
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "About", home_about_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Pricing", home_pricing_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Api", api_index_path, class: "nav-link" %>
+            </li>
+
+          </ul>
+          <% if user_signed_in? %>
+            <%= link_to "Account", dashboard_index_path, class: "btn_get btn_hover menu_cus" %>
+          <% else %>
+            <%= link_to "Sign In", user_session_path, class: "btn_get btn_hover menu_cus" %>
+          <% end %>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <section class="payment_banner_area">
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+    <div class="container">
+      <div class="payment_banner_content wow fadeInLeft" data-wow-delay="0.4s">
+        <h1 class="f_p f_700 f_size_50 w_color">The simpler, safer way to pay and get paid.</h1>
+        <p class="w_color f_p f_size_18">Why I say old chap that is, spiffing jolly good a load of old tosh spend a penny tosser arse over tit excuse.!</p>
+        <div class="action_btn d-flex align-items-center mt_60">
+          <%= link_to "Sign Up for Free", new_user_registration_path, class: "btn_hover agency_banner_btn" %>
+          <a href="#" class="agency_banner_btn_two">Find Out More<i class="ti-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="animation_img_two wow fadeInRight" data-wow-delay="0.5s">
+      <img src="https://prycely.com/assets/frontend/img/home9/mac.png" alt="">
+    </div>
+    <img class=" svg_intro_bottom" src="https://prycely.com/assets/frontend/img/home9/shape.png" alt="">
+  </section>
+
+  <section class="payment_features_area">
+    <div class="bg_shape shape_one"></div>
+    <div class="bg_shape shape_two"></div>
+    <div class="bg_shape shape_three"></div>
+    <div class="container">
+      <div class="row featured_item">
+        <div class="col-lg-6">
+          <div class="payment_featured_img wow fadeInLeft" data-wow-delay="0.2s">
+            <img src="https://prycely.com/assets/frontend/img/home9/featured_img.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <div class="payment_features_content pl_70 wow fadeInRight" data-wow-delay="0.3s">
+            <div class="icon">
+              <img class="img_shape" src="https://prycely.com/assets/frontend/img/home9/icon_shape.png" alt="">
+              <img class="icon_img" src="https://prycely.com/assets/frontend/img/home9/icon1.png" alt="">
+            </div>
+            <h2>Quick & Easy Process</h2>
+            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
+            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn">Sign Up for Free</a>
+            <a href="#" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Find Out More</a>
+          </div>
+        </div>
+      </div>
+      <div class="row flex-row-reverse featured_item">
+        <div class="col-lg-6">
+          <div class="payment_featured_img img_two wow fadeInRight" data-wow-delay="0.3s">
+            <img src="https://prycely.com/assets/frontend/img/home9/featured_img_two.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <div class="payment_features_content pr_70 wow fadeInLeft" data-wow-delay="0.4s">
+            <div class="icon">
+              <img class="img_shape" src="https://prycely.com/assets/frontend/img/home9/icon_shape.png" alt="">
+              <img class="icon_img" src="https://prycely.com/assets/frontend/img/home9/icon2.png" alt="">
+            </div>
+            <h2>Quick & Easy Process</h2>
+            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
+            <a href="#" class="btn_hover agency_banner_btn pay_btn">Pay On Ebay</a>
+            <a href="#" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Pay On Website</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="payment_service_area">
+    <div class="container">
+      <div class="row flex-row-reverse">
+        <div class="col-lg-4">
+          <div class="service-content wow fadeInRight" data-wow-delay="0.2s">
+            <div class="pay_icon">
+              <div class="icon_shape"></div>
+              <img src="https://prycely.com/assets/frontend/img/home9/icon3.png" alt="">
+            </div>
+            <h2 class="f_p w_color f_700">Our Services</h2>
+            <p class="f_p w_color">Why I say old chap that is, spiffing jolly good a load of old tosh spend a penny tosser arse over.!</p>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.2s">
+              <div class="icon">
+                <img src="https://prycely.com/assets/frontend/img/home9/icon4.png" alt="">
+              </div>
+              <div class="media-body">
+                <h3 class="f_size_20 f_p w_color f_600">Safer</h3>
+                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+              </div>
+            </div>
+            <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.3s">
+              <div class="icon">
+                <img src="https://prycely.com/assets/frontend/img/home9/icon7.png" alt="">
+              </div>
+              <div class="media-body">
+                <h3 class="f_size_20 f_p w_color f_600">Flexible</h3>
+                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+              </div>
+            </div>
+            <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.4s">
+              <div class="icon">
+                <img src="https://prycely.com/assets/frontend/img/home9/icon5.png" alt="">
+              </div>
+              <div class="media-body">
+                <h3 class="f_size_20 f_p w_color f_600">Convinient</h3>
+                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+              </div>
+            </div>
+            <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.5s">
+              <div class="icon">
+                <img src="https://prycely.com/assets/frontend/img/home9/icon8.png" alt="">
+              </div>
+              <div class="media-body">
+                <h3 class="f_size_20 f_p w_color f_600">Protected</h3>
+                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+              </div>
+            </div>
+            <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.6s">
+              <div class="icon">
+                <img src="https://prycely.com/assets/frontend/img/home9/icon6.png" alt="">
+              </div>
+              <div class="media-body">
+                <h3 class="f_size_20 f_p w_color f_600">World wide</h3>
+                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="payment_clients_area">
+    <div class="clients_bg_shape_top"></div>
+    <div class="clients_bg_shape_right"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="payment_features_content pr_70 wow fadeInLeft" data-wow-delay="0.2s">
+            <div class="icon">
+              <img class="img_shape" src="https://prycely.com/assets/frontend/img/home9/icon_shape.png" alt="">
+              <img class="icon_img" src="https://prycely.com/assets/frontend/img/home9/icon2.png" alt="">
+            </div>
+            <h2>Quick & Easy Process</h2>
+            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
+            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn">Sign Up for Free</a>
+            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Sign Up for Free</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="payment_clients_inner">
+            <div class="clients_item one wow fadeInLeft" data-wow-delay="0.2s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo1.png" alt="">
+            </div>
+            <div class="clients_item two wow fadeInLeft" data-wow-delay="0.3s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo2.png" alt="">
+            </div>
+            <div class="clients_item three wow fadeInLeft" data-wow-delay="0.4s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo3.png" alt="">
+            </div>
+            <div class="clients_item four wow fadeInLeft" data-wow-delay="0.5s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo4.png" alt="">
+            </div>
+            <div class="clients_item five wow fadeInLeft" data-wow-delay="0.6s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo5.png" alt="">
+            </div>
+            <div class="clients_item six wow fadeInLeft" data-wow-delay="0.7s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo6.png" alt="">
+            </div>
+            <div class="clients_item seven wow fadeInLeft" data-wow-delay="0.8s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo7.png" alt="">
+            </div>
+            <div class="clients_item eight wow fadeInLeft" data-wow-delay="0.8s">
+              <img src="https://prycely.com/assets/frontend/img/home9/logo8.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="payment_testimonial_area">
+    <div class="container">
+      <div class="row payment_testimonial_info flex-row-reverse">
+        <div class="col-lg-7 d-flex align-items-center">
+          <div class="testimonial_content">
+            <div class="icon">,,</div>
+            <p class="f_p f_size_20">“This theme aute irure dolor in reprehe erit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur for the life sint occaecat cupidatat non proident, sunt in culpa qui officia de est laborum.”</p>
+            <div class="author f_600 f_p t_color f_size_20">James Anderson</div>
+            <div class="author_description f_p f_size_15">UI/UX designer</div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="testimonial_img">
+            <img src="https://prycely.com/assets/frontend/img/home9/testimonial_img.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="payment_action_area">
+    <div class="clients_bg_shape_bottom"></div>
+    <div class="container">
+      <div class="payment_action_content text-center wow fadeInUp" data-wow-delay="0.2s">
+        <div class="pay_icon">
+          <div class="icon_shape"></div>
+          <img class="icon_img" src="https://prycely.com/assets/frontend/img/home9/icon2.png" alt="">
+        </div>
+        <h2 class="f_p t_color f_700">Join 200 million PayPal users worldwide.</h2>
+        <p>All you need is an email address or mobile phone number to transfer money. If they<br>
+          don't have an account, they can create one quickly, for free.</p>
+        <a href="createaccount" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Sign Up for Free</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer_nine_area">
+    <div class="footer_nine_top">
+      <div class="footer_shap left"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-6">
+            <div class="f_widget company_widget pr_100">
+              <a href="index.html" class="f-logo"><img src="https://prycely.com/assets/images/logo.png" srcset="https://prycely.com/assets/images/logo.png" alt="logo" style="width: 70px;"></a>
+              <p class="f_400 f_p f_size_16 mb-0 l_height28 mt_40">Tickety-boo victoria sponge only a quid I don't want no agro morish bum bag gutted mate up the duff, bloke blag cup of char super bugger all mate.!</p>
+              <div class="f_social_icon_two mt_30">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter-alt"></i></a>
+                <a href="#"><i class="ti-vimeo-alt"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="f_widget about-widget">
+              <h3 class="f-title f_500 f_size_16 mb-30">About Us</h3>
+              <ul class="list-unstyled f_list">
+                <li><a href="#">Developer</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Investor</a></li>
+                <li><a href="#">Sitemap</a></li>
+                <li><a href="#">Jobs</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="f_widget about-widget">
+              <h3 class="f-title f_500 f_size_16 mb-30">Help & Suport</h3>
+              <ul class="list-unstyled f_list">
+                <li><a href="#">Help aand Contact</a></li>
+                <li><a href="#">Fees</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">App</a></li>
+                <li><a href="#">Shop</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pl_100">
+            <div class="f_widget about-widget">
+              <h3 class="f-title f_500 f_size_16 mb-30">Privacy Contact</h3>
+              <ul class="list-unstyled f_list">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Legal Agreement</a></li>
+                <li><a href="#">Feedback</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer_nine_bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7 align-self-center">
+            <p class="mb-0 f_400">Copyright ©  Powered by <a href="#">Berjis Technologies LTD</a></p>
+          </div>
+          <div class="col-sm-5">
+            <select class="selectpicker flag_selector" data-width="fit">
+              <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+            <option data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+          <option data-content='<span class="flag-icon flag-icon-us"></span> English'>Potogal</option>
+        <option data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Brazil</option>
+    </select>
+  </div>
+</div>
+</div>
+</div>
+</footer>
+</div>

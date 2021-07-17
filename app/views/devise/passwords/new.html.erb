@@ -2,14 +2,15 @@
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="col-sm-6">
+    <div class="field form-group form-floating col my-3">
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter ypour email" %>
+      <%= f.label :email %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <div class="actions">
+      <%= f.submit "Send me reset password instructions", class: "btn btn-outline-primary btn-md my-3" %>
+    </div>
   </div>
 <% end %>
 

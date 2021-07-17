@@ -5,4 +5,14 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get home_index_url
     assert_response :success
   end
+
+  test "should get about" do
+    get home_about_url
+    assert_response :success
+  end
+
+  test "should get pricing" do
+    get home_pricing_url
+    assert_response :success
+  end
 end
