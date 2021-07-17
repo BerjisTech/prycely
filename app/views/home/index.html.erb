@@ -85,7 +85,7 @@
 
           </ul>
           <% if user_signed_in? %>
-            <%= link_to "Account", dashboard_index_path, class: "btn_get btn_hover menu_cus" %>
+            <%= link_to "Account", dashboard_path, class: "btn_get btn_hover menu_cus" %>
           <% else %>
             <%= link_to "Sign In", user_session_path, class: "btn_get btn_hover menu_cus" %>
           <% end %>

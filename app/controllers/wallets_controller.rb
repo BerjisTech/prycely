@@ -4,7 +4,8 @@ class WalletsController < ApplicationController
 
   # GET /wallets or /wallets.json
   def index
-    @wallets = Wallet.all
+    # @wallets = Wallet.all
+    @wallets = current_user.wallets
   end
 
   # GET /wallets/1 or /wallets/1.json
@@ -13,7 +14,8 @@ class WalletsController < ApplicationController
 
   # GET /wallets/new
   def new
-    @wallet = Wallet.new
+    # @wallet = Wallet.new
+    @wallet = current_user.wallets.build
   end
 
   # GET /wallets/1/edit
@@ -22,7 +24,8 @@ class WalletsController < ApplicationController
 
   # POST /wallets or /wallets.json
   def create
-    @wallet = Wallet.new(wallet_params)
+    # @wallet = Wallet.new(wallet_params)
+    @wallet = current_user.wallets.build(wallet_params)
 
     respond_to do |format|
       if @wallet.save
@@ -55,6 +58,11 @@ class WalletsController < ApplicationController
       format.html { redirect_to wallets_url, notice: "Wallet was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @user = current_user.wallets.find_by(id: params[:id])
+    redirect_to wallets_path, notice: "You're not authorized to perform this action" if @user.nil?
   end
 
   private

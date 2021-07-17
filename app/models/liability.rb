@@ -1,2 +1,3 @@
 class Liability < ApplicationRecord
+    belongs_to :group
 end
