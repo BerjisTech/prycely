@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by: 1
+  currency: MyText
+  type: MyText
+  membership: 1
+
+two:
+  created_by: 1
+  currency: MyText
+  type: MyText
+  membership: 1

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Paymentcategories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Created by</th>
+      <th>Type</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paymentcategories.each do |paymentcategory| %>
+      <tr>
+        <td><%= paymentcategory.group_id %></td>
+        <td><%= paymentcategory.created_by %></td>
+        <td><%= paymentcategory.type %></td>
+        <td><%= paymentcategory.name %></td>
+        <td><%= link_to 'Show', paymentcategory %></td>
+        <td><%= link_to 'Edit', edit_paymentcategory_path(paymentcategory) %></td>
+        <td><%= link_to 'Destroy', paymentcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paymentcategory', new_paymentcategory_path %>

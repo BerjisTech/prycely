@@ -1,0 +1,2 @@
+class Stk < ApplicationRecord
+end

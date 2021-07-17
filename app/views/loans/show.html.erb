@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @loan.group_id %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @loan.created_by %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @loan.user_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @loan.amount %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @loan.type %>
+</p>
+
+<p>
+  <strong>Amount due:</strong>
+  <%= @loan.amount_due %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @loan.interest %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @loan.status %>
+</p>
+
+<p>
+  <strong>Guarantors:</strong>
+  <%= @loan.guarantors %>
+</p>
+
+<p>
+  <strong>Date granted:</strong>
+  <%= @loan.date_granted %>
+</p>
+
+<p>
+  <strong>Date due:</strong>
+  <%= @loan.date_due %>
+</p>
+
+<p>
+  <strong>Date paid:</strong>
+  <%= @loan.date_paid %>
+</p>
+
+<p>
+  <strong>Requirements:</strong>
+  <%= @loan.requirements %>
+</p>
+
+<%= link_to 'Edit', edit_loan_path(@loan) %> |
+<%= link_to 'Back', loans_path %>

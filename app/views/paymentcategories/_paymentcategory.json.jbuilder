@@ -1,0 +1,2 @@
+json.extract! paymentcategory, :id, :group_id, :created_by, :type, :name, :created_at, :updated_at
+json.url paymentcategory_url(paymentcategory, format: :json)

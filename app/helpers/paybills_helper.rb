@@ -1,0 +1,2 @@
+module PaybillsHelper
+end

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction reference</th>
+      <th>Merchant request</th>
+      <th>Checkout request</th>
+      <th>Response code</th>
+      <th>Response description</th>
+      <th>Custom message</th>
+      <th>Status</th>
+      <th>Response result code</th>
+      <th>Response result description</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stks.each do |stk| %>
+      <tr>
+        <td><%= stk.transaction_reference %></td>
+        <td><%= stk.merchant_request_id %></td>
+        <td><%= stk.checkout_request_id %></td>
+        <td><%= stk.response_code %></td>
+        <td><%= stk.response_description %></td>
+        <td><%= stk.custom_message %></td>
+        <td><%= stk.status %></td>
+        <td><%= stk.response_result_code %></td>
+        <td><%= stk.response_result_description %></td>
+        <td><%= stk.phone %></td>
+        <td><%= link_to 'Show', stk %></td>
+        <td><%= link_to 'Edit', edit_stk_path(stk) %></td>
+        <td><%= link_to 'Destroy', stk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stk', new_stk_path %>

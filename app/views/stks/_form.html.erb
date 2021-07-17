@@ -1,0 +1,67 @@
+<%= form_with(model: stk) do |form| %>
+  <% if stk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stk.errors.count, "error") %> prohibited this stk from being saved:</h2>
+
+      <ul>
+        <% stk.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :transaction_reference %>
+    <%= form.text_field :transaction_reference %>
+  </div>
+
+  <div class="field">
+    <%= form.label :merchant_request_id %>
+    <%= form.text_area :merchant_request_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkout_request_id %>
+    <%= form.text_area :checkout_request_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :response_code %>
+    <%= form.number_field :response_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :response_description %>
+    <%= form.text_area :response_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :custom_message %>
+    <%= form.text_area :custom_message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :response_result_code %>
+    <%= form.number_field :response_result_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :response_result_description %>
+    <%= form.text_area :response_result_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_area :phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

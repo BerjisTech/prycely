@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Transaction reference:</strong>
+  <%= @stk.transaction_reference %>
+</p>
+
+<p>
+  <strong>Merchant request:</strong>
+  <%= @stk.merchant_request_id %>
+</p>
+
+<p>
+  <strong>Checkout request:</strong>
+  <%= @stk.checkout_request_id %>
+</p>
+
+<p>
+  <strong>Response code:</strong>
+  <%= @stk.response_code %>
+</p>
+
+<p>
+  <strong>Response description:</strong>
+  <%= @stk.response_description %>
+</p>
+
+<p>
+  <strong>Custom message:</strong>
+  <%= @stk.custom_message %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stk.status %>
+</p>
+
+<p>
+  <strong>Response result code:</strong>
+  <%= @stk.response_result_code %>
+</p>
+
+<p>
+  <strong>Response result description:</strong>
+  <%= @stk.response_result_description %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @stk.phone %>
+</p>
+
+<%= link_to 'Edit', edit_stk_path(@stk) %> |
+<%= link_to 'Back', stks_path %>

@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Created by</th>
+      <th>User</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Amount due</th>
+      <th>Interest</th>
+      <th>Status</th>
+      <th>Guarantors</th>
+      <th>Date granted</th>
+      <th>Date due</th>
+      <th>Date paid</th>
+      <th>Requirements</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loans.each do |loan| %>
+      <tr>
+        <td><%= loan.group_id %></td>
+        <td><%= loan.created_by %></td>
+        <td><%= loan.user_id %></td>
+        <td><%= loan.amount %></td>
+        <td><%= loan.type %></td>
+        <td><%= loan.amount_due %></td>
+        <td><%= loan.interest %></td>
+        <td><%= loan.status %></td>
+        <td><%= loan.guarantors %></td>
+        <td><%= loan.date_granted %></td>
+        <td><%= loan.date_due %></td>
+        <td><%= loan.date_paid %></td>
+        <td><%= loan.requirements %></td>
+        <td><%= link_to 'Show', loan %></td>
+        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
+        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan', new_loan_path %>

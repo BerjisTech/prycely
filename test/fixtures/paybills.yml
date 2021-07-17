@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request: MyText
+  type: 
+  transaction_reference: MyString
+  paybill_balance: 1.5
+  third_party_transaction_id: MyText
+  invoice_number: MyText
+  amount: 1.5
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  phone: MyText
+  short_code: 1
+  account_number: MyText
+
+two:
+  request: MyText
+  type: 
+  transaction_reference: MyString
+  paybill_balance: 1.5
+  third_party_transaction_id: MyText
+  invoice_number: MyText
+  amount: 1.5
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  phone: MyText
+  short_code: 1
+  account_number: MyText

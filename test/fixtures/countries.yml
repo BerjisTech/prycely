@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone_code: 1
+  country_code: MyText
+  country_name: MyText
+
+two:
+  phone_code: 1
+  country_code: MyText
+  country_name: MyText

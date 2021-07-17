@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @loancategory.group_id %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @loancategory.created_by %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @loancategory.name %>
+</p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @loancategory.period %>
+</p>
+
+<p>
+  <strong>Decsription:</strong>
+  <%= @loancategory.decsription %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @loancategory.amount %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @loancategory.interest %>
+</p>
+
+<p>
+  <strong>Interest rule:</strong>
+  <%= @loancategory.interest_rule %>
+</p>
+
+<p>
+  <strong>Required guarantos:</strong>
+  <%= @loancategory.required_guarantos %>
+</p>
+
+<p>
+  <strong>Requirements:</strong>
+  <%= @loancategory.requirements %>
+</p>
+
+<%= link_to 'Edit', edit_loancategory_path(@loancategory) %> |
+<%= link_to 'Back', loancategories_path %>

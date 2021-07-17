@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invited_by: 1
+  user_id: 1
+  group_id: 1
+  designation: MyText
+  status: MyText
+  invited_on: 2021-07-17 13:22:25
+  accepted_on: 2021-07-17 13:22:25
+  paid_member: MyText
+  amount: 1
+
+two:
+  invited_by: 1
+  user_id: 1
+  group_id: 1
+  designation: MyText
+  status: MyText
+  invited_on: 2021-07-17 13:22:25
+  accepted_on: 2021-07-17 13:22:25
+  paid_member: MyText
+  amount: 1

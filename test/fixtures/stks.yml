@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction_reference: MyString
+  merchant_request_id: MyText
+  checkout_request_id: MyText
+  response_code: 1
+  response_description: MyText
+  custom_message: MyText
+  status: 1
+  response_result_code: 1
+  response_result_description: MyText
+  phone: MyText
+
+two:
+  transaction_reference: MyString
+  merchant_request_id: MyText
+  checkout_request_id: MyText
+  response_code: 1
+  response_description: MyText
+  custom_message: MyText
+  status: 1
+  response_result_code: 1
+  response_result_description: MyText
+  phone: MyText

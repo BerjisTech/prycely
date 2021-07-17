@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loancategories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Created by</th>
+      <th>Name</th>
+      <th>Period</th>
+      <th>Decsription</th>
+      <th>Amount</th>
+      <th>Interest</th>
+      <th>Interest rule</th>
+      <th>Required guarantos</th>
+      <th>Requirements</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loancategories.each do |loancategory| %>
+      <tr>
+        <td><%= loancategory.group_id %></td>
+        <td><%= loancategory.created_by %></td>
+        <td><%= loancategory.name %></td>
+        <td><%= loancategory.period %></td>
+        <td><%= loancategory.decsription %></td>
+        <td><%= loancategory.amount %></td>
+        <td><%= loancategory.interest %></td>
+        <td><%= loancategory.interest_rule %></td>
+        <td><%= loancategory.required_guarantos %></td>
+        <td><%= loancategory.requirements %></td>
+        <td><%= link_to 'Show', loancategory %></td>
+        <td><%= link_to 'Edit', edit_loancategory_path(loancategory) %></td>
+        <td><%= link_to 'Destroy', loancategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loancategory', new_loancategory_path %>

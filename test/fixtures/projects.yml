@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  amount: 1.5
+  status: 1
+  project_start: 2021-07-17 13:46:01
+  project_end: 2021-07-17 13:46:01
+  created_by: 1
+  group_id: 1
+  currency: MyText
+
+two:
+  title: MyString
+  description: MyText
+  amount: 1.5
+  status: 1
+  project_start: 2021-07-17 13:46:01
+  project_end: 2021-07-17 13:46:01
+  created_by: 1
+  group_id: 1
+  currency: MyText

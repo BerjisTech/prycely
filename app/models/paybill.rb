@@ -1,0 +1,2 @@
+class Paybill < ApplicationRecord
+end

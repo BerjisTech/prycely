@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invited by:</strong>
+  <%= @member.invited_by %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @member.user_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @member.group_id %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @member.designation %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @member.status %>
+</p>
+
+<p>
+  <strong>Invited on:</strong>
+  <%= @member.invited_on %>
+</p>
+
+<p>
+  <strong>Accepted on:</strong>
+  <%= @member.accepted_on %>
+</p>
+
+<p>
+  <strong>Paid member:</strong>
+  <%= @member.paid_member %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @member.amount %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>

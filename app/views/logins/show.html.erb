@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @login.user_id %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @login.time %>
+</p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @login.ip %>
+</p>
+
+<p>
+  <strong>Success:</strong>
+  <%= @login.success %>
+</p>
+
+<p>
+  <strong>Password attempt:</strong>
+  <%= @login.password_attempt %>
+</p>
+
+<%= link_to 'Edit', edit_login_path(@login) %> |
+<%= link_to 'Back', logins_path %>

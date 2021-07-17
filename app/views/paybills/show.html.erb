@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @paybill.request %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @paybill.type %>
+</p>
+
+<p>
+  <strong>Transaction reference:</strong>
+  <%= @paybill.transaction_reference %>
+</p>
+
+<p>
+  <strong>Paybill balance:</strong>
+  <%= @paybill.paybill_balance %>
+</p>
+
+<p>
+  <strong>Third party transaction:</strong>
+  <%= @paybill.third_party_transaction_id %>
+</p>
+
+<p>
+  <strong>Invoice number:</strong>
+  <%= @paybill.invoice_number %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @paybill.amount %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @paybill.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @paybill.last_name %>
+</p>
+
+<p>
+  <strong>Middle name:</strong>
+  <%= @paybill.middle_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @paybill.phone %>
+</p>
+
+<p>
+  <strong>Short code:</strong>
+  <%= @paybill.short_code %>
+</p>
+
+<p>
+  <strong>Account number:</strong>
+  <%= @paybill.account_number %>
+</p>
+
+<%= link_to 'Edit', edit_paybill_path(@paybill) %> |
+<%= link_to 'Back', paybills_path %>

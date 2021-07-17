@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invited by</th>
+      <th>User</th>
+      <th>Group</th>
+      <th>Designation</th>
+      <th>Status</th>
+      <th>Invited on</th>
+      <th>Accepted on</th>
+      <th>Paid member</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.invited_by %></td>
+        <td><%= member.user_id %></td>
+        <td><%= member.group_id %></td>
+        <td><%= member.designation %></td>
+        <td><%= member.status %></td>
+        <td><%= member.invited_on %></td>
+        <td><%= member.accepted_on %></td>
+        <td><%= member.paid_member %></td>
+        <td><%= member.amount %></td>
+        <td><%= link_to 'Show', member %></td>
+        <td><%= link_to 'Edit', edit_member_path(member) %></td>
+        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Member', new_member_path %>
