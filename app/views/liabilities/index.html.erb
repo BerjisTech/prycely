@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Liabilities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Group</th>
+      <th>Date bought</th>
+      <th>Date sold</th>
+      <th>Added by</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @liabilities.each do |liability| %>
+      <tr>
+        <td><%= liability.name %></td>
+        <td><%= liability.description %></td>
+        <td><%= liability.group_id %></td>
+        <td><%= liability.date_bought %></td>
+        <td><%= liability.date_sold %></td>
+        <td><%= liability.added_by %></td>
+        <td><%= liability.price %></td>
+        <td><%= link_to 'Show', liability %></td>
+        <td><%= link_to 'Edit', edit_liability_path(liability) %></td>
+        <td><%= link_to 'Destroy', liability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Liability', new_liability_path %>

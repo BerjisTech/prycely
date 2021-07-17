@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  date: 2021-07-17 20:04:51
+  created_by: 1
+  group_id: 1
+  price: 1.5
+  fine: 1.5
+  host: MyText
+  host_contact: MyText
+
+two:
+  title: MyString
+  description: MyText
+  date: 2021-07-17 20:04:51
+  created_by: 1
+  group_id: 1
+  price: 1.5
+  fine: 1.5
+  host: MyText
+  host_contact: MyText

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  group_id: 1
+  date_bought: 2021-07-17 20:08:31
+  date_sold: 2021-07-17 20:08:31
+  added_by: 1
+  price: 1.5
+
+two:
+  name: MyString
+  description: MyText
+  group_id: 1
+  date_bought: 2021-07-17 20:08:31
+  date_sold: 2021-07-17 20:08:31
+  added_by: 1
+  price: 1.5

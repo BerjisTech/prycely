@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :liabilities
+  resources :assets
+  resources :activities
   devise_for :admins
   resources :loans
   resources :loancategories

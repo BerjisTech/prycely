@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_105720) do
+ActiveRecord::Schema.define(version: 2021_07_17_170856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "date"
+    t.integer "created_by"
+    t.integer "group_id"
+    t.float "price"
+    t.float "fine"
+    t.text "host"
+    t.text "host_contact"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +39,18 @@ ActiveRecord::Schema.define(version: 2021_07_17_105720) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "assets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "group_id"
+    t.datetime "date_bought"
+    t.datetime "date_sold"
+    t.integer "added_by"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "countries", force: :cascade do |t|
@@ -56,6 +82,18 @@ ActiveRecord::Schema.define(version: 2021_07_17_105720) do
     t.text "currency"
     t.text "type"
     t.integer "membership"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "liabilities", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "group_id"
+    t.datetime "date_bought"
+    t.datetime "date_sold"
+    t.integer "added_by"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

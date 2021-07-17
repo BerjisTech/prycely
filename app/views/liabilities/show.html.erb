@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @liability.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @liability.description %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @liability.group_id %>
+</p>
+
+<p>
+  <strong>Date bought:</strong>
+  <%= @liability.date_bought %>
+</p>
+
+<p>
+  <strong>Date sold:</strong>
+  <%= @liability.date_sold %>
+</p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @liability.added_by %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @liability.price %>
+</p>
+
+<%= link_to 'Edit', edit_liability_path(@liability) %> |
+<%= link_to 'Back', liabilities_path %>
