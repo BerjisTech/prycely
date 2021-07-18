@@ -1,4 +1,5 @@
 class LiabilitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_liability, only: %i[ show edit update destroy ]
 
   # GET /liabilities or /liabilities.json

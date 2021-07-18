@@ -1,0 +1,2 @@
+module GrouptypesHelper
+end

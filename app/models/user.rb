@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :registerable, :confirmable
 
-         has_many :wallets
-         has_many :groups
-         has_many :transactions
-         has_many :loans
-         has_many :logins
+  has_many :wallets
+  has_many :groups
+  has_many :transactions
+  has_many :loans
+  has_many :logins
 
   # protected
 

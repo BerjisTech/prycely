@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :group_types
 
   # GET /groups or /groups.json
   def index
@@ -55,6 +56,15 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_url, notice: "Group was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def group_types
+    @group_types = [
+      ["1", "Freinds & Family Groups"],
+      ["2", "Temporary Mid sized (Church, Fundraisers etc)"],
+      ["3", "Sacco & Co-operative"],
+      ["4", "Wash Wash"]
+    ]
   end
 
   private

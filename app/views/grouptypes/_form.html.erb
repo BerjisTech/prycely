@@ -1,0 +1,25 @@
+<div class="row">
+  <%= form_with(model: grouptype) do |form| %>
+    <% if grouptype.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(grouptype.errors.count, "error") %> prohibited this grouptype from being saved:</h2>
+
+        <ul>
+          <% grouptype.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="col-sm-6">
+      <div class="field form-group form-floating my-3">
+        <%= form.text_field :name, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :name %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-outline-primary btn-md mb-4"%>
+      </div>
+    </div>
+  <% end %>
+</div>

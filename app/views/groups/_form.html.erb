@@ -1,37 +1,43 @@
-<%= form_with(model: group) do |form| %>
-  <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+<div class="row">
+  <%= form_with(model: group) do |form| %>
+    <% if group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-      <ul>
-        <% group.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% group.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="col-sm-6">
+
+      <%= form.number_field :created_by, value: current_user.id, type: :hidden %>
+
+      <div class="field form-group form-floating my-4">
+        <%= form.text_field :currency, class: "form-control form-control-sm", placeholder: "Placeholder" %>
+        <%= form.label :currency %>
+      </div>
+
+      <div class="field form-group form-floating my-4">
+        <%= form.select :type, [
+                                  ["Freinds & Family Groups", "1"],
+                                  ["Temporary Or Mid sized (Church, Fundraisers etc)", "2"],
+                                  ["Sacco & Co-operative", "3"],
+                                  ["Wash Wash", "4"]
+                                ], { prompt: "Choose Group Type" }, class: "form-control form-select" %>
+        <%= form.label :type %>
+      </div>
+
+      <div class="field form-group form-floating my-4">
+        <%= form.number_field :membership, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :membership %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-outline-primary btn-md my-3" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :created_by %>
-    <%= form.number_field :created_by %>
-  </div>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :currency %>
-    <%= form.text_area :currency %>
-  </div>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :type %>
-    <%= form.text_area :type %>
-  </div>
-
-  <div class="field form-group form-floating col">
-    <%= form.label :membership %>
-    <%= form.number_field :membership %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -11,3 +11,13 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require('packs/jquery-3.2.1')
+require('packs/jquery.form')
+require('packs/jquery.validate.min')
+require('packs/bootstrap.min')
+require('packs/coming-soon')
+require('packs/gmaps')
+require('packs/main')
+require('packs/plugins')
+require('packs/pryce')

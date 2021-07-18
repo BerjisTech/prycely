@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :grouptypes
   get "dashboard/index"
   get "api/index"
   get "home/index"
@@ -24,11 +25,11 @@ Rails.application.routes.draw do
   resources :members
   resources :groups
   resources :wallets
-  devise_for :users, controllers: { confirmations: "confirmations" }
+  devise_for :users, controllers: { confirmations: "confirmations" }, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
   root "home#index"
 
-  match "dashboard", to: 'dashboard#index', via: [:get, :post]
-  
+  match "dashboard", to: "dashboard#index", via: [:get, :post]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

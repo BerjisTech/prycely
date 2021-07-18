@@ -1,0 +1,3490 @@
+.switch input {
+    top         : 0;
+    right       : 0;
+    bottom      : 0;
+    left        : 0;
+    -ms-filter  : "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter      : alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity     : 0;
+    z-index     : 100;
+    position    : absolute;
+    width       : 100%;
+    height      : 100%;
+    cursor      : pointer;
+}
+
+.switch {
+    width   : 80px;
+    height  : 25px;
+    position: relative;
+}
+
+.switch label {
+    display         : block;
+    width           : 80%;
+    height          : 100%;
+    position        : relative;
+    /* background   : #1F2736; */
+    /*#121823*/
+    /* background   : linear-gradient(#121823, #161d2b); */
+    border-radius   : 30px 30px 30px 30px;
+    box-shadow      :
+        inset 0 3px 8px 1px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.2);
+    -webkit-transition: all .5s ease;
+    transition        : all .5s ease;
+
+}
+
+.switch input~label i {
+    display      : block;
+    height       : 21px;
+    width        : 21px;
+    position     : absolute;
+    left         : 2px;
+    top          : 2px;
+    z-index      : 2;
+    border-radius: inherit;
+    background   : #283446;
+    /* Fallback */
+    background   : linear-gradient(#003471, #283446);
+    box-shadow   :
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 8px rgba(0, 0, 0, 0.3),
+        0 12px 12px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all .5s ease;
+    transition        : all .5s ease;
+}
+
+
+.switch label+span {
+    content         : "";
+    display         : inline-block;
+    position        : absolute;
+    left            : 85%;
+    right           : 0px;
+    top             : 3px;
+    width           : 18px;
+    height          : 18px;
+    border-radius   : 10px;
+    /* background   : #283446; */
+    /* background   : gradient-gradient(#003471, #283446); */
+    box-shadow      :
+        inset 0 1px 0 rgba(0, 0, 0, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 10px rgba(185, 231, 253, 0),
+        inset 0 0 8px rgba(0, 0, 0, 0.9),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3),
+        inset 0 -5px 5px rgba(0, 0, 0, 0.5);
+    -webkit-transition: all .5s ease;
+    transition        : all .5s ease;
+    z-index           : 2;
+}
+
+/* Toggle */
+.switch input:checked~label+span {
+    content           : "";
+    display           : inline-block;
+    position          : absolute;
+    width             : 18px;
+    height            : 18px;
+    border-radius     : 10px;
+    -webkit-transition: all .5s ease;
+    transition        : all .5s ease;
+    z-index           : 2;
+    background        : #b9f3fe;
+    background        : gradient-gradient(#ffffff, #77a1b9);
+    box-shadow        :
+        inset 0 1px 0 rgba(0, 0, 0, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 10px rgba(100, 231, 253, 1),
+        inset 0 0 8px rgba(61, 157, 247, 0.8),
+        inset 0 -2px 5px rgba(185, 231, 253, 0.3),
+        inset 0 -3px 8px rgba(185, 231, 253, 0.5);
+
+}
+
+.switch input:checked~label i {
+    left: auto;
+    left: 63%;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 8px rgba(0, 0, 0, 0.3),
+        0 8px 8px rgba(0, 0, 0, 0.3),
+        inset -1px 0 1px #b9f3fe;
+
+    -webkit-transition: all .5s ease;
+    transition        : all .5s ease;
+}
+
+/* Dividers */
+.divider_small {
+    display   : table;
+    width     : 100%;
+    height    : 10px;
+    background: transparent;
+}
+
+.divider_medium {
+    display   : table;
+    width     : 100%;
+    height    : 20px;
+    background: transparent;
+}
+
+.divider_large {
+    display   : table;
+    width     : 100%;
+    height    : 50px;
+    background: transparent;
+}
+
+/* Material Icons */
+
+.material-icons {
+    cursor: pointer;
+}
+
+/* Preloader */
+
+.preloader {
+    display        : flex;
+    width          : 100vw;
+    height         : 100vh;
+    overflow-y     : hidden;
+    overflow-x     : hidden;
+    margin         : 0;
+    position       : fixed;
+    align-items    : center;
+    justify-content: center;
+}
+
+/* Custom Scrollbar */
+
+/* total width */
+*::-webkit-scrollbar {
+    background-color: #fff;
+    width           : 10px
+}
+
+/* background of the scrollbar except button or resizer */
+*::-webkit-scrollbar-track {
+    background-color: #fff
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #f4f4f4
+}
+
+/* scrollbar itself */
+*::-webkit-scrollbar-thumb {
+    background-color: #003471;
+    border-radius   : 10px;
+    border          : 3px solid #fff
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #003471;
+    border          : 3px solid #f4f4f4
+}
+
+/* set button(top and bottom of the scrollbar) */
+*::-webkit-scrollbar-button {
+    display: none
+}
+
+
+/* Panels */
+.panel {
+    margin-bottom     : 17px;
+    background-color  : #fff;
+    border            : 1px solid transparent;
+    border-radius     : 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow   : none;
+    box-shadow        : none;
+}
+
+.panel>.panel-heading .panel-title {
+    font-size: 12px;
+}
+
+.panel>.panel-heading .panel-title h4 {
+    font-size: 14px;
+    color    : #303641;
+}
+
+.panel.panel-shadow {
+    -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, .04);
+    -moz-box-shadow   : 0 3px 1px rgba(0, 0, 0, .04);
+    box-shadow        : 0 3px 1px rgba(0, 0, 0, .04);
+}
+
+.panel.reloading>.panel-heading>.panel-options>a[rel="reload"]>i {
+    -webkit-transition: none;
+    -moz-transition   : none;
+    -o-transition     : none;
+    transition        : none;
+    -webkit-animation : reloadingAnimation 1s linear infinite;
+    -moz-animation    : reloadingAnimation 1s linear infinite;
+    -o-animation      : reloadingAnimation 1s linear infinite;
+    animation         : reloadingAnimation 1s linear infinite;
+}
+
+.panel.panel-collapse>.panel-heading>.panel-options>a[rel="collapse"]>i {
+    -webkit-transform: rotate(180deg);
+    -moz-transform   : rotate(180deg);
+    -ms-transform    : rotate(180deg);
+    -o-transform     : rotate(180deg);
+    transform        : rotate(180deg);
+}
+
+.panel .blockUI.blockOverlay {
+    background-image   : url(../images/loader-1.gif);
+    background-image   : url(../images/loader-2.gif);
+    background-repeat  : no-repeat;
+    background-position: center center;
+}
+
+.panel[data-collapsed="1"] .panel-body {
+    display: none;
+}
+
+.panel[data-collapsed="1"] .panel-heading>.panel-options>a[rel="collapse"]>i {
+    -webkit-transform: rotate(180deg);
+    -moz-transform   : rotate(180deg);
+    -ms-transform    : rotate(180deg);
+    -o-transform     : rotate(180deg);
+    transform        : rotate(180deg);
+}
+
+.panel.minimal>.panel-heading {
+    padding      : 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.panel.minimal>.panel-heading>.panel-title {
+    position      : relative;
+    color         : #303641;
+    padding       : 0;
+    padding-bottom: 10px;
+    top           : 8px;
+}
+
+.panel.minimal>.panel-heading>.panel-options {
+    padding-right: 0;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs {
+    position: relative;
+    top     : 1px;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li a {
+    padding                : 8px 10px;
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li a i {
+    color             : #d0d3d9;
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li a:hover {
+    background-color: #f0f0f1;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li.active a {
+    border-bottom-color: #fff;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li.active a:hover {
+    background-color: #fff;
+}
+
+.panel.minimal>.panel-heading>.panel-options>.nav-tabs>li.active a i {
+    color: #303641;
+}
+
+.panel.minimal>.panel-body {
+    padding-left : 0;
+    padding-right: 0;
+}
+
+.panel.minimal.minimal-gray>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #f3f3f3;
+    border-color    : #ebebeb;
+    color           : rgba(115, 120, 129, 0.75);
+}
+
+.panel.minimal.minimal-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+    color              : #303641;
+}
+
+.panel-body {
+    position: relative;
+    padding : 15px;
+}
+
+.panel-body:before,
+.panel-body:after {
+    content: " ";
+    display: table;
+}
+
+.panel-body:after {
+    clear: both;
+}
+
+.panel-body.no-padding {
+    padding: 0;
+}
+
+.panel>.list-group {
+    margin-bottom: 0;
+}
+
+.panel>.list-group .list-group-item {
+    border-width : 1px 0;
+    border-radius: 0;
+}
+
+.panel>.list-group .list-group-item:first-child {
+    border-top: 0;
+}
+
+.panel>.list-group .list-group-item:last-child {
+    border-bottom: 0;
+}
+
+.panel>.list-group:first-child .list-group-item:first-child {
+    border-top-right-radius: 2px;
+    border-top-left-radius : 2px;
+}
+
+.panel>.list-group:last-child .list-group-item:last-child {
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius : 2px;
+}
+
+.panel-heading+.list-group .list-group-item:first-child {
+    border-top-width: 0;
+}
+
+.panel>.table,
+.panel>.table-responsive>.table {
+    margin-bottom: 0;
+}
+
+.panel>.table:first-child>thead:first-child>tr:first-child td:first-child,
+.panel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:first-child,
+.panel>.table:first-child>tbody:first-child>tr:first-child td:first-child,
+.panel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:first-child,
+.panel>.table:first-child>thead:first-child>tr:first-child th:first-child,
+.panel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:first-child,
+.panel>.table:first-child>tbody:first-child>tr:first-child th:first-child,
+.panel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:first-child {
+    border-top-left-radius: 2px;
+}
+
+.panel>.table:first-child>thead:first-child>tr:first-child td:last-child,
+.panel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:last-child,
+.panel>.table:first-child>tbody:first-child>tr:first-child td:last-child,
+.panel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:last-child,
+.panel>.table:first-child>thead:first-child>tr:first-child th:last-child,
+.panel>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:last-child,
+.panel>.table:first-child>tbody:first-child>tr:first-child th:last-child,
+.panel>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:last-child {
+    border-top-right-radius: 2px;
+}
+
+.panel>.table:last-child>tbody:last-child>tr:last-child td:first-child,
+.panel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:first-child,
+.panel>.table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.panel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.panel>.table:last-child>tbody:last-child>tr:last-child th:first-child,
+.panel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:first-child,
+.panel>.table:last-child>tfoot:last-child>tr:last-child th:first-child,
+.panel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:first-child {
+    border-bottom-left-radius: 2px;
+}
+
+.panel>.table:last-child>tbody:last-child>tr:last-child td:last-child,
+.panel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:last-child,
+.panel>.table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.panel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.panel>.table:last-child>tbody:last-child>tr:last-child th:last-child,
+.panel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:last-child,
+.panel>.table:last-child>tfoot:last-child>tr:last-child th:last-child,
+.panel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:last-child {
+    border-bottom-right-radius: 2px;
+}
+
+.panel>.panel-body+.table,
+.panel>.panel-body+.table-responsive {
+    border-top: 1px solid #ebebeb;
+}
+
+.panel>.table>tbody:first-child>tr:first-child th,
+.panel>.table>tbody:first-child>tr:first-child td {
+    border-top: 0;
+}
+
+.panel>.table-bordered,
+.panel>.table-responsive>.table-bordered {
+    border: 0;
+}
+
+.panel>.table-bordered>thead>tr>th:first-child,
+.panel>.table-responsive>.table-bordered>thead>tr>th:first-child,
+.panel>.table-bordered>tbody>tr>th:first-child,
+.panel>.table-responsive>.table-bordered>tbody>tr>th:first-child,
+.panel>.table-bordered>tfoot>tr>th:first-child,
+.panel>.table-responsive>.table-bordered>tfoot>tr>th:first-child,
+.panel>.table-bordered>thead>tr>td:first-child,
+.panel>.table-responsive>.table-bordered>thead>tr>td:first-child,
+.panel>.table-bordered>tbody>tr>td:first-child,
+.panel>.table-responsive>.table-bordered>tbody>tr>td:first-child,
+.panel>.table-bordered>tfoot>tr>td:first-child,
+.panel>.table-responsive>.table-bordered>tfoot>tr>td:first-child {
+    border-left: 0;
+}
+
+.panel>.table-bordered>thead>tr>th:last-child,
+.panel>.table-responsive>.table-bordered>thead>tr>th:last-child,
+.panel>.table-bordered>tbody>tr>th:last-child,
+.panel>.table-responsive>.table-bordered>tbody>tr>th:last-child,
+.panel>.table-bordered>tfoot>tr>th:last-child,
+.panel>.table-responsive>.table-bordered>tfoot>tr>th:last-child,
+.panel>.table-bordered>thead>tr>td:last-child,
+.panel>.table-responsive>.table-bordered>thead>tr>td:last-child,
+.panel>.table-bordered>tbody>tr>td:last-child,
+.panel>.table-responsive>.table-bordered>tbody>tr>td:last-child,
+.panel>.table-bordered>tfoot>tr>td:last-child,
+.panel>.table-responsive>.table-bordered>tfoot>tr>td:last-child {
+    border-right: 0;
+}
+
+.panel>.table-bordered>thead>tr:first-child>th,
+.panel>.table-responsive>.table-bordered>thead>tr:first-child>th,
+.panel>.table-bordered>tbody>tr:first-child>th,
+.panel>.table-responsive>.table-bordered>tbody>tr:first-child>th,
+.panel>.table-bordered>tfoot>tr:first-child>th,
+.panel>.table-responsive>.table-bordered>tfoot>tr:first-child>th,
+.panel>.table-bordered>thead>tr:first-child>td,
+.panel>.table-responsive>.table-bordered>thead>tr:first-child>td,
+.panel>.table-bordered>tbody>tr:first-child>td,
+.panel>.table-responsive>.table-bordered>tbody>tr:first-child>td,
+.panel>.table-bordered>tfoot>tr:first-child>td,
+.panel>.table-responsive>.table-bordered>tfoot>tr:first-child>td {
+    border-top: 0;
+}
+
+.panel>.table-bordered>thead>tr:last-child>th,
+.panel>.table-responsive>.table-bordered>thead>tr:last-child>th,
+.panel>.table-bordered>tbody>tr:last-child>th,
+.panel>.table-responsive>.table-bordered>tbody>tr:last-child>th,
+.panel>.table-bordered>tfoot>tr:last-child>th,
+.panel>.table-responsive>.table-bordered>tfoot>tr:last-child>th,
+.panel>.table-bordered>thead>tr:last-child>td,
+.panel>.table-responsive>.table-bordered>thead>tr:last-child>td,
+.panel>.table-bordered>tbody>tr:last-child>td,
+.panel>.table-responsive>.table-bordered>tbody>tr:last-child>td,
+.panel>.table-bordered>tfoot>tr:last-child>td,
+.panel>.table-responsive>.table-bordered>tfoot>tr:last-child>td {
+    border-bottom: 0;
+}
+
+.panel>.table-responsive {
+    border       : 0;
+    margin-bottom: 0;
+}
+
+.panel-heading {
+    border-bottom          : 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius : 3px;
+}
+
+.panel-heading:before,
+.panel-heading:after {
+    content: " ";
+    display: table;
+}
+
+.panel-heading:after {
+    clear: both;
+}
+
+.panel-heading>.dropdown .dropdown-toggle {
+    color: inherit;
+}
+
+.panel-heading>.panel-title {
+    float  : left;
+    padding: 10px 15px;
+}
+
+.panel-heading>.panel-title>* {
+    margin: 0;
+}
+
+.panel-heading>.panel-title>span {
+    font-weight: normal;
+}
+
+.panel-heading>.panel-options {
+    float        : right;
+    padding-right: 15px;
+}
+
+.panel-heading>.panel-options>a {
+    margin-top: 10px;
+}
+
+.panel-heading>.panel-options>a[rel="reload"]>i {
+    -webkit-transform-origin: 50%;
+    -moz-transform-origin   : 50%;
+    -ms-transform-origin    : 50%;
+    -o-transform-origin     : 50%;
+    transform-origin        : 50%;
+}
+
+.panel-heading>.panel-options>a[rel="collapse"]>i {
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-heading>.panel-options>.nav-tabs {
+    margin-top   : 0;
+    margin-bottom: 0;
+}
+
+.panel-heading>.panel-options>.nav-tabs>li {
+    margin-right: 4px;
+}
+
+.panel-heading>.panel-options>.nav-tabs>li:last-child {
+    margin-right: 0;
+}
+
+lesshat-selector {
+    -lh-property: 0;
+}
+
+@-webkit-keyframes reloadingAnimation {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+@-moz-keyframes reloadingAnimation {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+
+@-o-keyframes reloadingAnimation {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+
+    100% {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@keyframes reloadingAnimation {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform   : rotate(0deg);
+        -ms-transform    : rotate(0deg);
+        transform        : rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform   : rotate(360deg);
+        -ms-transform    : rotate(360deg);
+        transform        : rotate(360deg);
+    }
+}
+
+
+.panel-title {
+    margin-top   : 0;
+    margin-bottom: 0;
+    font-size    : 14px;
+}
+
+.panel-title>a {
+    color: inherit;
+}
+
+.panel-footer {
+    padding                   : 10px 15px;
+    background-color          : #f5f5f5;
+    border-top                : 1px solid #ddd;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius : 2px;
+}
+
+.panel-group {
+    margin-bottom: 17px;
+}
+
+.panel-group .panel {
+    margin-bottom: 0;
+    overflow     : hidden;
+}
+
+.panel-group .panel>.panel-heading>.panel-title {
+    float: none;
+}
+
+.panel-group .panel>.panel-heading>.panel-title>a {
+    display: block;
+}
+
+.panel-group .panel+.panel {
+    margin-top: 5px;
+}
+
+.panel-group .panel-heading {
+    border-bottom: 0;
+}
+
+.panel-group .panel-heading+.panel-collapse .panel-body {
+    border-top: 1px solid #ddd;
+}
+
+.panel-group .panel-footer {
+    border-top: 0;
+}
+
+.panel-group .panel-footer+.panel-collapse .panel-body {
+    border-bottom: 1px solid #ddd;
+}
+
+.panel-group.joined>.panel {
+    -webkit-border-radius  : 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 0;
+    -moz-background-clip   : padding;
+    border-radius          : 0;
+    background-clip        : padding-box;
+}
+
+.panel-group.joined>.panel+.panel {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.panel-group.joined>.panel>.panel-heading {
+    background-color: #ffffff;
+}
+
+.panel-group.joined>.panel>.panel-heading h4 a:before {
+    position          : relative;
+    content           : '\e5ce';
+    font-family       : "Material Icons";
+    color             : rgba(115, 120, 129, 0.7);
+    padding           : 10px 15px;
+    padding           : 0;
+    float             : right;
+    font-size         : 17px;
+    margin-left       : 13px;
+    top               : 0px;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-group.joined>.panel>.panel-heading h4 a.collapsed:before {
+    -webkit-transform: rotate(180deg);
+    -moz-transform   : rotate(180deg);
+    -ms-transform    : rotate(180deg);
+    -o-transform     : rotate(180deg);
+    transform        : rotate(180deg);
+}
+
+.panel-group.joined>.panel>.panel-heading+.panel-collapse {
+    background-color: #f5f5f6;
+    margin-bottom   : 0;
+    font-size       : 12px;
+}
+
+.panel-group.joined>.panel:first-child {
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+}
+
+.panel-group.joined>.panel:last-child {
+    -webkit-border-radius  : 0 0 3px 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 0 0 3px 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 0 0 3px 3px;
+    background-clip        : padding-box;
+}
+
+.panel-primary {
+    border-color           : #ebebeb;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-primary>.panel-heading {
+    color           : #373e4a;
+    background-color: #ffffff;
+    border-color    : #ebebeb;
+    padding         : 0;
+}
+
+.panel-primary>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-primary>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-primary>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-primary>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>a.bg {
+    background-color: #f8f8f8;
+    margin-left     : 5px;
+}
+
+.panel-primary>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffffff;
+}
+
+.panel-primary>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ebebeb;
+    padding-top  : 5px;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ebebeb;
+    background-color       : #ebebeb;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffffff;
+    background-color: #ffffff;
+    color           : #373e4a;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-primary>.panel-footer {
+    background-color: #ffffff;
+    color           : #373e4a;
+    border-top-color: #ebebeb;
+}
+
+.panel-primary>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ebebeb;
+}
+
+.panel-primary>.panel-body+.panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-invert {
+    border-color           : #39414e;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-invert>.panel-heading {
+    color           : #fff;
+    background-color: #303641;
+    border-color    : #39414e;
+    padding         : 0;
+}
+
+.panel-invert>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-heading>.dropdown .caret {
+    border-color: #fff transparent;
+}
+
+.panel-invert>.panel-heading>.panel-title>a {
+    color: #fff;
+}
+
+.panel-invert>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #fff;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>a.bg {
+    background-color: #4f5a6b;
+    margin-left     : 5px;
+}
+
+.panel-invert>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #556174;
+}
+
+.panel-invert>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #39414e;
+    padding-top  : 5px;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #39414e;
+    background-color       : #39414e;
+    padding                : 8px 10px;
+    color                  : rgba(255, 255, 255, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #303641;
+    background-color: #303641;
+    color           : #fff;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #fff;
+}
+
+.panel-invert>.panel-footer {
+    background-color: #303641;
+    color           : #fff;
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #39414e;
+}
+
+.panel-invert>.panel-body+.panel-body {
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-body {
+    background-color: #303641;
+    color           : #778193;
+}
+
+.panel-default {
+    border-color           : #ebebeb;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-default>.panel-heading {
+    color           : #373e4a;
+    background-color: #f0f0f1;
+    border-color    : #ebebeb;
+    padding         : 0;
+}
+
+.panel-default>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-default>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-default>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>a.bg {
+    background-color: #dedede;
+    margin-left     : 5px;
+}
+
+.panel-default>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #e6e6e6;
+}
+
+.panel-default>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ebebeb;
+    padding-top  : 5px;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ebebeb;
+    background-color       : #ebebeb;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #f0f0f1;
+    background-color: #f0f0f1;
+    color           : #373e4a;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-default>.panel-footer {
+    background-color: #f0f0f1;
+    color           : #373e4a;
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ebebeb;
+}
+
+.panel-default>.panel-body+.panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #dedede;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-success {
+    border-color           : #b4e8a8;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-success>.panel-heading {
+    color           : #045702;
+    background-color: #bdedbc;
+    border-color    : #b4e8a8;
+    padding         : 0;
+}
+
+.panel-success>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-heading>.dropdown .caret {
+    border-color: #045702 transparent;
+}
+
+.panel-success>.panel-heading>.panel-title>a {
+    color: #045702;
+}
+
+.panel-success>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #045702;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>a.bg {
+    background-color: #a2e294;
+    margin-left     : 5px;
+}
+
+.panel-success>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ade5a0;
+}
+
+.panel-success>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #b4e8a8;
+    padding-top  : 5px;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #b4e8a8;
+    background-color       : #b4e8a8;
+    padding                : 8px 10px;
+    color                  : rgba(4, 87, 2, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #bdedbc;
+    background-color: #bdedbc;
+    color           : #045702;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #045702;
+}
+
+.panel-success>.panel-footer {
+    background-color: #bdedbc;
+    color           : #045702;
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #b4e8a8;
+}
+
+.panel-success>.panel-body+.panel-body {
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #91dd80;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-warning {
+    border-color           : #ffd78a;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-warning>.panel-heading {
+    color           : #574802;
+    background-color: #ffefa4;
+    border-color    : #ffd78a;
+    padding         : 0;
+}
+
+.panel-warning>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-heading>.dropdown .caret {
+    border-color: #574802 transparent;
+}
+
+.panel-warning>.panel-heading>.panel-title>a {
+    color: #574802;
+}
+
+.panel-warning>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #574802;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>a.bg {
+    background-color: #ffce71;
+    margin-left     : 5px;
+}
+
+.panel-warning>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffd480;
+}
+
+.panel-warning>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ffd78a;
+    padding-top  : 5px;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ffd78a;
+    background-color       : #ffd78a;
+    padding                : 8px 10px;
+    color                  : rgba(87, 72, 2, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffefa4;
+    background-color: #ffefa4;
+    color           : #574802;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #574802;
+}
+
+.panel-warning>.panel-footer {
+    background-color: #ffefa4;
+    color           : #574802;
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ffd78a;
+}
+
+.panel-warning>.panel-body+.panel-body {
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #ffe258;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-danger {
+    border-color           : #ffafbd;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-danger>.panel-heading {
+    color           : #ac1818;
+    background-color: #ffc9c9;
+    border-color    : #ffafbd;
+    padding         : 0;
+}
+
+.panel-danger>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-heading>.dropdown .caret {
+    border-color: #ac1818 transparent;
+}
+
+.panel-danger>.panel-heading>.panel-title>a {
+    color: #ac1818;
+}
+
+.panel-danger>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #ac1818;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>a.bg {
+    background-color: #ff96a7;
+    margin-left     : 5px;
+}
+
+.panel-danger>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffa5b4;
+}
+
+.panel-danger>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ffafbd;
+    padding-top  : 5px;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ffafbd;
+    background-color       : #ffafbd;
+    padding                : 8px 10px;
+    color                  : rgba(172, 24, 24, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffc9c9;
+    background-color: #ffc9c9;
+    color           : #ac1818;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #ac1818;
+}
+
+.panel-danger>.panel-footer {
+    background-color: #ffc9c9;
+    color           : #ac1818;
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ffafbd;
+}
+
+.panel-danger>.panel-body+.panel-body {
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #ff7c7c;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-info {
+    border-color           : #a6e8f3;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-info>.panel-heading {
+    color           : #2c7ea1;
+    background-color: #c5e8f7;
+    border-color    : #a6e8f3;
+    padding         : 0;
+}
+
+.panel-info>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-heading>.dropdown .caret {
+    border-color: #2c7ea1 transparent;
+}
+
+.panel-info>.panel-heading>.panel-title>a {
+    color: #2c7ea1;
+}
+
+.panel-info>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #2c7ea1;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>a.bg {
+    background-color: #8fe3f0;
+    margin-left     : 5px;
+}
+
+.panel-info>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #9de6f1;
+}
+
+.panel-info>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #a6e8f3;
+    padding-top  : 5px;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #a6e8f3;
+    background-color       : #a6e8f3;
+    padding                : 8px 10px;
+    color                  : rgba(44, 126, 161, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #c5e8f7;
+    background-color: #c5e8f7;
+    color           : #2c7ea1;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #2c7ea1;
+}
+
+.panel-info>.panel-footer {
+    background-color: #c5e8f7;
+    color           : #2c7ea1;
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #a6e8f3;
+}
+
+.panel-info>.panel-body+.panel-body {
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #82cdee;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-dark {
+    border-color           : #222;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-dark>.panel-heading {
+    color           : #FFF;
+    background-color: #333;
+    border-color    : #222;
+    padding         : 0;
+}
+
+.panel-dark>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-heading>.dropdown .caret {
+    border-color: #FFF transparent;
+}
+
+.panel-dark>.panel-heading>.panel-title>a {
+    color: #FFF;
+}
+
+.panel-dark>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #FFF;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>a.bg {
+    background-color: #484848;
+    margin-left     : 5px;
+}
+
+.panel-dark>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #505050;
+}
+
+.panel-dark>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #222;
+    padding-top  : 5px;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #222;
+    background-color       : #222;
+    padding                : 8px 10px;
+    color                  : rgba(255, 255, 255, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #333;
+    background-color: #333;
+    color           : #FFF;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #FFF;
+}
+
+.panel-dark>.panel-footer {
+    background-color: #333;
+    color           : #FFF;
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #222;
+}
+
+.panel-dark>.panel-body+.panel-body {
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: rgba(255, 255, 255, 0.1);
+    color           : #FFF;
+    border-color    : rgba(34, 34, 34, 0.1);
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+    color              : #222;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a i {
+    color: #222;
+}
+
+.panel-gray {
+    border-color           : #EEE;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-gray>.panel-heading {
+    color           : #373e4a;
+    background-color: #EEE;
+    border-color    : #FFF;
+    padding         : 0;
+}
+
+.panel-gray>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #EEE;
+}
+
+.panel-gray>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-gray>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-gray>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>a.bg {
+    background-color: #e0e0e0;
+    margin-left     : 5px;
+}
+
+.panel-gray>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #e8e8e8;
+}
+
+.panel-gray>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #EEE;
+    padding-top  : 5px;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #EEE;
+    background-color       : #EEE;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #EEE;
+    background-color: #EEE;
+    color           : #373e4a;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-gray>.panel-footer {
+    background-color: #EEE;
+    color           : #373e4a;
+    border-top-color: #FFF;
+}
+
+.panel-gray>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #EEE;
+}
+
+.panel-gray>.panel-body+.panel-body {
+    border-top-color: #FFF;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #FFF;
+    border-bottom   : 1px solid #FFF;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #EEE;
+    border-color       : #FFF;
+    border-bottom-color: #EEE;
+}
+
+.panel-gray>.panel-body {
+    background-color: #EEE;
+}
+
+.panel-gray>.panel-body+.panel-body {
+    border-top-color: #FFF;
+}
+
+.panel-gradient {
+    border-color           : #CCC;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-gradient>.panel-heading {
+    color           : #303641;
+    background-color: #FFF;
+    border-color    : #CCC;
+    padding         : 0;
+}
+
+.panel-gradient>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-heading>.dropdown .caret {
+    border-color: #303641 transparent;
+}
+
+.panel-gradient>.panel-heading>.panel-title>a {
+    color: #303641;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #303641;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a.bg {
+    background-color: #d1d1d1;
+    margin-left     : 5px;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #d9d9d9;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #CCC;
+    padding-top  : 5px;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #CCC;
+    background-color       : #CCC;
+    padding                : 8px 10px;
+    color                  : rgba(48, 54, 65, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #FFF;
+    background-color: #FFF;
+    color           : #303641;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #303641;
+}
+
+.panel-gradient>.panel-footer {
+    background-color: #FFF;
+    color           : #303641;
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #CCC;
+}
+
+.panel-gradient>.panel-body+.panel-body {
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-heading {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2U1ZTVlNSIgc3RvcC1vcGFjaXR5PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+.panel-gradient>.panel-heading>.panel-options i {
+    color: #303641;
+}
+
+.panel-primary {
+    border-color           : #ebebeb;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-primary>.panel-heading {
+    color           : #373e4a;
+    background-color: #ffffff;
+    border-color    : #ebebeb;
+    padding         : 0;
+}
+
+.panel-primary>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-primary>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-primary>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-primary>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>a.bg {
+    background-color: #f8f8f8;
+    margin-left     : 5px;
+}
+
+.panel-primary>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffffff;
+}
+
+.panel-primary>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ebebeb;
+    padding-top  : 5px;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ebebeb;
+    background-color       : #ebebeb;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffffff;
+    background-color: #ffffff;
+    color           : #373e4a;
+}
+
+.panel-primary>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-primary>.panel-footer {
+    background-color: #ffffff;
+    color           : #373e4a;
+    border-top-color: #ebebeb;
+}
+
+.panel-primary>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ebebeb;
+}
+
+.panel-primary>.panel-body+.panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-invert {
+    border-color           : #39414e;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-invert>.panel-heading {
+    color           : #fff;
+    background-color: #303641;
+    border-color    : #39414e;
+    padding         : 0;
+}
+
+.panel-invert>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-heading>.dropdown .caret {
+    border-color: #fff transparent;
+}
+
+.panel-invert>.panel-heading>.panel-title>a {
+    color: #fff;
+}
+
+.panel-invert>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #fff;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>a.bg {
+    background-color: #4f5a6b;
+    margin-left     : 5px;
+}
+
+.panel-invert>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #556174;
+}
+
+.panel-invert>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #39414e;
+    padding-top  : 5px;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #39414e;
+    background-color       : #39414e;
+    padding                : 8px 10px;
+    color                  : rgba(255, 255, 255, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #303641;
+    background-color: #303641;
+    color           : #fff;
+}
+
+.panel-invert>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #fff;
+}
+
+.panel-invert>.panel-footer {
+    background-color: #303641;
+    color           : #fff;
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #39414e;
+}
+
+.panel-invert>.panel-body+.panel-body {
+    border-top-color: #39414e;
+}
+
+.panel-invert>.panel-body {
+    background-color: #303641;
+    color           : #778193;
+}
+
+.panel-default {
+    border-color           : #ebebeb;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-default>.panel-heading {
+    color           : #373e4a;
+    background-color: #f0f0f1;
+    border-color    : #ebebeb;
+    padding         : 0;
+}
+
+.panel-default>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-default>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-default>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>a.bg {
+    background-color: #dedede;
+    margin-left     : 5px;
+}
+
+.panel-default>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #e6e6e6;
+}
+
+.panel-default>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ebebeb;
+    padding-top  : 5px;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ebebeb;
+    background-color       : #ebebeb;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #f0f0f1;
+    background-color: #f0f0f1;
+    color           : #373e4a;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-default>.panel-footer {
+    background-color: #f0f0f1;
+    color           : #373e4a;
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ebebeb;
+}
+
+.panel-default>.panel-body+.panel-body {
+    border-top-color: #ebebeb;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #dedede;
+}
+
+.panel-default>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-success {
+    border-color           : #b4e8a8;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-success>.panel-heading {
+    color           : #045702;
+    background-color: #bdedbc;
+    border-color    : #b4e8a8;
+    padding         : 0;
+}
+
+.panel-success>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-heading>.dropdown .caret {
+    border-color: #045702 transparent;
+}
+
+.panel-success>.panel-heading>.panel-title>a {
+    color: #045702;
+}
+
+.panel-success>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #045702;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>a.bg {
+    background-color: #a2e294;
+    margin-left     : 5px;
+}
+
+.panel-success>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ade5a0;
+}
+
+.panel-success>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #b4e8a8;
+    padding-top  : 5px;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #b4e8a8;
+    background-color       : #b4e8a8;
+    padding                : 8px 10px;
+    color                  : rgba(4, 87, 2, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #bdedbc;
+    background-color: #bdedbc;
+    color           : #045702;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #045702;
+}
+
+.panel-success>.panel-footer {
+    background-color: #bdedbc;
+    color           : #045702;
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #b4e8a8;
+}
+
+.panel-success>.panel-body+.panel-body {
+    border-top-color: #b4e8a8;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #91dd80;
+}
+
+.panel-success>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-warning {
+    border-color           : #ffd78a;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-warning>.panel-heading {
+    color           : #574802;
+    background-color: #ffefa4;
+    border-color    : #ffd78a;
+    padding         : 0;
+}
+
+.panel-warning>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-heading>.dropdown .caret {
+    border-color: #574802 transparent;
+}
+
+.panel-warning>.panel-heading>.panel-title>a {
+    color: #574802;
+}
+
+.panel-warning>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #574802;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>a.bg {
+    background-color: #ffce71;
+    margin-left     : 5px;
+}
+
+.panel-warning>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffd480;
+}
+
+.panel-warning>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ffd78a;
+    padding-top  : 5px;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ffd78a;
+    background-color       : #ffd78a;
+    padding                : 8px 10px;
+    color                  : rgba(87, 72, 2, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffefa4;
+    background-color: #ffefa4;
+    color           : #574802;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #574802;
+}
+
+.panel-warning>.panel-footer {
+    background-color: #ffefa4;
+    color           : #574802;
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ffd78a;
+}
+
+.panel-warning>.panel-body+.panel-body {
+    border-top-color: #ffd78a;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #ffe258;
+}
+
+.panel-warning>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-danger {
+    border-color           : #ffafbd;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-danger>.panel-heading {
+    color           : #ac1818;
+    background-color: #ffc9c9;
+    border-color    : #ffafbd;
+    padding         : 0;
+}
+
+.panel-danger>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-heading>.dropdown .caret {
+    border-color: #ac1818 transparent;
+}
+
+.panel-danger>.panel-heading>.panel-title>a {
+    color: #ac1818;
+}
+
+.panel-danger>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #ac1818;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>a.bg {
+    background-color: #ff96a7;
+    margin-left     : 5px;
+}
+
+.panel-danger>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #ffa5b4;
+}
+
+.panel-danger>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #ffafbd;
+    padding-top  : 5px;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #ffafbd;
+    background-color       : #ffafbd;
+    padding                : 8px 10px;
+    color                  : rgba(172, 24, 24, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #ffc9c9;
+    background-color: #ffc9c9;
+    color           : #ac1818;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #ac1818;
+}
+
+.panel-danger>.panel-footer {
+    background-color: #ffc9c9;
+    color           : #ac1818;
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #ffafbd;
+}
+
+.panel-danger>.panel-body+.panel-body {
+    border-top-color: #ffafbd;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #ff7c7c;
+}
+
+.panel-danger>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-info {
+    border-color           : #a6e8f3;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-info>.panel-heading {
+    color           : #2c7ea1;
+    background-color: #c5e8f7;
+    border-color    : #a6e8f3;
+    padding         : 0;
+}
+
+.panel-info>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-heading>.dropdown .caret {
+    border-color: #2c7ea1 transparent;
+}
+
+.panel-info>.panel-heading>.panel-title>a {
+    color: #2c7ea1;
+}
+
+.panel-info>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #2c7ea1;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>a.bg {
+    background-color: #8fe3f0;
+    margin-left     : 5px;
+}
+
+.panel-info>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #9de6f1;
+}
+
+.panel-info>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #a6e8f3;
+    padding-top  : 5px;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #a6e8f3;
+    background-color       : #a6e8f3;
+    padding                : 8px 10px;
+    color                  : rgba(44, 126, 161, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #c5e8f7;
+    background-color: #c5e8f7;
+    color           : #2c7ea1;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #2c7ea1;
+}
+
+.panel-info>.panel-footer {
+    background-color: #c5e8f7;
+    color           : #2c7ea1;
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #a6e8f3;
+}
+
+.panel-info>.panel-body+.panel-body {
+    border-top-color: #a6e8f3;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #82cdee;
+}
+
+.panel-info>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+}
+
+.panel-dark {
+    border-color           : #222;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-dark>.panel-heading {
+    color           : #FFF;
+    background-color: #333;
+    border-color    : #222;
+    padding         : 0;
+}
+
+.panel-dark>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-heading>.dropdown .caret {
+    border-color: #FFF transparent;
+}
+
+.panel-dark>.panel-heading>.panel-title>a {
+    color: #FFF;
+}
+
+.panel-dark>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #FFF;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>a.bg {
+    background-color: #484848;
+    margin-left     : 5px;
+}
+
+.panel-dark>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #505050;
+}
+
+.panel-dark>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #222;
+    padding-top  : 5px;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #222;
+    background-color       : #222;
+    padding                : 8px 10px;
+    color                  : rgba(255, 255, 255, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #333;
+    background-color: #333;
+    color           : #FFF;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #FFF;
+}
+
+.panel-dark>.panel-footer {
+    background-color: #333;
+    color           : #FFF;
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #222;
+}
+
+.panel-dark>.panel-body+.panel-body {
+    border-top-color: #222;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: rgba(255, 255, 255, 0.1);
+    color           : #FFF;
+    border-color    : rgba(34, 34, 34, 0.1);
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #fff;
+    border-bottom-color: #fff;
+    color              : #222;
+}
+
+.panel-dark>.panel-heading>.panel-options>.nav-tabs>li.active>a i {
+    color: #222;
+}
+
+.panel-gray {
+    border-color           : #EEE;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-gray>.panel-heading {
+    color           : #373e4a;
+    background-color: #EEE;
+    border-color    : #FFF;
+    padding         : 0;
+}
+
+.panel-gray>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #EEE;
+}
+
+.panel-gray>.panel-heading>.dropdown .caret {
+    border-color: #373e4a transparent;
+}
+
+.panel-gray>.panel-heading>.panel-title>a {
+    color: #373e4a;
+}
+
+.panel-gray>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #373e4a;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>a.bg {
+    background-color: #e0e0e0;
+    margin-left     : 5px;
+}
+
+.panel-gray>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #e8e8e8;
+}
+
+.panel-gray>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #EEE;
+    padding-top  : 5px;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #EEE;
+    background-color       : #EEE;
+    padding                : 8px 10px;
+    color                  : rgba(55, 62, 74, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #EEE;
+    background-color: #EEE;
+    color           : #373e4a;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #373e4a;
+}
+
+.panel-gray>.panel-footer {
+    background-color: #EEE;
+    color           : #373e4a;
+    border-top-color: #FFF;
+}
+
+.panel-gray>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #EEE;
+}
+
+.panel-gray>.panel-body+.panel-body {
+    border-top-color: #FFF;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li>a {
+    background-color: #FFF;
+    border-bottom   : 1px solid #FFF;
+}
+
+.panel-gray>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    background-color   : #EEE;
+    border-color       : #FFF;
+    border-bottom-color: #EEE;
+}
+
+.panel-gray>.panel-body {
+    background-color: #EEE;
+}
+
+.panel-gray>.panel-body+.panel-body {
+    border-top-color: #FFF;
+}
+
+.panel-gradient {
+    border-color           : #CCC;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+}
+
+.panel-gradient>.panel-heading {
+    color           : #303641;
+    background-color: #FFF;
+    border-color    : #CCC;
+    padding         : 0;
+}
+
+.panel-gradient>.panel-heading+.panel-collapse .panel-body {
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-heading>.dropdown .caret {
+    border-color: #303641 transparent;
+}
+
+.panel-gradient>.panel-heading>.panel-title>a {
+    color: #303641;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a {
+    display                : inline-block;
+    color                  : #303641;
+    text-align             : center;
+    line-height            : 1;
+    padding                : 4px 2px;
+    -webkit-border-radius  : 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px;
+    -moz-background-clip   : padding;
+    border-radius          : 3px;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a.bg {
+    background-color: #d1d1d1;
+    margin-left     : 5px;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a.bg:hover {
+    background-color: #d9d9d9;
+}
+
+.panel-gradient>.panel-heading>.panel-options>a i {
+    margin : 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs {
+    position     : relative;
+    top          : 1px;
+    border-bottom: 1px solid #CCC;
+    padding-top  : 5px;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li {
+    background-color: transparent;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li>a {
+    border-color           : #CCC;
+    background-color       : #CCC;
+    padding                : 8px 10px;
+    color                  : rgba(48, 54, 65, 0.5);
+    font-size              : 12px;
+    -webkit-border-radius  : 3px 3px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius     : 3px 3px 0 0;
+    -moz-background-clip   : padding;
+    border-radius          : 3px 3px 0 0;
+    background-clip        : padding-box;
+    -webkit-transition     : all 300ms ease-in-out;
+    -moz-transition        : all 300ms ease-in-out;
+    -o-transition          : all 300ms ease-in-out;
+    transition             : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li>a>i {
+    font-size         : 14px;
+    line-height       : 1;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition   : all 300ms ease-in-out;
+    -o-transition     : all 300ms ease-in-out;
+    transition        : all 300ms ease-in-out;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li.active>a {
+    border-bottom   : 1px solid #FFF;
+    background-color: #FFF;
+    color           : #303641;
+}
+
+.panel-gradient>.panel-heading>.panel-options>.nav-tabs>li.active>a>i {
+    color: #303641;
+}
+
+.panel-gradient>.panel-footer {
+    background-color: #FFF;
+    color           : #303641;
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-footer+.panel-collapse .panel-body {
+    border-bottom-color: #CCC;
+}
+
+.panel-gradient>.panel-body+.panel-body {
+    border-top-color: #CCC;
+}
+
+.panel-gradient>.panel-heading {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2U1ZTVlNSIgc3RvcC1vcGFjaXR5PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+    background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+.panel-gradient>.panel-heading>.panel-options i {
+    color: #303641;
+}
+
+.panel-group .panel>.panel-heading {
+    padding: 10px 0px;
+}
+
+.panel-group .panel>.panel-heading>.panel-title>a {
+    font-size: 15px;
+}
+
+.panel-table {
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow   : 0px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow        : 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border            : 0px !important;
+}
+
+.panel-table .panel-body {
+    background: #FAFAFA;
+}
+
+.panel-table .panel-heading>.panel-title {
+    padding: 30px 25px;
+}
+
+.panel-table .panel-heading>.panel-title span {
+    color    : #888888;
+    font-size: 12px;
+}
+
+.panel-table th {
+    font-weight: bold;
+}
+
+/* SAVER */
+.saving {
+    display      : none;
+    position     : absolute;
+    bottom       : 50px;
+    align-self   : center;
+    background   : #003471;
+    box-shadow   : 0 8px 32px 0 rgb(31 38 135 / 27%);
+    color        : #ffffff;
+    font-size    : 18px;
+    padding      : 20px;
+    border-radius: 10px;
+    transition   : all 0.56s;
+}
+
+.saving-text {
+    margin-right: 20px;
+}
