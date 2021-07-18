@@ -16,7 +16,7 @@ class GrouptypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create grouptype" do
-    assert_difference('Grouptype.count') do
+    assert_difference("Grouptype.count") do
       post grouptypes_url, params: { grouptype: { name: @grouptype.name } }
     end
 
@@ -39,7 +39,7 @@ class GrouptypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy grouptype" do
-    assert_difference('Grouptype.count', -1) do
+    assert_difference("Grouptype.count", -1) do
       delete grouptype_url(@grouptype)
     end
 

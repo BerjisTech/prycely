@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: %i[ show edit update destroy ]
-  before_action :group_types
 
   # GET /groups or /groups.json
   def index
@@ -58,15 +57,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def group_types
-    @group_types = [
-      ["1", "Freinds & Family Groups"],
-      ["2", "Temporary Mid sized (Church, Fundraisers etc)"],
-      ["3", "Sacco & Co-operative"],
-      ["4", "Wash Wash"]
-    ]
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -76,6 +66,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:created_by, :currency, :type, :membership)
+    params.require(:group).permit(:created_by, :name, :currency, :group_type, :membership)
   end
 end

@@ -57,13 +57,14 @@ class GrouptypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_grouptype
-      @grouptype = Grouptype.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def grouptype_params
-      params.require(:grouptype).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_grouptype
+    @grouptype = Grouptype.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def grouptype_params
+    params.require(:grouptype).permit(:name)
+  end
 end

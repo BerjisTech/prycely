@@ -14,9 +14,9 @@
     <% @grouptypes.each do |grouptype| %>
       <tr>
         <td><%= grouptype.name %></td>
-        <td><%= link_to 'Show', grouptype %></td>
-        <td><%= link_to 'Edit', edit_grouptype_path(grouptype) %></td>
-        <td><%= link_to 'Destroy', grouptype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", grouptype %></td>
+        <td><%= link_to "Edit", edit_grouptype_path(grouptype) %></td>
+        <td><%= link_to "Destroy", grouptype, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Group Type', new_grouptype_path, class: "btn btn-outline-primary" %>
+<%= link_to "New Group Type", new_grouptype_path, class: "btn btn-outline-primary" %>

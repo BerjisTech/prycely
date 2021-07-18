@@ -5,9 +5,10 @@
 <table class="table table-responsive table-hover">
   <thead class="table-dark bg-dark">
     <tr>
+      <th>Group</th>
       <th>Created by</th>
       <th>Currency</th>
-      <th>Type</th>
+      <th>Group Type</th>
       <th>Membership</th>
       <th colspan="3"></th>
     </tr>
@@ -16,9 +17,10 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
+        <td><%= group.name %></td>
         <td><%= group.created_by %></td>
         <td><%= group.currency %></td>
-        <td><%= group.type %></td>
+        <td><%= group.group_type %></td>
         <td><%= group.membership %></td>
         <td><%= link_to "Show", group %></td>
         <td><%= link_to "Edit", edit_group_path(group) %></td>
