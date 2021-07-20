@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @members.each do | member |  %>
+        <% @members.each do |member| %>
           <tr class="<% if member.status != 1 %>bg-danger<% end %>">
             <td><%= member.id %></td>
             <td>Name</td>
