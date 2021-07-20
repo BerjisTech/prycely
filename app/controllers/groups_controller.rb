@@ -62,14 +62,14 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
-    @transactions = Transaction.where(group_id: params[:id])
-    @members = Member.where(group_id: params[:id])
-    @loans = Loan.where(group_id: params[:id])
-    @loancategories = Loancategory.where(group_id: params[:id])
-    @liabilities = Liability.where(group_id: params[:id])
-    @asstes = Asset.where(group_id: params[:id])
-    @projects = Project.where(group_id: params[:id])
-    @paymentcategories = Paymentcategory.where(group_id: params[:id])
+    @transactions = Transaction.where(group_id: params[:id]).limit(10)
+    @members = Member.where(group_id: params[:id]).limit(10)
+    @loans = Loan.where(group_id: params[:id]).limit(10)
+    @loancategories = Loancategory.where(group_id: params[:id]).limit(10)
+    @liabilities = Liability.where(group_id: params[:id]).limit(10)
+    @asstes = Asset.where(group_id: params[:id]).limit(10)
+    @projects = Project.where(group_id: params[:id]).limit(10)
+    @paymentcategories = Paymentcategory.where(group_id: params[:id]).limit(10)
   end
 
   # Only allow a list of trusted parameters through.
