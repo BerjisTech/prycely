@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Phone</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Photo</th>
+      <th>Deactivated</th>
+      <th>Verified</th>
+      <th>Country</th>
+      <th>County</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Address</th>
+      <th>Postal</th>
+      <th>Type</th>
+      <th>Tour</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= account.user_id %></td>
+        <td><%= account.phone %></td>
+        <td><%= account.first_name %></td>
+        <td><%= account.last_name %></td>
+        <td><%= account.photo %></td>
+        <td><%= account.deactivated %></td>
+        <td><%= account.verified %></td>
+        <td><%= account.country %></td>
+        <td><%= account.county %></td>
+        <td><%= account.city %></td>
+        <td><%= account.street %></td>
+        <td><%= account.address %></td>
+        <td><%= account.postal %></td>
+        <td><%= account.type %></td>
+        <td><%= account.tour %></td>
+        <td><%= link_to 'Show', account %></td>
+        <td><%= link_to 'Edit', edit_account_path(account) %></td>
+        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Account', new_account_path %>

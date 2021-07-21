@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_18_220346) do
+ActiveRecord::Schema.define(version: 2021_07_21_042847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "phone"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "photo"
+    t.datetime "deactivated"
+    t.string "verified"
+    t.string "country"
+    t.string "county"
+    t.string "city"
+    t.string "street"
+    t.string "address"
+    t.string "postal"
+    t.string "type"
+    t.string "tour"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "activities", force: :cascade do |t|
     t.string "title"
@@ -80,7 +100,7 @@ ActiveRecord::Schema.define(version: 2021_07_18_220346) do
   create_table "groups", force: :cascade do |t|
     t.integer "created_by"
     t.text "currency"
-    t.text "type"
+    t.text "group_type"
     t.integer "membership"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -242,6 +262,11 @@ ActiveRecord::Schema.define(version: 2021_07_18_220346) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "confirmed_at"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "users_confirmation_token_key", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -253,4 +278,5 @@ ActiveRecord::Schema.define(version: 2021_07_18_220346) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
+
 end

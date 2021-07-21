@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @account.user_id %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @account.phone %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @account.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @account.last_name %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @account.photo %>
+</p>
+
+<p>
+  <strong>Deactivated:</strong>
+  <%= @account.deactivated %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @account.verified %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @account.country %>
+</p>
+
+<p>
+  <strong>County:</strong>
+  <%= @account.county %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @account.city %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @account.street %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @account.address %>
+</p>
+
+<p>
+  <strong>Postal:</strong>
+  <%= @account.postal %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @account.type %>
+</p>
+
+<p>
+  <strong>Tour:</strong>
+  <%= @account.tour %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
