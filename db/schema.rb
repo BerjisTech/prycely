@@ -278,5 +278,4 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
-
 end

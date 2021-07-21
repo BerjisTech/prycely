@@ -16,7 +16,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create account" do
-    assert_difference('Account.count') do
+    assert_difference("Account.count") do
       post accounts_url, params: { account: { address: @account.address, city: @account.city, country: @account.country, county: @account.county, deactivated: @account.deactivated, first_name: @account.first_name, last_name: @account.last_name, phone: @account.phone, photo: @account.photo, postal: @account.postal, street: @account.street, tour: @account.tour, type: @account.type, user_id: @account.user_id, verified: @account.verified } }
     end
 
@@ -39,7 +39,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy account" do
-    assert_difference('Account.count', -1) do
+    assert_difference("Account.count", -1) do
       delete account_url(@account)
     end
 
