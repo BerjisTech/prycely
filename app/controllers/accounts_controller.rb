@@ -1,10 +1,12 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account, only: %i[ show edit update destroy ]
+  # before_action :correct_user
 
   # GET /accounts or /accounts.json
   def index
-    @accounts = Account.all.with_attached_image
+    # @accounts = Account.all.with_attached_image
+    @accounts = current_user.accounts
   end
 
   # GET /accounts/1 or /accounts/1.json
@@ -13,7 +15,8 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-    @account = Account.new
+    # @account = Account.new
+    @account = current_user.accounts.build
   end
 
   # GET /accounts/1/edit
@@ -22,7 +25,9 @@ class AccountsController < ApplicationController
 
   # POST /accounts or /accounts.json
   def create
-    @account = Account.new(account_params)
+    # @account = Account.new(account_params)
+    @account = current_user.accounts.build(account_params)
+
     @account.image.attach(params[:account][:image])
 
     respond_to do |format|
@@ -58,11 +63,16 @@ class AccountsController < ApplicationController
     end
   end
 
+  def correct_user
+    @user = current_user.accounts.find_by(user_id: params[:id])
+    redirect_to accounts_path, notice: "You're not authorized to perform this action" if @user.nil?
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.find(current_user.id)
   end
 
   # Only allow a list of trusted parameters through.

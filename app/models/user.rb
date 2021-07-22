@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :transactions
   has_many :loans
   has_many :logins
+  has_many :accounts
 
   # protected
 
