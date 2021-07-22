@@ -66,6 +66,6 @@ class PaybillsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def paybill_params
-    params.require(:paybill).permit(:request, :type, :transaction_reference, :paybill_balance, :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
+    params.require(:paybill).permit(:request, :paybill_type, :transaction_reference, :paybill_balance, :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
   end
 end

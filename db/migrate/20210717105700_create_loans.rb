@@ -5,7 +5,7 @@ class CreateLoans < ActiveRecord::Migration[6.1]
       t.integer :created_by
       t.integer :user_id
       t.float :amount
-      t.integer :type
+      t.integer :loan_type
       t.float :amount_due
       t.integer :interest
       t.integer :status

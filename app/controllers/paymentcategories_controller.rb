@@ -66,6 +66,6 @@ class PaymentcategoriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def paymentcategory_params
-    params.require(:paymentcategory).permit(:group_id, :created_by, :type, :name)
+    params.require(:paymentcategory).permit(:group_id, :created_by, :payment_category_type, :name)
   end
 end

@@ -3,7 +3,7 @@ class CreatePaymentcategories < ActiveRecord::Migration[6.1]
     create_table :paymentcategories do |t|
       t.integer :group_id
       t.integer :created_by
-      t.integer :type
+      t.integer :payment_category_type
       t.text :name
 
       t.timestamps

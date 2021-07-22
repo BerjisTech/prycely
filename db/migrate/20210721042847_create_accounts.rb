@@ -14,7 +14,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
       t.string :street
       t.string :address
       t.string :postal
-      t.string :type
+      t.string :account_type
       t.string :tour
 
       t.timestamps

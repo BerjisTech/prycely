@@ -15,10 +15,14 @@
 
     <div class="field">
 
-      <%= form.label(:photo, class: "d-flex flex-column justify-content-center align-items-center") do %>
-        <img id="img_prev" class="img rounded" src="" alt="" />
+      <%= form.label(:image, class: "d-flex flex-column justify-content-center align-items-center") do %>
+        <% if @account.image.attached? %>
+          <%= image_tag @account.image.variant(resize: "200x200"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
+        <% else %>
+          <img id="img_prev" class="img rounded" src="" alt="" />
+        <% end %>
         <span class="btn btn-xs btn-outline-primary my-1 image_chooser">Choose Photo</span>
-        <%= form.file_field :photo, onchange: "readURL(this);", class: "d-none", accept: "image/*" %>
+        <%= form.file_field :image, onchange: "readURL(this);", class: "d-none", accept: "image/*" %>
       <% end %>
     </div>
 
@@ -69,8 +73,6 @@
       <%= form.text_field :postal, class: "form-control", placeholder: "Placeholder" %>
       <%= form.label :postal %>
     </div>
-
-    <%= form.text_field :type, value: 1, type: :hidden %>
 
     <div class="actions">
       <%= form.submit class: "btn btn-outline-primary btn-md my-3" %>

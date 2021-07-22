@@ -3,7 +3,7 @@ class CreateGroups < ActiveRecord::Migration[6.1]
     create_table :groups do |t|
       t.integer :created_by
       t.text :currency
-      t.text :type
+      t.text :group_type
       t.integer :membership
 
       t.timestamps

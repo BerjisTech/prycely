@@ -26,6 +26,11 @@
 </p>
 
 <p>
+  <strong>Photo:</strong>
+  <%= image_tag @account.image.variant(resize: "500x500") %>
+</p>
+
+<p>
   <strong>Deactivated:</strong>
   <%= @account.deactivated %>
 </p>
@@ -67,7 +72,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @account.type %>
+  <%= @account.account_type %>
 </p>
 
 <p>

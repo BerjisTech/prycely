@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_042847) do
+ActiveRecord::Schema.define(version: 2021_07_22_202624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,38 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.string "street"
     t.string "address"
     t.string "postal"
-    t.string "type"
+    t.string "account_type"
     t.string "tour"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "activities", force: :cascade do |t|
@@ -100,7 +128,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
   create_table "groups", force: :cascade do |t|
     t.integer "created_by"
     t.text "currency"
-    t.text "type"
+    t.text "group_type"
     t.integer "membership"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -145,7 +173,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.integer "created_by"
     t.integer "user_id"
     t.float "amount"
-    t.integer "type"
+    t.integer "loan_type"
     t.float "amount_due"
     t.integer "interest"
     t.integer "status"
@@ -184,7 +212,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
 
   create_table "paybills", force: :cascade do |t|
     t.text "request"
-    t.string "type"
+    t.string "paybill_type"
     t.string "transaction_reference"
     t.float "paybill_balance"
     t.text "third_party_transaction_id"
@@ -203,7 +231,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
   create_table "paymentcategories", force: :cascade do |t|
     t.integer "group_id"
     t.integer "created_by"
-    t.integer "type"
+    t.integer "payment_category_type"
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -266,7 +294,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.index ["confirmation_token"], name: "users_confirmation_token_key", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -279,4 +307,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

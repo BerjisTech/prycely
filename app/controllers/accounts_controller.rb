@@ -1,9 +1,10 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_account, only: %i[ show edit update destroy ]
 
   # GET /accounts or /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = Account.all.with_attached_image
   end
 
   # GET /accounts/1 or /accounts/1.json
@@ -22,6 +23,7 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
+    @account.image.attach(params[:account][:image])
 
     respond_to do |format|
       if @account.save
@@ -65,6 +67,6 @@ class AccountsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def account_params
-    params.require(:account).permit(:user_id, :phone, :first_name, :last_name, :photo, :deactivated, :verified, :country, :county, :city, :street, :address, :postal, :type, :tour)
+    params.require(:account).permit(:user_id, :phone, :first_name, :last_name, :photo, :deactivated, :verified, :country, :county, :city, :street, :address, :postal, :account_type, :tour, :image)
   end
 end

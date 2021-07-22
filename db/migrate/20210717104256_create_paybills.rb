@@ -2,7 +2,7 @@ class CreatePaybills < ActiveRecord::Migration[6.1]
   def change
     create_table :paybills do |t|
       t.text :request
-      t.string :type
+      t.string :paybill_type
       t.string :transaction_reference
       t.float :paybill_balance
       t.text :third_party_transaction_id
