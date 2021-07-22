@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account, only: %i[ show edit update destroy ]
-  # before_action :correct_user
+  before_action :correct_user, only: %i[ show edit update destroy ]
 
   # GET /accounts or /accounts.json
   def index
@@ -64,7 +64,7 @@ class AccountsController < ApplicationController
   end
 
   def correct_user
-    @user = current_user.accounts.find_by(user_id: params[:id])
+    @user = current_user.accounts.find_by(user_id: current_user.id)
     redirect_to accounts_path, notice: "You're not authorized to perform this action" if @user.nil?
   end
 
