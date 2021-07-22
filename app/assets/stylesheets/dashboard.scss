@@ -1,3 +1,50 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.welcome_screen {
+    display        : flex;
+    width          : 100vw;
+    height         : auto;
+    min-height     : 100vh;
+    align-items    : center;
+    justify-content: center;
+    top            : 0px;
+    left           : 0px;
+    position       : absolute;
+}
+
+.welcome_pane {
+    display                : flex;
+    align-items            : center;
+    justify-content        : center;
+    width                  : 60%;
+    min-width              : 300px;
+    flex-direction         : column;
+    background             : rgba(255, 255, 255, 0.3);
+    box-shadow             : 0 8px 32px 0 rgba(31, 38, 135, 0.7);
+    backdrop-filter        : blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius          : 10px;
+    border                 : 1px solid rgba(255, 255, 255, 0.18);
+    padding                : 20px;
+
+    span {
+        text-align: left;
+
+        &:first-of-type {
+            width           : 70px;
+            height          : 70px;
+            display         : flex;
+            align-items     : center;
+            justify-content : center;
+            background-color: rgba(31, 38, 135, 0.7);
+            color           : #ffffff;
+            border-radius   : 100%;
+        }
+
+        &:nth-child(2) {
+            width     : 100%;
+            margin-top: 20px;
+        }
+    }
+}

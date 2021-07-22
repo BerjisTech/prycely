@@ -262,6 +262,11 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "users_confirmation_token_key", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -273,4 +278,5 @@ ActiveRecord::Schema.define(version: 2021_07_21_042847) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
+
 end

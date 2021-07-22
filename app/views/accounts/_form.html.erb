@@ -10,83 +10,89 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+    <div class="field">
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+      <%= form.label(:photo, class: "d-flex flex-column justify-content-center align-items-center") do %>
+        <img id="img_prev" class="img rounded" src="" alt="" />
+        <span class="btn btn-xs btn-outline-primary my-1 image_chooser">Choose Photo</span>
+        <%= form.file_field :photo, onchange: "readURL(this);", class: "d-none", accept: "image/*" %>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-6">
+      <%= form.text_field :first_name, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :first_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-6">
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :last_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.text_area :photo %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-12">
+      <%= form.text_field :phone, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :phone %>
+    </div>
 
-  <div class="field">
-    <%= form.label :deactivated %>
-    <%= form.datetime_select :deactivated %>
-  </div>
+    <h3>Add your address below</h3>
+    <hr/>
 
-  <div class="field">
-    <%= form.label :verified %>
-    <%= form.text_field :verified %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :country, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :country %>
+    </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :county, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :county %>
+    </div>
 
-  <div class="field">
-    <%= form.label :county %>
-    <%= form.text_field :county %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :city, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :city %>
+    </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :street, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :street %>
+    </div>
 
-  <div class="field">
-    <%= form.label :street %>
-    <%= form.text_field :street %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :address, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :address %>
+    </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+    <div class="field form-group form-floating my-2 px-2 col-sm-4">
+      <%= form.text_field :postal, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :postal %>
+    </div>
 
-  <div class="field">
-    <%= form.label :postal %>
-    <%= form.text_field :postal %>
-  </div>
+    <%= form.text_field :type, value: 1, type: :hidden %>
 
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tour %>
-    <%= form.text_field :tour %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-outline-primary btn-md my-3" %>
+    </div>
+  </div >
 <% end %>
+
+<!-- Assume jQuery is loaded -->
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(200)
+          .height(auto)
+        $('.image_chooser').html('Change Profile Image')
+      };
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

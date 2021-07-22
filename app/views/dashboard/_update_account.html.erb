@@ -1,7 +1,12 @@
 <script>
   document.querySelector('.prycely_to_navbar').remove()
 </script>
-
-<div class="row">
-
+<div class="welcome_screen">
+  <div class="welcome_pane">
+    <span><%= current_user.email[0] %></span>
+    <span>Hello,</span>
+    <span>Thank you for joining Prycely. This is your first step towards financial freedom. 
+      Before you proceed, you need to update your account with info that'll will help with your transactions and communications</span>
+    <%= link_to "Set Up Account", new_account_path(), class: "btn btn-outline-primary btn-md mt-4" %>
+  </div>
 </div>
