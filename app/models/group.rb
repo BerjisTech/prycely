@@ -8,5 +8,4 @@ class Group < ApplicationRecord
   has_many :assets
   has_many :liabilities
   has_many :activities
-  belongs_to :grouptype
 end

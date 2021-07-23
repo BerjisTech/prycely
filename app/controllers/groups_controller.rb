@@ -9,6 +9,17 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
+    if (@members.count == 0 || @members.length == 0 || @members.empty?)
+      if current_user.id == @group.created_by
+        @admin_account = Member.new(:invited_by => current_user.id, :user_id => current_user.id, :group_id => params[:id], :designation => "admin", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0)
+        if @admin_account.save
+          respond_to do |format|
+            format.html { redirect_to group_url(params[:id]), notice: "Your admin account has succsefully been set up" }
+            format.json { head :no_content }
+          end
+        end
+      end
+    end
   end
 
   # GET /groups/new

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <p id="notice"><%= notice %></p>
+    <!--p id="notice"><%= notice %></p-->
   </div>
 </div>
 
@@ -29,7 +29,7 @@
       </thead>
       <tbody>
         <% @members.each do |member| %>
-          <tr class="<% if member.status != 1 %>bg-danger<% end %>">
+          <tr class="<% if member.status != "1" %>bg-danger<% end %>">
             <td><%= member.id %></td>
             <td>Name</td>
             <td><%= member.designation %></td>
