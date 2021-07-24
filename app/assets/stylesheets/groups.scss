@@ -47,8 +47,23 @@
 }
 
 .feature {
-    color: #272B2F;
-    .mateiral-icons{
-        font-size: 20px !important;
+    display        : flex;
+    align-items    : center;
+    justify-content: flex-start;
+    color          : #272B2F;
+    border-bottom  : 1px solid rgba(155, 155, 155, 0.5);
+    padding        : 10px 5px;
+    transition     : all 0.56s;
+
+    &:hover {
+        background: rgba(155, 155, 155, 0.1);
+    }
+
+    span {
+        padding: 3px 5px;
+    }
+
+    .material-icons {
+        font-size: 24px !important;
     }
 }

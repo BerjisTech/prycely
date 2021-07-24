@@ -34,6 +34,27 @@ class GroupsController < ApplicationController
     # render json: @members
   end
 
+  def transactions
+  end
+
+  def projects
+  end
+
+  def activities
+  end
+
+  def loans
+  end
+
+  def income
+  end
+
+  def assets
+  end
+
+  def liabilites
+  end
+
   # GET /groups/1/edit
   def edit
   end

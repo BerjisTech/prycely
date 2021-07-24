@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   get "home/pricing"
   get "home/about"
   match "groups/:id/members", to: "groups#members", via: [:get, :post]
+  match "groups/:id/transactions", to: "groups#transactions", via: [:get, :post]
+  match "groups/:id/projects", to: "groups#projects", via: [:get, :post]
+  match "groups/:id/activities", to: "groups#activities", via: [:get, :post]
+  match "groups/:id/loans", to: "groups#loans", via: [:get, :post]
+  match "groups/:id/income", to: "groups#income", via: [:get, :post]
+  match "groups/:id/assets", to: "groups#assets", via: [:get, :post]
+  match "groups/:id/liabilites", to: "groups#liabilites", via: [:get, :post]
 
   resources :liabilities
   resources :assets
