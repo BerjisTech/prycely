@@ -16,7 +16,15 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     # @account = Account.new
-    @account = current_user.accounts.build
+    @my_account = Account.where(user_id: current_user.id)
+    if (@my_account.count == 0 || @my_account.length == 0 || @my_account.empty?)
+      @account = current_user.accounts.build
+    else
+      respond_to do |format|
+        format.html { redirect_to dashboard_url, notice: "Your account has already been set up" }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /accounts/1/edit

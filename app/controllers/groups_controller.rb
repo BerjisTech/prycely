@@ -9,14 +9,18 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    if (@me = nil || @me.count == 0 || @me.length == 0 || @me.empty?)
+    @account_check = Member.where(group_id: @group.id)
+    if (@account_check.count == 0 || @account_check.length == 0 || @account_check.empty? || @account_check == nil)
       if current_user.id == @group.created_by
-        @admin_account = Member.new(:invited_by => current_user.id, :user_id => current_user.id, :group_id => params[:id], :designation => "admin", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0)
+        @admin_account = Member.new(:invited_by => current_user.id, :user_id => current_user.id, :group_id => params[:id], :designation => "admin", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0, :account_id => @account[0])
+
         if @admin_account.save
           respond_to do |format|
             format.html { redirect_to group_url(params[:id]), notice: "Your admin account has succsefully been set up" }
             format.json { head :no_content }
           end
+        else
+          render json: @admin_account.errors
         end
       end
     end
@@ -25,13 +29,14 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    @currency = Currency.all
   end
 
   # GET /groups/1/members
   def members
     # @group = Group.where(id: params[:id])
     @members = Member.where(group_id: params[:id]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
-    # render json: @members
+    # render json: @me
   end
 
   def transactions
@@ -102,6 +107,7 @@ class GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
     @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)
+    @account = Account.where(user_id: current_user.id).pluck(:id)
   end
 
   # Only allow a list of trusted parameters through.

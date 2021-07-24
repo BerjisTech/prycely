@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-sm-2">
     <%= link_to group_path(@group.id) + "/members", class: "feature" do %>
       <span class="material-icons">groups</span>
       <span>Members</span>
@@ -33,10 +33,12 @@
       <span>Liabilities</span>
     <% end %>
   </div>
-  <div class="col-md-10"></div>
+  <div class="col-sm-10">
+    <%= image_tag image_path("36471e6f2cbcccac675f875ef51b3bda.webp") %>
+  </div>
 </div>
 
 <script>
-  title = `<%= @group.name %>`;
+  title = `<%= @group.name %>`
   window.document.title = title
 </script>

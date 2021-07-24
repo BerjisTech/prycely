@@ -16,12 +16,12 @@
       <%= form.number_field :created_by, value: current_user.id, type: :hidden %>
 
       <div class="field form-group form-floating my-4">
-        <%= form.text_field :name, class: "form-control form-control-sm", placeholder: "Placeholder" %>
+        <%= form.text_field :name, class: "form-control form-control-sm", placeholder: "Placeholder", required: "required" %>
         <%= form.label :name %>
       </div>
 
       <div class="field form-group form-floating my-4">
-        <%= form.text_field :currency, class: "form-control form-control-sm", placeholder: "Placeholder" %>
+        <%= form.currency_select(:currency, {}, { include_blank: "Select Group Currency" }, { class: "form-control", required: "required" }) %>
         <%= form.label :currency %>
       </div>
 
@@ -31,12 +31,12 @@
                           ["Temporary Or Mid sized (Church, Fundraisers etc)", "2"],
                           ["Sacco & Co-operative", "3"],
                           ["Wash Wash", "4"],
-                        ], { prompt: "Choose Group Type" }, class: "form-control form-select" %>
+                        ], { prompt: "Choose Group Type" }, class: "form-control form-select", required: "required" %>
         <%= form.label :group_type %>
       </div>
 
       <div class="field form-group form-floating my-4">
-        <%= form.number_field :membership, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.number_field :membership, class: "form-control", placeholder: "Placeholder", required: "required", value: 0 %>
         <%= form.label :membership %>
       </div>
 
