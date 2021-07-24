@@ -52,7 +52,7 @@ class GroupsController < ApplicationController
   def assets
   end
 
-  def liabilites
+  def liabilities
   end
 
   # GET /groups/1/edit
