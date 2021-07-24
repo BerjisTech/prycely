@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "home/about"
   get "home/pricing"
   get "home/about"
-  get "groups/:id/members", to: "groups#members"
+  match "groups/:id/members", to: "groups#members", via: [:get, :post]
 
   resources :liabilities
   resources :assets
@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   resources :countries
   resources :transactions
   resources :members
+
   resources :groups
+
   resources :wallets
   devise_for :users, controllers: { confirmations: "confirmations" }, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 

@@ -1,16 +1,15 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[ show, members ]
+  before_action :set_group, only: %i[ show members edit update destroy ]
 
   # GET /groups or /groups.json
   def index
-    # @groups = Group.all
-    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership, :created_by, :currency, :group_type)
+    @groups = Group.all
   end
 
   # GET /groups/1 or /groups/1.json
   def show
-    if (@members.count == 0 || @members.length == 0 || @members.empty?)
+    if (@me = nil || @me.count == 0 || @me.length == 0 || @me.empty?)
       if current_user.id == @group.created_by
         @admin_account = Member.new(:invited_by => current_user.id, :user_id => current_user.id, :group_id => params[:id], :designation => "admin", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0)
         if @admin_account.save
@@ -31,7 +30,6 @@ class GroupsController < ApplicationController
   # GET /groups/1/members
   def members
     # @group = Group.where(id: params[:id])
-    @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)[0]
     @members = Member.where(group_id: params[:id]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
     # render json: @members
   end
@@ -82,6 +80,7 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
+    @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)
   end
 
   # Only allow a list of trusted parameters through.

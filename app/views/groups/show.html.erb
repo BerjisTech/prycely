@@ -1,51 +1,14 @@
 <div class="row">
-  <div class="col-sm-12">
-    <!--p id="notice"><%= notice %></p-->
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <%= link_to new_member_path(:g => @group.id) do %>
-      <span class="btn btn-outline-primary btn-sm my-3" style="display: flex; justify-content: center; align-items: center; width: 130px; float: right;">
-        <span class="material-icons">add</span>
-        Add Member
-      </span>
+  <div class="col-md-2">
+    <%= link_to group_members_path(@group.id), class: "feature" do %>
+      <span>Members</span>
+      <span class="material-icons">groups</span>
     <% end %>
   </div>
-  <div class="col-sm-12">
-    <table class="table table-responsive">
-      <thead class="table-dark bg-dark">
-        <tr>
-          <th>Member Number</th>
-          <th>Name</th>
-          <th>Designation</th>
-          <th>Joined on</th>
-          <% if @group.membership != 0 %>
-            <th>Paid? (<%= @group.membership %>) </th>
-          <% end %>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @members.each do |member| %>
-          <tr class="<% if member.status != "1" %>bg-danger<% end %>">
-            <td><%= member.id %></td>
-            <td><em>{{ name here }}</em></td>
-            <td><%= member.designation %></td>
-            <td><%= member.created_at %></td>
-            <% if @group.membership != 0 %>
-              <td><%= member.paid_member %></td>
-            <% end %>
-            <td>Actions</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </div>
-  </div>
+  <div class="col-md-10"></div>
 </div>
 
 <script>
-  title = `<%= @group.id %>`;
+  title = `<%= @group.name %>`;
   window.document.title = title
 </script>
