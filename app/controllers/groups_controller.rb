@@ -1,10 +1,11 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[ show ]
+  before_action :set_group, only: %i[ show, members ]
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    # @groups = Group.all
+    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership, :created_by, :currency, :group_type)
   end
 
   # GET /groups/1 or /groups/1.json
@@ -25,6 +26,14 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+  end
+
+  # GET /groups/1/members
+  def members
+    # @group = Group.where(id: params[:id])
+    @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)[0]
+    @members = Member.where(group_id: params[:id]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
+    # render json: @members
   end
 
   # GET /groups/1/edit
@@ -73,14 +82,6 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
-    @transactions = Transaction.where(group_id: params[:id]).limit(10)
-    @members = Member.where(group_id: params[:id]).joins(:user).limit(10)
-    @loans = Loan.where(group_id: params[:id]).limit(10)
-    @loancategories = Loancategory.where(group_id: params[:id]).limit(10)
-    @liabilities = Liability.where(group_id: params[:id]).limit(10)
-    @asstes = Asset.where(group_id: params[:id]).limit(10)
-    @projects = Project.where(group_id: params[:id]).limit(10)
-    @paymentcategories = Paymentcategory.where(group_id: params[:id]).limit(10)
   end
 
   # Only allow a list of trusted parameters through.

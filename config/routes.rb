@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   resources :accounts
   resources :grouptypes
+
   get "dashboard/index"
   get "api/index"
   get "home/index"
   get "home/about"
   get "home/pricing"
   get "home/about"
+  get "groups/:id/members", to: "groups#members"
 
   resources :liabilities
   resources :assets

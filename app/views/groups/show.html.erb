@@ -45,31 +45,7 @@
   </div>
 </div>
 
-<!-- p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
-
-<p>
-  <strong>Created by:</strong>
-  <%= @group.created_by %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @group.currency %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @group.group_type %>
-</p>
-
-<p>
-  <strong>Membership:</strong>
-  <%= @group.membership %>
-</p >
-
-<%= link_to "Edit", edit_group_path(@group) %> |
-<%= link_to "Back", groups_path %>
--->
+<script>
+  title = `<%= @group.id %>`;
+  window.document.title = title
+</script>

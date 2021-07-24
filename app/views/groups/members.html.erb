@@ -1,0 +1,35 @@
+<% if @me.designation == 'admin' || @me.designation == 'secretary' %>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <%= link_to new_member_path(group: @group.id), class: "btn btn-outline-primary btn-sm d-flex justify-content-center align-items-center" do %>
+        <span>Invite Members</span>
+        <span class="material-icons">add</span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <h3><%= @group.name %> Members</h3>
+  <div class="members_holder">
+    <% @members.each do |member| %>
+      <%= link_to member_path(member), class: "member" do %>
+        <span class="member_dp"><%= member.first_name[0].upcase %><%= member.last_name[0].downcase %></span>
+        <span class="member_name">
+          <span>
+            <%= member.first_name.humanize %> <%= member.last_name.humanize %>
+            <% if member.designation== 'admin' %>
+              <em class="text-success"><small>(<%= member.designation %>)</small></em>
+            <% end %>
+          </span>
+          <span><%= member.email %></span>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  title = `<%= @group.name %> Members`;
+  window.document.title = title
+</script>
