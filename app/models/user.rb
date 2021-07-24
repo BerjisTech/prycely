@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :loans
   has_many :logins
   has_many :accounts
+  has_many :members
 
   # protected
 

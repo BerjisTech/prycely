@@ -31,7 +31,7 @@
         <% @members.each do |member| %>
           <tr class="<% if member.status != "1" %>bg-danger<% end %>">
             <td><%= member.id %></td>
-            <td>Name</td>
+            <td><em>{{ name here }}</em></td>
             <td><%= member.designation %></td>
             <td><%= member.created_at %></td>
             <% if @group.membership != 0 %>

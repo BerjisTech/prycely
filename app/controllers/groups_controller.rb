@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :set_group, only: %i[ show ]
 
   # GET /groups or /groups.json
   def index
@@ -74,7 +74,7 @@ class GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
     @transactions = Transaction.where(group_id: params[:id]).limit(10)
-    @members = Member.where(group_id: params[:id]).limit(10)
+    @members = Member.where(group_id: params[:id]).joins(:user).limit(10)
     @loans = Loan.where(group_id: params[:id]).limit(10)
     @loancategories = Loancategory.where(group_id: params[:id]).limit(10)
     @liabilities = Liability.where(group_id: params[:id]).limit(10)

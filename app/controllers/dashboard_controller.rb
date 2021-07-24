@@ -3,9 +3,11 @@ class DashboardController < ApplicationController
   before_action :set_dashboard
 
   def index
+    # render json: @groups
   end
 
   def set_dashboard
     @account = Account.where(user_id: current_user.id)
+    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership, :created_by, :currency, :group_type)
   end
 end

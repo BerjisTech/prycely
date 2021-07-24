@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  has_many :members, through: :user
+  has_many :members
   has_many :loans
   has_many :loancategories
   has_many :projects
