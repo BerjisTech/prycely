@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_25_080512) do
+ActiveRecord::Schema.define(version: 2021_07_25_084154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2021_07_25_080512) do
     t.text "invite_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "active"
     t.index ["invite_key"], name: "index_invites_on_invite_key", unique: true
   end
 
@@ -266,7 +267,19 @@ ActiveRecord::Schema.define(version: 2021_07_25_080512) do
     t.integer "invite_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "complete"
     t.index ["invite_id"], name: "index_redeems_on_invite_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "account_id"
+    t.text "emai"
+    t.integer "accept"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_requests_on_group_id"
   end
 
   create_table "stks", force: :cascade do |t|

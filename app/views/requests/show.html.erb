@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @request.group_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @request.user_id %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @request.account_id %>
+</p>
+
+<p>
+  <strong>Emai:</strong>
+  <%= @request.emai %>
+</p>
+
+<p>
+  <strong>Accept:</strong>
+  <%= @request.accept %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>
