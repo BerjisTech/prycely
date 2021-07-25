@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :redeems
+  resources :invites
   resources :accounts
   resources :grouptypes
 

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @invite.group_id %>
+</p>
+
+<p>
+  <strong>Invite key:</strong>
+  <%= @invite.invite_key %>
+</p>
+
+<p>
+  <strong>Max redeem:</strong>
+  <%= @invite.max_redeem %>
+</p>
+
+<p>
+  <strong>Invite email:</strong>
+  <%= @invite.invite_email %>
+</p>
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>

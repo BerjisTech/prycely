@@ -23,7 +23,9 @@ class MembersController < ApplicationController
   # POST /members or /members.json
   def create
     @member = Member.new(member_params)
-    
+
+    render json: @member
+
     # respond_to do |format|
     #   if @member.save
     #     format.html { redirect_to @member, notice: "Member was successfully created." }

@@ -18,9 +18,7 @@
     <%= form.label :user_id %>
   </div>
 
-  <%= form.number_field :user_id, type: :hidden %>
-
-  <%= form.number_field :group_id, value: params[:g], type: :hidden %>
+  <%= form.number_field :group_id, value: params[:group], type: :hidden %>
 
   <div class="actions">
     <%= form.submit class: "btn btn-outline-primary my-3" %>
