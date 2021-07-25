@@ -16,7 +16,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create invite" do
-    assert_difference('Invite.count') do
+    assert_difference("Invite.count") do
       post invites_url, params: { invite: { group_id: @invite.group_id, invite_email: @invite.invite_email, invite_key: @invite.invite_key, max_redeem: @invite.max_redeem } }
     end
 
@@ -39,7 +39,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy invite" do
-    assert_difference('Invite.count', -1) do
+    assert_difference("Invite.count", -1) do
       delete invite_url(@invite)
     end
 

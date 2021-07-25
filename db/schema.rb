@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_25_084154) do
+ActiveRecord::Schema.define(version: 2021_07_25_104633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,7 +149,11 @@ ActiveRecord::Schema.define(version: 2021_07_25_084154) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "active"
+    t.integer "creator_id"
+    t.string "total_redeemed"
+    t.index ["creator_id"], name: "index_invites_on_creator_id"
     t.index ["invite_key"], name: "index_invites_on_invite_key", unique: true
+    t.index ["total_redeemed"], name: "index_invites_on_total_redeemed"
   end
 
   create_table "liabilities", force: :cascade do |t|
@@ -268,7 +272,11 @@ ActiveRecord::Schema.define(version: 2021_07_25_084154) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "complete"
+    t.integer "user_id"
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_redeems_on_group_id"
     t.index ["invite_id"], name: "index_redeems_on_invite_id"
+    t.index ["user_id"], name: "index_redeems_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|

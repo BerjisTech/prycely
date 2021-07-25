@@ -16,7 +16,7 @@ class RedeemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create redeem" do
-    assert_difference('Redeem.count') do
+    assert_difference("Redeem.count") do
       post redeems_url, params: { redeem: { invite_id: @redeem.invite_id } }
     end
 
@@ -39,7 +39,7 @@ class RedeemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy redeem" do
-    assert_difference('Redeem.count', -1) do
+    assert_difference("Redeem.count", -1) do
       delete redeem_url(@redeem)
     end
 

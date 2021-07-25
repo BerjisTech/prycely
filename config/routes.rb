@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
-  resources :requests
-  resources :redeems
-  resources :invites
-  resources :accounts
-  resources :grouptypes
-
   get "dashboard/index"
   get "api/index"
   get "home/index"
   get "home/about"
   get "home/pricing"
   get "home/about"
+
   match "groups/:id/members", to: "groups#members", via: [:get, :post]
   match "groups/:id/transactions", to: "groups#transactions", via: [:get, :post]
   match "groups/:id/projects", to: "groups#projects", via: [:get, :post]
@@ -19,6 +14,8 @@ Rails.application.routes.draw do
   match "groups/:id/income", to: "groups#income", via: [:get, :post]
   match "groups/:id/assets", to: "groups#assets", via: [:get, :post]
   match "groups/:id/liabilities", to: "groups#liabilities", via: [:get, :post]
+
+  match "join/:id", to: "redeems#redeem", via: [:get, :post]
 
   resources :liabilities
   resources :assets
@@ -36,6 +33,11 @@ Rails.application.routes.draw do
   resources :countries
   resources :transactions
   resources :members
+  resources :requests
+  resources :redeems
+  resources :invites
+  resources :accounts
+  resources :grouptypes
 
   resources :groups
 

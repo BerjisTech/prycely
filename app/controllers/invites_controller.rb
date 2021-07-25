@@ -3,7 +3,7 @@ class InvitesController < ApplicationController
 
   # GET /invites or /invites.json
   def index
-    @invites = Invite.all
+    @invites = Invite.where(creator_id: current_user.id)
   end
 
   # GET /invites/1 or /invites/1.json
@@ -13,6 +13,8 @@ class InvitesController < ApplicationController
   # GET /invites/new
   def new
     @invite = Invite.new
+    @invite_key = Digest::SHA1.hexdigest(DateTime.now().to_s+"/"+session[:current_group].to_s)
+    @invite_url = root_url+"join/"+@invite_key
   end
 
   # GET /invites/1/edit
@@ -22,6 +24,13 @@ class InvitesController < ApplicationController
   # POST /invites or /invites.json
   def create
     @invite = Invite.new(invite_params)
+
+    @invite.group_id = session[:current_group]
+    @invite.creator_id = current_user.id
+    @invite.total_redeemed = 0
+
+    # render json: @invite
+
 
     respond_to do |format|
       if @invite.save
@@ -57,13 +66,14 @@ class InvitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def invite_params
-      params.require(:invite).permit(:group_id, :invite_key, :max_redeem, :invite_email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invite
+    @invite = Invite.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.require(:invite).permit(:group_id, :invite_key, :max_redeem, :invite_email, :creator_id, :total_redeemed)
+  end
 end

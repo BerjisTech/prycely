@@ -2,12 +2,14 @@
 
 <h1>Invites</h1>
 
-<table>
-  <thead>
+<table class="table table-responsive table-hover">
+  <thead class="table-dark">
     <tr>
       <th>Group</th>
-      <th>Invite key</th>
+      <th>Creator</th>
+      <th>Key</th>
       <th>Max redeem</th>
+      <th>Total redeemed</th>
       <th>Invite email</th>
       <th colspan="3"></th>
     </tr>
@@ -17,12 +19,17 @@
     <% @invites.each do |invite| %>
       <tr>
         <td><%= invite.group_id %></td>
-        <td><%= invite.invite_key %></td>
+        <td><%= invite.creator_id %></td>
+        <td>
+          <%= link_to root_url+"join/"+invite.invite_key, target: "_BLANK" do %>
+            <%= invite.invite_key %></td>
+          <% end %>
         <td><%= invite.max_redeem %></td>
+        <td><%= invite.total_redeemed %></td>
         <td><%= invite.invite_email %></td>
-        <td><%= link_to 'Show', invite %></td>
-        <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-        <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", invite %></td>
+        <td><%= link_to "Edit", edit_invite_path(invite) %></td>
+        <td><%= link_to "Destroy", invite, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +37,4 @@
 
 <br>
 
-<%= link_to 'New Invite', new_invite_path %>
+<%= link_to "New Invite", new_invite_path %>

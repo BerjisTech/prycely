@@ -16,7 +16,7 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create request" do
-    assert_difference('Request.count') do
+    assert_difference("Request.count") do
       post requests_url, params: { request: { accept: @request.accept, account_id: @request.account_id, emai: @request.emai, group_id: @request.group_id, user_id: @request.user_id } }
     end
 
@@ -39,7 +39,7 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy request" do
-    assert_difference('Request.count', -1) do
+    assert_difference("Request.count", -1) do
       delete request_url(@request)
     end
 

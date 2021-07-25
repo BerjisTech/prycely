@@ -8,4 +8,6 @@ class Group < ApplicationRecord
   has_many :assets
   has_many :liabilities
   has_many :activities
+  has_many :invites
+  has_many :redeems
 end

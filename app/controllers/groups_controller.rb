@@ -108,6 +108,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)
     @account = Account.where(user_id: current_user.id).pluck(:id)
+    session[:current_group] = @group.id
   end
 
   # Only allow a list of trusted parameters through.

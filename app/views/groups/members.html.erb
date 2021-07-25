@@ -1,7 +1,7 @@
 <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
   <div class="row">
     <div class="d-flex justify-content-end">
-      <%= link_to new_member_path(group: @group.id), class: "btn btn-outline-primary btn-sm d-flex justify-content-center align-items-center" do %>
+      <%= link_to new_invite_path, class: "btn btn-outline-primary btn-sm d-flex justify-content-center align-items-center invite_user" do %>
         <span>Invite Members</span>
         <span class="material-icons">add</span>
       <% end %>

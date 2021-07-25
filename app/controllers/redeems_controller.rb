@@ -6,6 +6,11 @@ class RedeemsController < ApplicationController
     @redeems = Redeem.all
   end
 
+  def redeem
+    @redeems = Invite.find_by(invite_key: params[:id])
+    render json: @redeems
+  end
+
   # GET /redeems/1 or /redeems/1.json
   def show
   end
@@ -57,13 +62,14 @@ class RedeemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_redeem
-      @redeem = Redeem.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def redeem_params
-      params.require(:redeem).permit(:invite_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_redeem
+    @redeem = Redeem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def redeem_params
+    params.require(:redeem).permit(:invite_id)
+  end
 end

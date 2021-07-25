@@ -1,37 +1,38 @@
-<%= form_with(model: invite) do |form| %>
-  <% if invite.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+<div class="row">
+  <%= form_with(model: invite) do |form| %>
+    <% if invite.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
 
-      <ul>
-        <% invite.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% invite.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="col-sm-5">
+      <%= form.number_field :group_id, value: session[:current_group], type: :hidden %>
+
+      <%= form.text_field :invite_key, value: @invite_key, type: :hidden %>
+
+      <div class="card">
+        <span class="card-body">
+          <span class="card-title">Pass this URL to the people you want to invite</span>
+          <hr />
+          <%= link_to @invite_url, class: "card-header" %>
+        </span>
+      </div>
+
+      <div class="field form-group form-floating my-2">
+        <%= form.number_field :max_redeem, class: "form-control", placeholder: "placeholder", value: 10, required: "required" %>
+        <%= form.label :max_redeem do %>Max redeem count<% end %>
+        <small><em>Specify the maximum number of people who can use this invite link</em></small>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Generate Invite Link", class: "btn btn-outline-primary btn-md my-2" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :group_id %>
-    <%= form.number_field :group_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :invite_key %>
-    <%= form.text_area :invite_key %>
-  </div>
-
-  <div class="field">
-    <%= form.label :max_redeem %>
-    <%= form.number_field :max_redeem %>
-  </div>
-
-  <div class="field">
-    <%= form.label :invite_email %>
-    <%= form.text_area :invite_email %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
