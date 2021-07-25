@@ -9,7 +9,8 @@ Hello There,
 <% end %>
 
 <% if user_signed_in? %>
-  <%= link_to "Join Account", new_user_registration_url, class: "btn btn-outline-primary" %>
+  <% session[:current_id] = @invite.group_id %>
+  <%= link_to "Join "+@invite.name, new_member_path, class: "btn btn-outline-primary" %>
 <% else %>
-  <%= link_to "Create Account and Join", new_user_registration_path, class: "btn btn-outline-primary" %>
+  <%= link_to "Create Account and Join "+@invite.name, new_user_registration_path, class: "btn btn-outline-primary" %>
 <% end %>
