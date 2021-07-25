@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :accounts
   has_many :members
   has_many :redeems
+  has_many :invites
 
   # protected
 

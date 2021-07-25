@@ -1,0 +1,15 @@
+<script>
+  document.querySelector('.prycely_to_navbar').remove()
+</script>
+<hr />
+Hello There,
+<%= @invite.first_name %> has invited you to join <%= @invite.name %>. 
+<% if @invite.description != "" %>
+  <%= @invite.name %> Is a <%= @grouptype %> group that <% @invite.description %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "Join Account", new_user_registration_url, class: "btn btn-outline-primary" %>
+<% else %>
+  <%= link_to "Create Account and Join", new_user_registration_path, class: "btn btn-outline-primary" %>
+<% end %>

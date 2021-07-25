@@ -19,9 +19,9 @@
     <% @invites.each do |invite| %>
       <tr>
         <td><%= invite.group_id %></td>
-        <td><%= invite.creator_id %></td>
+        <td><%= invite.user_id %></td>
         <td>
-          <%= link_to root_url+"join/"+invite.invite_key, target: "_BLANK" do %>
+          <%= link_to root_url + "join/" + invite.invite_key, target: "_BLANK" do %>
             <%= invite.invite_key %></td>
           <% end %>
         <td><%= invite.max_redeem %></td>
