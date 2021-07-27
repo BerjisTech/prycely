@@ -2,6 +2,7 @@ class MembersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_member, only: %i[ show edit update destroy ]
   before_action :set_global_for_index, only: %i[ index ]
+  before_action :set_global
   before_action :check_group_session, only: %i[ index ]
 
   # GET /members or /members.json
@@ -27,17 +28,26 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
 
-    render json: @member
+    # render json: @member
 
-    # respond_to do |format|
-    #   if @member.save
-    #     format.html { redirect_to @member, notice: "Member was successfully created." }
-    #     format.json { render :show, status: :created, location: @member }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @member.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+
+      check_member_in_system(@member.designation, format)
+
+      check_member_in_group(@member.user_id)
+
+      @member.invited_on = DateTime.now
+      @member.status = 0
+      @member.designation = "member"
+
+      if @member.save
+        format.html { redirect_to @member, notice: "Member was successfully created." }
+        format.json { render :show, status: :created, location: @member }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /members/1 or /members/1.json
@@ -76,9 +86,30 @@ class MembersController < ApplicationController
     end
   end
 
-  def set_global_for_index
+  def set_global
     @group = Group.find(session[:current_group])
+  end
+
+  def set_global_for_index
     @me = Member.where(user_id: current_user.id).where(group_id: session[:current_group]).select(:designation)
+  end
+
+  def check_member_in_group(user)
+    @check = Member.where(user_id: user).where(group_id: session[:current_group])
+    if @check.count > 0
+      redirect_to new_member_path, notice: "This member already exists in " + @group.name
+    end
+  end
+
+  def check_member_in_system(user, format)
+    @check = User.find_by(email: user)
+
+    if @check.nil?
+      format.html { redirect_to new_invite_path, alert: "This member does not exist in our records. Would you like to send them an invite link to join " + @group.name }
+      format.json { render :show, status: :created, location: @member }
+    else
+      @member.user_id = @check.id
+    end
   end
 
   # Only allow a list of trusted parameters through.

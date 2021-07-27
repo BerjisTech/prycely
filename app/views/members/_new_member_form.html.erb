@@ -1,0 +1,28 @@
+<%= form_with(model: member) do |form| %>
+  <% if member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+        <% member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.number_field :invited_by, value: current_user.id, type: :hidden %>
+
+  <div class="field form-group form-floating col">
+    <%= form.email_field :designation, class: "form-control my-3", placeholder: "Search by email, username or phone number", required: "required" %>
+    <%= form.label :designation do %>
+      Enter user email to search
+    <% end %>
+  </div>
+
+  <%= form.number_field :group_id, value: session[:current_group], type: :hidden %>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-outline-primary my-3" %>
+  </div>
+<% end %>

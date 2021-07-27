@@ -1,4 +1,7 @@
 <div class="groups_holder">
+  <% if @groups.empty? %>
+    <div class="group justify-content-center align-items-center p-3">You currently have no groups</div>
+  <% end %>
   <% @groups.each do |group| %>
     <%= link_to group_path(group.id), class: "group" do %>
       <span class="group_dp"><%= group.name[0] %></span>

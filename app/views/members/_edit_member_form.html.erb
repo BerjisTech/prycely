@@ -15,10 +15,22 @@
 
   <div class="field form-group form-floating col">
     <%= form.text_field :user_id, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
-    <%= form.label :user_id %>
+    <%= form.label :user_id do %>
+      Enter user email to search
+    <% end %>
   </div>
-
-  <%= form.number_field :group_id, value: params[:group], type: :hidden %>
+  <div class="field form-group form-floating col">
+    <%= form.text_field :designation, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
+    <%= form.label :designation do %>
+      Member status
+    <% end %>
+  </div>
+  <div class="field form-group form-floating col">
+    <%= form.text_field :status, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
+    <%= form.label :staus do %>
+      Member status
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= form.submit class: "btn btn-outline-primary my-3" %>
