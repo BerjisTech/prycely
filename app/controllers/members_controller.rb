@@ -40,6 +40,12 @@ class MembersController < ApplicationController
       @member.status = 0
       @member.designation = "member"
 
+      # Generate new invite with email
+      # Save member
+      # Generate new redeem
+      # Update redeem to used (if need be)
+      # Update invite to maxed out 
+
       if @member.save
         format.html { redirect_to @member, notice: "Member was successfully created." }
         format.json { render :show, status: :created, location: @member }
