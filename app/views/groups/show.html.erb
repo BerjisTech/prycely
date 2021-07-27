@@ -1,34 +1,34 @@
 <div class="row">
   <div class="col-sm-2">
-    <%= link_to group_path(@group.id) + "/members", class: "feature" do %>
+    <%= link_to members_path, class: "feature" do %>
       <span class="material-icons">groups</span>
       <span>Members</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/transactions", class: "feature" do %>
+    <%= link_to transactions_path, class: "feature" do %>
       <span class="material-icons">receipt_long</span>
       <span>Transactions</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/projects", class: "feature" do %>
+    <%= link_to projects_path, class: "feature" do %>
       <span class="material-icons">dashboard</span>
       <span>Projects</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/activities", class: "feature" do %>
+    <%= link_to activities_path, class: "feature" do %>
       <span class="material-icons">local_activity</span>
       <span>Activities</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/loans", class: "feature" do %>
+    <%= link_to loans_path, class: "feature" do %>
       <span class="material-icons">payments</span>
       <span>Loans</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/income", class: "feature" do %>
+    <%= link_to transactions_path, class: "feature" do %>
       <span class="material-icons">price_change</span>
       <span>Income</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/assets", class: "feature" do %>
+    <%= link_to assets_path, class: "feature" do %>
       <span class="material-icons">account_balance</span>
       <span>Assets</span>
     <% end %>
-    <%= link_to group_path(@group.id) + "/liabilities", class: "feature" do %>
+    <%= link_to liabilities_path, class: "feature" do %>
       <span class="material-icons">credit_card_off</span>
       <span>Liabilities</span>
     <% end %>

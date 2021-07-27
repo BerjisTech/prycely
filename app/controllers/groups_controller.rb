@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[ show members edit update destroy ]
+  before_action :set_group, only: %i[ show edit update destroy ]
 
   # GET /groups or /groups.json
   def index
@@ -30,34 +30,6 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @currency = Currency.all
-  end
-
-  # GET /groups/1/members
-  def members
-    # @group = Group.where(id: params[:id])
-    @members = Member.where(group_id: params[:id]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
-    # render json: @me
-  end
-
-  def transactions
-  end
-
-  def projects
-  end
-
-  def activities
-  end
-
-  def loans
-  end
-
-  def income
-  end
-
-  def assets
-  end
-
-  def liabilities
   end
 
   # GET /groups/1/edit

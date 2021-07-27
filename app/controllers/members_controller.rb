@@ -1,10 +1,13 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_global_for_index, only: %i[ index ]
+  before_action :check_group_session, only: %i[ index ]
 
   # GET /members or /members.json
   def index
-    @members = Member.all
+    @members = Member.where(group_id: session[:current_group]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
+    # render json: @me
   end
 
   # GET /members/1 or /members/1.json
@@ -64,6 +67,18 @@ class MembersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_member
     @member = Member.find(params[:id])
+  end
+
+  def check_group_session
+    if session[:current_group]
+    else
+      redirect_to groups_path, notice: "You need to access a group first to see it's members"
+    end
+  end
+
+  def set_global_for_index
+    @group = Group.find(session[:current_group])
+    @me = Member.where(user_id: current_user.id).where(group_id: session[:current_group]).select(:designation)
   end
 
   # Only allow a list of trusted parameters through.
