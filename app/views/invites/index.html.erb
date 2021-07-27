@@ -18,8 +18,8 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><%= invite.group_id %></td>
-        <td><%= invite.user_id %></td>
+        <td><%= invite.name %></td>
+        <td><%= invite.first_name %> <%= invite.last_name %></td>
         <td>
           <%= link_to root_url + "join/" + invite.invite_key, target: "_BLANK" do %>
             <%= invite.invite_key %></td>
