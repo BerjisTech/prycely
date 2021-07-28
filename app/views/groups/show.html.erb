@@ -1,3 +1,4 @@
+<% if @me.status == 1 %>
 <div class="row">
   <div class="col-sm-2">
     <%= link_to members_path, class: "feature" do %>
@@ -37,7 +38,11 @@
     <%= image_tag image_path("36471e6f2cbcccac675f875ef51b3bda.webp") %>
   </div>
 </div>
-
+<% elsif @me.status == 0 || @me.status == "0"%>
+Not Approved
+<% else %>
+Not allowed
+<% end %>
 <script>
   title = `<%= @group.name %>`
   window.document.title = title

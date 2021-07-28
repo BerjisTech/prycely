@@ -79,7 +79,7 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
-    @me = Member.where(user_id: current_user.id).where(group_id: params[:id]).select(:designation)
+    @me = Member.find_by(user_id: current_user.id, group_id: params[:id])
     @account = Account.where(user_id: current_user.id).pluck(:id)
     session[:current_group] = @group.id
   end
