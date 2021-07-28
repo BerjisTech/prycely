@@ -35,7 +35,7 @@ class MembersController < ApplicationController
     check_member_in_group(@member.user_id)
 
     @invite_key = Digest::SHA1.hexdigest(DateTime.now().to_s + "/" + session[:current_group].to_s)
-    @invite = Invite.new(:group_id => @member.group_id, :invite_key => @invite_key, :max_redeem => 1, :invite_email => @invite_email, :user_id => @member.user_id, :total_redeemed => 0)
+    @invite = Invite.new(:group_id => @member.group_id, :invite_key => @invite_key, :max_redeem => 1, :invite_email => @invite_email, :user_id => current_user.id, :total_redeemed => 0)
 
     if @invite.save
       @invite_id = Invite.find_by(invite_key: @invite_key).id

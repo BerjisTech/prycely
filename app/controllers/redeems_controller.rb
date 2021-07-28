@@ -3,7 +3,7 @@ class RedeemsController < ApplicationController
 
   # GET /redeems or /redeems.json
   def index
-    @redeems = Redeem.all
+    @redeems = Redeem.where(user_id: current_user.id)
   end
 
   def redeem

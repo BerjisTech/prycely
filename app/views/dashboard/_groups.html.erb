@@ -5,7 +5,10 @@
   <% @groups.each do |group| %>
     <%= link_to group_path(group.id), class: "group" do %>
       <span class="group_dp"><%= group.name[0] %></span>
-      <span class="group_name"><%= group.name %></span>
+      <span class="group_name">
+        <span><%= group.name %></span>
+        <sub class="text-success"><%= group.currency %></sub>
+        </span>
       <span><%= group.currency %></span>
     <% end %>
   <% end %>
