@@ -90,6 +90,6 @@ class RedeemsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def redeem_params
-    params.require(:redeem).permit(:invite_id)
+    params.require(:redeem).permit(:invite_id, :user_id, :group_id, :complete)
   end
 end

@@ -28,32 +28,38 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
 
-    # render json: @member
+    # respond_to do |format|
+    @invite_email = @member.designation
+    check_member_in_system(@invite_email)
 
-    respond_to do |format|
+    check_member_in_group(@member.user_id)
 
-      check_member_in_system(@member.designation, format)
+    @invite_key = Digest::SHA1.hexdigest(DateTime.now().to_s + "/" + session[:current_group].to_s)
+    @invite = Invite.new(:group_id => @member.group_id, :invite_key => @invite_key, :max_redeem => 1, :invite_email => @invite_email, :user_id => @member.user_id, :total_redeemed => 0)
 
-      check_member_in_group(@member.user_id)
+    if @invite.save
+      @invite_id = Invite.find_by(invite_key: @invite_key).id
+      @redeem = Redeem.new(:invite_id => @invite_id, :user_id => @member.user_id, :group_id => @member.group_id, :complete => 0)
+      if @redeem.save
+        # Invite.where(invite_key: @invite_key).update_all(total_redeemed: 1)
 
-      @member.invited_on = DateTime.now
-      @member.status = 0
-      @member.designation = "member"
+        @member.invited_on = DateTime.now
+        @member.status = 0
+        @member.designation = "member"
 
-      # Generate new invite with email
-      # Save member
-      # Generate new redeem
-      # Update redeem to used (if need be)
-      # Update invite to maxed out 
-
-      if @member.save
-        format.html { redirect_to @member, notice: "Member was successfully created." }
-        format.json { render :show, status: :created, location: @member }
+        if @member.save
+          redirect_to @member, notice: "Member was successfully created."
+        else
+          render json: @member
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
+        render json: @redeem
       end
+    else
+      render json: @invite
     end
+
+    # end
   end
 
   # PATCH/PUT /members/1 or /members/1.json
@@ -107,14 +113,15 @@ class MembersController < ApplicationController
     end
   end
 
-  def check_member_in_system(user, format)
+  def check_member_in_system(user)
     @check = User.find_by(email: user)
 
     if @check.nil?
-      format.html { redirect_to new_invite_path, alert: "This member does not exist in our records. Would you like to send them an invite link to join " + @group.name }
-      format.json { render :show, status: :created, location: @member }
+      redirect_to new_invite_path, alert: "This member does not exist in our records. Would you like to send them an invite link to join " + @group.name
     else
       @member.user_id = @check.id
+      @check_account = Account.find_by(user_id: @check.id)
+      @member.account_id = @check_account.id
     end
   end
 
