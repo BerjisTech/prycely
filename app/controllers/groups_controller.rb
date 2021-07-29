@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     # @groups = Group.all
-    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership, :created_by, :currency, :group_type)
+    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership, :group_id, :created_by, :currency, :group_type)
   end
 
   # GET /groups/1 or /groups/1.json

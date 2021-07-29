@@ -7,7 +7,7 @@ class MembersController < ApplicationController
 
   # GET /members or /members.json
   def index
-    @members = Member.where(group_id: session[:current_group]).joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
+    @members = Member.where(group_id: session[:current_group]).where(status: "1").joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
     # render json: @me
   end
 
