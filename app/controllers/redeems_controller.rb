@@ -7,28 +7,28 @@ class RedeemsController < ApplicationController
   end
 
   def redeem
-    @redeem = Invite.where(invite_key: @invite_key).joins(:group).joins(:user => :accounts).select("invites.id", :first_name, :name, :email, :group_id, :group_type, :description)
+    @redeem = Invite.where(invite_key: @invite_key).joins(:group).joins(:user => :accounts).select(:first_name, :name, :email, :group_id, :group_type, :description)
+    render json: @redeem
+    # if (@redeem.length == 0 || @redeem == "null" || @redeem.empty?)
+    #   respond_to do |format|
+    #     format.html { redirect_to root_path, notice: "This invite link is either expired or doesn't exist." }
+    #     format.json { render :show, status: :created, location: @redeem }
+    #   end
+    # else
+    #   @invite = @redeem[0]
 
-    if (@redeem.length == 0 || @redeem == "null" || @redeem.empty?)
-      respond_to do |format|
-        format.html { redirect_to root_path, notice: "This invite link is either expired or doesn't exist." }
-        format.json { render :show, status: :created, location: @redeem }
-      end
-    else
-      @invite = @redeem[0]
+    #   if @invite.group_type == "1"
+    #     @grouptype = "Friends and Family"
+    #   elsif @invite.group_type == "2"
+    #     @grouptype = "Temporary or Mid-sized (Church, Fundraiser etc)"
+    #   elsif @invite.group_type == "3"
+    #     @grouptype = "Cooperative & Saccos"
+    #   else
+    #     @grouptype = "Wash Wash"
+    #   end
 
-      if @invite.group_type == "1"
-        @grouptype = "Friends and Family"
-      elsif @invite.group_type == "2"
-        @grouptype = "Temporary or Mid-sized (Church, Fundraiser etc)"
-      elsif @invite.group_type == "3"
-        @grouptype = "Cooperative & Saccos"
-      else
-        @grouptype = "Wash Wash"
-      end
-
-      # render json: @redeem
-    end
+    #   # render json: @redeem
+    # end
   end
 
   def accept_invite
