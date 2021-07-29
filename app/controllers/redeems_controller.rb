@@ -37,7 +37,8 @@ class RedeemsController < ApplicationController
     Invite.where(invite_key: @invite_key).update_all(total_redeemed: 1)
     Member.where(group_id: session[:current_group]).where(user_id: current_user.id).update_all(status: "1")
     Redeem.where(invite_id: @invite_key).update_all(complete: 1)
-    
+    @group = Group.find(session[:current_group])
+    redirect_to @group, notice: "You have succesfully joined " + @group.name
   end
 
   # GET /redeems/1 or /redeems/1.json

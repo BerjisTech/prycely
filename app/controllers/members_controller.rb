@@ -41,7 +41,6 @@ class MembersController < ApplicationController
       @invite_id = Invite.find_by(invite_key: @invite_key).id
       @redeem = Redeem.new(:invite_id => @invite_id, :user_id => @member.user_id, :group_id => @member.group_id, :complete => 0)
       if @redeem.save
-
         @member.invited_on = DateTime.now
         @member.status = 0
         @member.designation = "member"
