@@ -41,7 +41,6 @@ class MembersController < ApplicationController
       @invite_id = Invite.find_by(invite_key: @invite_key).id
       @redeem = Redeem.new(:invite_id => @invite_id, :user_id => @member.user_id, :group_id => @member.group_id, :complete => 0)
       if @redeem.save
-        # Invite.where(invite_key: @invite_key).update_all(total_redeemed: 1)
 
         @member.invited_on = DateTime.now
         @member.status = 0

@@ -7,7 +7,7 @@ class RedeemsController < ApplicationController
   end
 
   def redeem
-    @redeem = Invite.where(invite_key: params[:id]).joins(:group).joins(:user => :accounts).select("invites.id", :first_name, :name, :email, :group_id, :group_type, :description)
+    @redeem = Invite.where(invite_key: @invite_key).joins(:group).joins(:user => :accounts).select("invites.id", :first_name, :name, :email, :group_id, :group_type, :description)
 
     if (@redeem.length == 0 || @redeem == "null" || @redeem.empty?)
       respond_to do |format|
@@ -29,6 +29,15 @@ class RedeemsController < ApplicationController
 
       # render json: @redeem
     end
+  end
+
+  def accept_invite
+    @invite_key = session[:invite_key]
+    @invite = Invite.find_by(invite_key: @invite_key)
+    Invite.where(invite_key: @invite_key).update_all(total_redeemed: 1)
+    Member.where(group_id: session[:current_group]).where(user_id: current_user.id).update_all(status: "1")
+    Redeem.where(invite_id: @invite_key).update_all(complete: 1)
+    
   end
 
   # GET /redeems/1 or /redeems/1.json

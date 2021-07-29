@@ -38,7 +38,7 @@
       <%= image_tag image_path("36471e6f2cbcccac675f875ef51b3bda.webp") %>
     </div>
   </div>
-<% elsif @me.status == 0 || @me.status == "0"%>
+<% elsif @me.status == 0 || @me.status == "0" %>
   <%= render "unapproved" %>
 <% else %>
   <%= render "unwanted" %>

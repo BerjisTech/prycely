@@ -25,6 +25,16 @@ class GroupsController < ApplicationController
         end
       end
     end
+
+    if @me.status == "0"
+      @inviter = Account.find_by(user_id: @me.invited_by)
+      @invite_check = Invite.find_by(invite_email: current_user.email, group_id: @group.id)
+      if @invite_check == nil
+        redirect_to dashboard_path, notice: "This invite key is invalid"
+      else
+        session[:invite_key] = @invite_check.invite_key
+      end
+    end
   end
 
   # GET /groups/new

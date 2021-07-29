@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "home/about"
 
   match "join/:id", to: "redeems#redeem", via: [:get, :post]
+  match "accept", to: "redeems#accept_invite", via: [:get, :post]
 
   resources :liabilities
   resources :assets
