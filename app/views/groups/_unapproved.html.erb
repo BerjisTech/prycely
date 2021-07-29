@@ -1,0 +1,28 @@
+<div class="d-flex flex-row align-items-start justify-content-start py-3 flex-wrap">
+  <span class="btn btn-outline-primary btn-md m-2">Join <%= @group.name %></span>
+  <div class="d-flex flex-column px-2 flex-grow-4">
+    <h3 class="h3">Welcome to <%= @group.name %></h3>
+    <hr />
+
+    <div class="d-flex p-2">
+      <% if @group.description.nil? || @group.description == "" || @group.description == " " %>
+        <blockquote class="blockquote">This group has no description</blockquote>
+      <% else %>
+        <%= @group.description %>
+      <% end %>
+    </div>
+    <hr />
+
+    <div class="d-flex p-2">
+      <% if @group.requirements.nil? || @group.requirements == "" || @group.requirements == " " %>
+        <blockquote class="blockquote">This group has no requirements</blockquote>
+      <% else %>
+        <%= @group.requirements %>
+      <% end %>
+    </div>
+    <hr />
+
+    <span>You were invited by: </span>
+    <span>On: </span>
+  </div>
+</div>
