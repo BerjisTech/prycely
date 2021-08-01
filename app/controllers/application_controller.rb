@@ -1,10 +1,18 @@
 class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
-    dashboard_path()
+    if session[:invite_key]
+      new_account_path()
+    else
+      dashboard_path()
+    end
   end
 
   def after_sign_up_path_for(resource)
-    account_path(current_user.id)
+    if session[:invite_key]
+      new_account_path()
+    else
+      account_path(current_user.id)
+    end
   end
 
   def after_sign_out_path_for(resource_or_scope)

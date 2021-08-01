@@ -24,15 +24,15 @@ class GroupsController < ApplicationController
           render json: @admin_account.errors
         end
       end
-    end
-
-    if @me.status == "0"
-      @inviter = Account.find_by(user_id: @me.invited_by)
-      @invite_check = Invite.find_by(invite_email: current_user.email, group_id: @group.id)
-      if @invite_check == nil
-        redirect_to dashboard_path, notice: "This invite key is invalid"
-      else
-        session[:invite_key] = @invite_check.invite_key
+    else
+      if @me.status == "0"
+        @inviter = Account.find_by(user_id: @me.invited_by)
+        @invite_check = Invite.find_by(invite_email: current_user.email, group_id: @group.id)
+        if @invite_check == nil
+          redirect_to dashboard_path, notice: "This invite key is invalid"
+        else
+          session[:invite_key] = @invite_check.invite_key
+        end
       end
     end
   end
@@ -92,6 +92,10 @@ class GroupsController < ApplicationController
     @me = Member.find_by(user_id: current_user.id, group_id: params[:id])
     @account = Account.where(user_id: current_user.id).pluck(:id)
     session[:current_group] = @group.id
+
+    if @me.nil?
+      redirect_to dashboard_path, notice: "You tired accessing a group you're not a member of"
+    end
   end
 
   # Only allow a list of trusted parameters through.

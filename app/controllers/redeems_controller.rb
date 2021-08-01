@@ -3,31 +3,51 @@ class RedeemsController < ApplicationController
 
   # GET /redeems or /redeems.json
   def index
-    @redeems = Redeem.where(user_id: current_user.id)
+    @redeems = Redeem.where(user_id: current_user.id).joins(:group).joins(:user => :accounts).select(:first_name, :name, :email, :group_id, :group_type, :description)
   end
 
   def redeem
-    @redeem = Invite.where(invite_key: params[:id]).joins(:group).joins(:user => :accounts).select(:first_name, :name, :email, :group_id, :group_type, :description)
-    
-    if (@redeem.length == 0 || @redeem == "null" || @redeem.empty?)
+    @invite_key = params[:id]
+    @invite = Invite.where(invite_key: @invite_key).joins(:group).joins(:user => :accounts).select(:id, :first_name, :name, :email, :group_id, :group_type, :description, :user_id, :total_redeemed)
+    # render json: @invite
+
+    if (@invite.length == 0 || @invite == "null" || @invite.empty?)
       respond_to do |format|
         format.html { redirect_to root_path, notice: "This invite link is either expired or doesn't exist." }
-        format.json { render :show, status: :created, location: @redeem }
+        format.json { render :show, status: :created, location: @invite }
       end
     else
-      @invite = @redeem[0]
+      @invite = @invite[0]
 
-      if @invite.group_type == "1"
-        @grouptype = "Friends and Family"
-      elsif @invite.group_type == "2"
-        @grouptype = "Temporary or Mid-sized (Church, Fundraiser etc)"
-      elsif @invite.group_type == "3"
-        @grouptype = "Cooperative & Saccos"
+      @new_redeem_count = @invite.total_redeemed.to_i + 1
+      if user_signed_in?
+        @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id)
+        @group = Group.find(@invite.group_id)
+
+        if (@already_invited.nil?)
+          @account = Account.where(user_id: current_user.id).pluck(:id)
+          Member.new(:invited_by => @invite.user_id, :user_id => current_user.id, :group_id => @invite.group_id, :designation => "member", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0, :account_id => @account[0]).save
+          Redeem.new(:invite_id => @invite.id, :user_id => current_user.id, :group_id => @invite.group_id, :complete => 1).save
+          Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)
+
+          redirect_to @group, notice: "You have succesfully joined " + @group.name
+        else
+          redirect_to @group, notice: "You're already a member of this group"
+        end
       else
-        @grouptype = "Wash Wash"
-      end
+        session[:current_group] = @invite.group_id
+        session[:invite_key] = @invite_key
 
-      # render json: @redeem
+        if @invite.group_type == "1"
+          @grouptype = "Friends and Family"
+        elsif @invite.group_type == "2"
+          @grouptype = "Temporary or Mid-sized (Church, Fundraiser etc)"
+        elsif @invite.group_type == "3"
+          @grouptype = "Cooperative & Saccos"
+        else
+          @grouptype = "Wash Wash"
+        end
+      end
     end
   end
 

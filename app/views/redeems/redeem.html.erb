@@ -1,23 +1,14 @@
 <script>
   document.querySelector('.prycely_to_navbar').remove()
 </script>
-<hr />
-
-<% if user_signed_in? %>
-  Hello There,
+<div class="card p-3 m-3">
+  <span class="h3 title">Hello There,</span>
   <%= @invite.first_name %> has invited you to join <%= @invite.name %>. 
   <% if @invite.description != "" %>
     <div><%= @invite.name %> Is a <%= @grouptype %> group</div>
     <div><% @invite.description %></div>
   <% end %>
-  <% session[:current_group] = @invite.group_id %>
-  <%= link_to new_member_path, class: "nav-link d-flex flex-row align-items-center justify-content-start p-0", style: "width: 200px;" do %>
-    <span>Join <%= @invite.name %></span>
-    <span class="material-icons">arrow_forward</span>
-  <% end %>
-<% else %>
-  <%= link_to new_user_registration_path, class: "nav-link d-flex flex-row align-items-center justify-content-start p-0", style: "width: 200px;" do %>
+  <%= link_to new_user_registration_path, class: "nav-link btn btn-outline-primary", style: "width: 200px;" do %>
     <span>Create Account and Join <%= @invite.name %></span>
-    <span class="material-icons">arrow_forward</span>
   <% end %>
-<% end %>
+</div>

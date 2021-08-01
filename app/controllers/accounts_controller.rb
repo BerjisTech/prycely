@@ -38,14 +38,14 @@ class AccountsController < ApplicationController
 
     @account.image.attach(params[:account][:image])
 
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to @account, notice: "Account was successfully created." }
-        format.json { render :show, status: :created, location: @account }
+    if @account.save
+      if session[:invite_key]
+        accept_current_invite(@account)
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        redirect_to @account, notice: "Account was successfully created."
       end
+    else
+      render json: @account.errors, status: :unprocessable_entity
     end
   end
 
@@ -74,6 +74,26 @@ class AccountsController < ApplicationController
   def correct_user
     @user = current_user.accounts.find_by(user_id: current_user.id)
     redirect_to accounts_path, notice: "You're not authorized to perform this action" if @user.nil?
+  end
+
+  def accept_current_invite(account)
+    @invite_key = session[:invite_key]
+    @invite = Invite.where(invite_key: @invite_key).joins(:group).joins(:user => :accounts).select(:id, :first_name, :name, :email, :group_id, :group_type, :description, :user_id, :total_redeemed)[0]
+
+    @new_redeem_count = @invite.total_redeemed.to_i + 1
+    @check_account = Account.where(user_id: current_user.id).pluck(:id)
+    @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id)
+    @group = Group.find(@invite.group_id)
+
+    if (@already_invited.nil?)
+      Member.new(:invited_by => @invite.user_id, :user_id => current_user.id, :group_id => @invite.group_id, :designation => "member", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0, :account_id => @account[0]).save
+      Redeem.new(:invite_id => @invite.id, :user_id => current_user.id, :group_id => @invite.group_id, :complete => 1).save
+      Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)
+
+      redirect_to @group, notice: "You have succesfully joined " + @group.name
+    else
+      redirect_to @group, notice: "You're already a member of this group"
+    end
   end
 
   private
