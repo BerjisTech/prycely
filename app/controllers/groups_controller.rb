@@ -25,6 +25,9 @@ class GroupsController < ApplicationController
         end
       end
     else
+      if @me.nil?
+        redirect_to dashboard_path, notice: "You tried accessing a group you're not a member of"
+      end
       if @me.status == "0"
         @inviter = Account.find_by(user_id: @me.invited_by)
         @invite_check = Invite.find_by(invite_email: current_user.email, group_id: @group.id)
@@ -92,10 +95,6 @@ class GroupsController < ApplicationController
     @me = Member.find_by(user_id: current_user.id, group_id: params[:id])
     @account = Account.where(user_id: current_user.id).pluck(:id)
     session[:current_group] = @group.id
-
-    if @me.nil?
-      redirect_to dashboard_path, notice: "You tired accessing a group you're not a member of"
-    end
   end
 
   # Only allow a list of trusted parameters through.

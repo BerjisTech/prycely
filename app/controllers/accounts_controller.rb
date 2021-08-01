@@ -93,7 +93,7 @@ class AccountsController < ApplicationController
         if @join_redeem.save
           @invite_update = Invite.where(invite_key: @invite_key)
           if @invite_update.update_all(total_redeemed: @new_redeem_count)
-            session.delete(invite_key)
+            session.delete(:invite_key)
             redirect_to @group, notice: "You have succesfully joined " + @group.name
           else
             render json: @invite_update.errors
