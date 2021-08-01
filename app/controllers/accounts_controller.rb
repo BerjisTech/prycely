@@ -85,12 +85,25 @@ class AccountsController < ApplicationController
     @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id)
     @group = Group.find(@invite.group_id)
 
-    if (@already_invited.nil?)
-      Member.new(:invited_by => @invite.user_id, :user_id => current_user.id, :group_id => @invite.group_id, :designation => "member", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0, :account_id => @account[0]).save
-      Redeem.new(:invite_id => @invite.id, :user_id => current_user.id, :group_id => @invite.group_id, :complete => 1).save
-      Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)
+    if @already_invited.nil?
+      @join_member = Member.new(:invited_by => @invite.user_id, :user_id => current_user.id, :group_id => @invite.group_id, :designation => "member", :status => "1", :invited_on => DateTime.now, :accepted_on => DateTime.now, :paid_member => "", :amount => 0, :account_id => @account.id)
+      @join_redeem = Redeem.new(:invite_id => @invite.id, :user_id => current_user.id, :group_id => @invite.group_id, :complete => 1)
 
-      redirect_to @group, notice: "You have succesfully joined " + @group.name
+      if @join_member.save
+        if @join_redeem.save
+          @invite_update = Invite.where(invite_key: @invite_key)
+          if @invite_update.update_all(total_redeemed: @new_redeem_count)
+            session.delete(invite_key)
+            redirect_to @group, notice: "You have succesfully joined " + @group.name
+          else
+            render json: @invite_update.errors
+          end
+        else
+          render json: @join_redeem.errors
+        end
+      else
+        render json: @join_member.errors
+      end
     else
       redirect_to @group, notice: "You're already a member of this group"
     end
