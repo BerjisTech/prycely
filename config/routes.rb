@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   match "b2c-callback", to: "mpesa#callback_b2c", via: [:get, :post]
   match "c2b-callback", to: "mpesa#callback_c2b", via: [:get, :post]
   match "stk-callback", to: "mpesa#callback_stk", via: [:get, :post]
+  match "access-token", to: "mpesa#access_token", via: [:get, :post]
+
   resources :liabilities
   resources :assets
   resources :activities

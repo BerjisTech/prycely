@@ -98,14 +98,15 @@ class MpesaController < ApplicationController
 
   def access_token
     path = "/oauth/v1/generate?grant_type=client_credentials"
-    base_url = @base_url
+    base_url = @BASE_URL
     key = @MPESA_API_KEY
     secret = @MPESA_API_SECRET
     conn = Faraday.new(url: base_url + path) do |req|
       req.adapter Faraday.default_adapter
       req.basic_auth(key, secret)
     end
-    conn.get
+    request = conn.get
+    render json: request
   end
 
   def b2c_token
@@ -127,7 +128,7 @@ class MpesaController < ApplicationController
   private
 
   def call(path, body)
-    base_url = @base_url
+    base_url = @BASE_URL
     res = access_token()
     return res unless res.status == 200
     token = JSON.parse(res.body)["access_token"]
@@ -140,7 +141,6 @@ class MpesaController < ApplicationController
   end
 
   def set_mpesa
-    @base_url = "https://api.safaricom.co.ke/oauth/v1/generate"
 
     @MPESA_API_KEY = "a0rdeuPwoSqGv0HIlGBqZeMEocwIfjha"
     @MPESA_API_SECRET = "GC2ScUskImTOSaVR"
@@ -159,6 +159,7 @@ class MpesaController < ApplicationController
     @C2B_USERNAME = "sombo"
     @B2C_USERNAME = "sombob2c"
 
+    @BASE_URL = "https://api.safaricom.co.ke/oauth/v1/generate"
     @TIMEOUT_URL = "https://prycely.com/validation"
     @RESULT_URL = "https://prycely.com/b2c"
     @CONFIRMATION_URL = "https://prycely.com/thecalls/c2b"
