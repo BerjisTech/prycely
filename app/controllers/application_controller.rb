@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  respond_to :json
+
   def after_sign_in_path_for(resource)
     if session[:invite_key]
       new_account_path()
