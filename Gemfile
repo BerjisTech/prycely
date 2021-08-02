@@ -27,6 +27,8 @@ gem "rufo"
 gem "image_processing", "~> 1.2"
 gem "country_select", "~> 6.0"
 gem "currency_select"
+gem "faraday"
+gem "faraday_middleware"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

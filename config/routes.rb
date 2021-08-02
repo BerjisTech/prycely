@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   match "join/:id", to: "redeems#redeem", via: [:get, :post]
   match "accept", to: "redeems#accept_invite", via: [:get, :post]
 
+  match "activation", to: "mpesa#activation", via: [:get, :post]
+  match "b2c", to: "mpesa#b2c", via: [:get, :post]
+  match "c2b", to: "mpesa#c2b", via: [:get, :post]
+  match "stk", to: "mpesa#stk", via: [:get, :post]
+  match "paybill", to: "mpesa#paybill", via: [:get, :post]
+  match "register-url", to: "mpesa#register_url", via: [:get, :post]
+  match "b2c-callback", to: "mpesa#callback_b2c", via: [:get, :post]
+  match "c2b-callback", to: "mpesa#callback_c2b", via: [:get, :post]
+  match "stk-callback", to: "mpesa#callback_stk", via: [:get, :post]
   resources :liabilities
   resources :assets
   resources :activities
