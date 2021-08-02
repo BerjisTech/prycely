@@ -141,7 +141,6 @@ class MpesaController < ApplicationController
   end
 
   def set_mpesa
-
     @MPESA_API_KEY = "a0rdeuPwoSqGv0HIlGBqZeMEocwIfjha"
     @MPESA_API_SECRET = "GC2ScUskImTOSaVR"
     @MPESA_API_PASSKEY = "b87283b3be82ed37fdfbed3209156575757720419a85088aec920583d05bcabc"
@@ -159,7 +158,7 @@ class MpesaController < ApplicationController
     @C2B_USERNAME = "sombo"
     @B2C_USERNAME = "sombob2c"
 
-    @BASE_URL = "https://api.safaricom.co.ke/oauth/v1/generate"
+    @BASE_URL = "https://api.safaricom.co.ke"
     @TIMEOUT_URL = "https://prycely.com/validation"
     @RESULT_URL = "https://prycely.com/b2c"
     @CONFIRMATION_URL = "https://prycely.com/thecalls/c2b"
