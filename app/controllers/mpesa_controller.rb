@@ -105,8 +105,10 @@ class MpesaController < ApplicationController
       req.adapter Faraday.default_adapter
       req.basic_auth(key, secret)
     end
-    request = conn.get
-    render json: request
+    conn.get
+
+    # request = conn.get
+    # render json: JSON.parse(request.body)["access_token"]
   end
 
   def b2c_token
