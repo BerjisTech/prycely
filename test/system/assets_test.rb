@@ -1,55 +1,57 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class AssetsTest < ApplicationSystemTestCase
   setup do
     @asset = assets(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit assets_url
-    assert_selector "h1", text: "Assets"
+    assert_selector 'h1', text: 'Assets'
   end
 
-  test "creating a Asset" do
+  test 'creating a Asset' do
     visit assets_url
-    click_on "New Asset"
+    click_on 'New Asset'
 
-    fill_in "Added by", with: @asset.added_by
-    fill_in "Date bought", with: @asset.date_bought
-    fill_in "Date sold", with: @asset.date_sold
-    fill_in "Description", with: @asset.description
-    fill_in "Group", with: @asset.group_id
-    fill_in "Name", with: @asset.name
-    fill_in "Price", with: @asset.price
-    click_on "Create Asset"
+    fill_in 'Added by', with: @asset.added_by
+    fill_in 'Date bought', with: @asset.date_bought
+    fill_in 'Date sold', with: @asset.date_sold
+    fill_in 'Description', with: @asset.description
+    fill_in 'Group', with: @asset.group_id
+    fill_in 'Name', with: @asset.name
+    fill_in 'Price', with: @asset.price
+    click_on 'Create Asset'
 
-    assert_text "Asset was successfully created"
-    click_on "Back"
+    assert_text 'Asset was successfully created'
+    click_on 'Back'
   end
 
-  test "updating a Asset" do
+  test 'updating a Asset' do
     visit assets_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    fill_in "Added by", with: @asset.added_by
-    fill_in "Date bought", with: @asset.date_bought
-    fill_in "Date sold", with: @asset.date_sold
-    fill_in "Description", with: @asset.description
-    fill_in "Group", with: @asset.group_id
-    fill_in "Name", with: @asset.name
-    fill_in "Price", with: @asset.price
-    click_on "Update Asset"
+    fill_in 'Added by', with: @asset.added_by
+    fill_in 'Date bought', with: @asset.date_bought
+    fill_in 'Date sold', with: @asset.date_sold
+    fill_in 'Description', with: @asset.description
+    fill_in 'Group', with: @asset.group_id
+    fill_in 'Name', with: @asset.name
+    fill_in 'Price', with: @asset.price
+    click_on 'Update Asset'
 
-    assert_text "Asset was successfully updated"
-    click_on "Back"
+    assert_text 'Asset was successfully updated'
+    click_on 'Back'
   end
 
-  test "destroying a Asset" do
+  test 'destroying a Asset' do
     visit assets_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Asset was successfully destroyed"
+    assert_text 'Asset was successfully destroyed'
   end
 end

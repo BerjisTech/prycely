@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LoginsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_login, only: %i[ show edit update destroy ]
+  before_action :set_login, only: %i[show edit update destroy]
 
   # GET /logins or /logins.json
   def index
@@ -8,8 +10,7 @@ class LoginsController < ApplicationController
   end
 
   # GET /logins/1 or /logins/1.json
-  def show
-  end
+  def show; end
 
   # GET /logins/new
   def new
@@ -17,8 +18,7 @@ class LoginsController < ApplicationController
   end
 
   # GET /logins/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /logins or /logins.json
   def create
@@ -26,7 +26,7 @@ class LoginsController < ApplicationController
 
     respond_to do |format|
       if @login.save
-        format.html { redirect_to @login, notice: "Login was successfully created." }
+        format.html { redirect_to @login, notice: 'Login was successfully created.' }
         format.json { render :show, status: :created, location: @login }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class LoginsController < ApplicationController
   def update
     respond_to do |format|
       if @login.update(login_params)
-        format.html { redirect_to @login, notice: "Login was successfully updated." }
+        format.html { redirect_to @login, notice: 'Login was successfully updated.' }
         format.json { render :show, status: :ok, location: @login }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class LoginsController < ApplicationController
   def destroy
     @login.destroy
     respond_to do |format|
-      format.html { redirect_to logins_url, notice: "Login was successfully destroyed." }
+      format.html { redirect_to logins_url, notice: 'Login was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

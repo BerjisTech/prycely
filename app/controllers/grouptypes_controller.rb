@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class GrouptypesController < ApplicationController
-  before_action :set_grouptype, only: %i[ show edit update destroy ]
+  before_action :set_grouptype, only: %i[show edit update destroy]
 
   # GET /grouptypes or /grouptypes.json
   def index
@@ -7,8 +9,7 @@ class GrouptypesController < ApplicationController
   end
 
   # GET /grouptypes/1 or /grouptypes/1.json
-  def show
-  end
+  def show; end
 
   # GET /grouptypes/new
   def new
@@ -16,8 +17,7 @@ class GrouptypesController < ApplicationController
   end
 
   # GET /grouptypes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /grouptypes or /grouptypes.json
   def create
@@ -25,7 +25,7 @@ class GrouptypesController < ApplicationController
 
     respond_to do |format|
       if @grouptype.save
-        format.html { redirect_to @grouptype, notice: "Grouptype was successfully created." }
+        format.html { redirect_to @grouptype, notice: 'Grouptype was successfully created.' }
         format.json { render :show, status: :created, location: @grouptype }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class GrouptypesController < ApplicationController
   def update
     respond_to do |format|
       if @grouptype.update(grouptype_params)
-        format.html { redirect_to @grouptype, notice: "Grouptype was successfully updated." }
+        format.html { redirect_to @grouptype, notice: 'Grouptype was successfully updated.' }
         format.json { render :show, status: :ok, location: @grouptype }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class GrouptypesController < ApplicationController
   def destroy
     @grouptype.destroy
     respond_to do |format|
-      format.html { redirect_to grouptypes_url, notice: "Grouptype was successfully destroyed." }
+      format.html { redirect_to grouptypes_url, notice: 'Grouptype was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

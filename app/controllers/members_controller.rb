@@ -1,19 +1,22 @@
+# frozen_string_literal: true
+
 class MembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_member, only: %i[ show edit update destroy ]
-  before_action :set_global_for_index, only: %i[ index ]
+  before_action :set_member, only: %i[show edit update destroy]
+  before_action :set_global_for_index, only: %i[index]
   before_action :set_global
-  before_action :check_group_session, only: %i[ index ]
+  before_action :check_group_session, only: %i[index]
 
   # GET /members or /members.json
   def index
-    @members = Member.where(group_id: session[:current_group]).where(status: "1").joins(:user => :accounts).limit(10).select(:first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation)
+    @members = Member.where(group_id: session[:current_group]).where(status: '1').joins(user: :accounts).limit(10).select(
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    )
     # render json: @me
   end
 
   # GET /members/1 or /members/1.json
-  def show
-  end
+  def show; end
 
   # GET /members/new
   def new
@@ -21,8 +24,7 @@ class MembersController < ApplicationController
   end
 
   # GET /members/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /members or /members.json
   def create
@@ -34,19 +36,21 @@ class MembersController < ApplicationController
 
     check_member_in_group(@member.user_id)
 
-    @invite_key = Digest::SHA1.hexdigest(DateTime.now().to_s + "/" + session[:current_group].to_s)
-    @invite = Invite.new(:group_id => @member.group_id, :invite_key => @invite_key, :max_redeem => 1, :invite_email => @invite_email, :user_id => current_user.id, :total_redeemed => 0)
+    @invite_key = Digest::SHA1.hexdigest("#{DateTime.now}/#{session[:current_group]}")
+    @invite = Invite.new(group_id: @member.group_id, invite_key: @invite_key, max_redeem: 1,
+                         invite_email: @invite_email, user_id: current_user.id, total_redeemed: 0)
 
     if @invite.save
       @invite_id = Invite.find_by(invite_key: @invite_key).id
-      @redeem = Redeem.new(:invite_id => @invite_id, :user_id => @member.user_id, :group_id => @member.group_id, :complete => 0)
+      @redeem = Redeem.new(invite_id: @invite_id, user_id: @member.user_id, group_id: @member.group_id,
+                           complete: 0)
       if @redeem.save
         @member.invited_on = DateTime.now
         @member.status = 0
-        @member.designation = "member"
+        @member.designation = 'member'
 
         if @member.save
-          redirect_to @member, notice: "Member was successfully created."
+          redirect_to @member, notice: 'Member was successfully created.'
         else
           render json: @member
         end
@@ -64,7 +68,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: "Member was successfully updated." }
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,7 +81,7 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     respond_to do |format|
-      format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -106,16 +110,15 @@ class MembersController < ApplicationController
 
   def check_member_in_group(user)
     @check = Member.where(user_id: user).where(group_id: session[:current_group])
-    if @check.count > 0
-      redirect_to new_member_path, notice: "This member already exists in " + @group.name
-    end
+    redirect_to new_member_path, notice: "This member already exists in #{@group.name}" if @check.count.positive?
   end
 
   def check_member_in_system(user)
     @check = User.find_by(email: user)
 
     if @check.nil?
-      redirect_to new_invite_path, alert: "This member does not exist in our records. Would you like to send them an invite link to join " + @group.name
+      redirect_to new_invite_path,
+                  alert: "This member does not exist in our records. Would you like to send them an invite link to join #{@group.name}"
     else
       @member.user_id = @check.id
       @check_account = Account.find_by(user_id: @check.id)
@@ -125,6 +128,7 @@ class MembersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def member_params
-    params.require(:member).permit(:invited_by, :user_id, :group_id, :designation, :status, :invited_on, :accepted_on, :paid_member, :amount)
+    params.require(:member).permit(:invited_by, :user_id, :group_id, :designation, :status, :invited_on, :accepted_on,
+                                   :paid_member, :amount)
   end
 end

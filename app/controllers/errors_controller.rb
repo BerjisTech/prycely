@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ErrorsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_error, only: %i[ show edit update destroy ]
+  before_action :set_error, only: %i[show edit update destroy]
 
   # GET /errors or /errors.json
   def index
@@ -8,8 +10,7 @@ class ErrorsController < ApplicationController
   end
 
   # GET /errors/1 or /errors/1.json
-  def show
-  end
+  def show; end
 
   # GET /errors/new
   def new
@@ -17,8 +18,7 @@ class ErrorsController < ApplicationController
   end
 
   # GET /errors/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /errors or /errors.json
   def create
@@ -26,7 +26,7 @@ class ErrorsController < ApplicationController
 
     respond_to do |format|
       if @error.save
-        format.html { redirect_to @error, notice: "Error was successfully created." }
+        format.html { redirect_to @error, notice: 'Error was successfully created.' }
         format.json { render :show, status: :created, location: @error }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class ErrorsController < ApplicationController
   def update
     respond_to do |format|
       if @error.update(error_params)
-        format.html { redirect_to @error, notice: "Error was successfully updated." }
+        format.html { redirect_to @error, notice: 'Error was successfully updated.' }
         format.json { render :show, status: :ok, location: @error }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class ErrorsController < ApplicationController
   def destroy
     @error.destroy
     respond_to do |format|
-      format.html { redirect_to errors_url, notice: "Error was successfully destroyed." }
+      format.html { redirect_to errors_url, notice: 'Error was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

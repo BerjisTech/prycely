@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PaybillsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_paybill, only: %i[ show edit update destroy ]
+  before_action :set_paybill, only: %i[show edit update destroy]
 
   # GET /paybills or /paybills.json
   def index
@@ -8,8 +10,7 @@ class PaybillsController < ApplicationController
   end
 
   # GET /paybills/1 or /paybills/1.json
-  def show
-  end
+  def show; end
 
   # GET /paybills/new
   def new
@@ -17,8 +18,7 @@ class PaybillsController < ApplicationController
   end
 
   # GET /paybills/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /paybills or /paybills.json
   def create
@@ -26,7 +26,7 @@ class PaybillsController < ApplicationController
 
     respond_to do |format|
       if @paybill.save
-        format.html { redirect_to @paybill, notice: "Paybill was successfully created." }
+        format.html { redirect_to @paybill, notice: 'Paybill was successfully created.' }
         format.json { render :show, status: :created, location: @paybill }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class PaybillsController < ApplicationController
   def update
     respond_to do |format|
       if @paybill.update(paybill_params)
-        format.html { redirect_to @paybill, notice: "Paybill was successfully updated." }
+        format.html { redirect_to @paybill, notice: 'Paybill was successfully updated.' }
         format.json { render :show, status: :ok, location: @paybill }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class PaybillsController < ApplicationController
   def destroy
     @paybill.destroy
     respond_to do |format|
-      format.html { redirect_to paybills_url, notice: "Paybill was successfully destroyed." }
+      format.html { redirect_to paybills_url, notice: 'Paybill was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +66,7 @@ class PaybillsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def paybill_params
-    params.require(:paybill).permit(:request, :paybill_type, :transaction_reference, :paybill_balance, :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
+    params.require(:paybill).permit(:request, :paybill_type, :transaction_reference, :paybill_balance,
+                                    :third_party_transaction_id, :invoice_number, :amount, :first_name, :last_name, :middle_name, :phone, :short_code, :account_number)
   end
 end
