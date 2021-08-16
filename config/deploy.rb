@@ -9,7 +9,7 @@ set :repo_url, "git@github.com:BerjisTech/prycely.git"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, "/home/prycely/#{fetch :application}"
+set :deploy_to, "/home/prometheus/#{fetch :application}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
