@@ -254,7 +254,7 @@ input[name="user_code"] {
     padding        : 6px;
     position       : absolute;
     z-index        : 2000000;
-    box-shadow     : 0px 10px 20px rgb(3 3 3 / 30%);
+    box-shadow     : 0px 10px 20px rgba(3, 3, 3, 0.3);
     transition     : all 0.56s;
     height         : auto;
     overflow-y     : auto;
