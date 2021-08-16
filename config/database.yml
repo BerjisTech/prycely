@@ -83,5 +83,5 @@ production:
   <<: *default
   database: prycely_production
   host: localhost
-  username: prycely
+  username: prometheus
   password: 890Berjis*()
