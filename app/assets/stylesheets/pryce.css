@@ -60,7 +60,7 @@ body {
     background-position: 50% 50% !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.27);
 }
 
 .nav_links,
@@ -83,7 +83,7 @@ body {
 }
 
 .nav_links:hover {
-    background: rgb(31 38 135 / 7%);
+    background: rgba(31, 38, 135, 0.7);
 }
 
 a:link,
@@ -100,7 +100,7 @@ a:active {
     background-position: 50% 50% !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.27);
 }
 
 
@@ -410,7 +410,7 @@ a:active {
     display: table;
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27);
     margin-bottom: 20px;
     background: #fff;
     padding: 0 !important;
@@ -468,7 +468,7 @@ a:active {
     justify-content: center;
     height: 300px;
     border-radius: 20px;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27);
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -484,7 +484,7 @@ a:active {
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27);
     margin-top: 10px;
     margin-bottom: 20px;
 }
@@ -554,7 +554,7 @@ a:active {
     height: 100vh !important;
     top: 0 !important;
     right: 0 !important;
-    box-shadow: 7px 0 22px inset rgb(31 38 135 / 27%) !important;
+    box-shadow: 7px 0 22px inset rgba(31, 38, 135, 0.27) !important;
 }
 
 .chat-block {
@@ -572,7 +572,7 @@ a:active {
     max-height: 10vh;
     z-index: 3;
     border-radius: 10px !important;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%) !important;
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27) !important;
 }
 
 .chat-card .btn-danger {
@@ -659,7 +659,7 @@ a:active {
     background: #fff;
     margin: 3px 0;
     padding: 4px;
-    box-shadow: 0 0 12px 0 rgb(31 38 135 / 17%);
+    box-shadow: 0 0 12px 0 rgba(31, 38, 135, 0.17);
 }
 
 .chat-user {
@@ -1002,7 +1002,7 @@ a:active {
     margin-top     : 50px;
     width          : 140px;
     z-index        : 2;
-    box-shadow     : 0px 10px 20px rgb(3, 3, 3, 0.3);
+    box-shadow     : 0px 10px 20px rgba(3, 3, 3, 0.3);
     transition     : all 0.56s;
     height         : auto;
     overflow-y     : auto;
@@ -1022,7 +1022,7 @@ a:active {
     margin-top: 50px;
     width: 140px;
     z-index: 2000000;
-    box-shadow: 0 10px 20px rgb(3 3 3 / 30%);
+    box-shadow: 0 10px 20px rgba(3, 3, 3, 0.3);
     transition: all 0.56s;
     height: auto;
     overflow-y: auto;
@@ -1042,7 +1042,7 @@ a:active {
     margin-top: 38px;
     width: 88%;
     z-index: 2000000;
-    box-shadow: 0 0 40px rgb(3 3 3 / 50%);
+    box-shadow: 0 0 40px rgba(3, 3, 3, 0.5);
     transition: all 0.56s;
     height: auto;
     overflow-y: auto;
@@ -1195,7 +1195,7 @@ a:active {
 
 .panelCard {
     border-radius: 20px;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27);
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 20px;
@@ -1209,7 +1209,7 @@ a:active {
     justify-content: space-between;
     height: 320px;
     border-radius: 20px;
-    box-shadow: 0 0 22px 0 rgb(31 38 135 / 27%);
+    box-shadow: 0 0 22px 0 rgba(31, 38, 135, 0.27);
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -1543,12 +1543,12 @@ a:active {
 }
 
 .member-general-actions span:hover {
-    background: rgb(31 38 135 / 17%);
+    background: rgba(31, 38, 135, 0.17);
     transition: all 0.56s;
 }
 
 .member-general-actions span:first-of-type {
-    background: rgb(31 38 135 / 17%);
+    background: rgba(31, 38, 135, 0.17);
 }
 
 .member-search {
@@ -1565,7 +1565,7 @@ a:active {
 
 .search-input input {
     border-radius: 5px !important;
-    border: 2px solid rgb(31 38 135 / 17%);
+    border: 2px solid rgba(31, 38, 135, 0.17);
     padding: 7px !important;
     text-align: left;
     width: auto !important;
@@ -1594,7 +1594,7 @@ a:active {
 
 .invite-search-input input {
     border-radius: 5px !important;
-    border: 2px solid rgb(31 38 135 / 17%);
+    border: 2px solid rgba(31, 38, 135, 0.17);
     padding: 7px !important;
     text-align: left;
     width: auto !important;

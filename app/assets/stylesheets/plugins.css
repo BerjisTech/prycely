@@ -3477,7 +3477,7 @@ lesshat-selector {
     bottom       : 50px;
     align-self   : center;
     background   : #003471;
-    box-shadow   : 0 8px 32px 0 rgb(31 38 135 / 27%);
+    box-shadow   : 0 8px 32px 0 rgba(31, 38, 135, 0.27);
     color        : #ffffff;
     font-size    : 18px;
     padding      : 20px;
