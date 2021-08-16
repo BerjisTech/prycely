@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.partial! 'redeems/redeem', redeem: @redeem
+json.partial! "redeems/redeem", redeem: @redeem

@@ -1,51 +1,51 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class CurrenciesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @currency = currencies(:one)
   end
 
-  test 'should get index' do
+  test "should get index" do
     get currencies_url
     assert_response :success
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_currency_url
     assert_response :success
   end
 
-  test 'should create currency' do
-    assert_difference('Currency.count') do
+  test "should create currency" do
+    assert_difference("Currency.count") do
       post currencies_url,
            params: { currency: { code: @currency.code, country: @currency.country, country_code: @currency.country_code,
-                                 currency: @currency.currency } }
+                                currency: @currency.currency } }
     end
 
     assert_redirected_to currency_url(Currency.last)
   end
 
-  test 'should show currency' do
+  test "should show currency" do
     get currency_url(@currency)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     get edit_currency_url(@currency)
     assert_response :success
   end
 
-  test 'should update currency' do
+  test "should update currency" do
     patch currency_url(@currency),
           params: { currency: { code: @currency.code, country: @currency.country, country_code: @currency.country_code,
-                                currency: @currency.currency } }
+                               currency: @currency.currency } }
     assert_redirected_to currency_url(@currency)
   end
 
-  test 'should destroy currency' do
-    assert_difference('Currency.count', -1) do
+  test "should destroy currency" do
+    assert_difference("Currency.count", -1) do
       delete currency_url(@currency)
     end
 

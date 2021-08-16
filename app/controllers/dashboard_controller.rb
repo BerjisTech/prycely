@@ -14,9 +14,9 @@ class DashboardController < ApplicationController
 
   def set_dashboard
     @account = Account.where(user_id: current_user.id)
-    @groups = Member.where.not(status: '0').where(user_id: current_user.id).joins(:group).select(:id, :name,
+    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name,
                                                                                                  :membership, :created_by, :group_id, :currency, :group_type)
-    @invites = Member.where(status: '0').where(user_id: current_user.id).joins(:group).select(:id, :name, :membership,
+    @invites = Member.where(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership,
                                                                                               :created_by, :currency, :group_type, :group_id)
   end
 end

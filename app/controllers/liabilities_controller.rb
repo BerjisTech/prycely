@@ -26,7 +26,7 @@ class LiabilitiesController < ApplicationController
 
     respond_to do |format|
       if @liability.save
-        format.html { redirect_to @liability, notice: 'Liability was successfully created.' }
+        format.html { redirect_to @liability, notice: "Liability was successfully created." }
         format.json { render :show, status: :created, location: @liability }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class LiabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @liability.update(liability_params)
-        format.html { redirect_to @liability, notice: 'Liability was successfully updated.' }
+        format.html { redirect_to @liability, notice: "Liability was successfully updated." }
         format.json { render :show, status: :ok, location: @liability }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class LiabilitiesController < ApplicationController
   def destroy
     @liability.destroy
     respond_to do |format|
-      format.html { redirect_to liabilities_url, notice: 'Liability was successfully destroyed.' }
+      format.html { redirect_to liabilities_url, notice: "Liability was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -82,5 +82,6 @@ test:
 production:
   <<: *default
   database: prycely_production
+  host: localhost
   username: prycely
-  password: <%= ENV['PRYCELY_DATABASE_PASSWORD'] %>
+  password: 890Berjis*()

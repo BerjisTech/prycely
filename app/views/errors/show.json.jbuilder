@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.partial! 'errors/error', error: @error
+json.partial! "errors/error", error: @error

@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.partial! 'currencies/currency', currency: @currency
+json.partial! "currencies/currency", currency: @currency

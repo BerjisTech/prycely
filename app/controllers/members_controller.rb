@@ -9,7 +9,7 @@ class MembersController < ApplicationController
 
   # GET /members or /members.json
   def index
-    @members = Member.where(group_id: session[:current_group]).where(status: '1').joins(user: :accounts).limit(10).select(
+    @members = Member.where(group_id: session[:current_group]).where(status: "1").joins(user: :accounts).limit(10).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
     )
     # render json: @me
@@ -47,10 +47,10 @@ class MembersController < ApplicationController
       if @redeem.save
         @member.invited_on = DateTime.now
         @member.status = 0
-        @member.designation = 'member'
+        @member.designation = "member"
 
         if @member.save
-          redirect_to @member, notice: 'Member was successfully created.'
+          redirect_to @member, notice: "Member was successfully created."
         else
           render json: @member
         end
@@ -68,7 +68,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to @member, notice: "Member was successfully updated." }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+      format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
       format.json { head :no_content }
     end
   end

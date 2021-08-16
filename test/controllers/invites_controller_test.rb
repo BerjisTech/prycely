@@ -1,51 +1,51 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class InvitesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @invite = invites(:one)
   end
 
-  test 'should get index' do
+  test "should get index" do
     get invites_url
     assert_response :success
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_invite_url
     assert_response :success
   end
 
-  test 'should create invite' do
-    assert_difference('Invite.count') do
+  test "should create invite" do
+    assert_difference("Invite.count") do
       post invites_url,
            params: { invite: { group_id: @invite.group_id, invite_email: @invite.invite_email, invite_key: @invite.invite_key,
-                               max_redeem: @invite.max_redeem } }
+                              max_redeem: @invite.max_redeem } }
     end
 
     assert_redirected_to invite_url(Invite.last)
   end
 
-  test 'should show invite' do
+  test "should show invite" do
     get invite_url(@invite)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     get edit_invite_url(@invite)
     assert_response :success
   end
 
-  test 'should update invite' do
+  test "should update invite" do
     patch invite_url(@invite),
           params: { invite: { group_id: @invite.group_id, invite_email: @invite.invite_email, invite_key: @invite.invite_key,
-                              max_redeem: @invite.max_redeem } }
+                             max_redeem: @invite.max_redeem } }
     assert_redirected_to invite_url(@invite)
   end
 
-  test 'should destroy invite' do
-    assert_difference('Invite.count', -1) do
+  test "should destroy invite" do
+    assert_difference("Invite.count", -1) do
       delete invite_url(@invite)
     end
 
