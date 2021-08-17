@@ -12,4 +12,8 @@ class Group < ApplicationRecord
   has_many :activities
   has_many :invites
   has_many :redeems
+
+  def self.mine(user_id)
+    Member.where.not(status: "0").where(user_id: user_id).joins(:group).select_my_group_data
+  end
 end

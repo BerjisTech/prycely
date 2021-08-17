@@ -1,39 +1,85 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary prycely_to_navbar">
-  <div class="container-fluid">
-    <%= link_to "Prycely", root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Wallets", wallets_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Groups", groups_path, class: "nav-link" %>
-          </li>
+<script type="text/javascript">
+  // Code used to add Todo Tasks
+  jQuery(document).ready(function($)
+  {
+    function escapeHtml(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, (m) => { return map[m]; });
+    }
+    var $todo_tasks = $("#todo_tasks");
+    $todo_tasks.find('input[type="text"]').on('keydown', (ev) => {
+        if(ev.keyCode == 13) {
+            ev.preventDefault();
+            if($.trim($(this).val()).length) {
+                var $todo_entry = $('<li><div class="checkbox checkbox-replace color-white"><input type="checkbox" /><label>'+escapeHtml($(this).val())+'</label></div></li>');
+                $(this).val('');
+                $todo_entry.appendTo($todo_tasks.find('.todo-list'));
+                $todo_entry.hide().slideDown('fast');
+                replaceCheckboxes();
+            }
+        }
+    });
+  });
+</script>
+
+<div class="sidebar-menu">
+  <div class="sidebar-menu-inner">
+    <header class="logo-env">
+      <div class="logo">
+        <a href="https://demo.neontheme.com/dashboard/main/">
+          <img src="https://assets.ltvsaasgrowth.com/images/5cbf852e9172ce00235e92ab_optimized.png" class="img img-rounded" alt="" style="background: #fff; width: 40px;"/>
+        </a>
+      </div>
+      <div class="sidebar-collapse"> <a href="#" class="sidebar-collapse-icon"> <i
+                                class="material-icons">menu</i> </a> </div>
+      <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"> <i
+                                class="material-icons">menu</i> </a> </div>
+    </header>
+    <ul id="main-menu" class="main-menu">
+      <li>
+        <%= link_to dashboard_path do %>
+          <i class="material-icons">dashboard</i>
+          <span class="title">Dashboard</span>
         <% end %>
-      </ul>
-      <span class="navbar-text">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Account", account_path(current_user.id), method: :get, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, method: :get, class: "nav-link" %>
-            </li>
-          <% end %>
+      </li>
+      <li class="has-sub <% if controller_name == "groups" %>opened<% end %>">
+        <%= link_to groups_path do %>
+          <i class="material-icons">account_balance</i>
+          <span class="title">Groups</span>
+        <% end %>
+        <ul>
+          <li>
+            <% Group.mine(current_user.id).map do |group| %>
+              <%= link_to group_path(group.id) do %>
+                <i class="entypo-newspaper"></i>
+                <span class="title"><%= group.name %></span>
+              <% end %>
+            <% end %>
+          </li>
         </ul>
-      </span>
-    </div>
+      </li>
+      <li class="has-sub <% if controller_name == "wallets" %>opened<% end %>">
+        <%= link_to wallets_path do %>
+          <i class="material-icons">account_balance</i>
+          <span class="title">Wallets</span>
+        <% end %>
+        <ul>
+          <li>
+            <% Wallet.mine(current_user.id).map do |wallet| %>
+              <%= link_to wallet_path(wallet.id) do %>
+                <i class="entypo-newspaper"></i>
+                <span class="title"><%= wallet.name %></span>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
-</nav>
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-6 col-sm-8 clearfix">
+    <ul class="user-info pull-left pull-none-xsm">
+      <li class="profile-info dropdown">
+        <%= controller_name.humanize %> /
+        <% if controller_name == "apps" && action_name == "show" %>
+          <%= @app.app_name %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+    <ul class="list-inline links-list pull-right">
+      <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get %></li>
+      <li class="sep"></li>
+
+      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1"> <i class="entypo-chat"></i>
+          Tasks
+          <span class="badge badge-success chat-notifications-badge">3</span> </a> </li>
+
+      <li class="sep"></li>
+
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, style: "display:  flex; align-items: center;" do %>
+          Log Out <i class="material-icons right" style="font-size: 15px;">logout</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

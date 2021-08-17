@@ -1,65 +1,56 @@
-// body {
-//   background-color: #fff;
-//   color: #333;
-//   margin: 33px; }
+.login-page-row {
+    height    : 100% !important;
+    min-width : 100% !important;
+    margin    : 0px !important;
+    padding   : 0px !important;
+    background: conic-gradient(at top right, slategray, white);
+    top       : 0px !important;
+    left      : 0px !important;
+    position  : relative;
 
-// body, p, ol, ul, td {
-//   font-family: verdana, arial, helvetica, sans-serif;
-//   font-size: 13px;
-//   line-height: 18px; }
+    img {
+        background             : rgba(255, 255, 255, 0.6);
+        box-shadow             : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter        : blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius          : 10px;
+        border                 : 1px solid rgba(255, 255, 255, 0.18);
+    }
+}
 
-// pre {
-//   background-color: #eee;
-//   padding: 10px;
-//   font-size: 11px; }
+.login-page-empty {
+    height         : 100%;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
 
-// a {
-//   color: #000; }
+.login-form-column {
+    height         : 100%;
+    display        : flex;
+    align-items    : flex-start;
+    justify-content: center;
+    flex-direction : column;
+    background     : conic-gradient(at 0% 0%, snow, white);
+    box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 
-// a:visited {
-//   color: #666; }
+    form {
+        width  : 100%;
+        padding: 0px 20px;
 
-// a:hover {
-//   color: #fff;
-//   background-color: #000; }
+        .field {
+            margin: 10px 0px;
 
-// th {
-//   padding-bottom: 5px; }
+            input {
+                padding  : 20px 10px;
+                font-size: 16px;
+            }
+        }
 
-// td {
-//   padding: 0 5px 7px; }
-
-// div.field,
-// div.actions {
-//   margin-bottom: 10px; }
-
-// #notice {
-//   color: green; }
-
-// .field_with_errors {
-//   padding: 2px;
-//   background-color: red;
-//   display: table; }
-
-// #error_explanation {
-//   width: 450px;
-//   border: 2px solid red;
-//   padding: 7px 7px 0;
-//   margin-bottom: 20px;
-//   background-color: #f0f0f0; }
-
-// #error_explanation h2 {
-//   text-align: left;
-//   font-weight: bold;
-//   padding: 5px 5px 5px 15px;
-//   font-size: 12px;
-//   margin: -7px -7px 0;
-//   background-color: #c00;
-//   color: #fff; }
-
-// #error_explanation ul li {
-//   font-size: 12px;
-//   list-style: square; }
-
-// label {
-//   display: block; }
+        [value="Log in"] {
+            width         : 200px !important;
+            padding-top   : 10px !important;
+            padding-bottom: 10px !important;
+        }
+    }
+}

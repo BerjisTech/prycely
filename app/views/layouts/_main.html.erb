@@ -1,0 +1,9 @@
+<% if controller_name != "home" %>
+  <% if user_signed_in? %>
+    <%= render "/layouts/top_bar" %>
+    <hr />
+  <% end %>
+  <%= yield %>
+<% else %>
+  <%= yield %>
+<% end %>

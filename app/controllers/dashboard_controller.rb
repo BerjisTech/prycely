@@ -13,10 +13,11 @@ class DashboardController < ApplicationController
   end
 
   def set_dashboard
+    session[:user_id] = current_user.id
+    user_id = session[:user_id]
+
     @account = Account.where(user_id: current_user.id)
-    @groups = Member.where.not(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name,
-                                                                                                 :membership, :created_by, :group_id, :currency, :group_type)
-    @invites = Member.where(status: "0").where(user_id: current_user.id).joins(:group).select(:id, :name, :membership,
-                                                                                              :created_by, :currency, :group_type, :group_id)
+    @groups = Group.mine(user_id)
+    @invites = Invite.mine(user_id)
   end
 end
