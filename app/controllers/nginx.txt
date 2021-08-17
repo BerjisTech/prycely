@@ -1,8 +1,7 @@
 server {
   listen 80;
-  listen [::]:80;
-
-  server_name _;
+  listen [::]:80 ipv6only=on default_server;
+  server_name prycely.com www.prycely.com;
   root /home/prometheus/prycely/current/public;
 
   passenger_enabled on;
@@ -24,7 +23,12 @@ server {
 
 ##########################################################################################
 ##########################################################################################
+https://www.thesslstore.com/knowledgebase/ssl-install/nginx-ssl-installation/
+##########################################################################################
+##########################################################################################
 
+
+  GNU nano 4.8                                                                          /etc/nginx/sites-enabled/prycely                                                                                     
 server {
     listen 80;
     listen [::]:80 ipv6only=on default_server;
@@ -32,6 +36,7 @@ server {
     root /home/prometheus/prycely/current/public;
     rewrite ^/(.*) https://prycely.com/$1 permanent;
 }
+
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
@@ -39,17 +44,19 @@ server {
     server_name prycely.com www.prycely.com;
     root /home/prometheus/prycely/current/public;
 
+    ssl on;
+    ssl_certificate /etc/nginx/ssl/tlscert.crt;
+    ssl_certificate_key /etc/nginx/ssl/private.key;
     # ssl_certificate /home/prometheus/ca_bundle.chained.crt;
     # ssl_certificate_key /home/prometheus/private.key;
     # ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     # ssl_prefer_server_ciphers on;
     # ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
 
-    ssl_certificate /etc/letsencrypt/csr/0000_csr-certbot.pem;
-    ssl_certificate_key /etc/letsencrypt/keys/0000_key-certbot.pem;
-
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    # ssl_certificate /etc/letsencrypt/csr/0000_csr-certbot.pem;
+    # ssl_certificate_key /etc/letsencrypt/keys/0000_key-certbot.pem;
+    # include /etc/letsencrypt/options-ssl-nginx.conf;
+    # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     passenger_enabled on;
     passenger_app_env production;
@@ -58,7 +65,6 @@ server {
         passenger_app_group_name prycely_websocket;
         passenger_force_max_concurrent_requests_per_process 0;
     }
-
     # Allow uploads up to 100MB in size
     client_max_body_size 100m;
     location ~ ^/(assets|packs) {
@@ -66,3 +72,4 @@ server {
         gzip_static on;
     }
 }
+
