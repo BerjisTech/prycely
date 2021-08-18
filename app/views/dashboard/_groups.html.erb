@@ -32,21 +32,21 @@
     <% @extra_end = 4 - @groups.length %>
     <% @extra_start = 1 %>
     <% until @extra_start > @extra_end %>
-      <div class="col-md-3 col-sm-6 xs-hidden">
+      <div class="col-md-3 col-sm-6 xs-hidden" onclick="window.location.href='<%= new_group_path %>'">
         <div class="group extra_card">
           <div class="group_identity">
-            <span class="group_dp">P</span>
-            <span>Prycely</span>
+            <span class="group_dp">x</span>
+            <span>**********</span>
           </div>
 
           <div class="group_amount_progress">
-            <span><sub class="text-success">KES</sub> 2,215,215</span>
-            <span class="sparkline_drop">3000,2700,3400,1500,1700,2300,2000</span>
+            <span><sub class="text-success">***</sub> o</span>
+            <span class="sparkline_drop">0,0,0,0,0,0,0</span>
           </div>
 
           <div class="group_currency_progress">
             <span>KES</span>
-            <span>+3.25%</span>
+            <span>+**.**%</span>
           </div>
         </div>
       </div>
