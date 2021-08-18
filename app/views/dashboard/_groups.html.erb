@@ -1,17 +1,29 @@
-<div class="groups_holder">
-  <% if @groups.empty? %>
-    <div class="group justify-content-center align-items-center p-3">You currently have no groups</div>
-  <% end %>
-  <% @groups.map do |group| %>
-    <tr onclick="window.location.href='<%= group_path(group.group_id) %>'">
-      <td class="group">
+<script>
+group_colors = [
+  
+]
+</script>
+
+<% if @groups.empty? %>
+  <div class="group justify-content-center align-items-center p-3">You currently have no groups</div>
+<% end %>
+<% @groups.map do |group| %>
+  <div class="col-md-3 col-sm-6" onclick="window.location.href='<%= group_path(group.group_id) %>'">
+    <div class="group">
+      <div class="group_identity">
         <span class="group_dp"><%= group.name[0] %></span>
         <span><%= group.name %></span>
-      </td>
+      </div>
 
-      <td><sub class="text-success"><%= group.currency %></sub> 2,215,215</td>
+      <div class="group_amount_progress">
+        <span><sub class="text-success"><%= group.currency %></sub> 2,215,215</span>
+        <span class="sparkline_rise">2000,2300,1700,1500,3000,2700,3400</span>
+      </div>
 
-      <td class="text-center"><span class="top-apps">2000,2300,1700,1500,3000,2700,3400</span></td>
-    </tr>
-  <% end %>
-</div>
+      <div class="group_currency_progress">
+        <span><%= group.currency %></span>
+        <span>+3.25%</span>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -2,21 +2,40 @@
   jQuery(document).ready(function($)
   {
       // Sparkline Charts
-      $(".top-apps").sparkline('html', {
+  
+      $(".sparkline_drop").sparkline('html', {
           type: 'line',
           width: '50px',
           height: '15px',
-          lineColor: '#ff4e50',
           fillColor: '',
           lineWidth: 2,
+          spotRadius: 2,
+          drawNormalOnTop: true,
           spotColor: '#a9282a',
           minSpotColor: '#a9282a',
           maxSpotColor: '#a9282a',
           highlightSpotColor: '#a9282a',
           highlightLineColor: '#f4c3c4',
+          lineColor: '#ff4e50'
+      })
+      
+  
+      $(".sparkline_rise").sparkline('html', {
+          type: 'line',
+          width: '50px',
+          height: '15px',
+          fillColor: '',
+          lineWidth: 2,
           spotRadius: 2,
-          drawNormalOnTop: true
-      });
+          drawNormalOnTop: true,
+          spotColor: '#008d45',
+          minSpotColor: '#06703a',
+          maxSpotColor: '#06703a',
+          highlightSpotColor: '#407058',
+          highlightLineColor: '#06703a',
+          lineColor: '#00B19D'
+      })
+      
       $(".monthly-sales").sparkline([1,5,6,7,10,12,16,11,9,8.9,8.7,7,8,7,6,5.6,5,7,5,4,5,6,7,8,6,7,6,3,2], {
           type: 'bar',
           barColor: '#ff4e50',

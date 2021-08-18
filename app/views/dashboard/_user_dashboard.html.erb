@@ -1,46 +1,69 @@
 <%= render "js" %>
 <div class="row">
   <div class="col-sm-9">
-    <div class="panel panel-primary panel-table">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <h3>My Groups</h3>
-          <span>Your top 10 groups</span>
-        </div>
+    <div class="row">
+      <%= render "groups" %>
+      <div class="col-md-3 col-sm-6" onclick="window.location.href='/groups/1'">
+        <div class="group">
+          <div class="group_identity">
+            <span class="group_dp">P</span>
+            <span>Prycely</span>
+          </div>
 
-        <div class="panel-options">
-          <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg">
-            <i class="material-icons">settings</i>
-          </a>
-          <a href="#" data-rel="collapse">
-            <i class="material-icons">expand_more</i>
-          </a>
-          <a href="#" data-rel="reload">
-            <i class="material-icons">autorenew</i>
-          </a>
-          <a href="#" data-rel="close">
-            <i class="material-icons">close</i>
-          </a>
+          <div class="group_amount_progress">
+            <span><sub class="text-success">KES</sub> 2,215,215</span>
+            <span class="sparkline_rise">2000,2300,1700,1500,3000,2700,3400</span>
+          </div>
+
+          <div class="group_currency_progress">
+            <span>KES</span>
+            <span>+3.25%</span>
+          </div>
         </div>
       </div>
+      <div class="col-md-3 col-sm-6" onclick="window.location.href='/groups/1'">
+        <div class="group">
+          <div class="group_identity">
+            <span class="group_dp">P</span>
+            <span>Prycely</span>
+          </div>
 
-      <div class="panel-body">
-        <table class="table table-responsive">
-          <thead>
-            <tr>
-              <th>Group</th>
+          <div class="group_amount_progress">
+            <span><sub class="text-success">KES</sub> 2,215,215</span>
+            <span class="sparkline_drop">3000,2700,3400,1500,1700,2300,2000</span>
+          </div>
 
-              <th>Savings</th>
-
-              <th class="text-center">Traffic</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <%= render "groups" %>
-          </tbody>
-        </table>
+          <div class="group_currency_progress">
+            <span>KES</span>
+            <span>+3.25%</span>
+          </div>
+        </div>
       </div>
+      <div class="col-md-3 col-sm-6" onclick="window.location.href='/groups/1'">
+        <div class="group">
+          <div class="group_identity">
+            <span class="group_dp">P</span>
+            <span>Prycely</span>
+          </div>
+
+          <div class="group_amount_progress">
+            <span><sub class="text-success">KES</sub> 2,215,215</span>
+            <span class="sparkline_drop">3000,2700,3400,1500,1700,2300,2000</span>
+          </div>
+
+          <div class="group_currency_progress">
+            <span>KES</span>
+            <span>+3.25%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        My Group Invites
+        <%= render "invites" %>
+      </div>
+      <div class="col-md-4">My Wallets</div>
     </div>
   </div>
 
@@ -59,17 +82,10 @@
       </div>
     <% else %>
       <%= render "wallets" %>
-      <%= link_to wallets_path, type: "button", class: "btn btn-blue btn-icon btn-block" do %>
+      <%= link_to wallets_path, type: "button", class: "btn btn-blue btn-icon" do %>
         View all wallets
         <i class="material-icons">east</i>
       <% end %>
     <% end %>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    My Group Invites
-    <%= render "invites" %>
-  </div>
-  <div class="col-md-4">My Wallets</div>
 </div>
