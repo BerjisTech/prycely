@@ -1,8 +1,72 @@
+<%= render "js" %>
 <div class="row">
-  <div class="col-md-4">
-    My Groups
-    <%= render "groups" %>
+  <div class="col-sm-9">
+    <div class="panel panel-primary panel-table">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h3>My Groups</h3>
+          <span>Your top 10 groups</span>
+        </div>
+
+        <div class="panel-options">
+          <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg">
+            <i class="material-icons">settings</i>
+          </a>
+          <a href="#" data-rel="collapse">
+            <i class="material-icons">expand_more</i>
+          </a>
+          <a href="#" data-rel="reload">
+            <i class="material-icons">autorenew</i>
+          </a>
+          <a href="#" data-rel="close">
+            <i class="material-icons">close</i>
+          </a>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Group</th>
+
+              <th>Savings</th>
+
+              <th class="text-center">Traffic</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%= render "groups" %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+
+  <div class="col-md-3">
+    <% if @wallets.empty? %>
+      <div class="tile-title tile-orange" onclick="window.location.href='<%= new_wallet_path %>'" style="cursor: pointer;">
+        <div class="icon">
+          <i class="material-icons" style="font-size: 60px !important;">account_balance_wallet</i>
+        </div>
+
+        <div class="title">
+          <h3>YOU HAVE NO WALLETS</h3>
+
+          <p>Create one now</p>
+        </div>
+      </div>
+    <% else %>
+      <%= render "wallets" %>
+      <%= link_to wallets_path, type: "button", class: "btn btn-blue btn-icon btn-block" do %>
+        View all wallets
+        <i class="material-icons">east</i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-4">
     My Group Invites
     <%= render "invites" %>

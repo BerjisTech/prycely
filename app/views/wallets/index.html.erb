@@ -17,9 +17,9 @@
         <td><%= wallet.user_id %></td>
         <td><%= wallet.currency %></td>
         <td>
-          <%= link_to "visibility", wallet, class: "material-icons btn btn-outline-primary btn-xs", title: "View Wallet" %>
-          <%= link_to "edit_note", edit_wallet_path(wallet), class: "material-icons btn btn-outline-success btn-xs", title: "Edit Wallet" %>
-          <%= link_to "delete", wallet, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons btn btn-outline-danger btn-xs", title: "Delete Wallet" %>
+          <%= link_to "visibility", wallet, class: "material-icons btn btn-primary btn-xs", title: "View Wallet" %>
+          <%= link_to "edit_note", edit_wallet_path(wallet), class: "material-icons btn btn-success btn-xs", title: "Edit Wallet" %>
+          <%= link_to "delete", wallet, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons btn btn-danger btn-xs", title: "Delete Wallet" %>
         </td>
       </tr>
     <% end %>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to "New Wallet", new_wallet_path, class: "btn btn-outline-primary btn-sm my-3" %>
+<%= link_to "New Wallet", new_wallet_path, class: "btn btn-primary btn-sm my-3" %>

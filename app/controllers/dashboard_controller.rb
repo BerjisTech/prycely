@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   before_action :set_dashboard
 
   def index
-    # render json: @groups
+    # render json: @wallets.map
   end
 
   def join
@@ -19,5 +19,6 @@ class DashboardController < ApplicationController
     @account = Account.where(user_id: current_user.id)
     @groups = Group.mine(user_id)
     @invites = Invite.mine(user_id)
+    @wallets = Wallet.mine(current_user.id)
   end
 end

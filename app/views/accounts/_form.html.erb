@@ -21,7 +21,7 @@
         <% else %>
           <img id="img_prev" class="img rounded" src="" alt="" />
         <% end %>
-        <span class="btn btn-xs btn-outline-primary my-1 image_chooser">Choose Photo</span>
+        <span class="btn btn-xs btn-primary my-1 image_chooser">Choose Photo</span>
         <%= form.file_field :image, onchange: "readURL(this);", class: "d-none", accept: "image/*", required: "required" %>
       <% end %>
     </div>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit class: "btn btn-outline-primary btn-md my-3" %>
+      <%= form.submit class: "btn btn-primary btn-md my-3" %>
     </div>
   </div >
 <% end %>

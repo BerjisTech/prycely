@@ -8,7 +8,7 @@
     <div><%= @invite.name %> Is a <%= @grouptype %> group</div>
     <div><% @invite.description %></div>
   <% end %>
-  <%= link_to new_user_registration_path, class: "nav-link btn btn-outline-primary", style: "width: 200px;" do %>
+  <%= link_to new_user_registration_path, class: "nav-link btn btn-primary", style: "width: 200px;" do %>
     <span>Create Account and Join <%= @invite.name %></span>
   <% end %>
 </div>

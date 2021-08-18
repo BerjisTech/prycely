@@ -56,7 +56,7 @@
         <ul>
           <li>
             <% Group.mine(current_user.id).map do |group| %>
-              <%= link_to group_path(group.id) do %>
+              <%= link_to group_path(group.group_id) do %>
                 <i class="entypo-newspaper"></i>
                 <span class="title"><%= group.name %></span>
               <% end %>
@@ -74,7 +74,7 @@
             <% Wallet.mine(current_user.id).map do |wallet| %>
               <%= link_to wallet_path(wallet.id) do %>
                 <i class="entypo-newspaper"></i>
-                <span class="title"><%= wallet.name %></span>
+                <span class="title"><%= wallet.currency.upcase %></span>
               <% end %>
             <% end %>
           </li>

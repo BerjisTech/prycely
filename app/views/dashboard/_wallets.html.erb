@@ -1,0 +1,12 @@
+<% @wallets.map do |wallet| %>
+  <div class="tile-stats tile-neon-red" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
+    <div class="icon"><i class="entypo-chat"></i></div>
+
+    <div class="num" data-start="0" data-end="<%= wallet.balance || 0 %>" data-postfix="" data-duration="1400" data-delay="0"><%= wallet.balance || 0 %></div>
+
+    <h3><%= wallet.currency.upcase %> WALLET</h3>
+
+    <!--p><%= wallet.currency.upcase %></p-->
+  </div>
+  <br>
+<% end %>

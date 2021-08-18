@@ -2,7 +2,7 @@
   <% if @invites.empty? %>
     <div class="group justify-content-center align-items-center p-3">You currently have no invites</div>
   <% end %>
-  <% @invites.each do |invite| %>
+  <% @invites.map do |invite| %>
     <%= link_to group_path(invite.group_id), class: "group" do %>
       <span class="group_dp"><%= invite.name[0] %></span>
       <span class="group_name">

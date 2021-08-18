@@ -2,14 +2,16 @@
   <% if @groups.empty? %>
     <div class="group justify-content-center align-items-center p-3">You currently have no groups</div>
   <% end %>
-  <% @groups.each do |group| %>
-    <%= link_to group_path(group.group_id), class: "group" do %>
-      <span class="group_dp"><%= group.name[0] %></span>
-      <span class="group_name">
+  <% @groups.map do |group| %>
+    <tr onclick="window.location.href='<%= group_path(group.group_id) %>'">
+      <td class="group">
+        <span class="group_dp"><%= group.name[0] %></span>
         <span><%= group.name %></span>
-        <sub class="text-success"><%= group.currency %></sub>
-        </span>
-      <span><%= group.currency %></span>
-    <% end %>
+      </td>
+
+      <td><sub class="text-success"><%= group.currency %></sub> 2,215,215</td>
+
+      <td class="text-center"><span class="top-apps">2000,2300,1700,1500,3000,2700,3400</span></td>
+    </tr>
   <% end %>
 </div>
