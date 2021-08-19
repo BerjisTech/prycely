@@ -1,3 +1,61 @@
 // Place all the styles related to the wallets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.wallet-holder {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    cursor         : pointer;
+    color          : #272B2F;
+    transition     : all 0.56s;
+    margin         : 5px auto;
+    border-bottom  : 1px solid #E3ECFB;
+    padding        : 10px;
+
+    &:hover {
+        color     : #272B2F;
+        background: rgba(155, 155, 155, 0.1);
+    }
+
+    .wallet-dp {
+        width           : 40px;
+        height          : 40px;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        background-color: rgba(31, 38, 135, 0.3);
+        color           : #ffffff;
+        border-radius   : 10px;
+        font-size       : 20px;
+    }
+
+    .wallet-currency {
+        font-weight: 600;
+        font-size  : 16px;
+    }
+
+    .wallet-balance {
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: flex-end;
+
+        .wallet-amount {
+            font-size  : 16px;
+            font-weight: 600;
+        }
+
+        .wallet-change {
+            font-weight: lighter;
+
+            &.grow {
+                color: #89D3B1;
+            }
+
+            &.drop {
+                color: #CF6463;
+            }
+        }
+    }
+}

@@ -1,13 +1,12 @@
-<% @wallets.map do |wallet| %>
-  <div class="tile-stats tile-neon-red" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
-    <div class="icon"><i class="entypo-chat"></i></div>
-
-    <div class="num" data-start="0" data-end="<%= wallet.balance || 0 %>" data-postfix="" data-duration="1400" data-delay="0"><%= wallet.balance || 0 %></div>
-
-    <h3><%= wallet.currency.upcase %> WALLET</h3>
-
-    <!--p><%= wallet.currency.upcase %></p-->
+<% @wallets.each_with_index.map do |wallet, index| %>
+  <div class="wallet-holder" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
+    <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+      <%= "#{wallet.currency.first.upcase}#{wallet.currency[1].downcase}" %>
+    </span>
+    <span class="wallet-currency"><%= wallet.currency %></span>
+    <span class="wallet-balance">
+      <span class="wallet-amount"><%= Money.new(wallet.balance || 0) %></span>
+      <span class="wallet-change grow">+3.5%</span>
+    </span>
   </div>
 <% end %>
-
-<%= Money.new('USD') %>
