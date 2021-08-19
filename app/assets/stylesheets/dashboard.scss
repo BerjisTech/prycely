@@ -49,3 +49,36 @@
         }
     }
 }
+
+.user_area {
+    display        : flex;
+    align-items    : center;
+    justify-content: flex-start;
+    background     : #ffffff;
+    padding        : 8px;
+    margin-bottom  : 10px;
+
+    .user_image {
+        img {
+            width        : 40px;
+            height       : auto;
+            border-radius: 10px;
+        }
+    }
+
+    .name_n_email {
+        display        : flex;
+        align-items    : flex-start;
+        justify-content: flex-start;
+        flex-direction : column;
+        margin-left    : 10px;
+
+        span {
+            &:first-of-type {
+                font-weight: 600;
+                color      : #333333;
+                font-size  : 16px;
+            }
+        }
+    }
+}

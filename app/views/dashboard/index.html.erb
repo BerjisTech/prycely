@@ -1,7 +1,6 @@
-<% if @account.count == 0 || @account.length == 0 || @account.empty? %>
-  <%= render "update_account" %>
-<% else %>
+<% if @account %>
   <%= render "user_dashboard" %>
   <% @groups.inspect %>
+<% else %>
+  <%= render "update_account" %>
 <% end %>
-

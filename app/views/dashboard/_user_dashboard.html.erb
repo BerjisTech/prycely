@@ -10,6 +10,15 @@
   </div>
 
   <div class="col-md-3">
+    <div class="user_area">
+      <span class="user_image">
+        <%= image_tag @account.image.variant(resize: "500x500") %>
+      </span>
+      <span class="name_n_email">
+        <span><%= "#{@account.first_name} #{@account.last_name}" %></span>
+        <span><%= current_user.email %></span>
+      </span>
+    </div>
     <% if @wallets.empty? %>
       <div class="tile-title tile-orange" onclick="window.location.href='<%= new_wallet_path %>'" style="cursor: pointer;">
         <div class="icon">
@@ -24,7 +33,7 @@
       </div>
     <% else %>
       <%= render "wallets" %>
-      <%= link_to wallets_path, type: "button", class: "btn btn-blue btn-icon" do %>
+      <%= link_to wallets_path, type: "button", class: "btn btn-blue btn-icon", style: "margin-top: 10px;" do %>
         View all wallets
         <i class="material-icons">east</i>
       <% end %>
