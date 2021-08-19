@@ -26,7 +26,7 @@ class LoancategoriesController < ApplicationController
 
     respond_to do |format|
       if @loancategory.save
-        format.html { redirect_to @loancategory, notice: "Loancategory was successfully created." }
+        format.html { redirect_to @loancategory, notice: 'Loancategory was successfully created.' }
         format.json { render :show, status: :created, location: @loancategory }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class LoancategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @loancategory.update(loancategory_params)
-        format.html { redirect_to @loancategory, notice: "Loancategory was successfully updated." }
+        format.html { redirect_to @loancategory, notice: 'Loancategory was successfully updated.' }
         format.json { render :show, status: :ok, location: @loancategory }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class LoancategoriesController < ApplicationController
   def destroy
     @loancategory.destroy
     respond_to do |format|
-      format.html { redirect_to loancategories_url, notice: "Loancategory was successfully destroyed." }
+      format.html { redirect_to loancategories_url, notice: 'Loancategory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

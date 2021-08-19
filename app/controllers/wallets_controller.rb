@@ -20,21 +20,31 @@ class WalletsController < ApplicationController
   end
 
   # GET /wallets/1/edit
-  def edit; end
+  def edit
+    redirect_to wallet_path(params[:id])
+  end
 
   # POST /wallets or /wallets.json
   def create
     # @wallet = Wallet.new(wallet_params)
     @wallet = current_user.wallets.build(wallet_params)
 
-    respond_to do |format|
-      if @wallet.save
-        format.html { redirect_to @wallet, notice: "Wallet was successfully created." }
-        format.json { render :show, status: :created, location: @wallet }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @wallet.errors, status: :unprocessable_entity }
+    check_id = Wallet.find_by(user_id: current_user.id, currency: @wallet.currency).id
+
+    message = "You already have a #{@wallet.currency} wallet"
+
+    if check_id.blank?
+      respond_to do |format|
+        if @wallet.save
+          format.html { redirect_to @wallet, notice: 'Wallet was successfully created.' }
+          format.json { render :show, status: :created, location: @wallet }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @wallet.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to wallet_path(check_id), notice: message
     end
   end
 
@@ -42,7 +52,7 @@ class WalletsController < ApplicationController
   def update
     respond_to do |format|
       if @wallet.update(wallet_params)
-        format.html { redirect_to @wallet, notice: "Wallet was successfully updated." }
+        format.html { redirect_to @wallet, notice: 'Wallet was successfully updated.' }
         format.json { render :show, status: :ok, location: @wallet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +65,7 @@ class WalletsController < ApplicationController
   def destroy
     @wallet.destroy
     respond_to do |format|
-      format.html { redirect_to wallets_url, notice: "Wallet was successfully destroyed." }
+      format.html { redirect_to wallets_url, notice: 'Wallet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

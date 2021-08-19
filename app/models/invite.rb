@@ -6,6 +6,6 @@ class Invite < ApplicationRecord
   belongs_to :user
 
   def self.mine(user_id)
-    Member.where(status: "0").where(user_id: user_id).joins(:group).select_for_invites
+    Member.where(status: '0').where(user_id: user_id).joins(:group).select_for_invites
   end
 end

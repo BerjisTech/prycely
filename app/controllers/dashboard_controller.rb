@@ -3,6 +3,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :set_dashboard
+  before_action :check_default_wallets
 
   def index
     # render json: @wallets.map
@@ -20,5 +21,11 @@ class DashboardController < ApplicationController
     @groups = Group.mine(user_id)
     @invites = Invite.mine(user_id)
     @wallets = Wallet.mine(current_user.id)
+  end
+
+  def check_default_wallets
+    Wallet.find_or_create_by(user_id: current_user.id, currency: 'USD')
+    Wallet.find_or_create_by(user_id: current_user.id, currency: 'GBP')
+    Wallet.find_or_create_by(user_id: current_user.id, currency: 'EUR')
   end
 end

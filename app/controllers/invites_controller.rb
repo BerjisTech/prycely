@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
 
   # GET /invites or /invites.json
   def index
-    @invites = Invite.where(user_id: current_user.id).joins(:group).joins(user: :accounts).select("invites.id",
+    @invites = Invite.where(user_id: current_user.id).joins(:group).joins(user: :accounts).select('invites.id',
                                                                                                   :first_name, :last_name, :name, :email, :group_id, :group_type, :description, :user_id, :invite_key, :max_redeem, :total_redeemed, :invite_email)
   end
 
@@ -35,7 +35,7 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
-        format.html { redirect_to @invite, notice: "Invite was successfully created." }
+        format.html { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class InvitesController < ApplicationController
   def update
     respond_to do |format|
       if @invite.update(invite_params)
-        format.html { redirect_to @invite, notice: "Invite was successfully updated." }
+        format.html { redirect_to @invite, notice: 'Invite was successfully updated.' }
         format.json { render :show, status: :ok, location: @invite }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class InvitesController < ApplicationController
   def destroy
     @invite.destroy
     respond_to do |format|
-      format.html { redirect_to invites_url, notice: "Invite was successfully destroyed." }
+      format.html { redirect_to invites_url, notice: 'Invite was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
