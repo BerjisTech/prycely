@@ -9,9 +9,9 @@ class Wallet < ApplicationRecord
 
   def self.dashboard_colors
     colors = []
-    colors << ["FDEDEE","E14141"]
-    colors << ["D8F6F0","52DFB4"]
-    colors << ["D0E7FF","0147F3"]
-    colors << ["F9F5E6","F2BD42"]
+    colors << %w[FDEDEE E14141]
+    colors << %w[D8F6F0 52DFB4]
+    colors << %w[D0E7FF 0147F3]
+    colors << %w[F9F5E6 F2BD42]
   end
 end

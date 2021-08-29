@@ -13,33 +13,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    @account_check = Member.where(group_id: @group.id)
-    if @account_check.count.zero? || @account_check.length.zero? || @account_check.empty? || @account_check.nil?
-      if current_user.id == @group.created_by
-        @admin_account = Member.new(invited_by: current_user.id, user_id: current_user.id,
-                                    group_id: params[:id], designation: 'admin', status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: @account[0])
-
-        if @admin_account.save
-          respond_to do |format|
-            format.html { redirect_to group_url(params[:id]), notice: 'Your admin account has succsefully been set up' }
-            format.json { head :no_content }
-          end
-        else
-          render json: @admin_account.errors
-        end
-      end
-    else
-      redirect_to dashboard_path, notice: "You tried accessing a group you're not a member of" if @me.nil?
-      if @me.status == '0'
-        @inviter = Account.find_by(user_id: @me.invited_by)
-        @invite_check = Invite.find_by(invite_email: current_user.email, group_id: @group.id)
-        if @invite_check.nil?
-          redirect_to dashboard_path, notice: 'This invite key is invalid'
-        else
-          session[:invite_key] = @invite_check.invite_key
-        end
-      end
-    end
+    Group.check_account(current_user.id, params[:id], current_user.email, @account, @group)
   end
 
   # GET /groups/new
@@ -93,7 +67,10 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
-    @me = Member.find_by(user_id: current_user.id, group_id: params[:id])
+    @credit = Group.credit(params[:id])
+    @debit = Group.debit(params[:id])
+    @balance = Group.balance(params[:id])
+    @me = Group.me(current_user.id, params[:id])
     @account = Account.where(user_id: current_user.id).pluck(:id)
     session[:current_group] = @group.id
   end

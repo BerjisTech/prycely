@@ -96,7 +96,6 @@ class AccountsController < ApplicationController
     @group = Group.find(@invite.group_id)
 
     if @already_invited.nil?
-
       @join_member = Member.new(
         invited_by: @invite.user_id,
         user_id: current_user.id,

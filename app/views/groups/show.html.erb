@@ -1,42 +1,5 @@
 <% if @me.status == "1" || @me.status == 1 %>
-  <div class="row">
-    <div class="col-sm-2">
-      <%= link_to members_path, class: "feature" do %>
-        <span class="material-icons">groups</span>
-        <span>Members</span>
-      <% end %>
-      <%= link_to transactions_path, class: "feature" do %>
-        <span class="material-icons">receipt_long</span>
-        <span>Transactions</span>
-      <% end %>
-      <%= link_to projects_path, class: "feature" do %>
-        <span class="material-icons">dashboard</span>
-        <span>Projects</span>
-      <% end %>
-      <%= link_to activities_path, class: "feature" do %>
-        <span class="material-icons">local_activity</span>
-        <span>Activities</span>
-      <% end %>
-      <%= link_to loans_path, class: "feature" do %>
-        <span class="material-icons">payments</span>
-        <span>Loans</span>
-      <% end %>
-      <%= link_to transactions_path, class: "feature" do %>
-        <span class="material-icons">price_change</span>
-        <span>Income</span>
-      <% end %>
-      <%= link_to assets_path, class: "feature" do %>
-        <span class="material-icons">account_balance</span>
-        <span>Assets</span>
-      <% end %>
-      <%= link_to liabilities_path, class: "feature" do %>
-        <span class="material-icons">credit_card_off</span>
-        <span>Liabilities</span>
-      <% end %>
-    </div>
-    <div class="col-sm-10">
-    </div>
-  </div>
+  <%= render "groups/group/main" %>
 <% elsif @me.status == 0 || @me.status == "0" %>
   <%= render "unapproved" %>
 <% else %>
