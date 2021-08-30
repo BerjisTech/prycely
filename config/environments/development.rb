@@ -75,7 +75,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.hosts = 'lordsombo.ngrok.io'
+  config.hosts = 'lordsombo.ngrok.io', 'localhost'
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # SMTP settings for gmail

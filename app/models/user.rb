@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :members
   has_many :redeems
   has_many :invites
+  has_many :logs
 
   # protected
 

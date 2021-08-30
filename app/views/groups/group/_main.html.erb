@@ -8,22 +8,33 @@
         <div class="overview-numbers-data">
           <div class="available-numbers">
             <span>Available balance in <%= @group.currency %></span>
-          </span><%= @balance %></span>
+            <span><%= @balance %></span>
+          </div>
+          <div class="available-transactions">
+            <div class="transactions">
+              <span>Transactions</span>
+              <span><%= @total_transactions %></span>
+            </div>
+            <div class="members">
+              <span>Members</span>
+              <span><%= @total_members %></span>
+            </div>
+          </div>
+          <div class="available-log">
+            <span>Last activity at <%= @last_activity %></span>
+          </div>
+        </div>
+        <div class="overview-numbers-graphic"></div>
       </div>
-      <div class="available-transactions"></div>
-      <div class="available-log"></div>
-    </div>
-    <div class="overview-numbers-graphic"></div>
-  </div>
-  <div class="overview-extras">
-    <div class="extra-credit">
-        <span><%= @credit%></div>
-        <span><%= @debit%></div>
+      <div class="overview-extras">
+        <div class="extra-credit">
+          <span><%= @credit %></div>
+          <span><%= @debit %></div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<div class="col-sm-6">
-  <h3>Balance Flow</h3>
-</div>
+  <div class="col-sm-6">
+    <h3>Balance Flow</h3>
+  </div>
 </div>

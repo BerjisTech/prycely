@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :logs
   get 'dashboard/index'
   get 'api/index'
   get 'home/index'

@@ -2,9 +2,10 @@
 
 class Wallet < ApplicationRecord
   belongs_to :user
+  has_many :logs
 
-  def self.mine(user_id)
-    Wallet.where(user_id: user_id)
+  def self.mine(user_id, limit = 10, offset = 0)
+    Wallet.limit(limit).offset(offset).order(created_at: :desc).where(user_id: user_id)
   end
 
   def self.dashboard_colors

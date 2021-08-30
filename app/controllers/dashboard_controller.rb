@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
     @account = Account.find_by(user_id: current_user.id)
     @groups = Group.mine(user_id)
     @invites = Invite.mine(user_id)
-    @wallets = Wallet.mine(current_user.id)
+    @wallets = Wallet.mine(current_user.id, 4)
   end
 
   def check_default_wallets
