@@ -21,15 +21,21 @@
             </div>
           </div>
           <div class="available-log">
-            <span>Last activity at <%= @last_activity %></span>
+            <span><%= @last_log %></span>
           </div>
         </div>
         <div class="overview-numbers-graphic"></div>
       </div>
       <div class="overview-extras">
         <div class="extra-credit">
-          <span><%= @credit %></div>
-          <span><%= @debit %></div>
+          <div class="credit">
+            <span>Credit</span>
+            <span><%= "#{@credit} #{@group.currency}" %></span>
+          </div>
+          <div class="Debit">
+            <span>Debit</span>
+            <span><%= "#{@debit} #{@group.currency}" %></span>
+          </div>
         </div>
       </div>
     </div>
