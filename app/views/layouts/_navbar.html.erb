@@ -51,15 +51,45 @@
       <li class="has-sub <% if controller_name == "groups" %>opened<% end %>">
         <%= link_to groups_path do %>
           <i class="material-icons">account_balance</i>
-          <span class="title">Groups</span>
+          <span class="title">Group</span>
         <% end %>
         <ul>
-          <li>
+          <!--li>
             <% Group.mine(current_user.id).map do |group| %>
               <%= link_to group_path(group.group_id) do %>
                 <i class="entypo-newspaper"></i>
                 <span class="title"><%= group.name %></span>
               <% end %>
+            <% end %>
+          </li-->
+          <li>
+            <%= link_to group_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Overview</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to members_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Members</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to projects_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Projects</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to loans_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Loans</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to assets_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Assets</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to liabilities_path do %>
+              <i class="entypo-flow-parallel"></i><span class="title">Liabilities</span>
             <% end %>
           </li>
         </ul>
