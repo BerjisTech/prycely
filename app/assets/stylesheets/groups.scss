@@ -74,33 +74,70 @@
     flex-direction: column;
 
     .overview-numbers {
-        display       : flex;
-        flex-direction: column;
-        background    : #6627FF;
-        padding       : 20px;
+        display        : flex;
+        flex-direction : row;
+        background     : #6627FF;
+        padding        : 20px;
+        align-items    : center;
+        justify-content: center;
 
         * {
             color: #ffffff !important;
         }
 
-        .available-numbers,
-        .available-log {
+        .overview-numbers-data {
             display       : flex;
             flex-direction: column;
-        }
+            flex-grow     : 4;
 
-        .available-transactions {
-            display       : flex;
-            flex-direction: row;
-
-            .transactions {
-                margin-right: 20px;
-            }
-
-            .transactions,
-            .members {
+            .available-numbers,
+            .available-log {
                 display       : flex;
                 flex-direction: column;
+            }
+
+            .available-numbers {
+                span {
+                    &:first-of-type {
+                        font-size: 13px;
+                    }
+
+                    &:last-of-type {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .available-transactions {
+                display       : flex;
+                flex-direction: row;
+
+                .transactions {
+                    margin-right: 20px;
+                }
+
+                .transactions,
+                .members {
+                    display       : flex;
+                    flex-direction: column;
+
+                    span {
+                        &:first-of-type {
+                            font-size: 13px;
+                        }
+
+                        &:last-of-type {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .overview-numbers-graphic {
+            img {
+                max-width    : 150px;
+                border-radius: 10px;
             }
         }
     }
@@ -108,5 +145,49 @@
     .overview-extras {
         display       : flex;
         flex-direction: row;
+        cursor        : pointer;
+
+        .credit,
+        .debit {
+            display        : flex;
+            flex-direction : column;
+            background     : rgba(255, 255, 255, 1);
+            box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius  : 0px;
+            border         : 1px solid rgba(255, 255, 255, 0.18);
+            flex-grow      : 4;
+            margin-top     : 10px;
+            padding        : 10px;
+            text-align     : center;
+            align-items    : center;
+            justify-content: center;
+            transition     : all 0.56s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            * {
+                color: #10131A !important;
+            }
+
+            span {
+                &:first-of-type {
+                    font-size: 13px;
+                }
+
+                &:last-of-type {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .credit {
+            margin-right: 10px;
+        }
+
+        .debit {
+            margin-left: 10px;
+        }
     }
 }
