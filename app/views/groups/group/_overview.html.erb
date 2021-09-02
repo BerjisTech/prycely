@@ -5,7 +5,7 @@
       <div class="overview-numbers-data">
         <div class="available-numbers">
           <span>Available balance in <%= @group.currency %></span>
-          <span><%= @balance %></span>
+          <span><%= number_with_precision(@balance, precision: 2, delimiter: ',') %></span>
         </div>
         <div class="available-transactions">
           <div class="transactions">
@@ -28,11 +28,11 @@
     <div class="overview-extras">
       <div class="credit">
         <span>Credit</span>
-        <span><%= "#{@credit.round(2)} #{@group.currency}" %></span>
+        <span><%= "#{number_with_precision(@credit, precision: 2, delimiter: ',')} #{@group.currency}" %></span>
       </div>
       <div class="debit">
         <span>Debit</span>
-        <span><%= "#{@debit.round(2)} #{@group.currency}" %></span>
+        <span><%= "#{number_with_precision(@debit, precision: 2, delimiter: ',')} #{@group.currency}" %></span>
       </div>
     </div>
   </div>

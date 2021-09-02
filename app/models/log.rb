@@ -32,11 +32,11 @@ class Log < ApplicationRecord
     last_log(log)
   end
 
-  def self.last_log(last_log)
+  def self.last_log(_last_log)
     if @last_log.present?
       "Last activity at #{@last_log.created_at.strftime('%d %M, %Y')}"
     else
-      "No activities yet"
+      'No activities yet'
     end
   end
 end

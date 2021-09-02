@@ -20,9 +20,9 @@
         <td><%= log.user_id %></td>
         <td><%= log.wallet_id %></td>
         <td><%= log.group_id %></td>
-        <td><%= link_to 'Show', log %></td>
-        <td><%= link_to 'Edit', edit_log_path(log) %></td>
-        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", log %></td>
+        <td><%= link_to "Edit", edit_log_path(log) %></td>
+        <td><%= link_to "Destroy", log, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Log', new_log_path %>
+<%= link_to "New Log", new_log_path %>

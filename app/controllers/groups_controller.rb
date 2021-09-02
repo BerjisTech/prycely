@@ -72,6 +72,8 @@ class GroupsController < ApplicationController
     @debit = Group.debit(params[:id])
     @balance = Group.balance(params[:id])
 
+    @recent_transactions = Transaction.for_group(params[:id], 10)
+
     @total_transactions = Transaction.total(params[:id])
 
     @total_members = Member.total_members(params[:id])

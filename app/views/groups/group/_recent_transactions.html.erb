@@ -1,0 +1,34 @@
+<hr />
+<div class="col-sm-12">
+  <h3>Recent Transactions</h3>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recent_transactions.map do |transaction| %>
+        <tr>
+          <td>
+            <span class="transaction-type">
+              <%= if transaction.transaction_type == 1
+                 "+"
+               else
+                 "-"
+               end %>
+            </span>
+          </td>
+          <td>
+            <%= transaction.description %>
+          </td>
+          <td>
+            <%= number_with_precision(transaction.amount, precision: 2, delimiter: ',') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
