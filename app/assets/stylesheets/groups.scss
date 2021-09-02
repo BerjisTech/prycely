@@ -68,3 +68,45 @@
         font-size: 24px !important;
     }
 }
+
+.group-overview {
+    display       : flex;
+    flex-direction: column;
+
+    .overview-numbers {
+        display       : flex;
+        flex-direction: column;
+        background    : #6627FF;
+        padding       : 20px;
+
+        * {
+            color: #ffffff !important;
+        }
+
+        .available-numbers,
+        .available-log {
+            display       : flex;
+            flex-direction: column;
+        }
+
+        .available-transactions {
+            display       : flex;
+            flex-direction: row;
+
+            .transactions {
+                margin-right: 20px;
+            }
+
+            .transactions,
+            .members {
+                display       : flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .overview-extras {
+        display       : flex;
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,34 @@
+<div class="col-sm-6">
+  <h3>Overview</h3>
+  <div class="group-overview">
+    <div class="overview-numbers">
+      <div class="available-numbers">
+        <span>Available balance in <%= @group.currency %></span>
+        <span class="h2"><%= @balance %></span>
+      </div>
+      <div class="available-transactions">
+        <div class="transactions">
+          <span>Transactions</span>
+          <span class="h3"><%= @total_transactions %></span>
+        </div>
+        <div class="members">
+          <span>Members</span>
+          <span class="h3"><%= @total_members %></span>
+        </div>
+      </div>
+      <div class="available-log">
+        <span><%= @last_log %></span>
+      </div>
+    </div>
+    <div class="overview-extras">
+      <div class="credit">
+        <span>Credit</span>
+        <span><%= "#{@credit} #{@group.currency}" %></span>
+      </div>
+      <div class="debit">
+        <span>Debit</span>
+        <span><%= "#{@debit} #{@group.currency}" %></span>
+      </div>
+    </div>
+  </div>
+</div>
