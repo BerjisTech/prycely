@@ -12,24 +12,54 @@
     </div>
   </div>
 <% end %>
-
-<div class="row">
+<%= render 'members/js' %>
+<div class="row" style="background: #ffffff;">
   <h3><%= @group.name %> Members</h3>
   <div class="members_holder">
-    <% @members.each do |member| %>
-      <%= link_to member_path(member), class: "member" do %>
-        <span class="member_dp"><%= member.first_name[0].upcase %><%= member.last_name[0].downcase %></span>
-        <span class="member_name">
-          <span>
-            <%= member.first_name.humanize %> <%= member.last_name.humanize %>
-            <% if member.designation == "admin" %>
-              <em class="text-success"><small>(<%= member.designation %>)</small></em>
+    <table class="table table-bordered datatable" id="members_table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th></th>
+          <th>NAME AND ROLE</th>
+          <th>EMAIL</th>
+          <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+            <th>Action</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= member.id %></td>
+            <td>
+              <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), width:"50", alt:"", class:"img-rounded"%>
+            </td>
+            <td>
+              <%= member.first_name.humanize %> <%= member.last_name.humanize %>
+              <% if member.designation == "admin" %>
+                <em class="text-success"><small>(<%= member.designation %>)</small></em>
+              <% end %>
+            </td>
+            <td><%= member.email %></td>
+            <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+              <td></td>
             <% end %>
-          </span>
-          <span><%= member.email %></span>
-        </span>
-      <% end %>
-    <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>ID</th>
+          <th></th>
+          <th>NAME AND ROLE</th>
+          <th>EMAIL</th>
+          <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+            <th>Action</th>
+          <% end %>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 </div>
 

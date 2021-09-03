@@ -3,8 +3,11 @@
     <ul class="user-info pull-left pull-none-xsm">
       <li class="profile-info dropdown">
         <%= controller_name.humanize %> /
-        <% if controller_name == "apps" && action_name == "show" %>
-          <%= @app.app_name %>
+        <% if controller_name == "groups" && action_name == "show" %>
+          <%= @group.name %>
+        <% end %>
+        <% if controller_name == "members" || controller_name == "projects" || controller_name == "loans" || controller_name == "assets" || controller_name == "liabilities" || action_name == "contirbution" %>
+          <%= Group.find(session[:current_group]).name if session[:current_group].present? %>
         <% end %>
       </li>
     </ul>

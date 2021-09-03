@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+      var $members_table = jQuery("#members_table");
+      var members_table = $members_table.DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+                        ]
+                    });
+      // Initalize Select Dropdown after DataTables is created
+      $members_table.closest('.dataTables_wrapper').find('select').select2({
+          minimumResultsForSearch: -1
+      });
+      // Setup - add a text input to each footer cell
+      $('#members_table tfoot th').each(function () {
+          var title = $('#members_table thead th').eq($(this).index()).text();
+          $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+      });
+      // Apply the search
+      members_table.columns().every(function () {
+          var that = this;
+          $('input', this.footer()).on('keyup change', function () {
+              if (that.search() !== this.value) {
+                  that
+                      .search(this.value)
+                      .draw();
+              }
+          });
+      });
+  });
+</script>

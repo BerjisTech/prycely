@@ -101,7 +101,11 @@ class MembersController < ApplicationController
   end
 
   def set_global
-    @group = Group.find(session[:current_group])
+    if session[:current_group].present?
+      @group = Group.find(session[:current_group])
+    else
+      redirect_to groups_path, notice: 'Select a group to see the transactions'
+    end
   end
 
   def set_global_for_index

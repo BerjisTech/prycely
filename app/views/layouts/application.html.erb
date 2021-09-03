@@ -16,17 +16,19 @@
 
   </head>
 
-  <body class="page-body gray page-fade" data-url="<%= root_url %>">
+  <body class="page-body gray page-fade" data-url="<%= root_url %>" style="font-size: 16px !important;">
     <div class="page-container">
+    
       <% if controller_name != "home" && user_signed_in? %>
+        <%= render "/layouts/chat" %>
         <%= render "/layouts/navbar" %>
       <% end %>
+
       <div class="main-content">
         <%= render "/layouts/main" %>
       </div>
 
       <% if controller_name != "home" %>
-        <%= render "/layouts/chat" %>
         <%= render "/layouts/footer" %>
       <% else %>
         <%= render "/home/footer" %>
