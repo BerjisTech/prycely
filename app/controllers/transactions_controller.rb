@@ -3,6 +3,7 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[contributions]
 
   # GET /transactions or /transactions.json
   def index
@@ -19,6 +20,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit; end
+
+  def contributions; end
 
   # POST /transactions or /transactions.json
   def create
@@ -58,6 +61,21 @@ class TransactionsController < ApplicationController
   end
 
   private
+
+  def set_group
+    if session[:current_group].present?
+      group_id = session[:current_group]
+      @group = Group.find(group_id)
+
+      @transactions = Transaction.for_group(group_id)
+      @recent_transactions = Transaction.for_group(group_id, 10)
+      @credit = Group.credit(group_id)
+      @debit = Group.debit(group_id)
+      @balance = Group.balance(group_id)
+    else
+      redirect_to groups_path, notice: 'Select a group to see the transactions'
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_transaction

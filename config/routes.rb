@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   match 'join/:id', to: 'redeems#redeem', via: %i[get post]
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
+  match 'contributions', to: 'transactions#contributions', via: [:GET]
 
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
