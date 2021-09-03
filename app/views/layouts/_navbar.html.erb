@@ -72,7 +72,11 @@
           <span class="title">Dashboard</span>
         <% end %>
       </li>
-      <li class="has-sub <% if controller_name == "groups" %>opened<% end %>">
+      <li class="has-sub 
+      <% if controller_name == "groups" || controller_name == "members" || controller_name == "projects" || controller_name == "loans" || controller_name == "assets" || controller_name == "liabilities" || controller_name == "groups" || action_name == "contirbution" %>
+      opened
+      <% end %>
+      ">
         <%= link_to groups_path do %>
           <i class="material-icons">account_balance</i>
           <span class="title">
