@@ -41,6 +41,30 @@
       <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"> <i
                                 class="material-icons">menu</i> </a> </div>
     </header>
+
+    <div class="sidebar-user-info">
+      <div class="sui-normal"> <a href="#" class="user-link">
+          <%= image_tag Account.mine(current_user.id).image.variant(resize: "500x500"), width:"100", alt:"", class:"img-rounded"%>
+          <span>Welcome,</span>
+          <strong><%= Account.mine(current_user.id).first_name %></strong> </a>
+      </div>
+      <div class="sui-hover inline-links animate-in">
+        <%= link_to groups_path do %>
+          <i class="material-icons">dashboard</i>
+          Groups
+        <% end %>
+        <%= link_to wallets_path do %>
+          <i class="material-icons">account_balance_wallet</i>
+          Wallets
+        <% end %>
+        <%= link_to account_path(Account.where(user_id: current_user.id).last.id), method: :get do %>
+          <i class="material-icons">manage_accounts</i>
+          Account
+        <% end %>
+        <span class="close-sui-popup">×</span>
+      </div>
+    </div>
+
     <ul id="main-menu" class="main-menu">
       <li>
         <%= link_to dashboard_path do %>
@@ -51,7 +75,12 @@
       <li class="has-sub <% if controller_name == "groups" %>opened<% end %>">
         <%= link_to groups_path do %>
           <i class="material-icons">account_balance</i>
-          <span class="title">Group</span>
+          <span class="title">
+            Group 
+            <% if session[:current_group] %>
+              (<%= Group.find(session[:current_group]).name %>)
+            <% end %>
+          </span>
         <% end %>
         <ul>
           <!--li>
@@ -62,11 +91,13 @@
               <% end %>
             <% end %>
           </li-->
-          <li>
-            <%= link_to group_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Overview</span>
-            <% end %>
-          </li>
+          <% if session[:current_group] %>
+            <li>
+              <%= link_to group_path(session[:current_group]) do %>
+                <i class="entypo-flow-parallel"></i><span class="title">Overview</span>
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= link_to members_path do %>
               <i class="entypo-flow-parallel"></i><span class="title">Members</span>

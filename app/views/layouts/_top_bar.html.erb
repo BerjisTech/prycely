@@ -15,9 +15,9 @@
       <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get %></li>
       <li class="sep"></li>
 
-      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1"> <i class="entypo-chat"></i>
-          Tasks
-          <span class="badge badge-success chat-notifications-badge">3</span> </a> </li>
+      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1" data-animate="1"> <i class="entypo-chat"></i>
+          My Groups
+          <span class="badge badge-success chat-notifications-badge"><%= Group.mine(current_user.id).count %></span> </a> </li>
 
       <li class="sep"></li>
 
