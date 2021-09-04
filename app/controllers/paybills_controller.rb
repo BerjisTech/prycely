@@ -26,7 +26,7 @@ class PaybillsController < ApplicationController
 
     respond_to do |format|
       if @paybill.save
-        format.html { redirect_to @paybill, notice: 'Paybill was successfully created.' }
+        format.html { redirect_to @paybill, notice: "Paybill was successfully created." }
         format.json { render :show, status: :created, location: @paybill }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class PaybillsController < ApplicationController
   def update
     respond_to do |format|
       if @paybill.update(paybill_params)
-        format.html { redirect_to @paybill, notice: 'Paybill was successfully updated.' }
+        format.html { redirect_to @paybill, notice: "Paybill was successfully updated." }
         format.json { render :show, status: :ok, location: @paybill }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class PaybillsController < ApplicationController
   def destroy
     @paybill.destroy
     respond_to do |format|
-      format.html { redirect_to paybills_url, notice: 'Paybill was successfully destroyed.' }
+      format.html { redirect_to paybills_url, notice: "Paybill was successfully destroyed." }
       format.json { head :no_content }
     end
   end

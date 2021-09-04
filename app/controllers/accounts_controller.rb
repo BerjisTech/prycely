@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
       @account = current_user.accounts.build
     else
       respond_to do |format|
-        format.html { redirect_to dashboard_url, notice: 'Your account has already been set up' }
+        format.html { redirect_to dashboard_url, notice: "Your account has already been set up" }
         format.json { head :no_content }
       end
     end
@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
       if session[:invite_key]
         accept_current_invite(@account)
       else
-        redirect_to @account, notice: 'Account was successfully created.'
+        redirect_to @account, notice: "Account was successfully created."
       end
     else
       render json: @account.errors, status: :unprocessable_entity
@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -100,20 +100,20 @@ class AccountsController < ApplicationController
         invited_by: @invite.user_id,
         user_id: current_user.id,
         group_id: @invite.group_id,
-        designation: 'member',
-        status: '1',
+        designation: "member",
+        status: "1",
         invited_on: DateTime.now,
         accepted_on: DateTime.now,
-        paid_member: '',
+        paid_member: "",
         amount: 0,
-        account_id: @account.id
+        account_id: @account.id,
       )
 
       @join_redeem = Redeem.new(
         invite_id: @invite.id,
         user_id: current_user.id,
         group_id: @invite.group_id,
-        complete: 1
+        complete: 1,
       )
 
       if @join_member.save
