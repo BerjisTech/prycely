@@ -2,6 +2,8 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  respond_to :json
+  respond_to :html
 
   def after_sign_in_path_for(_resource)
     if session[:invite_key]
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(_resource)
-    if session[:invite_key].present?
+    if session[:invite_key]
       new_account_path
     else
       account_path(current_user.id)

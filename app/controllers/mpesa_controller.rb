@@ -4,7 +4,6 @@ class MpesaController < ApplicationController
   # require 'faraday'
   # require "faraday_middleware"
   before_action :set_mpesa
-  respond_to :json
 
   def index; end
 
@@ -160,6 +159,6 @@ class MpesaController < ApplicationController
     @CONFIRMATION_URL = ENV.fetch('CONFIRMATION_URL')
     @VALIDATION_URL = ENV.fetch('VALIDATION_URL')
 
-    @STK_CALLBACK = 'https://prycely.com/stk-callback'
+    @STK_CALLBACK = ENV.fetch('STK_CALLBACK')
   end
 end

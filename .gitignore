@@ -25,6 +25,10 @@
 /public/assets
 .byebug_history
 
+# Ignore env
+.env
+.env.sample
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
