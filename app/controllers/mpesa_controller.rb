@@ -4,6 +4,7 @@ class MpesaController < ApplicationController
   # require 'faraday'
   # require "faraday_middleware"
   before_action :set_mpesa
+  respond_to :json
 
   def index; end
 
@@ -136,28 +137,28 @@ class MpesaController < ApplicationController
   end
 
   def set_mpesa
-    @MPESA_API_KEY = 'a0rdeuPwoSqGv0HIlGBqZeMEocwIfjha'
-    @MPESA_API_SECRET = 'GC2ScUskImTOSaVR'
-    @MPESA_API_PASSKEY = 'b87283b3be82ed37fdfbed3209156575757720419a85088aec920583d05bcabc'
+    @MPESA_API_KEY = ENV.fetch('MPESA_API_KEY')
+    @MPESA_API_SECRET = ENV.fetch('MPESA_API_SECRET')
+    @MPESA_API_PASSKEY = ENV.fetch('MPESA_API_PASSKEY')
 
-    @MPESA_SANDBOX_API_KEY = 'TrnEPlNA2DD32e81MwGuqFm4Buliif5c'
-    @MPESA_SANDBOX_API_SECRET = 'qz9R5oXJAA3IH3yu'
-    @MPESA_SANDBOX_API_PASSKEY = 'b87283b3be82ed37fdfbed3209156575757720419a85088aec920583d05bcabc'
+    @MPESA_SANDBOX_API_KEY = ENV.fetch('MPESA_SANDBOX_API_KEY')
+    @MPESA_SANDBOX_API_SECRET = ENV.fetch('MPESA_SANDBOX_API_SECRET')
+    @MPESA_SANDBOX_API_PASSKEY = ENV.fetch('MPESA_SANDBOX_API_PASSKEY')
 
-    @MPESA_B2C_API_KEY = 'H9sp7IZjvZofvKIqmbDMFGu39N95FOEj'
-    @MPESA_B2C_API_SECRET = 'Rv52lKuXA0jfHBgE'
-    @MPESA_B2C_API_PASSKEY = 'mdlhTIiKm9B2y9gLxqSXvK/a7IPzGfCfLxU4lPcBMh4ZSiEuVElydgkofl6dJTbHv4rgdPPz4+16JoWWrG/g0rPv6QWlBLnUpAroZgIrN/vLHuMGPXpUVUDV/zNXLq6LppXfOTIRWTzFex2KpBqcQInl2/AXu2WAUN+l3kp+b8S/cEgAF0vGmH8qKS210W1fguTX11GxVdR+hhCoJSioCVtKYeRRyJ7IbgJUd1P7LkkCicM0QMP6A6pa6MWqfS14uHZhziQZPkjgZCOIuRx7MHHDebyjOPR4LEtYO9c0/1A4tBpVPCdOT+vtUJ1I5jBbg0ipKTBv63dM0FK9H1y2Cw=='
+    @MPESA_B2C_API_KEY = ENV.fetch('MPESA_B2C_API_KEY')
+    @MPESA_B2C_API_SECRET = ENV.fetch('MPESA_B2C_API_SECRET')
+    @MPESA_B2C_API_PASSKEY = ENV.fetch('MPESA_B2C_API_PASSKEY')
 
-    @C2B_PAYBILL = 4_072_015
-    @B2C_PAYBILL = 3_012_169
-    @C2B_USERNAME = 'sombo'
-    @B2C_USERNAME = 'sombob2c'
+    @C2B_PAYBILL = ENV.fetch('C2B_PAYBILL')
+    @B2C_PAYBILL = ENV.fetch('B2C_PAYBILL')
+    @C2B_USERNAME = ENV.fetch('C2B_USERNAME')
+    @B2C_USERNAME = ENV.fetch('B2C_USERNAME')
 
-    @BASE_URL = 'https://api.safaricom.co.ke'
-    @TIMEOUT_URL = 'https://prycely.com/validation'
-    @RESULT_URL = 'https://prycely.com/b2c'
-    @CONFIRMATION_URL = 'https://prycely.com/thecalls/c2b'
-    @VALIDATION_URL = 'https://prycely.com/thecalls/validation'
+    @BASE_URL = ENV.fetch('BASE_URL')
+    @TIMEOUT_URL = ENV.fetch('TIMEOUT_URL')
+    @RESULT_URL = ENV.fetch('RESULT_URL')
+    @CONFIRMATION_URL = ENV.fetch('CONFIRMATION_URL')
+    @VALIDATION_URL = ENV.fetch('VALIDATION_URL')
 
     @STK_CALLBACK = 'https://prycely.com/stk-callback'
   end
