@@ -59,9 +59,12 @@
           <i class="material-icons">account_balance_wallet</i>
           Wallets
         <% end %>
-        <%= link_to account_path(Account.where(user_id: current_user.id).last.id), method: :get do %>
-          <i class="material-icons">manage_accounts</i>
-          Account
+
+        <% if Account.mine(current_user.id).present? %>
+          <%= link_to account_path(Account.where(user_id: current_user.id).last.id), method: :get do %>
+            <i class="material-icons">manage_accounts</i>
+            Account
+          <% end %>
         <% end %>
         <span class="close-sui-popup">×</span>
       </div>
