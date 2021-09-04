@@ -3,29 +3,26 @@
     <div class="animation-preloader">
       <div class="spinner"></div>
       <div class="txt-loading">
-        <span data-text-preloader="T" class="letters-loading">
-          T
+        <span data-text-preloader="P" class="letters-loading">
+          P
         </span>
-        <span data-text-preloader="H" class="letters-loading">
-          H
+        <span data-text-preloader="R" class="letters-loading">
+          R
         </span>
-        <span data-text-preloader="E" class="letters-loading">
-          E
+        <span data-text-preloader="Y" class="letters-loading">
+          Y
         </span>
         <span data-text-preloader="C" class="letters-loading">
           C
         </span>
-        <span data-text-preloader="H" class="letters-loading">
-          H
+        <span data-text-preloader="E" class="letters-loading">
+          E
         </span>
-        <span data-text-preloader="A" class="letters-loading">
-          A
+        <span data-text-preloader="L" class="letters-loading">
+          L
         </span>
-        <span data-text-preloader="M" class="letters-loading">
-          M
-        </span>
-        <span data-text-preloader="A" class="letters-loading">
-          A
+        <span data-text-preloader="Y" class="letters-loading">
+          Y
         </span>
       </div>
       <p class="text-center">Loading</p>
@@ -100,11 +97,16 @@
     <div class="shape two"></div>
     <div class="container">
       <div class="payment_banner_content wow fadeInLeft" data-wow-delay="0.4s">
-        <h1 class="f_p f_700 f_size_50 w_color">The simpler, safer way to pay and get paid.</h1>
-        <p class="w_color f_p f_size_18">Why I say old chap that is, spiffing jolly good a load of old tosh spend a penny tosser arse over tit excuse.!</p>
+        <h1 class="f_p f_700 f_size_50 w_color">The simpler, save, pay and get paid.</h1>
+        <p class="w_color f_p f_size_18">Create or join groups and save together with friends and family! Add wallets in different currencies! Accept payments on any platform</p>
         <div class="action_btn d-flex align-items-center mt_60">
-          <%= link_to "Sign Up for Free", new_user_registration_path, class: "btn_hover agency_banner_btn" %>
-          <a href="#" class="agency_banner_btn_two">Find Out More<i class="ti-arrow-right"></i></a>
+
+          <% if user_signed_in? %>
+            <%= link_to "My Groups", dashboard_path, class: "btn_hover agency_banner_btn" %>
+            <%= link_to "My Wallets", wallets_path, class: "agency_banner_btn_two" %>
+          <% else %>
+            <%= link_to "Sign Up for Free", new_user_registration_path, class: "btn_hover agency_banner_btn" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -114,7 +116,7 @@
     <img class=" svg_intro_bottom" src="https://assets.prycely.com/frontend/img/home9/shape.png" alt="">
   </section>
 
-  <section class="payment_features_area">
+  <section class="payment_features_area" id="payment_features_area">
     <div class="bg_shape shape_one"></div>
     <div class="bg_shape shape_two"></div>
     <div class="bg_shape shape_three"></div>
@@ -132,9 +134,14 @@
               <img class="icon_img" src="https://assets.prycely.com/frontend/img/home9/icon1.png" alt="">
             </div>
             <h2>Quick & Easy Process</h2>
-            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
-            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn">Sign Up for Free</a>
-            <a href="#" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Find Out More</a>
+            <p>With an account you can easily create or join groups in just 2 steps. Add Prycely to your store, blog, vlog, patreon and start accepting payments today!</p>
+
+            <% if user_signed_in? %>
+              <%= link_to "My Groups", groups_path, class: "btn_hover agency_banner_btn pay_btn" %>
+              <%= link_to "My Wallets", wallets_path, class: "btn_hover agency_banner_btn pay_btn pay_btn_two" %>
+            <% else %>
+              <%= link_to "Sign Up for Free", new_user_registration_path, class: "btn_hover agency_banner_btn pay_btn" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -151,9 +158,9 @@
               <img class="icon_img" src="https://assets.prycely.com/frontend/img/home9/icon2.png" alt="">
             </div>
             <h2>Quick & Easy Process</h2>
-            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
-            <a href="#" class="btn_hover agency_banner_btn pay_btn">Pay On Ebay</a>
-            <a href="#" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Pay On Website</a>
+            <p>Prycely integrates with major major players in eCommerce. Use Prycely to manage each business separately wityh just one dashboard.!</p>
+            <a href="#" class="btn_hover agency_banner_btn pay_btn">Prycely API Docs</a>
+            <a href="#" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Prycely API Tutorials</a>
           </div>
         </div>
       </div>
@@ -170,7 +177,7 @@
               <img src="https://assets.prycely.com/frontend/img/home9/icon3.png" alt="">
             </div>
             <h2 class="f_p w_color f_700">Our Services</h2>
-            <p class="f_p w_color">Why I say old chap that is, spiffing jolly good a load of old tosh spend a penny tosser arse over.!</p>
+            <p class="f_p w_color">Why, you ask? We are regulated by over 17 countries and work major banks across 115 countries.!</p>
           </div>
         </div>
         <div class="col-lg-8">
@@ -181,7 +188,7 @@
               </div>
               <div class="media-body">
                 <h3 class="f_size_20 f_p w_color f_600">Safer</h3>
-                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+                <p class="f_400 f_size_15 w_color">Transactions are well encrypted and secured.!</p>
               </div>
             </div>
             <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.3s">
@@ -190,7 +197,7 @@
               </div>
               <div class="media-body">
                 <h3 class="f_size_20 f_p w_color f_600">Flexible</h3>
-                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+                <p class="f_400 f_size_15 w_color">Prycely is designed to work across multiple industries.!</p>
               </div>
             </div>
             <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.4s">
@@ -199,7 +206,7 @@
               </div>
               <div class="media-body">
                 <h3 class="f_size_20 f_p w_color f_600">Convinient</h3>
-                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+                <p class="f_400 f_size_15 w_color">We integrate with all major players in different industries.!</p>
               </div>
             </div>
             <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.5s">
@@ -208,7 +215,7 @@
               </div>
               <div class="media-body">
                 <h3 class="f_size_20 f_p w_color f_600">Protected</h3>
-                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+                <p class="f_400 f_size_15 w_color">Regulated and certified in over 17 .!</p>
               </div>
             </div>
             <div class="col-md-6 media payment_service_item wow fadeInUp" data-wow-delay="0.6s">
@@ -217,7 +224,7 @@
               </div>
               <div class="media-body">
                 <h3 class="f_size_20 f_p w_color f_600">World wide</h3>
-                <p class="f_400 f_size_15 w_color">Well at public scho cheeky bugger grub burke.!</p>
+                <p class="f_400 f_size_15 w_color">Prycely is fully localized for over 115 countries.!</p>
               </div>
             </div>
           </div>
@@ -238,9 +245,9 @@
               <img class="icon_img" src="https://assets.prycely.com/frontend/img/home9/icon2.png" alt="">
             </div>
             <h2>Quick & Easy Process</h2>
-            <p>Cras mush pardon you knees up he lost his bottle it's all gone to pot faff about porkies arse, barney argy-bargy cracking goal loo cheers spend.!</p>
-            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn">Sign Up for Free</a>
-            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Sign Up for Free</a>
+            <p>Not a developer? Integrate Prycely with no code.!</p>
+            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn">Tutorials</a>
+            <a href="createaccount" class="btn_hover agency_banner_btn pay_btn pay_btn_two">Docs</a>
           </div>
         </div>
         <div class="col-lg-6">
@@ -281,7 +288,7 @@
         <div class="col-lg-7 d-flex align-items-center">
           <div class="testimonial_content">
             <div class="icon">,,</div>
-            <p class="f_p f_size_20">“This theme aute irure dolor in reprehe erit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur for the life sint occaecat cupidatat non proident, sunt in culpa qui officia de est laborum.”</p>
+            <p class="f_p f_size_20">“.”</p>
             <div class="author f_600 f_p t_color f_size_20">James Anderson</div>
             <div class="author_description f_p f_size_15">UI/UX designer</div>
           </div>
