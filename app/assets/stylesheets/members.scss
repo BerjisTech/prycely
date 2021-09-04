@@ -48,3 +48,59 @@
         padding       : 5px 10px;
     }
 }
+
+.members_holder {
+    display              : grid;
+    grid-template-columns: 1fr;
+    margin               : 10px;
+    padding              : 10px;
+
+    .member_top {
+        display: flex;
+        align-items    : center;
+        justify-content: space-between;
+
+        .add_member {
+            display        : flex;
+            align-items    : center;
+            justify-content: flex-end;
+            margin         : 10px;
+            padding        : 10px;
+            flex-grow      : 4;
+
+            a {
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                transition     : all 0.56s;
+                padding        : 10px;
+
+                span {
+                    padding: 5px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+
+
+            .invite {
+                margin-right: 10px;
+                background  : #3B5998;
+                color       : #ffffff;
+            }
+
+            .direct {
+                margin-left: 10px;
+                background : #FDD673;
+                color      : #10131A;
+            }
+        }
+    }
+
+    .members_table {
+        background: #ffffff !important;
+    }
+}

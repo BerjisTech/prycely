@@ -1,65 +1,56 @@
-<% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-  <div class="row">
-    <div class="d-flex justify-content-end">
-      <%= link_to new_invite_path, class: "btn btn-primary btn-sm d-flex justify-content-center align-items-center invite_user mx-2" do %>
-        <span>Invite Members</span>
-        <span class="material-icons">add</span>
-      <% end %>
-      <%= link_to new_member_path, class: "btn btn-info btn-sm d-flex justify-content-center align-items-center invite_user" do %>
-        <span>Add Members Directly</span>
-        <span class="material-icons">add</span>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-<%= render 'members/js' %>
-<div class="row" style="background: #ffffff;">
-  <h3><%= @group.name %> Members</h3>
+<%= render 'common/datatables' %>
+<div class="row">
   <div class="members_holder">
-    <table class="table table-bordered datatable" id="members_table" style="font-size: 16px !important;">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th></th>
-          <th>NAME AND ROLE</th>
-          <th>EMAIL</th>
-          <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-            <th>Action</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @members.each do |member| %>
+    <div class="member_top">
+      <h3><%= @group.name %> Members</h3>
+      <%= render 'members/invite_buttons' %>
+    </div>
+    <div class="members_table">
+      <table class="table table-bordered datatable" id="datatable" style="font-size: 16px !important;">
+        <thead>
           <tr>
-            <td><%= member.id %></td>
-            <td>
-              <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), width:"50", alt:"", class:"img-rounded"%>
-            </td>
-            <td>
-              <%= member.first_name.humanize %> <%= member.last_name.humanize %>
-              <% if member.designation == "admin" %>
-                <em class="text-success"><small>(<%= member.designation %>)</small></em>
-              <% end %>
-            </td>
-            <td><%= member.email %></td>
+            <th>ID</th>
+            <th></th>
+            <th>NAME AND ROLE</th>
+            <th>EMAIL</th>
             <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-              <td></td>
+              <th>Action</th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>ID</th>
-          <th></th>
-          <th>NAME AND ROLE</th>
-          <th>EMAIL</th>
-          <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-            <th>Action</th>
+        </thead>
+        <tbody>
+          <% @members.each do |member| %>
+            <tr>
+              <td><%= member.id %></td>
+              <td>
+                <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), width:"50", alt:"", class:"img-rounded"%>
+              </td>
+              <td>
+                <%= member.first_name.humanize %> <%= member.last_name.humanize %>
+                <% if member.designation == "admin" %>
+                  <em class="text-success"><small>(<%= member.designation %>)</small></em>
+                <% end %>
+              </td>
+              <td><%= member.email %></td>
+              <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+                <td></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      </tfoot>
-    </table>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>ID</th>
+            <th></th>
+            <th>NAME AND ROLE</th>
+            <th>EMAIL</th>
+            <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+              <th>Action</th>
+            <% end %>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </div>
 
