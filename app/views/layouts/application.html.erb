@@ -18,9 +18,8 @@
 
   <body class="page-body gray page-fade" data-url="<%= root_url %>">
     <div class="page-container">
-    
+
       <% if controller_name != "home" && user_signed_in? %>
-        <%= render "/layouts/chat" %>
         <%= render "/layouts/navbar" %>
       <% end %>
 
@@ -29,6 +28,9 @@
       </div>
 
       <% if controller_name != "home" %>
+        <% if user_signed_in? %>
+          <%= render "/layouts/chat" %>
+        <% end %>
         <%= render "/layouts/footer" %>
       <% else %>
         <%= render "/home/footer" %>
