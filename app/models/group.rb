@@ -51,10 +51,7 @@ class Group < ApplicationRecord
                                  group_id: group_id, designation: "admin", status: "1", invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: "", amount: 0, account_id: account.first)
 
       if admin_account.save
-        respond_to do |format|
-          format.html { redirect_to group_url(group_id), notice: "Your admin account has succsefully been set up" }
-          format.json { head :no_content }
-        end
+        redirect_to group_url(group_id), notice: "Your admin account has succsefully been set up"
       else
         render json: admin_account.errors
       end
