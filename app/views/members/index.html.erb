@@ -1,9 +1,8 @@
-<%= render 'common/datatables' %>
 <div class="row">
   <div class="members_holder">
     <div class="member_top">
       <h3><%= @group.name %> Members</h3>
-      <%= render 'members/invite_buttons' %>
+      <%= render "members/invite_buttons" %>
     </div>
     <div class="members_table">
       <table class="table table-bordered datatable" id="datatable" style="font-size: 16px !important;">
@@ -23,7 +22,7 @@
             <tr>
               <td><%= member.id %></td>
               <td>
-                <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), width:"50", alt:"", class:"img-rounded"%>
+                <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
               </td>
               <td>
                 <%= member.first_name.humanize %> <%= member.last_name.humanize %>
@@ -33,7 +32,13 @@
               </td>
               <td><%= member.email %></td>
               <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-                <td></td>
+                <td>
+                  <span class="admin_member_actions">
+                    <%= link_to "recent_actors", member, class: "material-icons" %>
+                    <%= link_to "manage_accounts", edit_member_path(member), class: "material-icons" %>
+                    <%= link_to "person_off", member, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons text-danger" %>
+                  </span>
+                </td>
               <% end %>
             </tr>
           <% end %>

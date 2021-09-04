@@ -15,17 +15,17 @@
           <td>
             <span class="transaction-type">
               <%= if transaction.transaction_type == 1
-                 "+"
-               else
-                 "-"
-               end %>
+                    "+"
+                  else
+                    "-"
+                  end %>
             </span>
           </td>
           <td>
             <%= transaction.description %>
           </td>
           <td>
-            <%= number_with_precision(transaction.amount, precision: 2, delimiter: ',') %>
+            <%= number_with_precision(transaction.amount, precision: 2, delimiter: ",") %>
           </td>
         </tr>
       <% end %>

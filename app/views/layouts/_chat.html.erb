@@ -2,12 +2,12 @@
   <div class="chat-group" id="group-3">
     <strong>Groups</strong>
     <% Group.mine(current_user.id).map do |group| %>
-      <%= link_to group_path(group), onclick:"window.location.href='#{group_path(group)}'" do %>
+      <%= link_to group_path(group), onclick: "window.location.href='#{group_path(group)}'" do %>
         <span class="user-status is-busy"></span>
         <em><%= group.name %></em>
         <span class="badge badge-info is-hidden">0</span>
       <% end %>
     <% end %>
-    <%= link_to "Create new Group", new_group_path, onclick:"window.location.href='#{new_group_path}'" %>
+    <%= link_to "Create new Group", new_group_path, onclick: "window.location.href='#{new_group_path}'" %>
   </div>
 </div>
