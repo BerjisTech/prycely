@@ -14,14 +14,6 @@ local:
 #   region: us-east-1
 #   bucket: your_own_bucket
 
-amazon:
-  service: S3
-  access_key_id: GTV6Q3MK5HOM32IHDVL3
-  secret_access_key: ci5OZFWgP2Fdx54pUjkFz7mBpEpzLRH1SwaUSpp1HUk
-  endpoint: ams3.digitaloceanspaces.com
-  region: us-east-1
-  bucket: https://assets.prycely.com
-
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS
