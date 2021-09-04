@@ -20,7 +20,9 @@
     <div class="page-container">
 
       <% if controller_name != "home" && user_signed_in? %>
-        <%= render "/layouts/navbar" %>
+        <% if Account.mine(current_user.id).present? %>
+          <%= render "/layouts/navbar" %>
+        <% end %>
       <% end %>
 
       <div class="main-content">
@@ -29,7 +31,9 @@
 
       <% if controller_name != "home" %>
         <% if user_signed_in? %>
-          <%= render "/layouts/chat" %>
+          <% if Account.mine(current_user.id).present? %>
+            <%= render "/layouts/chat" %>
+          <% end %>
         <% end %>
         <%= render "/layouts/footer" %>
       <% else %>

@@ -1,6 +1,8 @@
 <% if controller_name != "home" %>
   <% if user_signed_in? %>
-    <%= render "/layouts/top_bar" %>
+    <% if Account.mine(current_user.id).present? %>
+      <%= render "/layouts/top_bar" %>
+    <% end %>
     <hr />
   <% end %>
   <%= yield %>
