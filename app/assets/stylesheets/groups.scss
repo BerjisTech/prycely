@@ -193,4 +193,49 @@
             margin-left: 10px;
         }
     }
+
+    .overview-transact {
+        display              : grid;
+        flex-direction       : row;
+        grid-template-columns: 1fr 1fr;
+        cursor               : pointer;
+
+        .deposit,
+        .withdraw {
+            display        : flex;
+            flex-direction : column;
+            background     : rgba(255, 255, 255, 1);
+            box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius  : 0px;
+            border         : 1px solid rgba(255, 255, 255, 0.18);
+            margin-top     : 10px;
+            padding        : 10px;
+            text-align     : center;
+            align-items    : center;
+            justify-content: center;
+            transition     : all 0.56s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            span {
+                &:first-of-type {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .deposit {
+            margin-right: 10px;
+            background  : #3B5998;
+            color       : #ffffff;
+        }
+
+        .withdraw {
+            margin-left: 10px;
+            background : #FDD673;
+            color      : #10131A;
+        }
+    }
 }

@@ -44,7 +44,7 @@
 
     <div class="sidebar-user-info">
       <div class="sui-normal"> <a href="#" class="user-link">
-          <%= image_tag Account.mine(current_user.id).image.variant(resize: "500x500"), width:"100", alt:"", class:"img-rounded"%>
+          <%= image_tag Account.mine(current_user.id).image.variant(resize: "500x500"), width:"70", alt:"", style:"border-radius: 10px;"%>
           <span>Welcome,</span>
           <strong><%= Account.mine(current_user.id).first_name %></strong> </a>
       </div>
