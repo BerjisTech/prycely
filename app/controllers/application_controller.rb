@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(_resource)
-    if session[:invite_key]
+    if session[:invite_key].present?
       new_account_path
     else
       account_path(current_user.id)
