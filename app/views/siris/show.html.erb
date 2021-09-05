@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @siri.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @siri.value %>
+</p>
+
+<%= link_to 'Edit', edit_siri_path(@siri) %> |
+<%= link_to 'Back', siris_path %>

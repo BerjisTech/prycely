@@ -1,0 +1,27 @@
+<%= form_with(model: siri) do |form| %>
+  <% if siri.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(siri.errors.count, "error") %> prohibited this siri from being saved:</h2>
+
+      <ul>
+        <% siri.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_area :value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

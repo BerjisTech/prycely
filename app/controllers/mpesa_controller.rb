@@ -44,10 +44,10 @@ class MpesaController < ApplicationController
   end
 
   def stk
-    amount = 10
-    phone = 254_725_227_513
-    ref = 'Payment'
-    desc = 'Payment'
+    @amount = 10
+    @phone = 254_725_227_513
+    @ref = 'Payment'
+    @desc = 'Payment'
 
     shortcode = @C2B_PAYBILL
     lipa_na_mpesa_key = @MPESA_API_PASSKEY
@@ -59,13 +59,13 @@ class MpesaController < ApplicationController
       'Password': password.split("\n").join,
       'Timestamp': timestamp.to_s,
       'TransactionType': 'CustomerPayBillOnline',
-      'Amount': amount,
-      'PartyA': phone,
+      'Amount': @amount,
+      'PartyA': @phone,
       'PartyB': shortcode,
-      'PhoneNumber': phone,
+      'PhoneNumber': @phone,
       'CallBackURL': @STK_CALLBACK,
-      'AccountReference': ref,
-      'TransactionDesc': desc
+      'AccountReference': @ref,
+      'TransactionDesc': @desc
     }
 
     call(path, body)
@@ -77,7 +77,12 @@ class MpesaController < ApplicationController
 
   def callback_c2b; end
 
-  def callback_stk; end
+  def callback_stk
+    Error.create(
+      error: params,
+      time: DateTime.now
+    )
+  end
 
   def register_url
     path = '/mpesa/c2b/v1/registerurl'
@@ -137,29 +142,29 @@ class MpesaController < ApplicationController
   end
 
   def set_mpesa
-    @MPESA_API_KEY = ENV.fetch('MPESA_API_KEY')
-    @MPESA_API_SECRET = ENV.fetch('MPESA_API_SECRET')
-    @MPESA_API_PASSKEY = ENV.fetch('MPESA_API_PASSKEY')
+    @MPESA_API_KEY = Siri.find_by(name: 'MPESA_API_KEY').value
+    @MPESA_API_SECRET = Siri.find_by(name: 'MPESA_API_SECRET').value
+    @MPESA_API_PASSKEY = Siri.find_by(name: 'MPESA_API_PASSKEY').value
 
-    @MPESA_SANDBOX_API_KEY = ENV.fetch('MPESA_SANDBOX_API_KEY')
-    @MPESA_SANDBOX_API_SECRET = ENV.fetch('MPESA_SANDBOX_API_SECRET')
-    @MPESA_SANDBOX_API_PASSKEY = ENV.fetch('MPESA_SANDBOX_API_PASSKEY')
+    @MPESA_SANDBOX_API_KEY = Siri.find_by(name: 'MPESA_SANDBOX_API_KEY').value
+    @MPESA_SANDBOX_API_SECRET = Siri.find_by(name: 'MPESA_SANDBOX_API_SECRET').value
+    @MPESA_SANDBOX_API_PASSKEY = Siri.find_by(name: 'MPESA_SANDBOX_API_PASSKEY').value
 
-    @MPESA_B2C_API_KEY = ENV.fetch('MPESA_B2C_API_KEY')
-    @MPESA_B2C_API_SECRET = ENV.fetch('MPESA_B2C_API_SECRET')
-    @MPESA_B2C_API_PASSKEY = ENV.fetch('MPESA_B2C_API_PASSKEY')
+    @MPESA_B2C_API_KEY = Siri.find_by(name: 'MPESA_B2C_API_KEY').value
+    @MPESA_B2C_API_SECRET = Siri.find_by(name: 'MPESA_B2C_API_SECRET').value
+    @MPESA_B2C_API_PASSKEY = Siri.find_by(name: 'MPESA_B2C_API_PASSKEY').value
 
-    @C2B_PAYBILL = ENV.fetch('C2B_PAYBILL')
-    @B2C_PAYBILL = ENV.fetch('B2C_PAYBILL')
-    @C2B_USERNAME = ENV.fetch('C2B_USERNAME')
-    @B2C_USERNAME = ENV.fetch('B2C_USERNAME')
+    @C2B_PAYBILL = Siri.find_by(name: 'C2B_PAYBILL').value
+    @B2C_PAYBILL = Siri.find_by(name: 'B2C_PAYBILL').value
+    @C2B_USERNAME = Siri.find_by(name: 'C2B_USERNAME').value
+    @B2C_USERNAME = Siri.find_by(name: 'B2C_USERNAME').value
 
-    @BASE_URL = ENV.fetch('BASE_URL')
-    @TIMEOUT_URL = ENV.fetch('TIMEOUT_URL')
-    @RESULT_URL = ENV.fetch('RESULT_URL')
-    @CONFIRMATION_URL = ENV.fetch('CONFIRMATION_URL')
-    @VALIDATION_URL = ENV.fetch('VALIDATION_URL')
+    @BASE_URL = Siri.find_by(name: 'BASE_URL').value
+    @TIMEOUT_URL = Siri.find_by(name: 'TIMEOUT_URL').value
+    @RESULT_URL = Siri.find_by(name: 'RESULT_URL').value
+    @CONFIRMATION_URL = Siri.find_by(name: 'CONFIRMATION_URL').value
+    @VALIDATION_URL = Siri.find_by(name: 'VALIDATION_URL').value
 
-    @STK_CALLBACK = ENV.fetch('STK_CALLBACK')
+    @STK_CALLBACK = Siri.find_by(name: 'STK_CALLBACK').value
   end
 end
