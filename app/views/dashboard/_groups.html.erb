@@ -4,47 +4,43 @@
   ]
 </script>
 
-<% if @groups.empty? %>
-  <div class="group justify-content-center align-items-center p-3">You currently have no groups</div>
-<% else %>
-  <% @groups.map do |group| %>
-    <div class="col-md-3 col-sm-6" onclick="window.location.href='<%= group_path(group.group_id) %>'">
-      <div class="group">
+<% @groups.map do |group| %>
+  <div class="col-md-3 col-sm-6" onclick="window.location.href='<%= group_path(group.group_id) %>'">
+    <div class="group">
+      <div class="group_identity">
+        <span class="group_dp"><%= group.name[0] %></span>
+        <span><%= group.name %></span>
+      </div>
+
+      <div class="group_amount_progress">
+        <span><sub class="text-success"><%= group.currency %></sub> 2,215,215</span>
+        <span class="sparkline_rise">2000,2300,1700,1500,3000,2700,3400</span>
+      </div>
+
+      <div class="group_currency_progress">
+        <span><%= group.currency %></span>
+        <span>+3.25%</span>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @groups.length != 4 %>
+  <% @extra_end = 4 - @groups.length %>
+  <% @extra_start = 1 %>
+  <% until @extra_start > @extra_end %>
+    <div class="col-md-3 col-sm-6 xs-hidden" onclick="window.location.href='<%= new_group_path %>'">
+      <div class="group extra_card" style="padding-top: 10px; padding-bottom: 10px;">
         <div class="group_identity">
-          <span class="group_dp"><%= group.name[0] %></span>
-          <span><%= group.name %></span>
+          <span class="group_dp">+</span>
         </div>
 
         <div class="group_amount_progress">
-          <span><sub class="text-success"><%= group.currency %></sub> 2,215,215</span>
-          <span class="sparkline_rise">2000,2300,1700,1500,3000,2700,3400</span>
+          <span>Create or join another group</span>
         </div>
 
-        <div class="group_currency_progress">
-          <span><%= group.currency %></span>
-          <span>+3.25%</span>
-        </div>
       </div>
     </div>
-  <% end %>
-
-  <% if @groups.length != 4 %>
-    <% @extra_end = 4 - @groups.length %>
-    <% @extra_start = 1 %>
-    <% until @extra_start > @extra_end %>
-      <div class="col-md-3 col-sm-6 xs-hidden" onclick="window.location.href='<%= new_group_path %>'">
-        <div class="group extra_card" style="padding-top: 10px; padding-bottom: 10px;">
-          <div class="group_identity">
-            <span class="group_dp">+</span>
-          </div>
-
-          <div class="group_amount_progress">
-            <span>Create or join another group</span>
-          </div>
-
-        </div>
-      </div>
-      <% @extra_start += 1 %>
-    <% end %>
+    <% @extra_start += 1 %>
   <% end %>
 <% end %>

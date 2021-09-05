@@ -1,84 +1,46 @@
-<!--p id="notice"><%= notice %></p-->
+<div>
+  <div class="col-sm-3">
+    <div class="account_page_image_section">
+      <%= image_tag @account.image.variant(resize: "500x500") %>
+      <img class="country_image" src="https://assets.prycely.com/images/flags/<%= @account.country.downcase %>.svg" />
+      <div class="groups_and_wallets">
+        <div class="groups">
+          <span><%= Group.mine(current_user.id).count%></span>
+          <span>Groups</span>
+        </div>
+        <div class="wallets">
+          <span><%= Wallet.mine(current_user.id).count%></span>
+          <span>Wallets</span>
+        </div>
+      </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @account.user_id %>
-</p>
+      <div class="contacts">
+        <h3>Contacts</h3>
+        <div>
+          <span class="material-icons">emoji_people</span>
+          <span><%= "#{@account.first_name.humanize} #{@account.last_name.humanize}" %></span>
+        </div>
+        <div>
+          <span class="material-icons">call</span>
+          <span><%= @account.phone %></span>
+        </div>
+        <div>
+          <span class="material-icons">email</span>
+          <span><%= User.find(@account.user_id).email %></span>
+        </div>
+      </div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @account.phone %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @account.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @account.last_name %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @account.photo %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= image_tag @account.image.variant(resize: "500x500") %>
-</p>
-
-<p>
-  <strong>Deactivated:</strong>
-  <%= @account.deactivated %>
-</p>
-
-<p>
-  <strong>Verified:</strong>
-  <%= @account.verified %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @account.country %>
-</p>
-
-<p>
-  <strong>County:</strong>
-  <%= @account.county %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @account.city %>
-</p>
-
-<p>
-  <strong>Street:</strong>
-  <%= @account.street %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @account.address %>
-</p>
-
-<p>
-  <strong>Postal:</strong>
-  <%= @account.postal %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @account.account_type %>
-</p>
-
-<p>
-  <strong>Tour:</strong>
-  <%= @account.tour %>
-</p>
-
-<%= link_to "Edit", edit_account_path(@account) %> |
-<%= link_to "Back", accounts_path %>
+      <div class="actions">
+        <% if @account.user_id == current_user.id%>
+          <%= link_to "Edit", edit_account_path(@account) %> |
+          <%= link_to "Back", accounts_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="account_page_detail_section">
+      <h3>A force to be reckoned with! Something great is coming here.</h3>
+    </div>
+  </div>
+</div>
