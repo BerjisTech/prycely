@@ -5,11 +5,11 @@
       <img class="country_image" src="https://assets.prycely.com/images/flags/<%= @account.country.downcase %>.svg" />
       <div class="groups_and_wallets">
         <div class="groups">
-          <span><%= Group.mine(current_user.id).count%></span>
+          <span><%= Group.mine(current_user.id).count %></span>
           <span>Groups</span>
         </div>
         <div class="wallets">
-          <span><%= Wallet.mine(current_user.id).count%></span>
+          <span><%= Wallet.mine(current_user.id).count %></span>
           <span>Wallets</span>
         </div>
       </div>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="actions">
-        <% if @account.user_id == current_user.id%>
+        <% if @account.user_id == current_user.id %>
           <%= link_to "Edit", edit_account_path(@account) %> |
           <%= link_to "Back", accounts_path %>
         <% end %>

@@ -56,17 +56,5 @@ Rails.application.routes.draw do
 
   match 'dashboard', to: 'dashboard#index', via: %i[get post]
 
-  Rails.application.routes.draw do
-    namespace :api do
-      namespace :v1 do
-        resources :mpesa do
-          get 'withdraw', to: 'b2c'
-          get 'topup', to: 'c2b'
-          get 'direct-topup', to: 'stk'
-        end
-      end
-    end
-  end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
