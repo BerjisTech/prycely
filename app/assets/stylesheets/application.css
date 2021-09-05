@@ -15,5 +15,43 @@
  */
 
 .material-icons {
-    font-size: 16px!important;
+    font-size: 16px !important;
+}
+
+input,
+select {
+    font-size: 16px !important;
+}
+
+input {
+    padding: 20px !important;
+}
+
+.page-body .select2-drop .select2-search input {
+    padding      : 10px 12px !important;
+    padding-right: 30px !important;
+}
+
+.select2-search input {
+    padding           : 4px 20px 4px 5px !important;
+    font-size         : 1em !important;
+    border            : 1px solid #aaa !important;
+    border-radius     : 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow        : none !important;
+    background        : #fff url(select2.png) no-repeat 100% -22px !important;
+    background        : url(select2.png) no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee)) !important;
+    background        : url(select2.png) no-repeat 100% -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%) !important;
+    background        : url(select2.png) no-repeat 100% -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%) !important;
+    background        : url(select2.png) no-repeat 100% -22px, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0 !important;
+}
+
+.page-body .select2-container .select2-choice .select2-arrow b:before {
+    font-family: 'Material Icons' !important;
+    content    : "\e5cf" !important;
+}
+
+.page-body .select2-drop .select2-search:after {
+    font-family: 'Material Icons' !important;
+    content    : "\e8b6" !important;
 }

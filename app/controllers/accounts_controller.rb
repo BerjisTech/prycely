@@ -36,6 +36,7 @@ class AccountsController < ApplicationController
     # @account = Account.new(account_params)
     @account = current_user.accounts.build(account_params)
 
+    @account.user_id = current_user.id
     @account.image.attach(params[:account][:image])
 
     if @account.save

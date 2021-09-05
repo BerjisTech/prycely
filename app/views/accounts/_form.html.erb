@@ -13,74 +13,86 @@
   <div class="row">
     <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
 
-    <div class="field">
-
-      <%= form.label(:image, class: "d-flex flex-column justify-content-center align-items-center") do %>
-        <% if @account.image.attached? %>
-          <%= image_tag @account.image.variant(resize: "200x200"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
-        <% else %>
-          <img id="img_prev" class="img rounded" src="" alt="" />
+    <div class="field col-sm-3">
+      <div class="account_inputs_section fileinput fileinput-new" data-provides="fileinput">
+        <%= form.label(:image, class: "image_select_label") do %>
+          <% if @account.image.attached? %>
+            <%= image_tag @account.image.variant(resize: "200x200"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
+          <% else %>
+            <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+          <% end %>
+          <span class="select_image">Choose Photo</span>
+          <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required" %>
         <% end %>
-        <span class="btn btn-xs btn-primary my-1 image_chooser">Choose Photo</span>
-        <%= form.file_field :image, onchange: "readURL(this);", class: "d-none", accept: "image/*", required: "required" %>
-      <% end %>
+
+        <div class="alert alert-info alert-dismissable">
+          Update your account with your info to make it easier for your group and group members to keep records and contact you when needed
+        </div>
+      </div>
     </div>
 
-    <div class="field form-group form-floating my-2 px-2 col-sm-6">
-      <%= form.text_field :first_name, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :first_name %>
+    <div class="col-sm-9">
+      <div class="account_inputs_section">
+        <div class="personal">
+          <h3 class="text-info">Personal Info</h3>
+          <hr />
+          <div class="field form-group col-md-4 col-sm-6">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-md-4 col-sm-6">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-md-4 col-sm-6">
+            <%= form.label :phone %>
+            <%= form.text_field :phone, class: "form-control", required: "required" %>
+          </div>
+        </div>
+        <div class="address">
+
+          <h3 class="text-info">Address</h3>
+          <hr/>
+          <div class="field col-sm-6">
+            <%= form.label :country %>
+            <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control select2", required: "required" }) %>
+          </div>
+
+          <div class="field form-group col-sm-6">
+            <%= form.label :county %>
+            <%= form.text_field :county, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-sm-6">
+            <%= form.label :city %>
+            <%= form.text_field :city, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-sm-6">
+            <%= form.label :street %>
+            <%= form.text_field :street, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-sm-6">
+            <%= form.label :address %>
+            <%= form.text_field :address, class: "form-control", required: "required" %>
+          </div>
+
+          <div class="field form-group col-sm-6">
+            <%= form.label :postal %>
+            <%= form.text_field :postal, class: "form-control", required: "required" %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="field form-group form-floating my-2 px-2 col-sm-6">
-      <%= form.text_field :last_name, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :last_name %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-12">
-      <%= form.text_field :phone, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :phone %>
-    </div>
-
-    <h3>Add your address below</h3>
-    <hr/>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control form-select", required: "required" }) %>
-      <%= form.label :country %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.text_field :county, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :county %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.text_field :city, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :city %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.text_field :street, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :street %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.text_field :address, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :address %>
-    </div>
-
-    <div class="field form-group form-floating my-2 px-2 col-sm-4">
-      <%= form.text_field :postal, class: "form-control", placeholder: "Placeholder", required: "required" %>
-      <%= form.label :postal %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit class: "btn btn-primary btn-md my-3" %>
+    <div class="actions col-xs-12">
+      <%= form.submit class: "submit_btn pull-right" %>
     </div>
   </div >
 <% end %>
-
-<!-- Assume jQuery is loaded -->
 <script>
   function readURL(input) {
     if (input.files && input.files[0]) {
@@ -98,3 +110,17 @@
     }
   }
 </script>
+
+<style>
+  .account_image_to_hide{
+    position: absolute;
+      margin-top: -9000000px;
+      margin-left: -9000000px;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      transform: translate(-300px, 0) scale(4);
+      font-size: 23px;
+      direction: ltr;
+      cursor: pointer;
+  }
+</style>

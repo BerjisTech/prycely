@@ -16,7 +16,7 @@
       <%= form.number_field :created_by, value: current_user.id, type: :hidden %>
 
       <div class="field form-group form-floating my-4">
-        <%= form.text_field :name, class: "form-control form-control-sm", placeholder: "Placeholder", required: "required" %>
+        <%= form.text_field :name, class: "form-control form-control-sm", required: "required" %>
         <%= form.label :name %>
       </div>
 
@@ -36,7 +36,7 @@
       </div>
 
       <div class="field form-group form-floating my-4">
-        <%= form.number_field :membership, class: "form-control", placeholder: "Placeholder", required: "required", value: 0 %>
+        <%= form.number_field :membership, class: "form-control", required: "required", value: 0 %>
         <%= form.label :membership %>
       </div>
 
