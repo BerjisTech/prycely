@@ -25,7 +25,7 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       if @log.save
-        format.html { redirect_to @log, notice: "Log was successfully created." }
+        format.html { redirect_to @log, notice: 'Log was successfully created.' }
         format.json { render :show, status: :created, location: @log }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class LogsController < ApplicationController
   def update
     respond_to do |format|
       if @log.update(log_params)
-        format.html { redirect_to @log, notice: "Log was successfully updated." }
+        format.html { redirect_to @log, notice: 'Log was successfully updated.' }
         format.json { render :show, status: :ok, location: @log }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class LogsController < ApplicationController
   def destroy
     @log.destroy
     respond_to do |format|
-      format.html { redirect_to logs_url, notice: "Log was successfully destroyed." }
+      format.html { redirect_to logs_url, notice: 'Log was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

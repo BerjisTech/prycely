@@ -9,6 +9,6 @@ class Transaction < ApplicationRecord
   end
 
   def self.total(group_id)
-    Transaction.where(group_id: group_id).pluck("count(id)").first
+    Transaction.where(group_id: group_id).pluck('count(id)').first
   end
 end

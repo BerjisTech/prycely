@@ -1,51 +1,51 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class LoginsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @login = logins(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get logins_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_login_url
     assert_response :success
   end
 
-  test "should create login" do
-    assert_difference("Login.count") do
+  test 'should create login' do
+    assert_difference('Login.count') do
       post logins_url,
            params: { login: { ip: @login.ip, password_attempt: @login.password_attempt, success: @login.success,
-                             time: @login.time, user_id: @login.user_id } }
+                              time: @login.time, user_id: @login.user_id } }
     end
 
     assert_redirected_to login_url(Login.last)
   end
 
-  test "should show login" do
+  test 'should show login' do
     get login_url(@login)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_login_url(@login)
     assert_response :success
   end
 
-  test "should update login" do
+  test 'should update login' do
     patch login_url(@login),
           params: { login: { ip: @login.ip, password_attempt: @login.password_attempt, success: @login.success,
-                            time: @login.time, user_id: @login.user_id } }
+                             time: @login.time, user_id: @login.user_id } }
     assert_redirected_to login_url(@login)
   end
 
-  test "should destroy login" do
-    assert_difference("Login.count", -1) do
+  test 'should destroy login' do
+    assert_difference('Login.count', -1) do
       delete login_url(@login)
     end
 

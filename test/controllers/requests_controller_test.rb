@@ -1,51 +1,51 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class RequestsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @request = requests(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get requests_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_request_url
     assert_response :success
   end
 
-  test "should create request" do
-    assert_difference("Request.count") do
+  test 'should create request' do
+    assert_difference('Request.count') do
       post requests_url,
            params: { request: { accept: @request.accept, account_id: @request.account_id, emai: @request.emai,
-                               group_id: @request.group_id, user_id: @request.user_id } }
+                                group_id: @request.group_id, user_id: @request.user_id } }
     end
 
     assert_redirected_to request_url(Request.last)
   end
 
-  test "should show request" do
+  test 'should show request' do
     get request_url(@request)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_request_url(@request)
     assert_response :success
   end
 
-  test "should update request" do
+  test 'should update request' do
     patch request_url(@request),
           params: { request: { accept: @request.accept, account_id: @request.account_id, emai: @request.emai,
-                              group_id: @request.group_id, user_id: @request.user_id } }
+                               group_id: @request.group_id, user_id: @request.user_id } }
     assert_redirected_to request_url(@request)
   end
 
-  test "should destroy request" do
-    assert_difference("Request.count", -1) do
+  test 'should destroy request' do
+    assert_difference('Request.count', -1) do
       delete request_url(@request)
     end
 
