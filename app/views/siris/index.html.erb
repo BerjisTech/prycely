@@ -2,7 +2,7 @@
 
 <h1>Siris</h1>
 
-<table>
+<table class="table table-responsive">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,10 +15,12 @@
     <% @siris.each do |siri| %>
       <tr>
         <td><%= siri.name %></td>
-        <td><%= siri.value %></td>
-        <td><%= link_to 'Show', siri %></td>
-        <td><%= link_to 'Edit', edit_siri_path(siri) %></td>
-        <td><%= link_to 'Destroy', siri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= siri.value.truncate(50) %></td>
+        <td>
+          <%= link_to "Show", siri %> | 
+          <%= link_to "Edit", edit_siri_path(siri) %> |
+          <%= link_to "Destroy", siri, method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Siri', new_siri_path %>
+<%= link_to "New Siri", new_siri_path %>

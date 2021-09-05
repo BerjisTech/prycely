@@ -3,7 +3,7 @@
 class MpesaController < ApplicationController
   # require 'faraday'
   # require "faraday_middleware"
-  skip_before_action :verify_authenticity_token, only: %i[callback_stk callback_b2c callback_c2b]
+  skip_before_action :verify_authenticity_token, only: %i[b2c c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
 
   def index; end
@@ -40,14 +40,21 @@ class MpesaController < ApplicationController
       'ValidationURL': @VALIDATION_URL
     }
 
-    call(path, body)
+    response = call(path, body)
+    
+    Error.create(
+      error: response.body,
+      time: DateTime.now
+    )
   end
 
   def stk
-    @amount = 10
+    @amount = 1
     @phone = 254_725_227_513
     @ref = 'Payment'
     @desc = 'Payment'
+    category = 'Group'
+    account = 1
 
     shortcode = @C2B_PAYBILL
     lipa_na_mpesa_key = @MPESA_API_PASSKEY
@@ -68,7 +75,20 @@ class MpesaController < ApplicationController
       'TransactionDesc': @desc
     }
 
-    call(path, body)
+    response = call(path, body)
+
+    status = 0 if response.present?
+
+    Error.create(
+      error: response.body,
+      time: DateTime.now
+    )
+
+    phone_for_stk = @phone.to_s.gsub('254', '')
+    response = JSON.parse(response.body)
+
+    Stk.create_stk(response, status, phone_for_stk)
+    Transaction.create_from_stk(@amount, response, current_user.id, @desc, category, account)
   end
 
   def paybill; end
@@ -78,10 +98,21 @@ class MpesaController < ApplicationController
   def callback_c2b; end
 
   def callback_stk
-    Error.create(
-      error: params,
-      time: DateTime.now
-    )
+    if params.present?
+
+      Error.create(
+        error: params,
+        time: DateTime.now
+      )
+
+      params = JSON.parse(params.gsub('=>', ':'))['Body']
+
+      amount = params.body.stkCallback['CallbackMetadata']['Item'][0].value
+      refrence = params.body.stkCallback['CallbackMetadata']['Item'][1].value
+      timestamp = params.body.stkCallback['CallbackMetadata']['Item'][3].value
+      phone = params.body.stkCallback['CallbackMetadata']['Item'][4].value
+      timestamp = DateTime.strptime(timestamp, '%s')
+    end
   end
 
   def register_url

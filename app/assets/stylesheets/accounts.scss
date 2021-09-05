@@ -1,172 +1,184 @@
 // Place all the styles related to the accounts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.account_inputs_section {
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
-    justify-content: center;
-    background     : rgba(255, 255, 255, 1);
-    box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius  : 0px;
-    border         : 1px solid rgba(255, 255, 255, 0.18);
-    width          : 100%;
-    padding        : 10px;
+.form_accounts {
 
-    .image_select_label {
+    input,
+    select {
+        font-size: 16px !important;
+    }
+
+    input {
+        padding: 20px !important;
+    }
+
+    .account_inputs_section {
         display        : flex;
         flex-direction : column;
         align-items    : center;
         justify-content: center;
+        background     : rgba(255, 255, 255, 1);
+        box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border-radius  : 0px;
+        border         : 1px solid rgba(255, 255, 255, 0.18);
+        width          : 100%;
+        padding        : 10px;
 
-        img {
-            width        : auto;
-            height       : auto;
-            max-width    : 100%;
-            max-height   : 200px;
-            cursor       : pointer;
-            background   : rgba(255, 255, 255, 1);
-            box-shadow   : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border-radius: 10px;
-            border       : 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .select_image {
-            width          : 100%;
-            background     : #3B5998;
-            color          : #ffffff;
-            display        : flex;
-            flex-direction : column;
-            margin-top     : 10px;
-            padding        : 10px;
-            text-align     : center;
-            align-items    : center;
-            justify-content: center;
-            transition     : all 0.56s;
-            cursor         : pointer
-        }
-    }
-}
-
-.submit_btn {
-    background     : #3B5998;
-    color          : #ffffff;
-    font-size      : 20px;
-    display        : flex;
-    flex-direction : column;
-    margin-top     : 10px;
-    padding        : 10px 20px;
-    text-align     : center;
-    align-items    : center;
-    justify-content: center;
-    transition     : all 0.56s;
-    border         : none;
-}
-
-.account_inputs_section {
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
-    justify-content: center;
-    background     : rgba(255, 255, 255, 1);
-    box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius  : 0px;
-    border         : 1px solid rgba(255, 255, 255, 0.18);
-    width          : 100%;
-    padding        : 10px;
-
-    .personal,
-    .address {
-        width: 100%;
-    }
-}
-
-.account_page_image_section {
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
-    justify-content: center;
-    width          : 100%;
-    padding        : 0px;
-    margin         : 0px;
-
-    img {
-        width     : auto;
-        height    : auto;
-        max-width : 100%;
-        max-height: 400px;
-        cursor    : pointer;
-    }
-
-    .country_image {
-        position   : absolute;
-        width      : 30px;
-        margin-left: 0px;
-        align-self : flex-start;
-    }
-
-    .groups_and_wallets {
-        width                : 100%;
-        display              : grid;
-        grid-template-columns: 1fr 1fr;
-
-        .wallets,
-        .groups {
-            background     : #FFC107;
+        .image_select_label {
             display        : flex;
             flex-direction : column;
             align-items    : center;
             justify-content: center;
 
-            span {
-                color: rgba(255, 255, 255, 1);
+            img {
+                width        : auto;
+                height       : auto;
+                max-width    : 100%;
+                max-height   : 200px;
+                cursor       : pointer;
+                background   : rgba(255, 255, 255, 1);
+                box-shadow   : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                border-radius: 10px;
+                border       : 1px solid rgba(255, 255, 255, 0.18);
+            }
 
-                &:first-of-type {
-                    font-size  : 22px;
-                    font-weight: bolder;
-                }
+            .select_image {
+                width          : 100%;
+                background     : #3B5998;
+                color          : #ffffff;
+                display        : flex;
+                flex-direction : column;
+                margin-top     : 10px;
+                padding        : 10px;
+                text-align     : center;
+                align-items    : center;
+                justify-content: center;
+                transition     : all 0.56s;
+                cursor         : pointer
             }
         }
     }
 
-    .contacts {
-        width          : 100%;
+    .submit_btn {
+        background     : #3B5998;
+        color          : #ffffff;
+        font-size      : 20px;
         display        : flex;
         flex-direction : column;
-        align-items    : flex-start;
+        margin-top     : 10px;
+        padding        : 10px 20px;
+        text-align     : center;
+        align-items    : center;
         justify-content: center;
+        transition     : all 0.56s;
+        border         : none;
+    }
 
-        div {
+    .account_inputs_section {
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: center;
+        background     : rgba(255, 255, 255, 1);
+        box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border-radius  : 0px;
+        border         : 1px solid rgba(255, 255, 255, 0.18);
+        width          : 100%;
+        padding        : 10px;
+
+        .personal,
+        .address {
+            width: 100%;
+        }
+    }
+
+    .account_page_image_section {
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: center;
+        width          : 100%;
+        padding        : 0px;
+        margin         : 0px;
+
+        img {
+            width     : auto;
+            height    : auto;
+            max-width : 100%;
+            max-height: 400px;
+            cursor    : pointer;
+        }
+
+        .country_image {
+            position   : absolute;
+            width      : 30px;
+            margin-left: 0px;
+            align-self : flex-start;
+        }
+
+        .groups_and_wallets {
+            width                : 100%;
+            display              : grid;
+            grid-template-columns: 1fr 1fr;
+
+            .wallets,
+            .groups {
+                background     : #FFC107;
+                display        : flex;
+                flex-direction : column;
+                align-items    : center;
+                justify-content: center;
+
+                span {
+                    color: rgba(255, 255, 255, 1);
+
+                    &:first-of-type {
+                        font-size  : 22px;
+                        font-weight: bolder;
+                    }
+                }
+            }
+        }
+
+        .contacts {
+            width          : 100%;
+            display        : flex;
+            flex-direction : column;
+            align-items    : flex-start;
+            justify-content: center;
+
+            div {
+                display        : flex;
+                flex-direction : row;
+                align-items    : flex-start;
+                justify-content: center;
+                margin-bottom  : 10px;
+
+                .material-icons {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .actions {
+            width          : 100%;
             display        : flex;
             flex-direction : row;
             align-items    : flex-start;
             justify-content: center;
-            margin-bottom  : 10px;
-
-            .material-icons {
-                margin-right: 10px;
-            }
         }
     }
 
-    .actions {
-        width          : 100%;
+    .account_page_detail_section {
         display        : flex;
-        flex-direction : row;
-        align-items    : flex-start;
+        flex-direction : column;
+        align-items    : center;
         justify-content: center;
+        background     : rgba(255, 255, 255, 1);
+        box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border-radius  : 0px;
+        border         : 1px solid rgba(255, 255, 255, 0.18);
+        width          : 100%;
+        padding        : 10px;
     }
-}
-
-.account_page_detail_section {
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
-    justify-content: center;
-    background     : rgba(255, 255, 255, 1);
-    box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius  : 0px;
-    border         : 1px solid rgba(255, 255, 255, 0.18);
-    width          : 100%;
-    padding        : 10px;
 }

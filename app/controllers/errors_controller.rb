@@ -9,7 +9,7 @@ class ErrorsController < ApplicationController
     errors = []
 
     Error.all.map do |error|
-      row = error.error.gsub("=>",":")
+      row = error.error.gsub('=>', ':')
       errors << JSON.parse(row)
     end
 
