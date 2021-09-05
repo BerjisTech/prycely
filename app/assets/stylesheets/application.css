@@ -55,3 +55,10 @@ input {
     font-family: 'Material Icons' !important;
     content    : "\e8b6" !important;
 }
+
+.dataTables_wrapper>div input[type="text"],
+.dataTables_wrapper>div input[type="search"],
+.dataTables_wrapper>div input[type="number"] {
+    padding  : 6px 10px !important;
+    font-size: 12px !important;
+}

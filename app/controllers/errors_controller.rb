@@ -6,7 +6,13 @@ class ErrorsController < ApplicationController
 
   # GET /errors or /errors.json
   def index
-    @errors = Error.all
+    errors = []
+
+    Error.all.map do |error|
+      errors << error.error
+    end
+
+    render json: errors
   end
 
   # GET /errors/1 or /errors/1.json
