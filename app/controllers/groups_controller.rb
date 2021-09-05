@@ -68,22 +68,15 @@ class GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
     @my_groups = Group.mine(current_user.id, 5)
-
     @credit = Group.credit(params[:id])
     @debit = Group.debit(params[:id])
     @balance = Group.balance(params[:id])
-
     @recent_transactions = Transaction.for_group(params[:id], 10)
-
     @total_transactions = Transaction.total(params[:id])
-
     @total_members = Member.total_members(params[:id])
-
     @last_log = Log.last_of_group(params[:id])
-
     @me = Group.me(current_user.id, params[:id])
     @account = Account.where(user_id: current_user.id).pluck(:id)
-
     session[:current_group] = @group.id
   end
 
