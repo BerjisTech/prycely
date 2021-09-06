@@ -1,0 +1,22 @@
+<CORSConfiguration>
+ <CORSRule>
+   <AllowedOrigin>https://prycely.com</AllowedOrigin>
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedHeader>*</AllowedHeader>
+   <ExposeHeader>Origin</ExposeHeader>
+   <ExposeHeader>Content-Type</ExposeHeader>
+   <ExposeHeader>Content-MD5</ExposeHeader>
+   <ExposeHeader>Content-Disposition</ExposeHeader>
+   <MaxAgeSeconds>3600</MaxAgeSeconds>
+ </CORSRule>
+ <CORSRule>
+   <AllowedOrigin>https://lordsombo.ngrok.io</AllowedOrigin>
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedHeader>*</AllowedHeader>
+   <ExposeHeader>Origin</ExposeHeader>
+   <ExposeHeader>Content-Type</ExposeHeader>
+   <ExposeHeader>Content-MD5</ExposeHeader>
+   <ExposeHeader>Content-Disposition</ExposeHeader>
+   <MaxAgeSeconds>3600</MaxAgeSeconds>
+ </CORSRule>
+</CORSConfiguration>

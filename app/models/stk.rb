@@ -16,6 +16,5 @@ class Stk < ApplicationRecord
     )
   end
 
-  def self.update_stk
-  end
+  def self.update_stk; end
 end

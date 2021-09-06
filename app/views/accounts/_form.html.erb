@@ -22,7 +22,7 @@
             <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
           <% end %>
           <span class="select_image">Choose Photo</span>
-          <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required" %>
+          <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required", direct_upload: true %>
         <% end %>
 
         <div class="alert alert-info alert-dismissable">
@@ -89,7 +89,7 @@
     </div>
 
     <div class="actions col-xs-12">
-      <%= form.submit class: "submit_btn pull-right" %>
+      <%= form.submit "Update Account", class: "submit_btn pull-right", data: { disable_with: "Updating..." } %>
     </div>
   </div >
 <% end %>

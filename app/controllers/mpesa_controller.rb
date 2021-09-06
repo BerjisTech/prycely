@@ -41,7 +41,7 @@ class MpesaController < ApplicationController
     }
 
     response = call(path, body)
-    
+
     Error.create(
       error: response.body,
       time: DateTime.now
@@ -99,7 +99,6 @@ class MpesaController < ApplicationController
 
   def callback_stk
     if params.present?
-
       Error.create(
         error: params,
         time: DateTime.now

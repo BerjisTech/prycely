@@ -91,94 +91,94 @@
             width: 100%;
         }
     }
+}
 
-    .account_page_image_section {
-        display        : flex;
-        flex-direction : column;
-        align-items    : center;
-        justify-content: center;
-        width          : 100%;
-        padding        : 0px;
-        margin         : 0px;
+.account_page_image_section {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    width          : 100%;
+    padding        : 0px;
+    margin         : 0px;
 
-        img {
-            width     : auto;
-            height    : auto;
-            max-width : 100%;
-            max-height: 400px;
-            cursor    : pointer;
-        }
+    img {
+        width     : auto;
+        height    : auto;
+        max-width : 100%;
+        max-height: 400px;
+        cursor    : pointer;
+    }
 
-        .country_image {
-            position   : absolute;
-            width      : 30px;
-            margin-left: 0px;
-            align-self : flex-start;
-        }
+    .country_image {
+        position   : absolute;
+        width      : 30px;
+        margin-left: 0px;
+        align-self : flex-start;
+    }
 
-        .groups_and_wallets {
-            width                : 100%;
-            display              : grid;
-            grid-template-columns: 1fr 1fr;
+    .groups_and_wallets {
+        width                : 100%;
+        display              : grid;
+        grid-template-columns: 1fr 1fr;
 
-            .wallets,
-            .groups {
-                background     : #FFC107;
-                display        : flex;
-                flex-direction : column;
-                align-items    : center;
-                justify-content: center;
-
-                span {
-                    color: rgba(255, 255, 255, 1);
-
-                    &:first-of-type {
-                        font-size  : 22px;
-                        font-weight: bolder;
-                    }
-                }
-            }
-        }
-
-        .contacts {
-            width          : 100%;
+        .wallets,
+        .groups {
+            background     : #FFC107;
             display        : flex;
             flex-direction : column;
-            align-items    : flex-start;
+            align-items    : center;
             justify-content: center;
 
-            div {
-                display        : flex;
-                flex-direction : row;
-                align-items    : flex-start;
-                justify-content: center;
-                margin-bottom  : 10px;
+            span {
+                color: rgba(255, 255, 255, 1);
 
-                .material-icons {
-                    margin-right: 10px;
+                &:first-of-type {
+                    font-size  : 22px;
+                    font-weight: bolder;
                 }
             }
         }
+    }
 
-        .actions {
-            width          : 100%;
+    .contacts {
+        width          : 100%;
+        display        : flex;
+        flex-direction : column;
+        align-items    : flex-start;
+        justify-content: center;
+
+        div {
             display        : flex;
             flex-direction : row;
             align-items    : flex-start;
             justify-content: center;
+            margin-bottom  : 10px;
+
+            .material-icons {
+                margin-right: 10px;
+            }
         }
     }
 
-    .account_page_detail_section {
-        display        : flex;
-        flex-direction : column;
-        align-items    : center;
-        justify-content: center;
-        background     : rgba(255, 255, 255, 1);
-        box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        border-radius  : 0px;
-        border         : 1px solid rgba(255, 255, 255, 0.18);
+    .actions {
         width          : 100%;
-        padding        : 10px;
+        display        : flex;
+        flex-direction : row;
+        align-items    : flex-start;
+        justify-content: center;
     }
+}
+
+.account_page_detail_section {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    background     : rgba(255, 255, 255, 1);
+    box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius  : 0px;
+    border         : 1px solid rgba(255, 255, 255, 0.18);
+    width          : 100%;
+    padding        : 10px;
 }
