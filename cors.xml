@@ -1,4 +1,4 @@
-<CORSConfiguration>
+<!-- <CORSConfiguration>
  <CORSRule>
    <AllowedOrigin>https://prycely.com</AllowedOrigin>
    <AllowedMethod>PUT</AllowedMethod>
@@ -19,4 +19,4 @@
    <ExposeHeader>Content-Disposition</ExposeHeader>
    <MaxAgeSeconds>3600</MaxAgeSeconds>
  </CORSRule>
-</CORSConfiguration>
+</CORSConfiguration> -->
