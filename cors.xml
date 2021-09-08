@@ -1,36 +1,11 @@
-<CORSConfiguration>
- <CORSRule>
-   <AllowedOrigin>https://prycely.com</AllowedOrigin>
-   <AllowedMethod>GET</AllowedMethod>
-   <AllowedMethod>PUT</AllowedMethod>
-   <AllowedMethod>POST</AllowedMethod>
-   <AllowedMethod>DELETE</AllowedMethod>
-   <AllowedHeader>Origin</AllowedHeader>
-   <AllowedHeader>Content-Type</AllowedHeader>
-   <AllowedHeader>Content-Length</AllowedHeader>
-   <AllowedHeader>Content-MD5</AllowedHeader>
-   <AllowedHeader>Content-Disposition</AllowedHeader>
-   <ExposeHeader>Origin</ExposeHeader>
-   <ExposeHeader>Content-Type</ExposeHeader>
-   <ExposeHeader>Content-Length</ExposeHeader>
-   <ExposeHeader>Content-MD5</ExposeHeader>
-   <ExposeHeader>Content-Disposition</ExposeHeader>
-   <MaxAgeSeconds>3600</MaxAgeSeconds>
- </CORSRule>
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
  <CORSRule>
    <AllowedOrigin>https://lordsombo.ngrok.io</AllowedOrigin>
-   <AllowedMethod>GET</AllowedMethod>
    <AllowedMethod>PUT</AllowedMethod>
-   <AllowedMethod>POST</AllowedMethod>
-   <AllowedMethod>DELETE</AllowedMethod>
-   <AllowedHeader>Origin</AllowedHeader>
-   <AllowedHeader>Content-Type</AllowedHeader>
-   <AllowedHeader>Content-Length</AllowedHeader>
-   <AllowedHeader>Content-MD5</AllowedHeader>
-   <AllowedHeader>Content-Disposition</AllowedHeader>
+   <AllowedHeader>*</AllowedHeader>
    <ExposeHeader>Origin</ExposeHeader>
    <ExposeHeader>Content-Type</ExposeHeader>
-   <ExposeHeader>Content-Length</ExposeHeader>
    <ExposeHeader>Content-MD5</ExposeHeader>
    <ExposeHeader>Content-Disposition</ExposeHeader>
    <MaxAgeSeconds>3600</MaxAgeSeconds>
