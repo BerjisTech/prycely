@@ -30,6 +30,7 @@ gem 'devise'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'image_processing', '~> 1.2'
+gem 'pgcrypto'
 gem 'rufo'
 
 gem 'capistrano', '~> 3.11'
