@@ -40,7 +40,8 @@ gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 gem 'rollbar'
 
-gem 'aws-sdk-s3'
+gem 'active_storage_validations'
+gem 'aws-sdk-s3', require: false
 gem 'shrine'
 
 # Use Active Storage variant
