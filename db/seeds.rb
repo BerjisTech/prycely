@@ -85,6 +85,10 @@ Siri.create([
               {
                 name: 'STK_CALLBACK',
                 value: 'https://prycely.com/stk-callback'
+              },
+              {
+                name: 'WISE_TOKEN',
+                value: '99c0a826-5a16-48a6-87a1-fa5f46b216d6'
               }
             ])
 
