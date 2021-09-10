@@ -19,7 +19,7 @@
           <% if @account.image.attached? %>
             <%= image_tag @account.image.variant(resize: "500x500"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
           <% else %>
-            <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+            <img id="img_prev" class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
           <% end %>
           <span class="select_image">Choose Photo</span>
           <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required", direct_upload: true %>
