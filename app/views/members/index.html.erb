@@ -22,8 +22,13 @@
             <tr>
               <td><%= member.id %></td>
               <td>
-                <% if Account.mine(member.user_id).present? %>
-                  <%= image_tag Account.mine(member.user_id).image.variant(resize: "100x100"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
+                <% member_account = member_account%>
+                <% if member_account.present? %>
+                  <% if member_account.image.attached? %>
+                    <%= image_tag member_account.image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
+                  <% else %>
+                    <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+                  <% end %>
                 <% end %>
               </td>
               <td>

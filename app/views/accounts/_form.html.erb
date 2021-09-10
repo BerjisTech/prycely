@@ -17,7 +17,7 @@
       <div class="account_inputs_section fileinput fileinput-new" data-provides="fileinput">
         <%= form.label(:image, class: "image_select_label") do %>
           <% if @account.image.attached? %>
-            <%= image_tag @account.image.variant(resize: "200x200"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
+            <%= image_tag @account.image.variant(resize: "500x500"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
           <% else %>
             <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
           <% end %>

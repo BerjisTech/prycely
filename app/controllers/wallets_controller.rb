@@ -7,7 +7,8 @@ class WalletsController < ApplicationController
   # GET /wallets or /wallets.json
   def index
     # @wallets = Wallet.all
-    @wallets = current_user.wallets
+    # @wallets = current_user.wallets
+    render json: Account.mine(current_user.id).image.attached?
   end
 
   # GET /wallets/1 or /wallets/1.json

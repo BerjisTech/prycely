@@ -12,7 +12,11 @@
   <div class="col-md-3">
     <div class="user_area">
       <span class="user_image">
-        <%= image_tag @account.image.variant(resize: "100x100") %>
+        <% if @account.image.attached? %>
+          <%= image_tag @account.image.variant(resize: "500x500") %>
+        <% else %>
+          <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+        <% end %>
       </span>
       <span class="name_n_email">
         <span><%= "#{@account.first_name} #{@account.last_name}" %></span>

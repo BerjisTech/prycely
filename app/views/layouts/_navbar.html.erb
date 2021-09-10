@@ -44,10 +44,15 @@
 
     <div class="sidebar-user-info">
       <div class="sui-normal"> <a href="#" class="user-link">
-          <% if Account.mine(current_user.id).present? %>
-            <%= image_tag Account.mine(current_user.id).image.variant(resize: "100x100"), width: "70", alt: "", style: "border-radius: 10px;" %>
+          <% my_account = my_account %>
+          <% if my_account.present? %>
+            <% if my_account.image.attached? %>
+              <%= image_tag my_account.image.variant(resize: "500x500"), width: "70", alt: "", style: "border-radius: 10px;" %>
+            <% else %>
+              <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+            <% end %>
             <span>Welcome,</span>
-            <strong><%= Account.mine(current_user.id).first_name %></strong> </a>
+            <strong><%= my_account.first_name %></strong> </a>
         <% end %>
       </div>
       <div class="sui-hover inline-links animate-in">
@@ -60,7 +65,7 @@
           Wallets
         <% end %>
 
-        <% if Account.mine(current_user.id).present? %>
+        <% if my_account.present? %>
           <%= link_to account_path(Account.where(user_id: current_user.id).last.id), method: :get do %>
             <i class="material-icons">manage_accounts</i>
             Account

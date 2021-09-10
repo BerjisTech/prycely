@@ -31,7 +31,13 @@
         <td><%= account.phone %></td>
         <td><%= account.first_name %></td>
         <td><%= account.last_name %></td>
-        <td><%= image_tag account.image.variant(resize: "100x100") %></td>
+        <td>
+          <% if account.image.attached? %>
+            <%= image_tag account.image.variant(resize: "500x500") %>
+          <% else %>
+            <img id="img_prev" class="img rounded" src="https://placehold.it/200x150" alt="" />
+          <% end %>
+        </td>
         <td><%= account.deactivated %></td>
         <td><%= account.verified %></td>
         <td><%= account.country %></td>
