@@ -23,7 +23,7 @@
               <td><%= member.id %></td>
               <td>
                 <% if Account.mine(member.user_id).present? %>
-                  <%= image_tag Account.mine(member.user_id).image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
+                  <%= image_tag Account.mine(member.user_id).image.variant(resize: "100x100"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
                 <% end %>
               </td>
               <td>
