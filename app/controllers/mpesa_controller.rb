@@ -42,13 +42,9 @@ class MpesaController < ApplicationController
     }
 
     response = call(path, body)
-
-    Error.create(
-      method: 'c2b',
-      error: response.body,
-      time: DateTime.now,
-      referer: request.referer
-    )
+    
+    message = 'OK'
+    add_error('c2b', response.body, request.referer, message)
   end
 
   def stk
@@ -82,12 +78,8 @@ class MpesaController < ApplicationController
 
     status = 0 if response.present?
 
-    Error.create(
-      method: 'stk',
-      error: response.body,
-      time: DateTime.now,
-      referer: request.referer
-    )
+    message = 'OK'
+    add_error('stk', response.body, request.referer, message)
 
     phone_for_stk = @phone.to_s.gsub('254', '')
     response = JSON.parse(response.body)
@@ -103,15 +95,14 @@ class MpesaController < ApplicationController
   def callback_c2b; end
 
   def callback_stk
-    Error.create(
-      method: 'stk_callback',
-      error: params,
-      time: DateTime.now,
-      referer: request.referer
-    )
     if params.present?
       if params.body.present?
-        JSON.parse(params.gsub('=>', ':'))['Body']
+        error = JSON.parse(params.body.gsub('=>', ':'))
+        message = 'OK'
+        add_error('stk_callback', error, request.referer, message)
+      else
+        message = 'Body not passed or processed'
+        add_error('stk_callback', params, request.referer, message)
       end
     end
   end

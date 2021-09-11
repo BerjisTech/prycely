@@ -6,18 +6,11 @@ class ErrorsController < ApplicationController
 
   # GET /errors or /errors.json
   def index
-    # errors = []
-
     stored_errors = Error.all
 
-    # if params.method.present?
-    #   stored_errors = Error.where(method: params[:method])
-    # end
-
-    # stored_errors.map do |error|
-    #   row = error.error.gsub('=>', ':')
-    #   errors << JSON.parse(row)
-    # end
+    if params['method'].present?
+      stored_errors = Error.where(method: params['method'])
+    end
 
     render json: stored_errors
   end

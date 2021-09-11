@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ChangeUserIdTypeToUuid < ActiveRecord::Migration[6.1]
   def up
     # ACCOUNTS TABLES
     execute "ALTER TABLE accounts ALTER COLUMN user_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(user_id),'-',''), 32, '0')));"
 
     # ACTIVITIES TABLES
-    execute "ALTER TABLE activities ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));" 
+    execute "ALTER TABLE activities ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
     execute "ALTER TABLE activities ALTER COLUMN created_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(created_by),'-',''), 32, '0')));"
 
     # ASSETS TABLES
@@ -31,12 +33,12 @@ class ChangeUserIdTypeToUuid < ActiveRecord::Migration[6.1]
     execute "ALTER TABLE members ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
     execute "ALTER TABLE members ALTER COLUMN invited_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(invited_by),'-',''), 32, '0')));"
     execute "ALTER TABLE members ALTER COLUMN account_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(account_id),'-',''), 32, '0')));"
-    
+
     # PROJECTS TABLES
     execute "ALTER TABLE projects ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
     execute "ALTER TABLE projects ALTER COLUMN created_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(created_by),'-',''), 32, '0')));"
 
-    # REDEEMS TABLES    
+    # REDEEMS TABLES
     execute "ALTER TABLE redeems ALTER COLUMN invite_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(invite_id),'-',''), 32, '0')));"
     execute "ALTER TABLE redeems ALTER COLUMN user_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(user_id),'-',''), 32, '0')));"
     execute "ALTER TABLE redeems ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
@@ -53,7 +55,6 @@ class ChangeUserIdTypeToUuid < ActiveRecord::Migration[6.1]
 
     # WALLETS TABLES
     execute "ALTER TABLE wallets ALTER COLUMN user_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(user_id),'-',''), 32, '0')));"
-
   end
 
   def down
