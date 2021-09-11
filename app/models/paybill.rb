@@ -22,9 +22,9 @@ class Paybill < ApplicationRecord
     create_or_update_transaction(paybill_details, response)
   end
 
-  def self.create_deposit(paybill_details, _response)
+  def self.create_deposit(paybill_details, response)
     paybill_data = Paybill.new(
-      'request': request,
+      'request': response,
       'paybill_type': paybill_details.transactionType,
       'transaction_reference': paybill_details.mpesaCode,
       'paybill_balance': paybill_details.payBillBalance,
