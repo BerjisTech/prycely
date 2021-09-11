@@ -22,6 +22,11 @@ class ErrorsController < ApplicationController
     render json: stored_errors
   end
 
+  def clear
+    Error.destroy_all
+    render json: Error.all
+  end
+
   # GET /errors/1 or /errors/1.json
   def show; end
 

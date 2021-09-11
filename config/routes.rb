@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/pricing'
   get 'home/about'
+  get 'purge/errors', controller: :errors, action: :clear
 
   match 'join/:id', to: 'redeems#redeem', via: %i[get post]
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
