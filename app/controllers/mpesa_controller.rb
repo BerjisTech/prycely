@@ -45,7 +45,8 @@ class MpesaController < ApplicationController
     Error.create(
       method: 'c2b',
       error: response.body,
-      time: DateTime.now
+      time: DateTime.now,
+      referer: request.referer
     )
   end
 
@@ -83,7 +84,8 @@ class MpesaController < ApplicationController
     Error.create(
       method: 'stk',
       error: response.body,
-      time: DateTime.now
+      time: DateTime.now,
+      referer: request.referer
     )
 
     phone_for_stk = @phone.to_s.gsub('254', '')
@@ -104,7 +106,8 @@ class MpesaController < ApplicationController
       Error.create(
         method: 'stk_callback',
         error: params,
-        time: DateTime.now
+        time: DateTime.now,
+        referer: request.referer
       )
 
       if params.body.present?
