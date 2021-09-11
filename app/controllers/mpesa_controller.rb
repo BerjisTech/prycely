@@ -71,10 +71,9 @@ class MpesaController < ApplicationController
     message = 'OK'
     Error.add_error('stk', response.body, request.referer, message)
 
-    phone_for_stk = @phone.to_s
     response = JSON.parse(response.body)
 
-    Stk.create_stk(response, status, phone_for_stk)
+    Stk.create_stk(response, "+#{@phone.to_s}", status)
     Transaction.create_from_stk(@amount, response, current_user.id, @desc, category, account)
   end
 
