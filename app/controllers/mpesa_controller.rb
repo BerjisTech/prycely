@@ -80,6 +80,7 @@ class MpesaController < ApplicationController
     status = 0 if response.present?
 
     Error.create(
+      
       error: response.body,
       time: DateTime.now
     )
@@ -104,13 +105,9 @@ class MpesaController < ApplicationController
         time: DateTime.now
       )
 
-      params = JSON.parse(params.gsub('=>', ':'))['Body']
-
-      amount = params.body.stkCallback['CallbackMetadata']['Item'][0].value
-      refrence = params.body.stkCallback['CallbackMetadata']['Item'][1].value
-      timestamp = params.body.stkCallback['CallbackMetadata']['Item'][3].value
-      phone = params.body.stkCallback['CallbackMetadata']['Item'][4].value
-      timestamp = DateTime.strptime(timestamp, '%s')
+      if params.body.present?
+        JSON.parse(params.gsub('=>', ':'))['Body']
+      end
     end
   end
 
