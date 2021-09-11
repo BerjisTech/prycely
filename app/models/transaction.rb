@@ -12,13 +12,13 @@ class Transaction < ApplicationRecord
     Transaction.where(group_id: group_id).pluck('count(id)').first
   end
 
-  def self.create_from_stk(amount, response, user, description, _level, account)
+  def self.create_from_stk(amount, response, user, description, level, account)
     transaction = Transaction.new(
       user_id: user,
       amount: amount,
       transaction_reference: response['MpesaReceiptNumber'],
       transaction_type: 1, # 1 deposit / 2 withdraw / 3 transfer / 4 send
-      level: 1, # 2 group/ 1 personal
+      level: level, # 2 group/ 1 personal
       group_id: account,
       wallet_id: account,
       status: 0,
@@ -39,6 +39,8 @@ class Transaction < ApplicationRecord
       transaction_type: 1, # 1 deposit / 2 withdraw / 3 transfer / 4 send
       status: 0, # 0 pending / 1 success / 2 failed / 3 error
       transaction_mode: 1,
+      group_id: 0,
+      wallet_id: 0,
       currency: 'KES'
     )
     save_transaction(transaction)
