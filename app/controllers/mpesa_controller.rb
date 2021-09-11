@@ -43,6 +43,7 @@ class MpesaController < ApplicationController
     response = call(path, body)
 
     Error.create(
+      method: 'c2b',
       error: response.body,
       time: DateTime.now
     )
@@ -80,7 +81,7 @@ class MpesaController < ApplicationController
     status = 0 if response.present?
 
     Error.create(
-      
+      method: 'stk',
       error: response.body,
       time: DateTime.now
     )
@@ -101,6 +102,7 @@ class MpesaController < ApplicationController
   def callback_stk
     if params.present?
       Error.create(
+        method: 'stk_callback',
         error: params,
         time: DateTime.now
       )
