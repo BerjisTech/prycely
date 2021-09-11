@@ -33,18 +33,8 @@ class MpesaController < ApplicationController
   end
 
   def c2b
-    path = '/mpesa/c2b/v1/registerurl'
-    body = {
-      'ShortCode': @C2B_PAYBILL,
-      'ResponseType': 'Completed',
-      'ConfirmationURL': @CONFIRMATION_URL,
-      'ValidationURL': @VALIDATION_URL
-    }
-
-    response = call(path, body)
-
-    message = 'OK'
-    Error.add_error('c2b', response.body, request.referer, message)
+    message = 'Ok'
+    Error.add_error('c2b', params, request.referer, message)
   end
 
   def stk
@@ -81,7 +71,7 @@ class MpesaController < ApplicationController
     message = 'OK'
     Error.add_error('stk', response.body, request.referer, message)
 
-    phone_for_stk = @phone.to_s.gsub('254', '')
+    phone_for_stk = @phone.to_s
     response = JSON.parse(response.body)
 
     Stk.create_stk(response, status, phone_for_stk)
@@ -100,7 +90,7 @@ class MpesaController < ApplicationController
         error = params['Body']
         message = 'OK'
         Error.add_error('stk_callback', error, request.referer, message)
-        Stk.update_stk
+        Stk.update_stk(params['Body']['stkCallback'])
       else
         message = 'Body not passed or processed'
         Error.add_error('stk_callback', params, request.referer, message)

@@ -17,14 +17,37 @@ class Stk < ApplicationRecord
   end
 
   def self.update_stk(request)
-    $MerchantRequestID = $request['Body']['stkCallback']['MerchantRequestID'];
-            $CheckoutRequestID = $request['Body']['stkCallback']['CheckoutRequestID'];
-            $ResultCode = $request['Body']['stkCallback']['ResultCode'];
-            $ResultDesc = $request['Body']['stkCallback']['ResultDesc'];
+    # when success
+    resultCode = request['ResultCode']
+    # initialize non-common variables
+    statusRes = 2
 
-            //initialize non-common variables
-            $statusRes = 2;
-            $stkRes = 3;
+    process_request_for_update(request, statusRes, stkRes, resultCode) if [0, '0'].include?(resultCode)
+  end
 
+  def self.process_request_for_update(_processed_request, request, resultCode)
+    statusRes = 1 # 0 = pending 1 = success 2 = failed
+
+    # amount = request['CallbackMetadata']['Item'][0]['Value']
+    mpesaReceiptNumber = request['CallbackMetadata']['Item'][1]['Value']
+    merchantRequestID = request['MerchantRequestID']
+    checkoutRequestID = request['CheckoutRequestID']
+    resultDesc = request['ResultDesc']
+
+    update_success_stk(mpesaReceiptNumber, merchantRequestID, checkoutRequestID, resultCode, resultDesc, statusRes)
+    Transaction.update_success_transaction(merchantRequestID, statusRes)
+  end
+
+  def self.update_success_stk(mpesaReceiptNumber, merchantRequestID, checkoutRequestID, resultCode, resultDesc, statusRes)
+    @stk = {
+      transaction_reference: mpesaReceiptNumber,
+      merchant_request_id: merchantRequestID,
+      checkout_request_id: checkoutRequestID,
+      response_code: resultCode,
+      response_description: resultDesc,
+      status: statusRes
+    }
+
+    Model.where(merchant_request_id: merchantRequestID).update_all(@stk)
   end
 end
