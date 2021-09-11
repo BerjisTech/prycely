@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ErrorsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_error, only: %i[show edit update destroy]
 
   # GET /errors or /errors.json
@@ -9,6 +9,10 @@ class ErrorsController < ApplicationController
     stored_errors = Error.all
 
     stored_errors = Error.where(method: params['method']) if params['method'].present?
+
+    stored_errors.map do |error|
+      error.error = JSON.parse(error.error.gsub('=>', ':'))
+    end
 
     render json: stored_errors
   end
