@@ -25,7 +25,7 @@ class Stk < ApplicationRecord
     process_request_for_update(request, statusRes, stkRes, resultCode) if [0, '0'].include?(resultCode)
   end
 
-  def self.process_request_for_update(_processed_request, request, resultCode)
+  def self.process_request_for_update(request, statusRes, stkRes, resultCode)
     statusRes = 1 # 0 = pending 1 = success 2 = failed
 
     # amount = request['CallbackMetadata']['Item'][0]['Value']

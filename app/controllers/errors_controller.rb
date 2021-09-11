@@ -12,7 +12,7 @@ class ErrorsController < ApplicationController
 
     errors = format_errors(stored_errors)
 
-    render json: errors
+    render json: stored_errors
   end
 
   def format_errors(stored_errors)
