@@ -35,7 +35,7 @@ class MpesaController < ApplicationController
   def c2b
     message = 'Ok'
     Error.add_error('c2b', params, request.referer, message)
-    process_paybill_response(params)
+    Paybill.process_paybill_response(params)
   end
 
   def stk
