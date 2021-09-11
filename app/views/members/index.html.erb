@@ -22,7 +22,7 @@
             <tr>
               <td><%= member.id %></td>
               <td>
-                <% member_account = member_account%>
+                <% member_account = member_account %>
                 <% if member_account.present? %>
                   <% if member_account.image.attached? %>
                     <%= image_tag member_account.image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>

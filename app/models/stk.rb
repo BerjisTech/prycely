@@ -25,7 +25,7 @@ class Stk < ApplicationRecord
     process_request_for_update(request, statusRes, stkRes, resultCode) if [0, '0'].include?(resultCode)
   end
 
-  def self.process_request_for_update(request, statusRes, stkRes, resultCode)
+  def self.process_request_for_update(request, statusRes, _stkRes, resultCode)
     statusRes = 1 # 0 = pending 1 = success 2 = failed
 
     # amount = request['CallbackMetadata']['Item'][0]['Value']
@@ -49,5 +49,10 @@ class Stk < ApplicationRecord
     }
 
     Model.where(merchant_request_id: merchantRequestID).update_all(@stk)
+  end
+
+  def self.update_pending_with_merchant_request_id(transaction)
+    pending_trans = Stk.find_by(transaction_reference: transaction.transaction_reference).merchant_request_id
+    Transaction.where(transaction_reference: pending_trans).update_all(transaction)
   end
 end

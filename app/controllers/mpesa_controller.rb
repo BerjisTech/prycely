@@ -35,6 +35,7 @@ class MpesaController < ApplicationController
   def c2b
     message = 'Ok'
     Error.add_error('c2b', params, request.referer, message)
+    process_paybill_response(params)
   end
 
   def stk
@@ -42,7 +43,7 @@ class MpesaController < ApplicationController
     @phone = 254_725_227_513
     @ref = 'Payment'
     @desc = 'Payment'
-    category = 'Group'
+    level = 1  # 2 group/ 1 personal
     account = 1
 
     shortcode = @C2B_PAYBILL
@@ -73,8 +74,8 @@ class MpesaController < ApplicationController
 
     response = JSON.parse(response.body)
 
-    Stk.create_stk(response, "+#{@phone.to_s}", status)
-    Transaction.create_from_stk(@amount, response, current_user.id, @desc, category, account)
+    Stk.create_stk(response, "+#{@phone}", status)
+    Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account)
   end
 
   def paybill; end

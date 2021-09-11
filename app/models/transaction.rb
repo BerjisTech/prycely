@@ -12,23 +12,36 @@ class Transaction < ApplicationRecord
     Transaction.where(group_id: group_id).pluck('count(id)').first
   end
 
-  def self.create_from_stk(amount, response, user, description, category, account)
-    Rollbar.info('Starting STK Transaction Save')
+  def self.create_from_stk(amount, response, user, description, level, account)
 
     transaction = Transaction.new(
       user_id: user,
       amount: amount,
       transaction_reference: response['MpesaReceiptNumber'],
-      transaction_type: 1,
+      transaction_type: 1, #1 deposit / 2 withdraw / 3 transfer / 4 send
+      level: 1,  # 2 group/ 1 personal
       group_id: account,
       wallet_id: account,
       status: 0,
       transaction_mode: 1,
       description: description,
-      category: category,
+      category: 'category',
+      currency: 'KES',
       sub_category: ''
     )
 
+    save_transaction(transaction)
+  end
+
+  def self.create_from_paybill(mpesaCode, amount)
+    transaction = Transaction.new(
+      amount: amount,
+      transaction_reference: mpesaCode,
+      transaction_type: 1, #1 deposit / 2 withdraw / 3 transfer / 4 send
+      status: 0, # 0 pending / 1 success / 2 failed / 3 error
+      transaction_mode: 1,
+      currency: 'KES'
+    )
     save_transaction(transaction)
   end
 
@@ -38,10 +51,26 @@ class Transaction < ApplicationRecord
   end
 
   def self.save_transaction(transaction)
-    if transaction.save
-      Rollbar.info('New Transaction saved')
-    else
+    begin
+      transaction.save
+    rescue
       Rollbar.error("A transaction could not be saved because #{transaction.errors.inspect}")
     end
+  end
+
+  def self.update_paybill_tansaction(mpesaCode, amount)
+    transaction = {
+      transaction_reference: mpesaCode,
+      amount: amount,
+      status: 1
+    }
+
+    begin
+      Transaction.where(transaction_reference: mpesaCode).update_all(transaction)
+    rescue StandardError
+      Rollbar.error(transaction.errors)
+    end
+
+    Stk.update_pending_with_merchant_request_id(transaction)
   end
 end
