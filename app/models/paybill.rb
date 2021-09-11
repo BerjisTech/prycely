@@ -15,7 +15,7 @@ class Paybill < ApplicationRecord
       middleName: response['MiddleName'] || '',
       phone: response['MSISDN'],
       shortCode: response['BusinessShortCode'],
-      accountNumber: strtoupper(response['BillRefNumber'])
+      accountNumber: response['BillRefNumber'].upcase
     }
 
     create_deposit(paybill_details, response)
