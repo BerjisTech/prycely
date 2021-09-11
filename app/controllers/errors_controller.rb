@@ -10,11 +10,25 @@ class ErrorsController < ApplicationController
 
     stored_errors = Error.where(method: params['method']) if params['method'].present?
 
-    stored_errors.map do |error|
-      error.error = JSON.parse(error.error.gsub('=>', ':'))
-    end
+    errors = format_errors(stored_errors)
 
-    render json: stored_errors
+    render json: errors
+  end
+
+  def format_errors(stored_errors)
+    errors = []
+    stored_errors.map do |error|
+      errors << {
+        id: error.id,
+        error: JSON.parse(error.error.gsub('=>', ':')),
+        time: error.time,
+        created_at: error.created_at,
+        updated_at: error.updated_at,
+        method: error.method,
+        referer: error.referer,
+        message: error.message
+      }
+    end
   end
 
   def clear

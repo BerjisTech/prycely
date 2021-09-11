@@ -16,5 +16,15 @@ class Stk < ApplicationRecord
     )
   end
 
-  def self.update_stk; end
+  def self.update_stk(request)
+    $MerchantRequestID = $request['Body']['stkCallback']['MerchantRequestID'];
+            $CheckoutRequestID = $request['Body']['stkCallback']['CheckoutRequestID'];
+            $ResultCode = $request['Body']['stkCallback']['ResultCode'];
+            $ResultDesc = $request['Body']['stkCallback']['ResultDesc'];
+
+            //initialize non-common variables
+            $statusRes = 2;
+            $stkRes = 3;
+
+  end
 end
