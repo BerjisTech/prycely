@@ -2,12 +2,12 @@
 
 # Errors model
 class Error < ApplicationRecord
-  def self.add_error(_method, _error, _referer, message)
+  def self.add_error(method, error, referer, message)
     Error.create(
-      method: 'stk_callback',
-      error: params,
+      method: method,
+      error: error,
       time: DateTime.now,
-      referer: request.referer,
+      referer: referer,
       message: message
     )
   end
