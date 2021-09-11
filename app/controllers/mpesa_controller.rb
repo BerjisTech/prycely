@@ -3,6 +3,7 @@
 class MpesaController < ApplicationController
   # require 'faraday'
   # require "faraday_middleware"
+  before_action :authenticate_user!, only: %i[stk]
   skip_before_action :verify_authenticity_token, only: %i[b2c c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
 
@@ -102,14 +103,13 @@ class MpesaController < ApplicationController
   def callback_c2b; end
 
   def callback_stk
+    Error.create(
+      method: 'stk_callback',
+      error: params,
+      time: DateTime.now,
+      referer: request.referer
+    )
     if params.present?
-      Error.create(
-        method: 'stk_callback',
-        error: params,
-        time: DateTime.now,
-        referer: request.referer
-      )
-
       if params.body.present?
         JSON.parse(params.gsub('=>', ':'))['Body']
       end

@@ -6,14 +6,20 @@ class ErrorsController < ApplicationController
 
   # GET /errors or /errors.json
   def index
-    errors = []
+    # errors = []
 
-    Error.all.map do |error|
-      row = error.error.gsub('=>', ':')
-      errors << JSON.parse(row)
-    end
+    stored_errors = Error.all
 
-    render json: errors
+    # if params.method.present?
+    #   stored_errors = Error.where(method: params[:method])
+    # end
+
+    # stored_errors.map do |error|
+    #   row = error.error.gsub('=>', ':')
+    #   errors << JSON.parse(row)
+    # end
+
+    render json: stored_errors
   end
 
   # GET /errors/1 or /errors/1.json
@@ -73,6 +79,6 @@ class ErrorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def error_params
-    params.require(:error).permit(:error, :time)
+    params.require(:error).permit(:error, :time, :method, :referer)
   end
 end
