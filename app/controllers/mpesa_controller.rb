@@ -39,12 +39,12 @@ class MpesaController < ApplicationController
   end
 
   def stk
-    @amount = 1
-    @phone = 254_725_227_513
-    @ref = 'Payment'
-    @desc = 'Payment'
-    level = 1 # 2 group/ 1 personal
-    account = 1
+    @amount = params[:amount]
+    @phone = params[:phone]
+    @ref = params[:reference]
+    @desc = params[:description]
+    level = params[:level] # 2 group/ 1 personal
+    account = params[:account]
 
     shortcode = @C2B_PAYBILL
     lipa_na_mpesa_key = @MPESA_API_PASSKEY
