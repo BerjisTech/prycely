@@ -14,13 +14,8 @@ class ErrorsController < ApplicationController
   end
 
   def clear
-    # Error.destroy_all
-    # render json: Error.all
-    parameters = {
-      'Body' => { 'stkCallback' => { 'MerchantRequestID' => '28145-102430287-1',
-                                     'CheckoutRequestID' => 'ws_CO_11092021104127974080', 'ResultCode' => 0, 'ResultDesc' => 'The service request is processed successfully.', 'CallbackMetadata' => { 'Item' => [{ 'Name' => 'Amount', 'Value' => 1.0 }, { 'Name' => 'MpesaReceiptNumber', 'Value' => 'PIB8R5YWBO' }, { 'Name' => 'Balance' }, { 'Name' => 'TransactionDate', 'Value' => 20_210_911_104_133 }, { 'Name' => 'PhoneNumber', 'Value' => 254_725_227_513 }] } } }, 'controller' => 'mpesa', 'action' => 'callback_stk', 'mpesa' => { 'Body' => { 'stkCallback' => { 'MerchantRequestID' => '28145-102430287-1', 'CheckoutRequestID' => 'ws_CO_11092021104127974080', 'ResultCode' => 0, 'ResultDesc' => 'The service request is processed successfully.', 'CallbackMetadata' => { 'Item' => [{ 'Name' => 'Amount', 'Value' => 1.0 }, { 'Name' => 'MpesaReceiptNumber', 'Value' => 'PIB8R5YWBO' }, { 'Name' => 'Balance' }, { 'Name' => 'TransactionDate', 'Value' => 20_210_911_104_133 }, { 'Name' => 'PhoneNumber', 'Value' => 254_725_227_513 }] } } } }
-    }
-    render json: parameters['Body']
+    Error.destroy_all
+    render json: Error.all
   end
 
   # GET /errors/1 or /errors/1.json

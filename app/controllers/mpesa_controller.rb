@@ -42,7 +42,7 @@ class MpesaController < ApplicationController
     }
 
     response = call(path, body)
-
+    
     message = 'OK'
     add_error('c2b', response.body, request.referer, message)
   end
@@ -96,12 +96,14 @@ class MpesaController < ApplicationController
 
   def callback_stk
     if params.present?
-      error = params['Body']
-      message = 'OK'
-      add_error('stk_callback', error, request.referer, message)
-    else
-      message = 'Body not passed or processed'
-      add_error('stk_callback', params, request.referer, message)
+      if params['Body'].present?
+        error = params['Body']
+        message = 'OK'
+        add_error('stk_callback', error, request.referer, message)
+      else
+        message = 'Body not passed or processed'
+        add_error('stk_callback', params, request.referer, message)
+      end
     end
   end
 
