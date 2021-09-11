@@ -2,7 +2,6 @@
 
 class Paybill < ApplicationRecord
   def self.process_paybill_response(response)
-
     # paybill_details = {
     #   transactionType: response['TransactionType'],
     #   mpesaCode: response['TransID'],

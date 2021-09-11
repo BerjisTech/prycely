@@ -43,7 +43,7 @@ class MpesaController < ApplicationController
     @phone = 254_725_227_513
     @ref = 'Payment'
     @desc = 'Payment'
-    level = 1  # 2 group/ 1 personal
+    level = 1 # 2 group/ 1 personal
     account = 1
 
     shortcode = @C2B_PAYBILL
