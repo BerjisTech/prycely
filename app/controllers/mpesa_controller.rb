@@ -44,7 +44,7 @@ class MpesaController < ApplicationController
     response = call(path, body)
     
     message = 'OK'
-    add_error('c2b', response.body, request.referer, message)
+    Error.add_error('c2b', response.body, request.referer, message)
   end
 
   def stk
@@ -79,7 +79,7 @@ class MpesaController < ApplicationController
     status = 0 if response.present?
 
     message = 'OK'
-    add_error('stk', response.body, request.referer, message)
+    Error.add_error('stk', response.body, request.referer, message)
 
     phone_for_stk = @phone.to_s.gsub('254', '')
     response = JSON.parse(response.body)
@@ -99,10 +99,10 @@ class MpesaController < ApplicationController
       if params['Body'].present?
         error = params['Body']
         message = 'OK'
-        add_error('stk_callback', error, request.referer, message)
+        Error.add_error('stk_callback', error, request.referer, message)
       else
         message = 'Body not passed or processed'
-        add_error('stk_callback', params, request.referer, message)
+        Error.add_error('stk_callback', params, request.referer, message)
       end
     end
   end
