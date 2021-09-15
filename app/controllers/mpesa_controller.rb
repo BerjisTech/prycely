@@ -12,8 +12,8 @@ class MpesaController < ApplicationController
   def b2c
     amount = 10
     phone = 254_725_227_513
-    command_id = ''
-    remarks = ''
+    command_id = 'BusinessPayment'
+    remarks = "Withdrawal for #{phone} on #{DateTime.now}"
 
     path = '/mpesa/b2c/v1/paymentrequest'
 
