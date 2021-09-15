@@ -19,7 +19,7 @@ class MpesaController < ApplicationController
 
     body = {
       'InitiatorName': @B2C_USERNAME,
-      'SecurityCredential': @MPESA_API_PASSKEY,
+      'SecurityCredential': @MPESA_B2C_API_PASSKEY,
       'CommandID': command_id,
       'Amount': amount,
       'PartyA': @B2C_PAYBILL,
@@ -29,7 +29,7 @@ class MpesaController < ApplicationController
       'ResultURL': @RESULT_URL,
       'Occasion': '' # optional
     }
-    render json: call(path, body)
+    render json: call(path, body, @MPESA_B2C_API_KEY, @MPESA_B2C_API_SECRET)
   end
 
   def c2b
@@ -65,7 +65,7 @@ class MpesaController < ApplicationController
       'TransactionDesc': @desc
     }
 
-    response = call(path, body)
+    response = call(path, body, @MPESA_API_KEY, @MPESA_API_SECRET)
 
     status = 0 if response.present?
 
@@ -107,16 +107,14 @@ class MpesaController < ApplicationController
       'ValidationURL': @VALIDATION_URL
     }
 
-    call(path, body)
+    call(path, body, @MPESA_API_KEY, @MPESA_API_SECRET)
   end
 
   def validation; end
 
-  def access_token
+  def access_token(key, secret)
     path = '/oauth/v1/generate?grant_type=client_credentials'
     base_url = @BASE_URL
-    key = @MPESA_API_KEY
-    secret = @MPESA_API_SECRET
     conn = Faraday.new(url: base_url + path) do |req|
       req.adapter Faraday.default_adapter
       req.basic_auth(key, secret)
@@ -141,9 +139,9 @@ class MpesaController < ApplicationController
 
   private
 
-  def call(path, body)
+  def call(path, body, key, secret)
     base_url = @BASE_URL
-    res = access_token
+    res = access_token(key, secret)
     return res unless res.status == 200
 
     token = JSON.parse(res.body)['access_token']
