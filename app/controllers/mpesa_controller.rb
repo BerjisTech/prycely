@@ -3,8 +3,8 @@
 class MpesaController < ApplicationController
   # require 'faraday'
   # require "faraday_middleware"
-  before_action :authenticate_user!, only: %i[stk]
-  skip_before_action :verify_authenticity_token, only: %i[b2c c2b callback_stk callback_b2c callback_c2b]
+  before_action :authenticate_user!, only: %i[stk b2c]
+  skip_before_action :verify_authenticity_token, only: %i[c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
 
   def index; end
