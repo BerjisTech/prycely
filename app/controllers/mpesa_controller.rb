@@ -80,7 +80,11 @@ class MpesaController < ApplicationController
 
   def paybill; end
 
-  def callback_b2c; end
+  def callback_b2c
+    message = 'Ok'
+    Error.add_error('c2b', params, request.referer, message)
+    Paybill.process_paybill_response(params)
+  end
 
   def callback_c2b; end
 
