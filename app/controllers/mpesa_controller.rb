@@ -22,7 +22,7 @@ class MpesaController < ApplicationController
       'SecurityCredential': @MPESA_API_PASSKEY,
       'CommandID': command_id,
       'Amount': amount,
-      'PartyA': @C2B_PAYBILL,
+      'PartyA': @B2C_PAYBILL,
       'PartyB': phone,
       'Remarks': remarks,
       'QueueTimeOutURL': @TIMEOUT_URL,
