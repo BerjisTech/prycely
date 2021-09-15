@@ -10,7 +10,7 @@ class MpesaController < ApplicationController
   def index; end
 
   def b2c
-    amount = 0
+    amount = 10
     phone = 254_725_227_513
     command_id = ''
     remarks = ''
@@ -29,7 +29,7 @@ class MpesaController < ApplicationController
       'ResultURL': @RESULT_URL,
       'Occasion': '' # optional
     }
-    call(path, body)
+    render json: call(path, body)
   end
 
   def c2b
