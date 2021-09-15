@@ -89,6 +89,10 @@ Siri.create([
               {
                 name: 'WISE_TOKEN',
                 value: '99c0a826-5a16-48a6-87a1-fa5f46b216d6'
+              },
+              {
+                name: 'STRIPE_PASS',
+                value: 'qpvy-rpmq-prjm-srwk-yaoy'
               }
             ])
 
