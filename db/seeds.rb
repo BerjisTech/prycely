@@ -72,7 +72,7 @@ Siri.create([
               },
               {
                 name: 'RESULT_URL',
-                value: 'https://prycely.com/b2c'
+                value: 'https://prycely.com/b2c-callback'
               },
               {
                 name: 'CONFIRMATION_URL',
