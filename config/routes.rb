@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :siris
-  resources :logs
+
   get 'dashboard/index'
   get 'api/index'
-  get 'home/index'
-  get 'home/about'
-  get 'home/pricing'
-  get 'home/about'
+
+  get 'index', controller: :home, action: :index
+  get 'about', controller: :home, action: :about
+  get 'pricing', controller: :home, action: :pricing
+  get 'about', controller: :home, action: :about
   get 'purge/errors', controller: :errors, action: :clear
 
   match 'join/:id', to: 'redeems#redeem', via: %i[get post]
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
   get 'contributions', controller: :transactions, action: :contributions
+  get 'withdraw', controller: :transact, action: :withdraw
 
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
@@ -29,7 +30,6 @@ Rails.application.routes.draw do
   resources :liabilities
   resources :assets
   resources :activities
-  devise_for :admins
   resources :loans
   resources :loancategories
   resources :paymentcategories
@@ -47,16 +47,18 @@ Rails.application.routes.draw do
   resources :invites
   resources :accounts
   resources :grouptypes
-
+  resources :siris
+  resources :logs
   resources :groups
-
   resources :wallets
+
+  devise_for :admins
   devise_for :users, controllers: { confirmations: 'confirmations' }, path: '',
                      path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
   root 'home#index'
 
-  match 'dashboard', to: 'dashboard#index', via: %i[get post]
+  get 'dashboard', controller: :dashboard, action: :index
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
