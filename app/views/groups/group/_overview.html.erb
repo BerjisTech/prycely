@@ -36,12 +36,12 @@
       </div>
     </div>
     <div class="overview-transact">
-      <div class="deposit">
+      <%= link_to "#{root_url}deposit/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}", class: "deposit" do %>
         <span>DEPOSIT</span>
-      </div>
-      <div class="withdraw">
+      <% end %>
+      <%= link_to "#{root_url}withdraw/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}", class: "withdraw" do %>
         <span>WITHDRAW</span>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

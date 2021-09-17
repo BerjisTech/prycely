@@ -5,6 +5,8 @@
         <%= controller_name.humanize %> /
         <% if controller_name == "groups" && action_name == "show" %>
           <%= @group.name %>
+        <% else %>
+          <%= action_name.humanize %>
         <% end %>
         <% if controller_name == "members" || controller_name == "projects" || controller_name == "loans" || controller_name == "assets" || controller_name == "liabilities" || action_name == "contirbution" %>
           <%= Group.find(session[:current_group]).name if session[:current_group].present? %>

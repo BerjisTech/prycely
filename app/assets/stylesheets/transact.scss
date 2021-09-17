@@ -1,3 +1,19 @@
 // Place all the styles related to the transact controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.withdraw_page {
+    width          : 100%;
+    height         : auto;
+    min-height     : 450px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+
+    .withdraw_section {
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: center;
+    }
+}

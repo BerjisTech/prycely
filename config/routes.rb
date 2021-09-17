@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   get 'dashboard/index'
-  get 'api/index'
+  get 'api', controller: :api, action: :index
 
   get 'index', controller: :home, action: :index
   get 'about', controller: :home, action: :about
@@ -14,7 +13,8 @@ Rails.application.routes.draw do
   match 'join/:id', to: 'redeems#redeem', via: %i[get post]
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
   get 'contributions', controller: :transactions, action: :contributions
-  get 'withdraw', controller: :transact, action: :withdraw
+  get 'withdraw/:level/:account', controller: :transact, action: :withdraw
+  get 'deposit/:level/:account', controller: :transact, action: :deposit
 
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
