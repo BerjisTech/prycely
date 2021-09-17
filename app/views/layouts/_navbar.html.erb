@@ -88,7 +88,7 @@
       <% end %>
       ">
         <%= link_to groups_path do %>
-          <i class="material-icons">account_balance</i>
+          <i class="material-icons">groups</i>
           <span class="title">
             Group 
             <% if session[:current_group] %>
@@ -108,52 +108,52 @@
           <% if session[:current_group] %>
             <li>
               <%= link_to group_path(session[:current_group]) do %>
-                <i class="entypo-flow-parallel"></i><span class="title">Overview</span>
+                <i class="material-icons">text_snippet</i><span class="title">Overview</span>
               <% end %>
             </li>
           <% end %>
           <li>
             <%= link_to members_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Members</span>
+              <i class="material-icons">group</i><span class="title">Members</span>
             <% end %>
           </li>
           <li>
             <%= link_to contributions_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Savings & Contributions</span>
+              <i class="material-icons">savings</i><span class="title">Savings & Contributions</span>
             <% end %>
           </li>
           <li>
             <%= link_to projects_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Projects</span>
+              <i class="material-icons">business_center</i><span class="title">Projects</span>
             <% end %>
           </li>
           <li>
             <%= link_to loans_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Loans</span>
+              <i class="material-icons">credit_score</i><span class="title">Loans</span>
             <% end %>
           </li>
           <li>
             <%= link_to assets_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Assets</span>
+              <i class="material-icons">maps_home_work</i><span class="title">Assets</span>
             <% end %>
           </li>
           <li>
             <%= link_to liabilities_path do %>
-              <i class="entypo-flow-parallel"></i><span class="title">Liabilities</span>
+              <i class="material-icons">money_off_csred</i><span class="title">Liabilities</span>
             <% end %>
           </li>
         </ul>
       </li>
       <li class="has-sub <% if controller_name == "wallets" %>opened<% end %>">
         <%= link_to wallets_path do %>
-          <i class="material-icons">account_balance</i>
+          <i class="material-icons">account_balance_wallet</i>
           <span class="title">Wallets</span>
         <% end %>
         <ul>
           <li>
             <% Wallet.mine(current_user.id).map do |wallet| %>
               <%= link_to wallet_path(wallet.id) do %>
-                <i class="entypo-newspaper"></i>
+                <img src="https://assets.prycely.com/images/flags/<%= wallet.currency[0...2].downcase %>.svg" style="width: 30px;"/>
                 <span class="title"><%= wallet.currency.upcase %></span>
               <% end %>
             <% end %>

@@ -1,19 +1,573 @@
 // Place all the styles related to the transact controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.withdraw_page {
-    width          : 100%;
-    height         : auto;
-    min-height     : 450px;
+.withdrawChoices {
     display        : flex;
     flex-direction : column;
     align-items    : center;
     justify-content: center;
 
-    .withdraw_section {
+    .withdrawChoice {
+        display       : flex;
+        flex-direction: column;
+        width         : 50%;
+        min-width     : 300px;
+        max-width     : 100%;
+        background    : rgba(255, 255, 255, 1);
+
+        [class*="wd-"] {
+            color          : #373E4F !important;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            cursor         : pointer;
+            border-bottom  : 1px solid rgba(190, 190, 190, 1);
+            padding        : 15px 10px;
+            transition     : all 0.56s;
+
+            &:first-of-type {
+                border-top: 1px solid rgba(190, 190, 190, 1);
+            }
+
+            &:hover {
+                background: #f1f3ff;
+            }
+
+            [class*="material-icons"] {
+                border         : 1px solid rgba(190, 190, 190, 1);
+                border-radius  : 100%;
+                width          : 35px;
+                height         : 35px;
+                align-items    : center;
+                justify-content: center;
+                display        : flex;
+                cursor         : pointer;
+                color          : rgba(190, 190, 190, 1);
+            }
+
+            .withdrawChoiceDescription {
+                display       : flex;
+                flex-direction: column;
+                margin        : 10px;
+                flex          : 1;
+            }
+        }
+    }
+
+    .wd-checkbox {
+        font-size : 0px;
+        transition: all 0.56s;
+    }
+
+    .chosen {
+        .wd-checkbox {
+            color    : #7d2ae8;
+            font-size: 80px;
+            border   : 3px solid #7d2ae8;
+        }
+    }
+
+    .withdrawChoiceDescription {
+        span {
+            &:first-of-type {
+                font-weight: 600;
+                font-size  : larger;
+            }
+        }
+    }
+
+    .withdrawPanel {
+        display       : flex;
+        flex-direction: column;
+    }
+
+    .withdrawForm {
+        display       : flex;
+        flex-direction: column;
+
+        input {
+            border-radius: 5px !important;
+            border       : 2px solid #828486;
+            padding      : 0 20px !important;
+            font-weight  : 600 !important;
+            text-align   : left;
+            height       : 50px;
+            margin-top   : 10px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .withdrawProceedCancel {
         display        : flex;
-        flex-direction : column;
+        align-items    : baseline;
+        justify-content: space-between;
+    }
+
+    .withdrawButton {
+        width          : 50%;
+        height         : 50px;
+        text-align     : center;
+        background     : #7d2ae8;
+        color          : #fff;
+        font-weight    : 600;
+        display        : flex;
         align-items    : center;
         justify-content: center;
+        cursor         : pointer;
+        border         : 1px solid #7d2ae8;
+    }
+}
+
+.depositPage {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+
+    .depositCurrency {
+        display       : flex;
+        flex-direction: column;
+        width         : 50%;
+        min-width     : 300px;
+        max-width     : 100%;
+        background    : rgba(255, 255, 255, 1);
+
+        .transfer-title {
+            font-weight: 700;
+            font-size  : 18px;
+        }
+
+        .tu-title {
+            font-weight: 700;
+            font-size  : 18px;
+        }
+
+        .transfer-from-this {
+            display       : flex;
+            flex-direction: row;
+            background    : #fff;
+            border        : 1px solid #7d2ae8;
+            padding       : 9px;
+            margin        : 10px;
+        }
+
+        .transfer-to-this {
+            display       : flex;
+            flex-direction: row;
+            background    : #fff;
+            border        : 1px solid #7d2ae8;
+            padding       : 9px;
+            margin        : 10px;
+        }
+
+        .tu-from-this {
+            display       : flex;
+            flex-direction: row;
+            background    : #fff;
+            border        : 1px solid #7d2ae8;
+            padding       : 9px;
+            margin        : 10px;
+        }
+
+        .tu-to-this {
+            display       : flex;
+            flex-direction: row;
+            background    : #fff;
+            border        : 1px solid #7d2ae8;
+            padding       : 9px;
+            margin        : 10px;
+            display       : flex;
+            flex-direction: column;
+            background    : #fff;
+            border        : 1px solid #7d2ae8;
+            padding       : 9px;
+            margin        : 10px;
+
+            span {
+                &:first-of-type {
+                    font-size     : 12px;
+                    border        : none;
+                    background    : none;
+                    color         : #bfc5d2;
+                    width         : 100%;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+
+        .transfer-amount-details {
+            display        : flex;
+            flex-grow      : 4;
+            flex-direction : column;
+            justify-content: start;
+            align-items    : flex-start;
+
+            span {
+                color    : #bfc5d2;
+                font-size: 12px;
+            }
+
+            input {
+                font-size     : 20px;
+                font-weight   : 800;
+                border        : none;
+                background    : none;
+                color         : #293551;
+                width         : 100%;
+                padding-bottom: 10px;
+            }
+        }
+
+        .tu-amount-details {
+            display        : flex;
+            flex-grow      : 4;
+            flex-direction : column;
+            justify-content: start;
+            align-items    : flex-start;
+
+            span {
+                color    : #bfc5d2;
+                font-size: 12px;
+            }
+
+            input {
+                font-size     : 20px;
+                font-weight   : 800;
+                border        : none;
+                background    : none;
+                color         : #293551;
+                width         : 100%;
+                padding-bottom: 10px;
+            }
+        }
+
+        .transfer-wallet-details {
+            display        : flex;
+            flex-direction : row;
+            justify-content: center;
+            align-items    : center;
+            background     : #f7f7f9;
+            flex-shrink    : 4;
+            padding        : 6px;
+
+            img {
+                width: 50px;
+            }
+
+            span {
+                &:first-of-type {
+                    font-weight: 700;
+                    color      : #2a3551;
+                    padding    : 5px 10px;
+                }
+            }
+        }
+
+        .tu-wallet-details {
+            display        : flex;
+            flex-direction : row;
+            justify-content: space-between;
+            align-items    : center;
+            background     : #f7f7f9;
+            flex-shrink    : 4;
+            padding        : 6px;
+
+            img {
+                width: 50px;
+            }
+
+            span {
+                &:first-of-type {
+                    font-weight   : 700;
+                    color         : #2a3551;
+                    padding       : 5px 10px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .tu-currency-drop {
+            display        : none;
+            align-items    : flex-start;
+            justify-content: flex-start;
+            flex-direction : column;
+            background     : #f7f7f9;
+            flex-shrink    : 4;
+            padding        : 6px;
+            position       : absolute;
+            margin-top     : 38px;
+            width          : 88%;
+            max-width      : 250px;
+            z-index        : 2000000;
+            box-shadow     : 0 0 40px rgba(3, 3, 3, 0.5);
+            transition     : all 0.56s;
+            height         : auto;
+            overflow-y     : auto;
+            max-height     : 300px;
+
+            input {
+                &:first-of-type {
+                    width        : 97% !important;
+                    max-width    : 250px;
+                    border       : none !important;
+                    border-bottom: 1px solid #7d2ae8 !important;
+                    padding      : 20px 7px !important;
+                    background   : transparent !important;
+                    font-size    : 20px !important;
+                    font-weight  : lighter !important;
+                    outline      : none;
+
+                    &:active {
+                        width        : 97% !important;
+                        border       : none !important;
+                        border-bottom: 1px solid #7d2ae8 !important;
+                        padding      : 20px 7px !important;
+                        background   : transparent !important;
+                        font-size    : 20px !important;
+                        font-weight  : lighter !important;
+                        outline      : none;
+                    }
+
+                    &:focus {
+                        width        : 97% !important;
+                        border       : none !important;
+                        border-bottom: 1px solid #7d2ae8 !important;
+                        padding      : 20px 7px !important;
+                        background   : transparent !important;
+                        font-size    : 20px !important;
+                        font-weight  : lighter !important;
+                        outline      : none;
+                    }
+
+                    &:focus-visible {
+                        width        : 97% !important;
+                        border       : none !important;
+                        border-bottom: 1px solid #7d2ae8 !important;
+                        padding      : 20px 7px !important;
+                        background   : transparent !important;
+                        font-size    : 20px !important;
+                        font-weight  : lighter !important;
+                        outline      : none;
+                    }
+
+                    &:hover {
+                        width        : 97% !important;
+                        border       : none !important;
+                        border-bottom: 1px solid #7d2ae8 !important;
+                        padding      : 20px 7px !important;
+                        background   : transparent !important;
+                        font-size    : 20px !important;
+                        font-weight  : lighter !important;
+                        outline      : none;
+                    }
+                }
+            }
+
+            .currency-select {
+                display        : flex;
+                flex-direction : row;
+                justify-content: center;
+                align-items    : center;
+                background     : #f7f7f9;
+                flex-shrink    : 4;
+                padding        : 6px;
+
+                img {
+                    width: 50px;
+                }
+
+                span {
+                    &:first-of-type {
+                        font-weight: 700;
+                        color      : #2a3551;
+                        padding    : 5px 10px;
+                    }
+                }
+            }
+        }
+
+        .currency-drop {
+            .currency-select {
+                display        : flex;
+                flex-direction : row;
+                justify-content: center;
+                align-items    : center;
+                background     : #f7f7f9;
+                flex-shrink    : 4;
+                padding        : 6px;
+
+                img {
+                    width: 50px;
+                }
+
+                span {
+                    &:first-of-type {
+                        font-weight   : 700;
+                        color         : #2a3551;
+                        padding       : 5px 10px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+
+        .transfer-bottom {
+            display        : flex;
+            flex-direction : row;
+            justify-content: space-between;
+            padding        : 9px;
+
+            button {
+                &:last-of-type {
+                    padding         : 20px 40px;
+                    color           : #fff;
+                    border          : none;
+                    background-color: #7d2ae8;
+                }
+            }
+        }
+
+        .tu-bottom {
+            display        : flex;
+            flex-direction : column;
+            justify-content: space-between;
+            padding        : 9px;
+
+            button {
+                padding         : 20px 40px;
+                color           : #fff;
+                border          : none;
+                background-color: #7d2ae8;
+                margin-top      : 20px;
+            }
+        }
+
+        .conversion-fees {
+            display       : flex;
+            flex-direction: column;
+
+            span {
+                &:first-of-type {
+                    color         : #96a0b5;
+                    padding-bottom: 10px;
+                }
+
+                &:last-of-type {
+                    color      : #121f3e;
+                    font-weight: 800;
+                    font-size  : 20px;
+                }
+            }
+        }
+
+        .converted-amount {
+            display       : flex;
+            flex-direction: column;
+
+            span {
+                &:first-of-type {
+                    color         : #96a0b5;
+                    padding-bottom: 10px;
+                }
+
+                &:last-of-type {
+                    color      : #7d2ae8;
+                    font-weight: 800;
+                    font-size  : 20px;
+                }
+            }
+        }
+
+        .confirmTransDetails {
+            padding         : 20px 40px;
+            color           : #fff;
+            border          : none;
+            background-color: #7d2ae8;
+            margin-top      : 20px;
+            width           : 100%;
+        }
+
+        .tu-bottom-breakdown {
+            display       : none;
+            flex-direction: column;
+
+            .bd {
+                width          : 100%;
+                display        : flex;
+                flex-direction : row;
+                align-items    : center;
+                justify-content: flex-start;
+                padding        : 8px 0;
+
+                .breakDownTitle {
+                    font-weight: 100;
+                    color      : rgba(190, 190, 190, 1);
+                    font-size  : medium;
+                }
+
+                .breakDownValue {
+                    flex-grow     : 4;
+                    flex          : 1;
+                    font-weight   : 100;
+                    color         : rgba(190, 190, 190, 1);
+                    font-size     : medium;
+                    text-align    : right;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .tu-trans-details {
+            .bd {
+                width          : 100%;
+                display        : flex;
+                flex-direction : row;
+                align-items    : center;
+                justify-content: flex-start;
+                padding        : 8px 0;
+
+                .breakDownTitle {
+                    font-weight: 100;
+                    color      : rgba(190, 190, 190, 1);
+                    font-size  : medium;
+                }
+
+                .breakDownValue {
+                    flex-grow  : 4;
+                    flex       : 1;
+                    font-weight: 100;
+                    color      : rgba(190, 190, 190, 1);
+                    font-size  : medium;
+                    text-align : right;
+                }
+            }
+
+            border : 1px solid rgba(190, 190, 190, 1);
+            padding: 15px;
+        }
+
+        .bdGet {
+            .breakDownValue {
+                font-weight: 800 !important;
+                font-size  : larger !important;
+                color      : #040b2e !important;
+            }
+        }
+
+        .bdPay {
+            .breakDownValue {
+                font-weight: 800 !important;
+                font-size  : larger !important;
+                color      : #040b2e !important;
+            }
+        }
+
+        .panelCard {
+            border-radius: 20px;
+            box-shadow   : 0 0 22px 0 rgbs(31, 38, 135, 0.27);
+            margin-top   : 10px;
+            margin-bottom: 10px;
+            padding      : 20px;
+        }
     }
 }

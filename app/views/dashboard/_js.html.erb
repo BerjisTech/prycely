@@ -90,7 +90,7 @@
   
         // Line Charts
         var line_chart_demo = $("#line-chart-demo");
-        var line_chart = Morris.Line({
+        var line_chart = Morris.Bar({
             element: 'line-chart-demo',
             data: [
                 { y: '2006', a: 100, b: 90 },
@@ -125,7 +125,7 @@
         // Area Chart
         var area_chart_demo = $("#area-chart-demo");
         area_chart_demo.parent().show();
-        var area_chart = Morris.Area({
+        var area_chart = Morris.Line({
             element: 'area-chart-demo',
             data: [
                 { y: '2006', a: 100, b: 90 },
@@ -138,8 +138,7 @@
             ],
             xkey: 'y',
             ykeys: ['a', 'b'],
-            labels: ['Series A', 'Series B'],
-            lineColors: ['#303641', '#576277']
+            labels: ['Series A', 'Series B']
         });
         area_chart_demo.parent().attr('style', '');
     });

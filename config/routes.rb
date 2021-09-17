@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :payment_methods
   get 'dashboard/index'
   get 'api', controller: :api, action: :index
 
@@ -13,8 +14,17 @@ Rails.application.routes.draw do
   match 'join/:id', to: 'redeems#redeem', via: %i[get post]
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
   get 'contributions', controller: :transactions, action: :contributions
+  post 'convert', controller: :transact, action: :conversions
+
   get 'withdraw/:level/:account', controller: :transact, action: :withdraw
+  get 'withdraw/mpesa/:level/:account', controller: :withdraw, action: :mpesa
+  get 'withdraw/bank/:level/:account', controller: :withdraw, action: :bank
+  get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
+
   get 'deposit/:level/:account', controller: :transact, action: :deposit
+  get 'deposit/mpesa/:level/:account', controller: :deposit, action: :mpesa
+  get 'deposit/bank/:level/:account', controller: :deposit, action: :bank
+  get 'deposit/paypal/:level/:account', controller: :deposit, action: :paypal
 
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]

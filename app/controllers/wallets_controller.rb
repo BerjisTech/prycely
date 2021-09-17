@@ -29,11 +29,13 @@ class WalletsController < ApplicationController
     # @wallet = Wallet.new(wallet_params)
     @wallet = current_user.wallets.build(wallet_params)
 
-    check_id = Wallet.find_by(user_id: current_user.id, currency: @wallet.currency).id
+    check_id = Wallet.find_by(user_id: current_user.id, currency: @wallet.currency)
 
     message = "You already have a #{@wallet.currency} wallet"
 
-    if check_id.blank?
+    if check_id.present?
+      redirect_to wallet_path(check_id), notice: message
+    else
       respond_to do |format|
         if @wallet.save
           format.html { redirect_to @wallet, notice: 'Wallet was successfully created.' }
@@ -43,8 +45,6 @@ class WalletsController < ApplicationController
           format.json { render json: @wallet.errors, status: :unprocessable_entity }
         end
       end
-    else
-      redirect_to wallet_path(check_id), notice: message
     end
   end
 
