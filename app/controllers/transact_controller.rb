@@ -20,8 +20,8 @@ class TransactController < ApplicationController
     Transact.request_origin if origin.nil?
     Transact.request_recepient if recepient.nil?
 
-    fee = amount * 0.01
-    converted_amount = Transact.convert(amount, origin, recepient)
+    converted_amount = Concurrency.convert(amount, origin, recepient)
+    fee = converted_amount * 0.01
 
     render json: Transact.format_conversion(amount, origin, recepient, converted_amount, fee)
   end
@@ -47,6 +47,11 @@ class TransactController < ApplicationController
     @active_flag = @active_currency[0...2].downcase
     @assets_path = 'https://assets.prycely.com/images/flags/'
     @currencies = all_currencies(Money::Currency.table)
+    @acount_name = if @level == Digest::SHA1.hexdigest(1.to_s)
+                     Group.find(@account).name
+                   else
+                     "your #{Wallet.find(@account).currency} wallet"
+                   end
   end
 
   def get_active_currency(level, account)

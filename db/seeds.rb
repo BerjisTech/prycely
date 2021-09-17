@@ -93,6 +93,10 @@ Siri.create([
               {
                 name: 'STRIPE_PASS',
                 value: 'qpvy-rpmq-prjm-srwk-yaoy'
+              },
+              {
+                name: 'CONCURENCY',
+                value: '15773eb789916eeadc02'
               }
             ])
 

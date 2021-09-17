@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
 class Transact < ApplicationRecord
-  def self.convert(amount, _origin, _recepient)
-    amount * Random.rand(10)/100
-  end
-
+  include ActionView::Helpers::NumberHelper
   def self.format_conversion(amount, origin, recepient, converted_amount, fee)
+    actual_amount = converted_amount - fee
     {
       status: 'done',
       message: 'All good',
-      amount: amount,
+      amount: amount.round(2),
       origin: origin.upcase,
       recepient: recepient.upcase,
-      fee: fee,
-      converted: converted_amount,
+      fee: fee.round(2),
+      converted: converted_amount.round(2),
       time: DateTime.now.to_i,
-      rate: 0
+      rate: Concurrency.conversion_rate(origin, recepient),
+      actual_amount: actual_amount.round(2),
     }
   end
 

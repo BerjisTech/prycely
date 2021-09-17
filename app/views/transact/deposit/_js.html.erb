@@ -11,9 +11,9 @@
             method: 'POST',
             success: (response) => {
                 console.log(response)
-                $('.bdPay .breakDownValue').html(response.converted + ' ' + recepient)
-                $('.bdFee .breakDownValue').html(response.fee + ' ' + recepient)
-                $('.bdConvert .breakDownValue').html((response.converted - response.fee) + ' ' + recepient)
+                $('.bdPay .breakDownValue').html(`${response.converted} ${recepient}`)
+                $('.bdFee .breakDownValue').html(`${response.fee} ${recepient}`)
+                $('.bdConvert .breakDownValue').html(`${response.actual_amount} ${recepient}`)
                 $('.bdRate .breakDownValue').html(response.rate)
             },
             error: (response) => {
@@ -23,7 +23,7 @@
     }
   
       $('.tu-wallet-details').attr('data-currency', '<%= @active_currency %>')
-      $('.tu-title').html(`Topup your <%= @active_currency %> wallet`)
+      $('.tu-title').html(`Topup <%= @account_name %>`)
       $('.tu-wallet-details img').attr('src', '<%= @assets_path %><%= @active_flag %>.svg')
       $('.tu-wallet-details span:first').html('<%= @active_currency %>')
       $('.twd').attr('onmouseover', `currency_dropper('<%= @active_currency %>')`)
