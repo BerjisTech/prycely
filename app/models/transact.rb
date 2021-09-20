@@ -2,6 +2,37 @@
 
 class Transact < ApplicationRecord
   include ActionView::Helpers::NumberHelper
+
+  def self.acount_name(level, account)
+    if level == Digest::SHA1.hexdigest(1.to_s)
+      Group.find(account).name
+    else
+      "your #{Wallet.find(account).currency} wallet"
+    end
+  end
+
+  def self.active_currency(level, account)
+    if level == Digest::SHA1.hexdigest(1.to_s)
+      Group.find(account).currency
+    else
+      Wallet.find(account).currency
+    end
+  end
+
+  def self.all_currencies(hash)
+    hash.keys
+  end
+
+  def self.major_currencies(hash)
+    hash.each_with_object([]) do |(id, attributes), array|
+      priority = attributes[:priority]
+      if priority && priority < 10
+        array[priority] ||= []
+        array[priority] << id
+      end
+    end.compact.flatten
+  end
+
   def self.format_conversion(amount, origin, recepient, converted_amount, fee)
     actual_amount = converted_amount - fee
     {
@@ -14,7 +45,7 @@ class Transact < ApplicationRecord
       converted: converted_amount.round(2),
       time: DateTime.now.to_i,
       rate: Concurrency.conversion_rate(origin, recepient),
-      actual_amount: actual_amount.round(2),
+      actual_amount: actual_amount.round(2)
     }
   end
 

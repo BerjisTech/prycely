@@ -1,6 +1,7 @@
 <script>
   topup_amount = $('.tu-amount').val()
     const get_conversion = (origin, recepient, topup_amount) => {
+        $('.goToPayChoice').html('<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>')
         $.ajax({
             url: '<%= convert_url %>',
             data: {
@@ -15,6 +16,7 @@
                 $('.bdFee .breakDownValue').html(`${response.fee} ${recepient}`)
                 $('.bdConvert .breakDownValue').html(`${response.actual_amount} ${recepient}`)
                 $('.bdRate .breakDownValue').html(response.rate)
+                $('.goToPayChoice').html('SEND MONEY')
             },
             error: (response) => {
                 console.log(response)
@@ -30,6 +32,10 @@
       $('.twd img').attr('src', '<%= @assets_path %><%= @active_flag %>.svg')
       $('.twd span:first').html('<%= @active_currency %>')
       $('.sCurrency').attr('data-wallet', '<%= @active_currency %>')
+  
+      function goToPayChoice(){
+          window.location.href=`<%= root_url %>deposit/<%= @level %>/<%= @account %>/${$('.tu-amount').val()}/<%= @active_currency %>/${$('.twd').attr('data-currency').toUpperCase()}`
+      }
   
       function currency_dropper(origin) {
             $('.tu-currency-drop').show()

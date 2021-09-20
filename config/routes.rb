@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
 
   get 'deposit/:level/:account', controller: :transact, action: :deposit
-  get 'deposit/mpesa/:level/:account', controller: :deposit, action: :mpesa
-  get 'deposit/bank/:level/:account', controller: :deposit, action: :bank
-  get 'deposit/paypal/:level/:account', controller: :deposit, action: :paypal
+  get 'deposit/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :platform
+  get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
+  get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
+  get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
 
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]

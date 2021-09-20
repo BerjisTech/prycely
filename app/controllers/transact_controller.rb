@@ -26,39 +26,13 @@ class TransactController < ApplicationController
     render json: Transact.format_conversion(amount, origin, recepient, converted_amount, fee)
   end
 
-  def all_currencies(hash)
-    hash.keys
-  end
-
-  def major_currencies(hash)
-    hash.each_with_object([]) do |(id, attributes), array|
-      priority = attributes[:priority]
-      if priority && priority < 10
-        array[priority] ||= []
-        array[priority] << id
-      end
-    end.compact.flatten
-  end
-
   def set_global
     @account = params[:account]
     @level = params[:level]
-    @active_currency = get_active_currency(@level, @account)
+    @active_currency = Transact.active_currency(@level, @account)
     @active_flag = @active_currency[0...2].downcase
     @assets_path = 'https://assets.prycely.com/images/flags/'
-    @currencies = all_currencies(Money::Currency.table)
-    @acount_name = if @level == Digest::SHA1.hexdigest(1.to_s)
-                     Group.find(@account).name
-                   else
-                     "your #{Wallet.find(@account).currency} wallet"
-                   end
-  end
-
-  def get_active_currency(level, account)
-    if level == Digest::SHA1.hexdigest(1.to_s)
-      Group.find(account).currency
-    else
-      Wallet.find(account).currency
-    end
+    @currencies = Transact.all_currencies(Money::Currency.table)
+    @acount_name = Transact.acount_name(@level, @account)
   end
 end

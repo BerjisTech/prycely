@@ -517,51 +517,6 @@
             }
         }
 
-        .tu-trans-details {
-            .bd {
-                width          : 100%;
-                display        : flex;
-                flex-direction : row;
-                align-items    : center;
-                justify-content: flex-start;
-                padding        : 8px 0;
-
-                .breakDownTitle {
-                    font-weight: 100;
-                    color      : rgba(190, 190, 190, 1);
-                    font-size  : medium;
-                }
-
-                .breakDownValue {
-                    flex-grow  : 4;
-                    flex       : 1;
-                    font-weight: 100;
-                    color      : rgba(190, 190, 190, 1);
-                    font-size  : medium;
-                    text-align : right;
-                }
-            }
-
-            border : 1px solid rgba(190, 190, 190, 1);
-            padding: 15px;
-        }
-
-        .bdGet {
-            .breakDownValue {
-                font-weight: 800 !important;
-                font-size  : larger !important;
-                color      : #040b2e !important;
-            }
-        }
-
-        .bdPay {
-            .breakDownValue {
-                font-weight: 800 !important;
-                font-size  : larger !important;
-                color      : #040b2e !important;
-            }
-        }
-
         .panelCard {
             border-radius: 20px;
             box-shadow   : 0 0 22px 0 rgbs(31, 38, 135, 0.27);
@@ -570,4 +525,36 @@
             padding      : 20px;
         }
     }
+}
+
+
+.tu-trans-details {
+    .bd {
+        width          : 100%;
+        display        : flex;
+        flex-direction : row;
+        align-items    : center;
+        justify-content: flex-start;
+        padding        : 8px 0;
+
+        .breakDownTitle {
+            font-weight: 100;
+            color      : rgba(190, 190, 190, 1);
+            font-size  : medium;
+        }
+
+        .breakDownValue {
+            flex-grow  : 4;
+            flex       : 1;
+            font-weight: 100;
+            color      : rgba(190, 190, 190, 1);
+            font-size  : medium;
+            text-align : right;
+            font-size  : larger !important;
+            color      : #040b2e !important;
+        }
+    }
+
+    border : 1px solid rgba(190, 190, 190, 1);
+    padding: 15px;
 }
