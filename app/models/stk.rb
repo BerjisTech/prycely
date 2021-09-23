@@ -48,7 +48,7 @@ class Stk < ApplicationRecord
       status: statusRes
     }
 
-    Model.where(merchant_request_id: merchantRequestID).update_all(@stk)
+    Stk.where(merchant_request_id: merchantRequestID).update_all(@stk)
   end
 
   def self.update_pending_with_merchant_request_id(transaction)
