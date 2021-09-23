@@ -42,42 +42,50 @@ class MpesaController < ApplicationController
     @ref = params[:reference]
     @desc = params[:description]
     @origin = params[:origin]
-    level = Transact.level_to_int(params[:level])
-    account = params[:account]
 
-    shortcode = @C2B_PAYBILL
-    lipa_na_mpesa_key = @MPESA_API_PASSKEY
-    timestamp = Time.now.strftime('%Y%m%d%H%M%S').to_i
-    password = Base64.encode64("#{shortcode}#{lipa_na_mpesa_key}#{timestamp}")
-    path = '/mpesa/stkpush/v1/processrequest'
-    body = {
-      'BusinessShortCode': shortcode,
-      'Password': password.split("\n").join,
-      'Timestamp': timestamp.to_s,
-      'TransactionType': 'CustomerPayBillOnline',
-      'Amount': @amount,
-      'PartyA': @phone,
-      'PartyB': shortcode,
-      'PhoneNumber': @phone,
-      'CallBackURL': @STK_CALLBACK,
-      'AccountReference': @ref,
-      'TransactionDesc': @desc
-    }
+    if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != ''
+      level = Transact.level_to_int(params[:level])
+      account = params[:account]
 
-    response = call(path, body, @MPESA_API_KEY, @MPESA_API_SECRET)
+      shortcode = @C2B_PAYBILL
+      lipa_na_mpesa_key = @MPESA_API_PASSKEY
+      timestamp = Time.now.strftime('%Y%m%d%H%M%S').to_i
+      password = Base64.encode64("#{shortcode}#{lipa_na_mpesa_key}#{timestamp}")
+      path = '/mpesa/stkpush/v1/processrequest'
+      body = {
+        'BusinessShortCode': shortcode,
+        'Password': password.split("\n").join,
+        'Timestamp': timestamp.to_s,
+        'TransactionType': 'CustomerPayBillOnline',
+        'Amount': @amount,
+        'PartyA': @phone,
+        'PartyB': shortcode,
+        'PhoneNumber': @phone,
+        'CallBackURL': @STK_CALLBACK,
+        'AccountReference': @ref,
+        'TransactionDesc': @desc
+      }
 
-    status = 0 if response.present?
+      response = call(path, body, @MPESA_API_KEY, @MPESA_API_SECRET)
 
-    message = 'OK'
-    Error.add_error('stk', response.body, request.referer, message)
+      status = 0 if response.present?
 
-    response = JSON.parse(response.body)
+      message = 'OK'
+      Error.add_error('stk', response.body, request.referer, message)
 
-    Stk.create_stk(response, "+#{@phone}", status)
-    Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
+      response = JSON.parse(response.body)
 
-    render json: { type: 'Ok', message: 'Success',
-                   title: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
+      Stk.create_stk(response, "+#{@phone}", status)
+      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
+
+      user_response = { type: 'Ok', title: 'Success',
+                        message: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
+    else
+      user_response = { type: 'Error', title: 'Missing data',
+                        message: "Some required information is missing" }
+    end
+
+    render json: user_response
   end
 
   def paybill; end

@@ -8,8 +8,8 @@
               'authenticity_token': $('[name="csrf-token"]')[0].content,
               'amount': '<%= @amount %>',
               'phone': phone,
-              'reference': '<%= @ccount_name %>',
-              'description': '<%= @ccount_name %>',
+              'reference': '<%= @account_name %>',
+              'description': '<%= @account_name %>',
               'level': '<%= @level %>',
               'account': '<%= @account %>',
               'origin': '<%= @origin %>',
@@ -50,7 +50,7 @@
       "hideMethod": "fadeOut"
     };
   
-    toastr.error(error.message, `Info:${error.title}`, opts)
+    toastr.error(alert.message, `Error:${alert.title}`, opts)
   }
   
   const inform_stk = (info) => {

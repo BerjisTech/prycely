@@ -3,7 +3,7 @@
 class Transact < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
-  def self.level_to_int(level)
+  def self.level_to_int(_level)
     if level = Digest::SHA1.hexdigest(1.to_s) # 2 group/ 1 personal
       1
     else
