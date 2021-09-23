@@ -1,23 +1,20 @@
 <script>
   const stk = (phone, save_number) => {
       $('.ctdp-stk').html(`<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>`)
-      data = {
+      $.ajax({
+          url: '<%= stk_url %>',
+          method: 'POST',
+          data: {
               'authenticity_token': $('[name="csrf-token"]')[0].content,
               'amount': '<%= @amount %>',
               'phone': phone,
-              'reference': '<%= @account_name %>',
-              'description': '<%= @account_name %>',
+              'reference': '<%= @ccount_name %>',
+              'description': '<%= @ccount_name %>',
               'level': '<%= @level %>',
               'account': '<%= @account %>',
               'origin': '<%= @origin %>',
               'recepient': '<%= @recepient %>'
-          }
-
-      console.log(data)
-      $.ajax({
-          url: '<%= stk_url %>',
-          method: 'POST',
-          data: data,
+          },
           success: (response) => {
             if (response.type == 'Error'){
               alert_stk(response)
@@ -43,7 +40,7 @@
       "positionClass": "toast-top-right",
       "toastClass": "danger",
       "onclick": null,
-      "showDuration": "300",
+      "showDuration": "700",
       "hideDuration": "1000",
       "timeOut": "10000",
       "extendedTimeOut": "1000",
@@ -63,7 +60,7 @@
       "positionClass": "toast-top-right",
       "toastClass": "danger",
       "onclick": null,
-      "showDuration": "300",
+      "showDuration": "700",
       "hideDuration": "1000",
       "timeOut": "10000",
       "extendedTimeOut": "1000",

@@ -79,7 +79,7 @@ class MpesaController < ApplicationController
     Stk.create_stk(response, "+#{@phone}", status)
     Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account)
 
-    { type: 'Ok', message: 'Success',
+    render json: { type: 'Ok', message: 'Success',
                    title: "A #{params[:origin]} #{@amount} transaction has been sent to #{@phone}" }
   end
 
