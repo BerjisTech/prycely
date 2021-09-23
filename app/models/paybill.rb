@@ -47,7 +47,11 @@ class Paybill < ApplicationRecord
   def self.create_or_update_transaction(response)
     check_trans = Transaction.find_by(transaction_reference: response['TransID'])
 
-    Transaction.update_paybill_tansaction(response['TransID'], response['TransAmount']) if check_trans.present?
+    if check_trans.present?
+      Transaction.update_paybill_tansaction(response['TransID'], response['TransAmount'])
+    else
+      Transaction.create_from_paybill(response['TransID'], response['TransAmount'])
+    end
   end
 
   def self.update_deposit; end
