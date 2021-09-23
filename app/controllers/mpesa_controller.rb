@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class MpesaController < ApplicationController
-  # require 'faraday'
-  # require "faraday_middleware"
   before_action :authenticate_user!, only: %i[stk b2c]
   skip_before_action :verify_authenticity_token, only: %i[c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
@@ -43,7 +41,11 @@ class MpesaController < ApplicationController
     @phone = params[:phone]
     @ref = params[:reference]
     @desc = params[:description]
-    level = params[:level] # 2 group/ 1 personal
+    level = if params[:level] = Digest::SHA1.hexdigest(1.to_s) # 2 group/ 1 personal
+              1
+            else
+              2
+            end
     account = params[:account]
 
     shortcode = @C2B_PAYBILL
@@ -76,6 +78,9 @@ class MpesaController < ApplicationController
 
     Stk.create_stk(response, "+#{@phone}", status)
     Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account)
+
+    { type: 'Ok', message: 'Success',
+                   title: "A #{params[:origin]} #{@amount} transaction has been sent to #{@phone}" }
   end
 
   def paybill; end

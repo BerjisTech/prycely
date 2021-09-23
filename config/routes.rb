@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
   match 'c2b', to: 'mpesa#c2b', via: %i[get post]
-  match 'stk', to: 'mpesa#stk', via: %i[get post]
+  post 'stk', controller: :mpesa, action: :stk
   match 'paybill', to: 'mpesa#paybill', via: %i[get post]
   match 'register-url', to: 'mpesa#register_url', via: %i[get post]
   match 'b2c-callback', to: 'mpesa#callback_b2c', via: %i[get post]

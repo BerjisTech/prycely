@@ -1,11 +1,12 @@
+<%= render 'deposit/mpesa' %>
 <div class="col-12 payChoicePanel">
   <div class="mpesaPayChoice panelCard">
     <div class="ctpd-custom ctdp-mPesa">
       <span class="payWith">Pay with MPesa</span>
       <span>Enter MPesa phone number</span>
       <input type="number" class="ctdp-mpesa-number" placeholder="254712345678" value="">
-      <label class="label_save_this"><input type="checkbox" name="save_number" class="save_number" />Make this number the primary mpesa number?</label>
-      <button onclick="stk($('.ctdp-mpesa-number').val(), $('.save_number').val(), topup_currency,topup_amount)" class="ctdp-stk">PAY NOW</button>
+      <label class="label_save_this"><input type="checkbox" name="save_number" class="save_number" style="height: 10px;"/> Make this number my primary MPesa number?</label>
+      <button onclick="stk($('.ctdp-mpesa-number').val(), $('.save_number').val())" class="ctdp-stk">PAY NOW</button>
 
       <span class="divider"></span>
       <span class="dividerOr">or</span>

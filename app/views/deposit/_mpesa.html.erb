@@ -1,0 +1,78 @@
+<script>
+  const stk = (phone, save_number) => {
+      $('.ctdp-stk').html(`<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>`)
+      data = {
+              'authenticity_token': $('[name="csrf-token"]')[0].content,
+              'amount': '<%= @amount %>',
+              'phone': phone,
+              'reference': '<%= @account_name %>',
+              'description': '<%= @account_name %>',
+              'level': '<%= @level %>',
+              'account': '<%= @account %>',
+              'origin': '<%= @origin %>',
+              'recepient': '<%= @recepient %>'
+          }
+
+      console.log(data)
+      $.ajax({
+          url: '<%= stk_url %>',
+          method: 'POST',
+          data: data,
+          success: (response) => {
+            if (response.type == 'Error'){
+              alert_stk(response)
+            }
+            else{
+              inform_stk(response)
+            }
+  
+            $('.ctdp-stk').html(`PAY NOW`)
+          },
+          error: (error) => {
+            console.log(error)
+            $('.ctdp-stk').html(`PAY NOW`)
+          }
+  
+      })
+  }
+  
+  const alert_stk = (alert) => {
+      var opts = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "toastClass": "danger",
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "10000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  
+    toastr.error(error.message, `Info:${error.title}`, opts)
+  }
+  
+  const inform_stk = (info) => {
+      var opts = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-right",
+      "toastClass": "danger",
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "10000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  
+    toastr.info(info.message, `Info:${info.title}`, opts)
+  }
+</script>

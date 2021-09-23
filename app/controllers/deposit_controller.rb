@@ -2,7 +2,7 @@
 
 class DepositController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_global, except: %i[conversions]
+  before_action :set_global
   before_action :set_amount_currency, except: %i[amount_and_currency]
   skip_before_action :verify_authenticity_token, only: %i[conversions]
 
@@ -30,6 +30,6 @@ class DepositController < ApplicationController
     @active_flag = @active_currency[0...2].downcase
     @assets_path = 'https://assets.prycely.com/images/flags/'
     @currencies = Transact.all_currencies(Money::Currency.table)
-    @acount_name = Transact.acount_name(@level, @account)
+    @account_name = Transact.acount_name(@level, @account)
   end
 end

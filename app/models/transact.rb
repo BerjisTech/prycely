@@ -4,11 +4,13 @@ class Transact < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
   def self.acount_name(level, account)
-    if level == Digest::SHA1.hexdigest(1.to_s)
-      Group.find(account).name
-    else
-      "your #{Wallet.find(account).currency} wallet"
-    end
+    name = if level == Digest::SHA1.hexdigest(1.to_s)
+             Group.find(account).name
+           else
+             "your #{Wallet.find(account).currency} wallet"
+           end
+
+    name.humanize
   end
 
   def self.active_currency(level, account)
