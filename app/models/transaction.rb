@@ -13,9 +13,10 @@ class Transaction < ApplicationRecord
   end
 
   def self.create_from_stk(amount, response, user, description, level, account, _currency)
+    amount = amount * 100
     transaction = Transaction.new(
       user_id: user,
-      amount: amount * 100,
+      amount: amount,
       transaction_reference: response['MpesaReceiptNumber'],
       transaction_type: 1, # 1 deposit / 2 withdraw / 3 transfer / 4 send
       level: level, # 2 group/ 1 personal
@@ -33,12 +34,14 @@ class Transaction < ApplicationRecord
   end
 
   def self.create_from_paybill(mpesaCode, amount)
+    amount = amount * 100
     transaction = Transaction.new(
       amount: amount,
       transaction_reference: mpesaCode,
       transaction_type: 1, # 1 deposit / 2 withdraw / 3 transfer / 4 send
       status: 0, # 0 pending / 1 success / 2 failed / 3 error
       transaction_mode: 1,
+      user_id: 0,
       group_id: 0,
       wallet_id: 0,
       currency: 'KES'
@@ -60,6 +63,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.update_paybill_tansaction(mpesaCode, amount)
+    amount = amount * 100
     transaction = {
       transaction_reference: mpesaCode,
       amount: amount,
