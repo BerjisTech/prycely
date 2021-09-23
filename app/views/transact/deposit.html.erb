@@ -1,56 +1,29 @@
-<div class="depositPage">
-  <div class="depositCurrency panelCard">
-    <p class="tu-title">Topup your group wallet</p>
-    <div class="tu-from-this">
-      <div class="tu-amount-details">
-        <span>Add</span>
-        <input type="number" class="tu-amount" oninput="get_conversion('<%= @active_currency %>', $('.twd').attr('data-currency'),$(this).val())" onchange="topup_amount = $(this).val()" value="1000" />
+<div class="col-12 payChoicePanel">
+  <div class="payChoice panelCard">
+    <span class="entypo-left-thin ctdp-title" onclick="goToTopUp()"> Back</span>
+    <a href='<%= "#{root_url}deposit/mpesa/#{@level}/#{@account}" %>' class="pc-mPesa">
+      <span class="material-icons">security_update_good</span>
+      <div class="payChoiceDescription">
+        <span>MPESA</span>
+        <span>Top up with your mPesa mobile account. Arrives immediately</span>
       </div>
-      <div class="tu-wallet-details" data-currency="">
-        <img src="" />
-        <span></span>
-        <span class="entypo-down-open" style="color: #F7F7F9;"></span>
+      <span class="wd-checkbox material-icons">east</span>
+    </a>
+    <a href='<%= "#{root_url}deposit/bank/#{@level}/#{@account}" %>' class="pc-debitCard">
+      <span class="material-icons">account_balance</span>
+      <div class="payChoiceDescription">
+        <span>Bank or Card</span>
+        <span>Top up with your debit card. Arrives immediately</span>
       </div>
-    </div>
-    <div class="tu-to-this">
-      <span>Paying with</span>
-      <div class="tu-wallet-details twd" onmouseover="">
-        <img src="" />
-        <span></span>
-        <span class="material-icons">keyboard_arrow_down</span>
+      <span class="wd-checkbox material-icons">east</span>
+    </a>
+    <a href='<%= "#{root_url}deposit/paypal/#{@level}/#{@account}" %>' class="pc-debitCard">
+      <span class="material-icons">paypal</span>
+      <div class="payChoiceDescription">
+        <span>PayPal</span>
+        <span>Top up directly from PayPal account</span>
       </div>
-      <div class="tu-currency-drop">
-        <input type="search" name="sCurrency" data-wallet="" placeholder="Search currency" />
-        <% @currencies.map do |currency| %>
-          <div class="currency-select" onclick="change_tu_currency('<%= @active_currency %>','<%= currency %>', '<%= currency %>', '<%= @assets_path %><%= currency[0...2] %>.svg')">
-            <img src="<%= "#{@assets_path}#{currency[0...2]}.svg" %>" >
-            <span><%= currency.upcase %></span>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="tu-bottom">
-      <div class="tu-bottom-breakdown">
-        <div class="bd bdPay">
-          <span class="breakDownTitle">You will pay</span>
-          <span class="breakDownValue">0</span>
-        </div>
-        <div class="bd bdFee">
-          <span class="breakDownTitle">Total Fees</span>
-          <span class="breakDownValue">-0</span>
-        </div>
-        <div class="bd bdConvert">
-          <span class="breakDownTitle">Amount we'll convert</span>
-          <span class="breakDownValue">0</span>
-        </div>
-        <div class="bd bdRate">
-          <span class="breakDownTitle">Guaranteed rate (for 20 hours)</span>
-          <span class="breakDownValue">0</span>
-        </div>
-      </div>
-      <button class="goToPayChoice" onclick="goToPayChoice()">SEND MONEY</button>
-    </div>
+      <span class="wd-checkbox material-icons">east</span>
+    </a>
   </div>
 </div>
-
-<%= render "transact/deposit/js" %>

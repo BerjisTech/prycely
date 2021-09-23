@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
 
   get 'deposit/:level/:account', controller: :transact, action: :deposit
-  get 'deposit/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :platform
+  get 'deposit/:platform/:level/:account', controller: :deposit, action: :amount_and_currency
   get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
   get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
   get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal

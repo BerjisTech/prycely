@@ -34,7 +34,7 @@
       $('.sCurrency').attr('data-wallet', '<%= @active_currency %>')
   
       function goToPayChoice(){
-          window.location.href=`<%= root_url %>deposit/<%= @level %>/<%= @account %>/${$('.tu-amount').val()}/<%= @active_currency %>/${$('.twd').attr('data-currency').toUpperCase()}`
+          window.location.href=`<%= root_url %>deposit/<%= @platform %>/<%= @level %>/<%= @account %>/${$('.tu-amount').val()}/<%= @active_currency %>/${$('.twd').attr('data-currency').toUpperCase()}`
       }
   
       function currency_dropper(origin) {

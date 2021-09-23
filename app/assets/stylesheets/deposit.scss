@@ -7,19 +7,13 @@
     align-items    : center;
     justify-content: center;
 
-    .mpesaPayChoice{
+    .payChoice {
         display       : flex;
         flex-direction: column;
         width         : 50%;
         min-width     : 300px;
         max-width     : 100%;
         background    : rgba(255, 255, 255, 1);
-    }
-
-    .payChoice {
-        display       : flex;
-        flex-direction: column;
-        width         : 100%;
 
         [class*="pc-"] {
             color          : #373E4F !important;
