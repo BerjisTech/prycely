@@ -41,11 +41,8 @@ class MpesaController < ApplicationController
     @phone = params[:phone]
     @ref = params[:reference]
     @desc = params[:description]
-    level = if params[:level] = Digest::SHA1.hexdigest(1.to_s) # 2 group/ 1 personal
-              1
-            else
-              2
-            end
+    @origin = params[:origin]
+    level = Transact.level_to_int(params[:level])
     account = params[:account]
 
     shortcode = @C2B_PAYBILL
@@ -77,10 +74,10 @@ class MpesaController < ApplicationController
     response = JSON.parse(response.body)
 
     Stk.create_stk(response, "+#{@phone}", status)
-    Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account)
+    Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
 
     render json: { type: 'Ok', message: 'Success',
-                   title: "A #{params[:origin]} #{@amount} transaction has been sent to #{@phone}" }
+                   title: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
   end
 
   def paybill; end

@@ -3,6 +3,14 @@
 class Transact < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
+  def self.level_to_int(level)
+    if level = Digest::SHA1.hexdigest(1.to_s) # 2 group/ 1 personal
+      1
+    else
+      2
+    end
+  end
+
   def self.acount_name(level, account)
     name = if level == Digest::SHA1.hexdigest(1.to_s)
              Group.find(account).name
