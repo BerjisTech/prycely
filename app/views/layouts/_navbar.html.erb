@@ -31,13 +31,6 @@
 <div class="sidebar-menu">
   <div class="sidebar-menu-inner">
     <header class="logo-env">
-      <div class="logo">
-        <a href="https://prycely.com/dashboard/">
-          <img src="https://assets.prycely.com/images/d6f18dcdfc48ef9c283fa8e68a5c7a9e.png" class="img img-rounded" alt="" style="background: #fff; width: 40px;"/>
-        </a>
-      </div>
-      <div class="sidebar-collapse"> <a href="#" class="sidebar-collapse-icon"> <i
-                                class="material-icons">menu</i> </a> </div>
       <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"> <i
                                 class="material-icons">menu</i> </a> </div>
     </header>
@@ -97,14 +90,6 @@
           </span>
         <% end %>
         <ul>
-          <!--li>
-            <% Group.mine(current_user.id).map do |group| %>
-              <%= link_to group_path(group.group_id) do %>
-                <i class="entypo-newspaper"></i>
-                <span class="title"><%= group.name %></span>
-              <% end %>
-            <% end %>
-          </li-->
           <% if session[:current_group] %>
             <li>
               <%= link_to group_path(session[:current_group]) do %>

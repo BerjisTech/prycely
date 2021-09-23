@@ -12,7 +12,7 @@ class Transaction < ApplicationRecord
     Transaction.where(group_id: group_id).pluck('count(id)').first
   end
 
-  def self.create_from_stk(amount, response, user, description, level, account, _currency)
+  def self.create_from_stk(amount, response, user, description, level, account, currency)
     amount = amount * 100
     transaction = Transaction.new(
       user_id: user,
@@ -26,7 +26,7 @@ class Transaction < ApplicationRecord
       transaction_mode: 1,
       description: description,
       category: 'category',
-      currency: 'KES',
+      currency: currency,
       sub_category: ''
     )
 
