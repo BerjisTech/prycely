@@ -52,7 +52,7 @@ class Stk < ApplicationRecord
   end
 
   def self.update_pending_with_merchant_request_id(transaction)
-    pending_trans = Stk.find_by(transaction_reference: transaction.transaction_reference).merchant_request_id
+    pending_trans = Stk.find_by(transaction_reference: transaction['transaction_reference']).merchant_request_id
     Transaction.where(transaction_reference: pending_trans).update_all(transaction)
   end
 end
