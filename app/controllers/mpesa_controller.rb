@@ -82,7 +82,7 @@ class MpesaController < ApplicationController
                         message: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
     else
       user_response = { type: 'Error', title: 'Missing data',
-                        message: "Some required information is missing" }
+                        message: 'Some required information is missing' }
     end
 
     render json: user_response

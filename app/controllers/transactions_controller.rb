@@ -21,7 +21,9 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/edit
   def edit; end
 
-  def contributions; end
+  def contributions
+    @transactions = Transaction.where(status: 1, group_id: session[:current_group])
+  end
 
   # POST /transactions or /transactions.json
   def create

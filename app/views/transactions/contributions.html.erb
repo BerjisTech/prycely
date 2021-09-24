@@ -21,7 +21,7 @@
   </thead>
 
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <% @transactions.map do |transaction| %>
       <tr>
         <td><%= transaction.user_id %></td>
         <td><%= Transact.amount_from_cents(transaction.amount) %></td>

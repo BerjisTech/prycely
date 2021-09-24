@@ -13,7 +13,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.create_from_stk(amount, response, user, description, level, account, currency)
-    amount = amount * 100
+    amount *= 100
     transaction = Transaction.new(
       user_id: user,
       amount: amount,
@@ -34,7 +34,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.create_from_paybill(mpesaCode, amount)
-    amount = amount * 100
+    amount *= 100
     transaction = Transaction.new(
       amount: amount,
       transaction_reference: mpesaCode,
@@ -64,7 +64,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.update_paybill_tansaction(mpesaCode, amount)
-    amount = amount * 100
+    amount *= 100
     transaction = {
       transaction_reference: mpesaCode,
       amount: amount,

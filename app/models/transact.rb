@@ -4,7 +4,7 @@ class Transact < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
   def self.amount_from_cents(cents)
-    cents/100
+    cents / 100
   end
 
   def self.level_to_int(_level)
