@@ -17,7 +17,7 @@ class Transaction < ApplicationRecord
     transaction = Transaction.new(
       user_id: user,
       amount: amount,
-      transaction_reference: response['MpesaReceiptNumber'],
+      transaction_reference: response['MerchantRequestID'],
       transaction_type: 1, # 1 deposit / 2 withdraw / 3 transfer / 4 send
       level: level, # 2 group/ 1 personal
       group_id: account,
