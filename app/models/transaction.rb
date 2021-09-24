@@ -50,6 +50,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.update_success_transaction(merchantRequestID, mpesaReceiptNumber, statusRes)
+    Transaction.where(transaction_reference: mpesaReceiptNumber, group_id: nil, wallet_id: nil).destroy_all
     Transaction.where(transaction_reference: merchantRequestID).update_all(transaction_reference: mpesaReceiptNumber)
     Transaction.where(transaction_reference: mpesaReceiptNumber).update_all(status: statusRes)
   end
