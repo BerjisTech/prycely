@@ -37,7 +37,7 @@ class MpesaController < ApplicationController
   end
 
   def stk
-    @amount = params[:amount]
+    @amount = params[:amount].to_f
     @phone = params[:phone]
     @ref = params[:reference]
     @desc = params[:description]
