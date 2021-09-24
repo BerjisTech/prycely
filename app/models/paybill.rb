@@ -29,7 +29,7 @@ class Paybill < ApplicationRecord
       'paybill_balance': response['OrgAccountBalance'],
       'third_party_transaction_id': response['ThirdPartyTransID'],
       'invoice_number': response['InvoiceNumber'],
-      'amount': response['TransAmount'],
+      'amount': response['TransAmount'].to_f,
       'first_name': response['FirstName'],
       'last_name': response['LastName'],
       'middle_name': response['MiddleName'],
