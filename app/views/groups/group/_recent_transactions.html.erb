@@ -25,7 +25,7 @@
             <%= transaction.description %>
           </td>
           <td>
-            <%= number_with_precision(transaction.amount, precision: 2, delimiter: ",") %>
+            <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
           </td>
         </tr>
       <% end %>

@@ -7,7 +7,7 @@
 
 <p>
   <strong>Amount:</strong>
-  <%= @transaction.amount %>
+  <%= Transact.amount_from_cents(@transaction.amount) %>
 </p>
 
 <p>

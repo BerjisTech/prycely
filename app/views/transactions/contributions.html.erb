@@ -24,7 +24,7 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.user_id %></td>
-        <td><%= transaction.amount %></td>
+        <td><%= Transact.amount_from_cents(transaction.amount) %></td>
         <td><%= transaction.transaction_reference %></td>
         <td><%= transaction.transaction_type %></td>
         <td><%= transaction.group_id %></td>
