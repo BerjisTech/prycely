@@ -35,7 +35,7 @@ class Stk < ApplicationRecord
     resultDesc = request['ResultDesc']
 
     update_success_stk(mpesaReceiptNumber, merchantRequestID, checkoutRequestID, resultCode, resultDesc, statusRes)
-    Transaction.update_success_transaction(merchantRequestID, statusRes)
+    Transaction.update_success_transaction(merchantRequestID, mpesaReceiptNumber, statusRes)
   end
 
   def self.update_success_stk(mpesaReceiptNumber, merchantRequestID, checkoutRequestID, resultCode, resultDesc, statusRes)

@@ -49,7 +49,7 @@ class Transaction < ApplicationRecord
     save_transaction(transaction)
   end
 
-  def self.update_success_transaction(merchantRequestID, statusRes)
+  def self.update_success_transaction(merchantRequestID, mpesaReceiptNumber, statusRes)
     Transaction.where(transaction_reference: merchantRequestID).update_all(status: statusRes)
     Transaction.where(transaction_reference: mpesaReceiptNumber).update_all(status: statusRes)
   end
