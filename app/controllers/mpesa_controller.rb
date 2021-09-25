@@ -80,7 +80,7 @@ class MpesaController < ApplicationController
       Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
 
       user_response = { type: 'Ok', title: 'Success',
-                        message: "A #{@recepient} #{@amount} transaction has been sent to #{@phone}" }
+                        message: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
     else
       user_response = { type: 'Error', title: 'Missing data',
                         message: 'Some required information is missing' }
