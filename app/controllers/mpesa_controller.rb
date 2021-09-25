@@ -48,6 +48,7 @@ class MpesaController < ApplicationController
       level = Transact.level_to_int(params[:level])
       account = params[:account]
       amount = Concurrency.convert(@amount, @origin, @recepient)
+      amount = amount.round(0) + 1
 
       shortcode = @C2B_PAYBILL
       lipa_na_mpesa_key = @MPESA_API_PASSKEY
@@ -98,14 +99,15 @@ class MpesaController < ApplicationController
     account = params[:account]
 
     current_transaction = Transaction.find_by(transaction_reference: mpesaReceiptNumber, group_id: nil, wallet_id: nil)
-    update_data = { level: level, wallet_id: account, group_id: account, status: 1, user_id: current_user.id}
+    update_data = { level: level, wallet_id: account, group_id: account, status: 1, user_id: current_user.id }
 
     if level.present? && account.present? && mpesaReceiptNumber.present?
       if current_transaction.present?
         current_transaction.update_all(update_data)
         { title: 'Success', message: 'Transaction confirmed', type: 'Info' }
       else
-        { title: 'Oops', message: 'There\'s no transaction with this code. Check the MPesa code and try again', type: 'Info' }
+        { title: 'Oops', message: 'There\'s no transaction with this code. Check the MPesa code and try again',
+          type: 'Info' }
       end
     else
       { title: '', message: 'Something went wrong, kindly contact support', type: 'Info' }
