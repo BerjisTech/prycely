@@ -17,6 +17,9 @@ class Group < ApplicationRecord
   scope :complete, -> { where(status: 1) }
   scope :money_in, -> { where(transaction_type: 1) }
   scope :money_out, -> { where(transaction_type: 2) }
+  scope :select_my_group_data, lambda {
+    select('members.id', 'groups.id', :name, :membership, :created_by, :group_id, :currency, :group_type)
+  }
 
   def self.credit(group_id)
     Transaction.where(group_id: group_id).money_in.complete.pluck('sum(amount)').first || 0
@@ -31,7 +34,7 @@ class Group < ApplicationRecord
   end
 
   def self.mine(user_id, limit = 10, offset = 0)
-    Member.limit(limit).offset(offset).order(created_at: :desc).where.not(status: '0')..where(user_id: user_id).joins(:group).select_my_group_data
+    Member.limit(limit).offset(offset).order(created_at: :desc).where.not(status: '0').where(user_id: user_id).joins(:group).select_my_group_data
   end
 
   def self.me(user_id, group_id)
