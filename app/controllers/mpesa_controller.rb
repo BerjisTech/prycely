@@ -48,7 +48,7 @@ class MpesaController < ApplicationController
       level = Transact.level_to_int(params[:level])
       account = params[:account]
       amount = Concurrency.convert(@amount, @origin, @recepient)
-      amount = amount.ceil
+      amount = amount.round(2)
 
       shortcode = @C2B_PAYBILL
       lipa_na_mpesa_key = @MPESA_API_PASSKEY
