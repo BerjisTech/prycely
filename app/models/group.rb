@@ -31,7 +31,7 @@ class Group < ApplicationRecord
   end
 
   def self.mine(user_id, limit = 10, offset = 0)
-    Member.limit(limit).offset(offset).order(created_at: :desc).complete.where(user_id: user_id).joins(:group).select_my_group_data
+    Member.limit(limit).offset(offset).order(created_at: :desc).where.not(status: '0')..where(user_id: user_id).joins(:group).select_my_group_data
   end
 
   def self.me(user_id, group_id)

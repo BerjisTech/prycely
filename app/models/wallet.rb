@@ -10,7 +10,7 @@ class Wallet < ApplicationRecord
   scope :money_out, -> { where(transaction_type: 2) }
 
   def self.mine(user_id, limit = 10, offset = 0)
-    Wallet.limit(limit).offset(offset).order(created_at: :desc).complete.where(user_id: user_id)
+    Wallet.limit(limit).offset(offset).order(created_at: :desc).where(user_id: user_id)
   end
 
   def self.dashboard_colors
