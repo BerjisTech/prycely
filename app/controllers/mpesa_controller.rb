@@ -46,7 +46,7 @@ class MpesaController < ApplicationController
     if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != ''
       level = Transact.level_to_int(params[:level])
       account = params[:account]
-      @amount = Concurrency.convert(@amount, origin, recepient)
+      amount = Concurrency.convert(@amount, origin, recepient)
 
       shortcode = @C2B_PAYBILL
       lipa_na_mpesa_key = @MPESA_API_PASSKEY
@@ -58,7 +58,7 @@ class MpesaController < ApplicationController
         'Password': password.split("\n").join,
         'Timestamp': timestamp.to_s,
         'TransactionType': 'CustomerPayBillOnline',
-        'Amount': @amount,
+        'Amount': amount,
         'PartyA': @phone,
         'PartyB': shortcode,
         'PhoneNumber': @phone,
@@ -77,10 +77,10 @@ class MpesaController < ApplicationController
       response = JSON.parse(response.body)
 
       Stk.create_stk(response, "+#{@phone}", status)
-      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
+      Transaction.create_from_stk(amount, response, current_user.id, @desc, level, account, @origin)
 
       user_response = { type: 'Ok', title: 'Success',
-                        message: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }
+                        message: "A #{@origin} #{amount} transaction has been sent to #{@phone}" }
     else
       user_response = { type: 'Error', title: 'Missing data',
                         message: 'Some required information is missing' }
