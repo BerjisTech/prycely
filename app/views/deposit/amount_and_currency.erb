@@ -4,7 +4,7 @@
     <div class="tu-from-this">
       <div class="tu-amount-details">
         <span>Add</span>
-        <input type="number" class="tu-amount" oninput="get_conversion('<%= @active_currency %>', $('.twd').attr('data-currency'),$(this).val())" onchange="topup_amount = $(this).val()" value="1000" />
+        <input type="number" class="tu-amount" oninput="get_conversion('<%= @active_currency %>', $('.twd').attr('data-currency'),$(this).val())" onchange="topup_amount = $(this).val()" value="1000" step="0.01" />
       </div>
       <div class="tu-wallet-details" data-currency="">
         <img src="" />
