@@ -79,7 +79,7 @@ class MpesaController < ApplicationController
       response = JSON.parse(response.body)
 
       Stk.create_stk(response, "+#{@phone}", status)
-      Transaction.create_from_stk(amount, response, current_user.id, @desc, level, account, @origin)
+      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
 
       user_response = { type: 'Ok', title: 'Success',
                         message: "A #{@recepient} #{amount} transaction has been sent to #{@phone}" }
