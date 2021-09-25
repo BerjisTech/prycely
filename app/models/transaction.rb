@@ -63,11 +63,9 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def self.update_paybill_tansaction(mpesaCode, amount)
-    amount *= 100
+  def self.update_paybill_tansaction(mpesaCode)
     transaction = {
       transaction_reference: mpesaCode,
-      amount: amount,
       status: 1
     }
 
