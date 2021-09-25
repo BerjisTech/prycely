@@ -42,11 +42,12 @@ class MpesaController < ApplicationController
     @ref = params[:reference]
     @desc = params[:description]
     @origin = params[:origin]
+    @recepient = params[:recepient]
 
-    if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != ''
+    if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != '' && @recepient.present? && @recepient != ''
       level = Transact.level_to_int(params[:level])
       account = params[:account]
-      amount = Concurrency.convert(@amount, origin, recepient)
+      amount = Concurrency.convert(@amount, @origin, @recepient)
 
       shortcode = @C2B_PAYBILL
       lipa_na_mpesa_key = @MPESA_API_PASSKEY
