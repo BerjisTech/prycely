@@ -22,9 +22,13 @@
 
   <tbody>
     <% @transactions.each do |transaction| %>
-      <% user_account = Account.find_by(user_id: transaction.user_id)%>
       <tr>
-        <td><%= link_to "#{user_account.first_name.humanize} #{user_account.last_name.humanize}", account_path(user_account.id) %></td>
+        <td>
+          <% if transaction.user_id.present? %>
+            <% user_account = Account.find_by(user_id: transaction.user_id)%>
+            <%= link_to "#{user_account.first_name.humanize} #{user_account.last_name.humanize}", account_path(user_account.id) %>
+          <% end%>
+        </td>
         <td><%= Transact.amount_from_cents(transaction.amount) %></td>
         <td><%= transaction.transaction_reference %></td>
         <td><%= transaction.transaction_type %></td>
