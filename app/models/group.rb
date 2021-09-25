@@ -22,11 +22,11 @@ class Group < ApplicationRecord
   }
 
   def self.credit(group_id)
-    Transaction.where(group_id: group_id).money_in.complete.pluck('sum(amount)').first || 0
+    Transaction.where(group_id: group_id).where(transaction_type: 1).where(status: 1).pluck('sum(amount)').first || 0
   end
 
   def self.debit(group_id)
-    Transaction.where(group_id: group_id).money_out.pluck('sum(amount)').first || 0
+    Transaction.where(group_id: group_id).where(transaction_type: 2).pluck('sum(amount)').first || 0
   end
 
   def self.balance(group_id)
