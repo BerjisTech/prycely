@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MpesaController < ApplicationController
-  before_action :authenticate_user!, only: %i[stk b2c]
+  before_action :authenticate_user!, only: %i[stk b2c check_paybill_transaction]
   skip_before_action :verify_authenticity_token, only: %i[c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
 
@@ -46,6 +46,7 @@ class MpesaController < ApplicationController
     if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != ''
       level = Transact.level_to_int(params[:level])
       account = params[:account]
+      @amount = Concurrency.convert(@amount, origin, recepient)
 
       shortcode = @C2B_PAYBILL
       lipa_na_mpesa_key = @MPESA_API_PASSKEY
@@ -89,6 +90,20 @@ class MpesaController < ApplicationController
   end
 
   def paybill; end
+
+  def check_paybill_transaction
+    mpesaReceiptNumber = params[:mpesa_code]
+    level = Transact.level_to_int(params[:level])
+    account = params[:account]
+
+    current_transaction = Transaction.find_by(transaction_reference: mpesaReceiptNumber, group_id: nil, wallet_id: nil)
+    update_data = { level: level, wallet_id: account, group_id: account, status: 1, user_id: current_user.id}
+
+    if level.present? && account.present? && mpesaReceiptNumber.present?
+      current_transaction.update_all(update_data) if current_transaction.present?
+      message
+    end
+  end
 
   def callback_b2c
     message = 'Ok'
