@@ -100,10 +100,14 @@ class MpesaController < ApplicationController
     update_data = { level: level, wallet_id: account, group_id: account, status: 1, user_id: current_user.id}
 
     if level.present? && account.present? && mpesaReceiptNumber.present?
-      current_transaction.update_all(update_data) if current_transaction.present?
-      { title: 'Success', message: 'Transaction confirmed', type: 'Info' }
+      if current_transaction.present?
+        current_transaction.update_all(update_data)
+        { title: 'Success', message: 'Transaction confirmed', type: 'Info' }
+      else
+        { title: 'Oops', message: 'There\'s no transaction with this code. Check the MPesa code and try again', type: 'Info' }
+      end
     else
-      { title: '', message: 'Kindly check the MPesa code and try again or contact support', type: 'Info' }
+      { title: '', message: 'Something went wrong, kindly contact support', type: 'Info' }
     end
   end
 
