@@ -101,7 +101,9 @@ class MpesaController < ApplicationController
 
     if level.present? && account.present? && mpesaReceiptNumber.present?
       current_transaction.update_all(update_data) if current_transaction.present?
-      message
+      { title: 'Success', message: 'Transaction confirmed', type: 'Info' }
+    else
+      { title: '', message: 'Kindly check the MPesa code and try again or contact support', type: 'Info' }
     end
   end
 
