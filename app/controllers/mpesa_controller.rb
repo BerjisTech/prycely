@@ -37,17 +37,17 @@ class MpesaController < ApplicationController
   end
 
   def stk
-    @amount = params[:amount].to_f
+    original_amount = params[:amount].to_f
     @phone = params[:phone]
     @ref = params[:reference]
     @desc = params[:description]
     @origin = params[:origin]
     @recepient = params[:recepient]
 
-    if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != '' && @recepient.present? && @recepient != ''
+    if original_amount.present? && original_amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != '' && @recepient.present? && @recepient != ''
       level = Transact.level_to_int(params[:level])
       account = params[:account]
-      amount = Concurrency.convert(@amount, @origin, @recepient)
+      amount = Concurrency.convert(original_amount, @origin, @recepient)
       amount = amount.ceil
 
       shortcode = @C2B_PAYBILL
@@ -79,7 +79,7 @@ class MpesaController < ApplicationController
       response = JSON.parse(response.body)
 
       Stk.create_stk(response, "+#{@phone}", status)
-      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
+      Transaction.create_from_stk(original_amount, response, current_user.id, @desc, level, account, @origin)
 
       user_response = { type: 'Ok', title: 'Success',
                         message: "A #{@recepient} #{amount} transaction has been sent to #{@phone}" }
