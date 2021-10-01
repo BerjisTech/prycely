@@ -10,7 +10,7 @@ class ErrorsController < ApplicationController
 
     stored_errors = Error.where(method: params['method']) if params['method'].present?
 
-    errors = format_errors(stored_errors)
+    # errors = format_errors(stored_errors)
 
     render json: stored_errors
   end
@@ -20,7 +20,7 @@ class ErrorsController < ApplicationController
     stored_errors.map do |error|
       errors << {
         id: error.id,
-        error: JSON.parse(error.error.gsub('=>', ':')),
+        error: JSON.parse(error.error),
         time: error.time,
         created_at: error.created_at,
         updated_at: error.updated_at,
@@ -37,7 +37,9 @@ class ErrorsController < ApplicationController
   end
 
   # GET /errors/1 or /errors/1.json
-  def show; end
+  def show
+    render json: @error
+  end
 
   # GET /errors/new
   def new

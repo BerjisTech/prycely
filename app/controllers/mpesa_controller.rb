@@ -25,8 +25,9 @@ class MpesaController < ApplicationController
       'Remarks': remarks,
       'QueueTimeOutURL': @TIMEOUT_URL,
       'ResultURL': @RESULT_URL,
-      'Occasion': '' # optional
+      'Occasion': 'Disbursement' # optional
     }
+    Error.add_error('b2c', body, request.referer, 'check details')
     render json: call(path, body, @MPESA_B2C_API_KEY, @MPESA_B2C_API_SECRET)
   end
 
@@ -114,7 +115,7 @@ class MpesaController < ApplicationController
 
   def callback_b2c
     message = 'Ok'
-    Error.add_error('c2b', params, request.referer, message)
+    Error.add_error('callback_b2c', params, request.referer, message)
     Paybill.process_paybill_response(params)
   end
 
@@ -186,26 +187,27 @@ class MpesaController < ApplicationController
       'Content-Type': 'application/json',
       'Authorization': "Bearer #{token}"
     }
+    Error.add_error('faraday_call', { res: res, key: key, secret: secret, headers: headers, token: token }, base_url + path, 'Ok')
     Faraday.post(base_url + path, body.to_json, headers)
   end
 
   def set_mpesa
-    @MPESA_API_KEY = Siri.find_by(name: 'MPESA_API_KEY').value
-    @MPESA_API_SECRET = Siri.find_by(name: 'MPESA_API_SECRET').value
-    @MPESA_API_PASSKEY = Siri.find_by(name: 'MPESA_API_PASSKEY').value
+    @MPESA_API_KEY = Siri.find_by(name: 'MPESA_API_KEY').value.to_s
+    @MPESA_API_SECRET = Siri.find_by(name: 'MPESA_API_SECRET').value.to_s
+    @MPESA_API_PASSKEY = Siri.find_by(name: 'MPESA_API_PASSKEY').value.to_s
 
-    @MPESA_SANDBOX_API_KEY = Siri.find_by(name: 'MPESA_SANDBOX_API_KEY').value
-    @MPESA_SANDBOX_API_SECRET = Siri.find_by(name: 'MPESA_SANDBOX_API_SECRET').value
-    @MPESA_SANDBOX_API_PASSKEY = Siri.find_by(name: 'MPESA_SANDBOX_API_PASSKEY').value
+    @MPESA_SANDBOX_API_KEY = Siri.find_by(name: 'MPESA_SANDBOX_API_KEY').value.to_s
+    @MPESA_SANDBOX_API_SECRET = Siri.find_by(name: 'MPESA_SANDBOX_API_SECRET').value.to_s
+    @MPESA_SANDBOX_API_PASSKEY = Siri.find_by(name: 'MPESA_SANDBOX_API_PASSKEY').value.to_s
 
-    @MPESA_B2C_API_KEY = Siri.find_by(name: 'MPESA_B2C_API_KEY').value
-    @MPESA_B2C_API_SECRET = Siri.find_by(name: 'MPESA_B2C_API_SECRET').value
-    @MPESA_B2C_API_PASSKEY = Siri.find_by(name: 'MPESA_B2C_API_PASSKEY').value
+    @MPESA_B2C_API_KEY = Siri.find_by(name: 'MPESA_B2C_API_KEY').value.to_s
+    @MPESA_B2C_API_SECRET = Siri.find_by(name: 'MPESA_B2C_API_SECRET').value.to_s
+    @MPESA_B2C_API_PASSKEY = Siri.find_by(name: 'MPESA_B2C_API_PASSKEY').value.to_s
 
-    @C2B_PAYBILL = Siri.find_by(name: 'C2B_PAYBILL').value
-    @B2C_PAYBILL = Siri.find_by(name: 'B2C_PAYBILL').value
-    @C2B_USERNAME = Siri.find_by(name: 'C2B_USERNAME').value
-    @B2C_USERNAME = Siri.find_by(name: 'B2C_USERNAME').value
+    @C2B_PAYBILL = Siri.find_by(name: 'C2B_PAYBILL').value.to_s
+    @B2C_PAYBILL = Siri.find_by(name: 'B2C_PAYBILL').value.to_s
+    @C2B_USERNAME = Siri.find_by(name: 'C2B_USERNAME').value.to_s
+    @B2C_USERNAME = Siri.find_by(name: 'B2C_USERNAME').value.to_s
 
     @BASE_URL = Siri.find_by(name: 'BASE_URL').value
     @TIMEOUT_URL = Siri.find_by(name: 'TIMEOUT_URL').value
