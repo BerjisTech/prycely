@@ -20,7 +20,7 @@ class ErrorsController < ApplicationController
     stored_errors.map do |error|
       errors << {
         id: error.id,
-        error: error.error, # JSON.parse(error.error),
+        error: JSON.parse(error.error),
         time: error.time,
         created_at: error.created_at,
         updated_at: error.updated_at,
