@@ -10,9 +10,9 @@ class ErrorsController < ApplicationController
 
     stored_errors = Error.where(method: params['method']) if params['method'].present?
 
-    errors = format_errors(stored_errors)
+    # errors = format_errors(stored_errors)
 
-    render json: errors
+    render json: stored_errors
   end
 
   def format_errors(stored_errors)
