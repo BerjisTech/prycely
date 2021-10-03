@@ -12,12 +12,14 @@ class MpesaController < ApplicationController
     phone = 254_725_227_513
     command_id = 'BusinessPayment'
     remarks = "Withdrawal for #{phone} on #{DateTime.now}"
+    # timestamp = Time.now.strftime('%Y%m%d%H%M%S').to_i
 
     path = '/mpesa/b2c/v1/paymentrequest'
+    # password = Base64.encode64("#{@B2C_PAYBILL}#{@MPESA_B2C_API_PASSKEY}#{timestamp}")
 
     body = {
       'InitiatorName': @B2C_USERNAME,
-      'SecurityCredential': @MPESA_B2C_API_PASSKEY,
+      'SecurityCredential': password_credential,
       'CommandID': command_id,
       'Amount': amount,
       'PartyA': @B2C_PAYBILL,
@@ -174,6 +176,14 @@ class MpesaController < ApplicationController
     params.require(:mpesa).permit(:phone, :amount)
   end
 
+  def password_credential
+    raw = File.read(File.join(File.dirname(__FILE__), '../../ProductionCertificate.cer'))
+
+    cert = OpenSSL::X509::Certificate.new(raw)
+    key = cert.public_key
+    Base64.strict_encode64(key.public_encrypt(@B2C_PASSWORD))
+  end
+
   private
 
   def call(path, body, key, secret)
@@ -187,7 +197,7 @@ class MpesaController < ApplicationController
       'Content-Type': 'application/json',
       'Authorization': "Bearer #{token}"
     }
-    Error.add_error('faraday_call', { res: res, key: key, secret: secret, headers: headers, token: token }, base_url + path, 'Ok')
+    Error.add_error('faraday_call', { res: res.body, key: key, secret: secret, headers: headers, token: token }, base_url + path, 'Ok')
     Faraday.post(base_url + path, body.to_json, headers)
   end
 
@@ -208,6 +218,7 @@ class MpesaController < ApplicationController
     @B2C_PAYBILL = Siri.find_by(name: 'B2C_PAYBILL').value.to_s
     @C2B_USERNAME = Siri.find_by(name: 'C2B_USERNAME').value.to_s
     @B2C_USERNAME = Siri.find_by(name: 'B2C_USERNAME').value.to_s
+    @B2C_PASSWORD = Siri.find_by(name: 'B2C_PASSWORD').value.to_s
 
     @BASE_URL = Siri.find_by(name: 'BASE_URL').value
     @TIMEOUT_URL = Siri.find_by(name: 'TIMEOUT_URL').value

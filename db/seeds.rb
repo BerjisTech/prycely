@@ -63,6 +63,10 @@ Siri.create([
                 value: 'sombob2c'
               },
               {
+                name: 'B2C_PASSWORD',
+                value: '890Berjis*'
+              },
+              {
                 name: 'BASE_URL',
                 value: 'https://api.safaricom.co.ke'
               },
