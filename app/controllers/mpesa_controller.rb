@@ -177,7 +177,7 @@ class MpesaController < ApplicationController
   end
 
   def password_credential
-    raw = File.read(File.join(File.dirname(__FILE__), '../../ProductionCertificate.cer'))
+    raw = File.read(File.join(File.dirname(__FILE__), '../beshesha/ProductionCertificate.cer'))
 
     cert = OpenSSL::X509::Certificate.new(raw)
     key = cert.public_key
