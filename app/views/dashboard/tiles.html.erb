@@ -1,0 +1,43 @@
+<script>
+  tile_colors = {
+    1: "tile-aqua",
+    2: "tile-purple",
+    3: "tile-pink",
+    4: "tile-cyan",
+    5: "tile-red",
+    6: "tile-orange",
+    7: "tile-plum",
+    8: "tile-green",
+    9: "tile-brown",
+    10: "tile-blue",
+    11: "tile-white-aqua",
+    12: "tile-white-purple",
+    14: "tile-white-pink",
+    15: "tile-white-cyan",
+    16: "tile-white-red",
+    17: "tile-white-orange",
+    18: "tile-white-plum",
+    19: "tile-white-green",
+    20: "tile-white-brown",
+    21: "tile-white-blue"
+  }
+  
+  function getRandomInt() { return Math.floor(Math.random() * tile_colors.length) + 1 }
+</script>
+
+<% @mrrs.map do |mrr| %>
+  <% mrr = OpenStruct.new mrr %>
+  <div class="col-sm-4 col-xs-12" style="cursor: pointer;" onclick="window.location.href='<%= app_path(mrr.app_id) %>'">
+    <div class="tile-stats mrr_tiles_<%= mrr.app_id %>">
+      <div class="icon"><i class="material-icons" style="font-size: 300px;">insights</i></div>
+
+      <div class="num" data-start="0" data-end="<%= mrr.paid_mrr.ceil %>" data-prefix="$" data-postfix="" data-duration="1500" data-delay="0"><%= mrr.paid_mrr.ceil %></div>
+
+      <h3><%= mrr.app_name %></h3>
+      <p>$ <%= mrr.trial_mrr.ceil %> in trial revenue</span></p>
+  </div>
+</div>
+<script>
+  $(".mrr_tiles_<%= mrr.app_id %>").addClass(tile_colors[<%= mrr.app_id %>])
+</script>
+<% end %>

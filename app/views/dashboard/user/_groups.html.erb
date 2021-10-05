@@ -1,0 +1,34 @@
+<div class="my_groups">
+  <div class="user_area">
+    <span class="user_image">
+      <% if @account.image.attached? %>
+        <%= image_tag @account.image.variant(resize: "500x500") %>
+      <% else %>
+        <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
+      <% end %>
+    </span>
+    <span class="name_n_email">
+      <span><%= "#{@account.first_name} #{@account.last_name}" %></span>
+      <span><%= current_user.email %></span>
+    </span>
+  </div>
+
+  <span class="sidebar_section_titles">My Active Groups</span>
+
+  <% @my_groups.each_with_index.map do |group, index| %>
+    <div class="wallet-holder" onclick="window.location.href='<%= group_path(group.id) %>'" style="cursor: pointer;">
+      <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+        <%= "#{group.name.first.upcase}#{group.name[1].downcase}" %>
+      </span>
+      <span class="wallet-currency"><%= group.name %></span>
+      <span class="wallet-balance">
+        <span class="wallet-amount"><%= Money.new(Group.balance(group.id) || 0) %></span>
+        <span class="wallet-change grow">+3.5%</span>
+      </span>
+    </div>
+  <% end %>
+
+  <%= link_to groups_path do %>
+    View all groups
+  <% end %>
+</div>

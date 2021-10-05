@@ -1,0 +1,40 @@
+<div class="col-sm-6 user_tasks">
+  <div class="user_tasks_margin">
+    <div class="col-xs-12 user_tasks_title">Loans Summary</div>
+
+    <div class="col-sm-4">
+      <div class="tile-stats tile-blue">
+        <div class="icon"><i class="material-icons">list</i></div>
+        <div class="num" data-start="0" data-end="<%= @user_loans.requested %>" data-postfix="" data-duration="1400" data-delay="0"><%= @user_loans.requested %></div>
+        <h3>Requested</h3>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="tile-stats tile-red">
+        <div class="icon"><i class="material-icons">report_problem</i></div>
+        <div class="num" data-start="0" data-end="<%= @user_loans.received %>" data-postfix="" data-duration="1400" data-delay="0"><%= @user_loans.received %></div>
+        <h3>Received</h3>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="tile-stats tile-green">
+        <div class="icon"><i class="material-icons">fact_check</i></div>
+        <div class="num" data-start="0" data-end="<%= @user_loans.paid %>" data-postfix="" data-duration="1400" data-delay="0"><%= @user_loans.paid %></div>
+        <h3>Paid</h3>
+      </div>
+    </div>
+
+    <div class="col-xs-12 completion_rate_section">
+      <div>
+        <span class="completion_rate_title">On-Time Payment rate</span><br />
+        <span class="completion_rate">
+          <span>100%</span>
+          <span>+2.7%</span>
+        </span>
+      </div>
+      <img src="https://assets.ltvsaasgrowth.com/images/mockup_line_chart.png" />
+    </div>
+  </div>
+</div>

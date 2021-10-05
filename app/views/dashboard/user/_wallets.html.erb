@@ -1,0 +1,18 @@
+<div class="my_wallets">
+  <span class="sidebar_section_titles">My Active Wallets</span>
+  <% @my_wallets.each_with_index.map do |wallet, index| %>
+    <div class="wallet-holder" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
+      <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+        <%= "#{wallet.currency.first.upcase}#{wallet.currency[1].downcase}" %>
+      </span>
+      <span class="wallet-currency"><%= wallet.currency %></span>
+      <span class="wallet-balance">
+        <span class="wallet-amount"><%= Money.new(wallet.balance || 0) %></span>
+        <span class="wallet-change grow">+3.5%</span>
+      </span>
+    </div>
+  <% end %>
+  <%= link_to wallets_path do %>
+    View all wallets
+  <% end %>
+</div>

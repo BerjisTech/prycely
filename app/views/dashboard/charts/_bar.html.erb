@@ -1,0 +1,24 @@
+<div id="line-chart-demo" class="col-sm-6 morrischart" style="height: 300px"></div>
+<script>
+  jQuery(document).ready(($) => {
+    var line_chart_demo = $("#line-chart-demo");
+    var line_chart = Morris.Bar({
+        element: 'line-chart-demo',
+        data: [
+            <% @monthly_transactions.map do |mrr| %>
+                {
+                    y: "<%= mrr.date.strftime("%Y-%m-%d") %>",
+                    a: <%= Currency.amount_from_cents(mrr.amount).round(2) %>
+                },
+            <% end %>
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Paying'],
+        barColors: ['#149DA8'],
+        redraw: true,
+        stacked: true
+    });
+    line_chart_demo.parent().attr('style', '');
+  })
+</script>

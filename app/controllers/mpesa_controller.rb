@@ -197,7 +197,8 @@ class MpesaController < ApplicationController
       'Content-Type': 'application/json',
       'Authorization': "Bearer #{token}"
     }
-    Error.add_error('faraday_call', { res: res.body, key: key, secret: secret, headers: headers, token: token }, base_url + path, 'Ok')
+    Error.add_error('faraday_call', { res: res.body, key: key, secret: secret, headers: headers, token: token },
+                    base_url + path, 'Ok')
     Faraday.post(base_url + path, body.to_json, headers)
   end
 

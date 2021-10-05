@@ -1,0 +1,36 @@
+<div class="col-sm-6 user_groups">
+  <div class="user_group_margin">
+    <div class="groups_section_top">
+      <span>My Groups (<%= @my_groups.count %>)</span>
+      <%= link_to groups_path do %>All groups<em class="material-icons">chevron_right</em><% end %>
+    </div>
+    <div class="group_section_data">
+      <div class="mrr_data">
+        <div class="mrr_data_tab">
+          <span class="material-icons">addchart</span>
+          <div class="mrr_details">
+            <span>$ <%= Currency.amount_from_cents(@my_groups_numbers.credit || 0) %></span>
+            <span>Deposits</span>
+          </div>
+        </div>
+        <div class="mrr_data_tab">
+          <span class="material-icons">groups</span>
+          <div class="mrr_details">
+            <span><%= Currency.amount_from_cents(@my_groups_numbers.debit || 0) %></span>
+            <span>Withdrawals</span>
+          </div>
+        </div>
+        <div class="mrr_data_tab">
+          <span class="material-icons">group_add</span>
+          <div class="mrr_details">
+            <span>$ <%= Currency.amount_from_cents(@my_groups_numbers.loans || 0) %></span>
+            <span>Loans</span>
+          </div>
+        </div>
+      </div>
+      <div class="pie_chart">
+        <%= render 'dashboard/charts/doughnut' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@
     border-bottom  : 1px solid #E3ECFB;
     padding        : 10px;
     background     : #ffffff;
+    width          : 100%;
 
     &:hover {
         color     : #272B2F;
@@ -31,8 +32,10 @@
     }
 
     .wallet-currency {
-        font-weight: 600;
-        font-size  : 16px;
+        font-weight : 600;
+        font-size   : 16px;
+        flex-grow   : 4;
+        padding-left: 10px;
     }
 
     .wallet-balance {

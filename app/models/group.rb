@@ -22,11 +22,21 @@ class Group < ApplicationRecord
   }
 
   def self.credit(group_id)
-    Transaction.where(group_id: group_id).where(transaction_type: 1).where(status: 1).pluck('sum(amount)').first || 0
+    Transaction.where(group_id: group_id, level: 1, transaction_type: 1, status: 1).pluck('sum(amount)').first.to_f
   end
 
   def self.debit(group_id)
-    Transaction.where(group_id: group_id).where(transaction_type: 2).pluck('sum(amount)').first || 0
+    Transaction.where(group_id: group_id, level: 1, transaction_type: 2, status: 1).pluck('sum(amount)').first.to_f
+  end
+
+  def self.user_credit(group_id, user_id)
+    Transaction.where(group_id: group_id, transaction_type: 1, level: 1, user_id: user_id,
+                      status: 1).pluck('sum(amount)').first.to_f
+  end
+
+  def self.user_debit(group_id, user_id)
+    Transaction.where(group_id: group_id, transaction_type: 2, level: 1, user_id: user_id,
+                      status: 1).pluck('sum(amount)').first.to_f
   end
 
   def self.balance(group_id)
@@ -39,5 +49,9 @@ class Group < ApplicationRecord
 
   def self.me(user_id, group_id)
     Member.find_by(user_id: user_id, group_id: group_id)
+  end
+
+  def self.user_savings(user_id, group_id)
+    user_credit(group_id, user_id) - user_debit(group_id, user_id)
   end
 end
