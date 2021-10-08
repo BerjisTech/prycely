@@ -400,3 +400,65 @@
         border-bottom  : 1px solid #C0C0C0;
     }
 }
+
+
+@media only screen and (max-width: 1100px) {
+    .dashboard_overview_top {
+        width          : 100% !important;
+        display        : flex !important;
+        flex-direction : column !important;
+        align-items    : flex-start !important;
+        justify-content: flex-start !important;
+
+        .mrr_accounting {
+            width          : 100% !important;
+            align-items    : flex-start;
+            justify-content: flex-start;
+        }
+
+        .morrischart {
+            width: 100% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+
+    .user_tasks,
+    .user_apps,
+    .user_tasks_margin,
+    .user_app_margin {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+
+    html,
+    body {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 573px) {
+
+    html,
+    body {
+        width: 100% !important;
+    }
+
+    .dashboard_overview_bottom {
+        display        : flex !important;
+        flex-direction : column !important;
+        align-items    : center !important;
+        justify-content: center !important;
+
+        .overview_user,
+        .overview_trial {
+            width          : 100% !important;
+            align-items    : flex-start !important;
+            justify-content: flex-start !important;
+            margin-bottom  : 10px;
+        }
+    }
+}
