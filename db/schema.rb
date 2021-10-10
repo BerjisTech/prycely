@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_917_100_117) do
+ActiveRecord::Schema.define(version: 20_211_009_164_753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -386,6 +386,11 @@ ActiveRecord::Schema.define(version: 20_210_917_100_117) do
     t.datetime 'updated_at', precision: 6, null: false
     t.float 'balance'
     t.index ['user_id'], name: 'index_wallets_on_user_id'
+  end
+
+  create_table 'wises', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
