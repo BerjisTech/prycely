@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
     session[:user_id] = current_user.id
     user_id = session[:user_id]
 
-    @account = Account.find_by(user_id: current_user.id)
+    @account = Account.find_or_create_by(user_id: current_user.id)
     @my_groups = Group.mine(user_id, 4)
     @my_invites = Invite.mine(user_id)
     @my_wallets = Wallet.mine(current_user.id, 4)

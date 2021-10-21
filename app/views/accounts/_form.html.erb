@@ -47,40 +47,45 @@
           </div>
 
           <div class="field form-group col-md-4 col-sm-6">
-            <%= form.label :phone %>
-            <%= form.text_field :phone, class: "form-control", required: "required" %>
+            <%= form.label "Phone (Include country code)" %>
+            <%= form.text_field :phone, class: "form-control", required: "required", placeholder: "+254 7********" %>
           </div>
         </div>
         <div class="address">
 
           <h3 class="text-info">Address</h3>
           <hr/>
-          <div class="field col-sm-6">
+          <div class="field col-sm-4">
             <%= form.label :country %>
             <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control select2", required: "required" }) %>
           </div>
 
-          <div class="field form-group col-sm-6">
-            <%= form.label :county %>
+          <div class="field form-group col-sm-4">
+            <%= form.label "County/Province/State" %>
             <%= form.text_field :county, class: "form-control", required: "required" %>
           </div>
 
-          <div class="field form-group col-sm-6">
+          <div class="field form-group col-sm-4">
             <%= form.label :city %>
             <%= form.text_field :city, class: "form-control", required: "required" %>
           </div>
 
-          <div class="field form-group col-sm-6">
+          <div class="field col-sm-3">
+            <%= form.label :default_currency %>
+            <%= form.select("default_currency", options_for_select(Transact.all_currencies(Money::Currency.table)), {}, { :class => "form-control select2", :placeholder => "Default Currency", prompt: "Rock owner", required: "required" }) %>
+          </div>
+
+          <div class="field form-group col-sm-3">
             <%= form.label :street %>
             <%= form.text_field :street, class: "form-control", required: "required" %>
           </div>
 
-          <div class="field form-group col-sm-6">
+          <div class="field form-group col-sm-3">
             <%= form.label :address %>
             <%= form.text_field :address, class: "form-control", required: "required" %>
           </div>
 
-          <div class="field form-group col-sm-6">
+          <div class="field form-group col-sm-3">
             <%= form.label :postal %>
             <%= form.text_field :postal, class: "form-control", required: "required" %>
           </div>

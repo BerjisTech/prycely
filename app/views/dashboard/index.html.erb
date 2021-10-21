@@ -1,12 +1,16 @@
-<div class="row">
-  <div class="col-sm-9 dashboard_main_section">
-    <%= render 'dashboard/user/welcome' %>
-    <%= render 'dashboard/app/overview/index' %>
-    <%= render 'dashboard/user/tasks' %>
-    <%= render 'dashboard/user/group_data' %>
+<% if @account.first_name.nil? || @account.last_name.nil? || @account.default_currency.nil? %>
+  <%= render 'dashboard/update_account' %>
+<% else %>
+  <div class="row">
+    <div class="col-sm-9 dashboard_main_section">
+      <%= render 'dashboard/user/welcome' %>
+      <%= render 'dashboard/app/overview/index' %>
+      <%= render 'dashboard/user/tasks' %>
+      <%= render 'dashboard/user/group_data' %>
+    </div>
+    <div class="col-sm-3 dashboard_side_bar">
+      <%= render 'dashboard/user/groups' %>
+      <%= render 'dashboard/user/wallets' %>
+    </div>
   </div>
-  <div class="col-sm-3 dashboard_side_bar">
-    <%= render 'dashboard/user/groups' %>
-    <%= render 'dashboard/user/wallets' %>
-  </div>
-</div>
+<% end %>
