@@ -21,9 +21,9 @@ class Dashboard < ApplicationRecord
     credit, debit, loan = 0
 
     my_transactions.map do |trans|
-      credit += trans.amount if trans.transaction_type == 1
-      debit += trans.amount if trans.transaction_type == 2
-      loan += trans.amount if trans.transaction_type == 3
+      credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase, Account.find_by_user_id(user_id).default_currency.downcase) if trans.transaction_type == 1
+      debit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase, Account.find_by_user_id(user_id).default_currency.downcase) if trans.transaction_type == 2
+      loan += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase, Account.find_by_user_id(user_id).default_currency.downcase) if trans.transaction_type == 3
     end
 
     {
