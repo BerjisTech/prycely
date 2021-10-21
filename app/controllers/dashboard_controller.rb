@@ -29,6 +29,7 @@ class DashboardController < ApplicationController
   end
 
   def check_default_wallets
+    Wallet.find_or_create_by(user_id: current_user.id, currency: @account.default_currency.upcase)
     Wallet.find_or_create_by(user_id: current_user.id, currency: 'USD')
     Wallet.find_or_create_by(user_id: current_user.id, currency: 'GBP')
     Wallet.find_or_create_by(user_id: current_user.id, currency: 'EUR')
