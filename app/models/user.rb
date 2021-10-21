@@ -30,8 +30,7 @@ class User < ApplicationRecord
     Transaction
       .where(user_id: user_id, transaction_type: 1, status: 1)
       .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
-      .where('created_at <? ', start_date)
-      .where('created_at >?', end_date).all.map do |transaction|
+      .all.map do |transaction|
       amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
                                                transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
       p "#{transaction.amount} converted to a sum of #{amount}"
@@ -45,8 +44,7 @@ class User < ApplicationRecord
     Transaction
       .where(user_id: user_id, transaction_type: 2, status: 1)
       .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
-      .where('created_at <? ', start_date)
-      .where('created_at >?', end_date).all.map do |transaction|
+      .all.map do |transaction|
       amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
                                                transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
       p "#{transaction.amount} converted to a sum of #{amount}"

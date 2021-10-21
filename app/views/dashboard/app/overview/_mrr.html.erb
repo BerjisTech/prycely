@@ -1,6 +1,6 @@
 <div class="col-sm-6 mrr_accounting">
   <span>Accounting</span>
   <span><%= Dashboard.dates.last_month %> - <%= Dashboard.dates.today %></span>
-  <span>AVG Monthly Income</span>
-  <span><small><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= @this_month_savings %></span>
+  <span>Total Savings</span>
+  <span><small><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(@this_month_savings precision: 2, delimitor: '.', separator: ',') %></span>
 </div>
