@@ -2,5 +2,5 @@
   <span>Accounting</span>
   <span><%= Dashboard.dates.last_month %> - <%= Dashboard.dates.today %></span>
   <span>AVG Monthly Income</span>
-  <span>$<%= @this_month_savings %></span>
+  <span><small><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= @this_month_savings %></span>
 </div>

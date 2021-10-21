@@ -119,6 +119,10 @@
                 &:last-of-type {
                     font-size  : 40px;
                     font-weight: 700;
+
+                    small {
+                        font-size: 14px;
+                    }
                 }
             }
         }
