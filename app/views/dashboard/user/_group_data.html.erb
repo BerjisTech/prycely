@@ -9,7 +9,7 @@
         <div class="mrr_data_tab">
           <span class="material-icons">addchart</span>
           <div class="mrr_details">
-            <span>$ <%= Currency.amount_from_cents(@my_groups_numbers.credit || 0) %></span>
+            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= Currency.amount_from_cents(@my_groups_numbers.credit || 0) %></span>
             <span>Deposits</span>
           </div>
         </div>

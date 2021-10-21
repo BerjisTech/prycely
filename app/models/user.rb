@@ -26,16 +26,30 @@ class User < ApplicationRecord
 
   def self.range_credit(user_id, start_date, range)
     end_date = (start_date - range)
-    Transaction.where(user_id: user_id, transaction_type: 1, status: 1).where('created_at <? ', start_date).where(
-      'created_at >?', end_date
-    ).pluck('sum(amount)').first.to_f
+    amount = 0
+    Transaction
+      .where(user_id: user_id, transaction_type: 1, status: 1)
+      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+      .where('created_at <? ', start_date)
+      .where('created_at >?', end_date).all.map do |transaction|
+      amount += Currency.calculate_and_convert(user_id, transaction)
+      p "#{transaction.amount} converted to a sum of #{amount}"
+    end
+    amount
   end
 
   def self.range_debit(user_id, start_date, range)
     end_date = (start_date - range)
-    Transaction.where(user_id: user_id, transaction_type: 2, status: 1).where('created_at <? ', start_date).where(
-      'created_at >?', end_date
-    ).pluck('sum(amount)').first.to_f
+    amount = 0
+    Transaction
+      .where(user_id: user_id, transaction_type: 2, status: 1)
+      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+      .where('created_at <? ', start_date)
+      .where('created_at >?', end_date).all.map do |transaction|
+      amount += Currency.calculate_and_convert(user_id, transaction)
+      p "#{transaction.amount} converted to a sum of #{amount}"
+    end
+    amount
   end
 
   def self.range_savings(user_id, start_date, range)

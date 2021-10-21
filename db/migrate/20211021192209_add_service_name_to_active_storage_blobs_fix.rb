@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddServiceNameToActiveStorageBlobsFix < ActiveRecord::Migration[6.1]
   def up
     unless column_exists?(:active_storage_blobs, :service_name)
