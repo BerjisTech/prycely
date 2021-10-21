@@ -17,10 +17,6 @@
 
   <div class="col-md-6 col-sm-4 clearfix hidden-xs">
     <ul class="list-inline links-list pull-right">
-      <%= current_admin %>
-      <% if current_user.email == "bo.kouru@gmail.com" %>
-        <li><%= link_to "Admin", new_admin_session_path, method: :get %></li>
-      <% end %>
 
       <% if Account.mine(current_user.id).present? %>
         <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get %></li>
