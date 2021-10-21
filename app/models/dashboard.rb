@@ -22,16 +22,16 @@ class Dashboard < ApplicationRecord
 
     my_transactions.map do |trans|
       if trans.transaction_type == 1
-        credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase,
-                                                 Account.find_by_user_id(user_id).default_currency.downcase)
+        credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                 Account.find_by_user_id(user_id).default_currency.upcase)
       end
       if trans.transaction_type == 2
-        debit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase,
-                                                Account.find_by_user_id(user_id).default_currency.downcase)
+        debit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                Account.find_by_user_id(user_id).default_currency.upcase)
       end
       if trans.transaction_type == 3
-        loan += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.downcase,
-                                               Account.find_by_user_id(user_id).default_currency.downcase)
+        loan += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                               Account.find_by_user_id(user_id).default_currency.upcase)
       end
     end
 
