@@ -2,5 +2,5 @@
   <span>Accounting</span>
   <span><%= Dashboard.dates.last_month %> - <%= Dashboard.dates.today %></span>
   <span>Total Savings</span>
-  <span><small><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(@this_month_savings precision: 2, delimitor: '.', separator: ',') %></span>
+  <span><small><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(@this_month_savings, precision: 2, delimitor: '.', separator: ',') %></span>
 </div>
