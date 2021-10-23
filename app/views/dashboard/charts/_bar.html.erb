@@ -5,10 +5,10 @@
     var line_chart = Morris.Bar({
         element: 'line-chart-demo',
         data: [
-            <% @monthly_transactions.map do |mrr| %>
+            <% @monthly_transactions.map do |transaction| %>
                 {
-                    y: "<%= mrr.date.strftime("%Y-%m-%d") %>",
-                    a: <%= Currency.amount_from_cents(mrr.amount).round(2) %>
+                    y: "<%= transaction.date.strftime("%Y-%m-%d") %>",
+                    a: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>
                 },
             <% end %>
         ],

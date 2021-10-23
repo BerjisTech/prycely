@@ -12,7 +12,7 @@ class Dashboard < ApplicationRecord
   end
 
   def self.all_user_transactions_per_month(user_id)
-    Transaction.where(user_id: user_id).select('sum(amount) as amount, DATE(created_at) as date').group('date')
+    Transaction.where(user_id: user_id).select('sum(amount) as amount, DATE(created_at) as date, currency').group('date, currency')
   end
 
   def self.group_numbers(user_id)
