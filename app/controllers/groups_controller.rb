@@ -74,7 +74,7 @@ class GroupsController < ApplicationController
     @my_groups = Group.mine(current_user.id, 5)
     @credit = Transact.amount_from_cents(Group.credit(params[:id]))
     @debit = Transact.amount_from_cents(Group.debit(params[:id]))
-    @balance = Transact.amount_from_cents(Group.balance(params[:id]))
+    @balance = Group.balance(params[:id])
     @recent_transactions = Transaction.for_group(params[:id], 10)
     @total_transactions = Transaction.total(params[:id])
     @total_members = Member.total_members(params[:id])

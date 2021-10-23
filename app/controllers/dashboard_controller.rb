@@ -7,7 +7,6 @@ class DashboardController < ApplicationController
 
   def index
     @monthly_transactions = Dashboard.all_user_transactions_per_month(current_user.id)
-    render json: @monthly_transactions
   end
 
   def join
