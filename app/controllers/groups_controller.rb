@@ -3,11 +3,14 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_account
 
   # GET /groups or /groups.json
   def index
     # @groups = Group.all
-    @groups = Member.where.not(status: '0').where(user_id: current_user.id).joins(:group).select(:id, :name,
+    @my_group_transactions = Transaction.my_group_transactions(current_user.id)
+    @my_groups_numbers = OpenStruct.new Dashboard.group_numbers(current_user.id)
+    @groups = Member.where.not(status: '0').where(user_id: current_user.id).joins(:group).select(:id, :name, :accepted_on,
                                                                                                  :membership, :group_id, :created_by, :currency, :group_type)
   end
 
@@ -76,8 +79,11 @@ class GroupsController < ApplicationController
     @total_members = Member.total_members(params[:id])
     @last_log = Log.last_of_group(params[:id])
     @me = Group.me(current_user.id, params[:id])
-    @account = Account.where(user_id: current_user.id).pluck(:id)
     session[:current_group] = @group.id
+  end
+
+  def set_account
+    @account = Account.find_by(user_id: current_user.id)
   end
 
   def check_account(user_id, group_id, user_email, account, group)

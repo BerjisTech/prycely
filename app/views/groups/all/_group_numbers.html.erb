@@ -1,0 +1,18 @@
+<div class="row mt-4">
+  <div class="col-6">
+    <div class="card p-3 d-flex flex-row align-items-center">
+      <div><%= Money::Currency.find(@account.default_currency).symbol %> <span class="fs-1"><%= number_with_precision(@my_groups_numbers.credit, precision: 2, delimitor: ',', separator: '.') || 0.to_f %></span></div>
+      <div>
+        Total deposits in all groups
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card p-3 d-flex flex-row align-items-center">
+      <div><%= Money::Currency.find(@account.default_currency).symbol %> <span class="fs-1"><%= number_with_precision(@my_groups_numbers.debit, precision: 2, delimitor: ',', separator: '.') || 0.to_f %></span></div>
+      <div>
+        Total withdrawals from all groups
+      </div>
+    </div>
+  </div>
+</div>

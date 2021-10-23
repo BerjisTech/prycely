@@ -1,0 +1,19 @@
+<% @groups.each_with_index.map do |group, index| %>
+  <div class="card my-2 p-2 d-flex align-items-center justify-content-center flex-row">
+    <span class="bg-primary p-2 d-flex align-items-center justify-content-center text-white fs-3 rounded-circle" style="width: 50px; height: 50px;">
+      <%= group.name[0...2].humanize %>
+    </span>
+    <span class="flex-grow-1 px-3 d-flex flex-column align-items-start justify-content-center">
+      <span class="fs-3"><%= group.name.humanize %></span>
+      <span class="d-flex flex-row align-items-center">Created by <em><%= link_to Account.find_by(user_id: group.created_by).first_name.humanize, account_path(Account.find_by(user_id: group.created_by).id), class: "nav-link", style: "margin: 0px; padding: 0px;" %></em></span>
+    </span>
+    <span>
+      <%= Money::Currency.find(group.currency).symbol %><span class="fs-3"><%= Group.balance(group.group_id)%></span>
+    </span>
+    <span class="px-3">
+      Joined on<br />
+      <span style="font-size: 10px;"><%= group.accepted_on.strftime("%A #{group.accepted_on.day.ordinalize}, %B %Y") %></span>
+    </span>
+    <%= link_to "View", group_path(group.group_id), class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>

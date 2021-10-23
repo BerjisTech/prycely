@@ -25,7 +25,6 @@ class User < ApplicationRecord
   # end
 
   def self.range_credit(user_id, start_date, range)
-    end_date = (start_date - range)
     amount = 0
     Transaction
       .where(user_id: user_id, transaction_type: 1, status: 1)
@@ -39,7 +38,6 @@ class User < ApplicationRecord
   end
 
   def self.range_debit(user_id, start_date, range)
-    end_date = (start_date - range)
     amount = 0
     Transaction
       .where(user_id: user_id, transaction_type: 2, status: 1)

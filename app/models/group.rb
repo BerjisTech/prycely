@@ -30,17 +30,33 @@ class Group < ApplicationRecord
   end
 
   def self.user_credit(group_id, user_id)
-    Transaction.where(group_id: group_id, transaction_type: 1, level: 1, user_id: user_id,
-                      status: 1).pluck('sum(amount)').first.to_f
+    amount = 0
+    Transaction
+      .where(group_id: group_id, transaction_type: 1, level: 1, user_id: user_id, status: 1)
+      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+      .all.map do |transaction|
+      amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
+                                               transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
+      p "#{transaction.amount} converted to a sum of #{amount}"
+    end
+    amount
   end
 
   def self.user_debit(group_id, user_id)
-    Transaction.where(group_id: group_id, transaction_type: 2, level: 1, user_id: user_id,
-                      status: 1).pluck('sum(amount)').first.to_f
+    amount = 0
+    Transaction
+      .where(group_id: group_id, transaction_type: 2, level: 1, user_id: user_id, status: 1)
+      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+      .all.map do |transaction|
+      amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
+                                               transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
+      p "#{transaction.amount} converted to a sum of #{amount}"
+    end
+    amount
   end
 
   def self.balance(group_id)
-    credit(group_id) - debit(group_id)
+    Money.new(credit(group_id) - debit(group_id))
   end
 
   def self.mine(user_id, limit = 10, offset = 0)

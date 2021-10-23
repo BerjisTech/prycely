@@ -22,7 +22,7 @@
       </span>
       <span class="wallet-currency"><%= group.name %></span>
       <span class="wallet-balance">
-        <span class="wallet-amount"><%= Money.new(Group.balance(group.id) || 0) %></span>
+        <span class="wallet-amount"><%= Group.balance(group.id) %></span>
         <span class="wallet-change grow">+3.5%</span>
       </span>
     </div>
