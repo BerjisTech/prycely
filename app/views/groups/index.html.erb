@@ -1,23 +1,16 @@
-<!--p id="notice"><%= notice %></p-->
 <div class="row">
-  <div class="d-flex justify-content-end">
-    <%= link_to new_group_path, class: "btn btn-primary btn-sm d-flex justify-content-center align-items-center" do %>
-      <span>Create New Group</span>
-      <span class="material-icons">add</span>
+  <div class="col-sm-8" style="height: 1000px;">
+    big blue here
+    <%= render 'groups/all/user_card' %>
+    <%= render 'groups/all/create_group' %>
+    <%= render 'groups/all/group_card_title' %>
+    <% @groups.each_with_index.map do |group, index| %>
+      <%= render 'groups/all/group_card' %>
     <% end %>
   </div>
-</div>
-<div class="row">
-  <h1>Groups</h1>
-
-  <div class="groups_holder">
-    <% @groups.each do |group| %>
-      <%= link_to group_path(group.group_id), class: "group" do %>
-        <span class="group_dp"><%= group.name[0] %></span>
-        <span class="group_name"><%= group.name %></span>
-        <span><%= group.currency %></span>
-      <% end %>
-    <% end %>
+  <div class="col-sm-4">
+    <%= render 'groups/all/group_numbers' %>
+    <%= render 'groups/all/chart' %>
+    <%= render 'groups/all/extra_card' %>
   </div>
-
 </div>
