@@ -9,21 +9,21 @@
         <div class="mrr_data_tab">
           <span class="material-icons">addchart</span>
           <div class="mrr_details">
-            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.credit, precision: 2, delimitor: '.', separator: ',') || 0.to_f %></span>
+            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.credit, precision: 2, delimitor: ',', separator: '.') || 0.to_f %></span>
             <span>Deposits</span>
           </div>
         </div>
         <div class="mrr_data_tab">
           <span class="material-icons">groups</span>
           <div class="mrr_details">
-            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.debit, precision: 2, delimitor: '.', separator: ',') || 0.to_f %></span>
+            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.debit, precision: 2, delimitor: ',', separator: '.') || 0.to_f %></span>
             <span>Withdrawals</span>
           </div>
         </div>
         <div class="mrr_data_tab">
           <span class="material-icons">group_add</span>
           <div class="mrr_details">
-            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.loans, precision: 2, delimitor: '.', separator: ',') || 0.to_f %></span>
+            <span><%= Money::Currency.find(@account.default_currency).symbol %> <%= number_with_precision(@my_groups_numbers.loans, precision: 2, delimitor: ',', separator: '.') || 0.to_f %></span>
             <span>Loans</span>
           </div>
         </div>
