@@ -1,11 +1,11 @@
 <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
   <div class="row">
     <div class="add_member">
-      <%= link_to new_invite_path, class: "invite" do %>
+      <%= link_to new_invite_path, class: "nav-link invite" do %>
         <span>Invite Members</span>
         <span class="material-icons">send</span>
       <% end %>
-      <%= link_to new_member_path, class: "direct" do %>
+      <%= link_to new_member_path, class: "nav-link direct" do %>
         <span>Add Members Directly</span>
         <span class="material-icons">add</span>
       <% end %>

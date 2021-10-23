@@ -5,8 +5,10 @@
     <div class="col-sm-9 dashboard_main_section">
       <%= render 'dashboard/user/welcome' %>
       <%= render 'dashboard/app/overview/index' %>
-      <%= render 'dashboard/user/tasks' %>
-      <%= render 'dashboard/user/group_data' %>
+      <div class="row px-3">
+        <%= render 'dashboard/user/tasks' %>
+        <%= render 'dashboard/user/group_data' %>
+      </div>
     </div>
     <div class="col-sm-3 dashboard_side_bar">
       <%= render 'dashboard/user/groups' %>

@@ -1,7 +1,7 @@
 <div class="col-12 payChoicePanel">
   <div class="payChoice panelCard">
     <span class="entypo-left-thin ctdp-title" onclick="goToTopUp()"> Back</span>
-    <a href='<%= "#{root_url}deposit/mpesa/#{@level}/#{@account}" %>' class="pc-mPesa">
+    <a href='<%= "#{root_url}deposit/mpesa/#{@level}/#{@account}" %>' class="nav-link pc-mPesa">
       <span class="material-icons">security_update_good</span>
       <div class="payChoiceDescription">
         <span>MPESA</span>
@@ -9,7 +9,7 @@
       </div>
       <span class="wd-checkbox material-icons">east</span>
     </a>
-    <a href='<%= "#{root_url}deposit/bank/#{@level}/#{@account}" %>' class="pc-debitCard">
+    <a href='<%= "#{root_url}deposit/bank/#{@level}/#{@account}" %>' class="nav-link pc-debitCard">
       <span class="material-icons">account_balance</span>
       <div class="payChoiceDescription">
         <span>Bank or Card</span>
@@ -17,7 +17,7 @@
       </div>
       <span class="wd-checkbox material-icons">east</span>
     </a>
-    <a href='<%= "#{root_url}deposit/paypal/#{@level}/#{@account}" %>' class="pc-debitCard">
+    <a href='<%= "#{root_url}deposit/paypal/#{@level}/#{@account}" %>' class="nav-link pc-debitCard">
       <span class="material-icons">paypal</span>
       <div class="payChoiceDescription">
         <span>PayPal</span>

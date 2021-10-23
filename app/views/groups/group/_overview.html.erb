@@ -36,10 +36,10 @@
       </div>
     </div>
     <div class="overview-transact">
-      <a href='<%= "#{root_url}deposit/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="deposit">
+      <a href='<%= "#{root_url}deposit/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="nav-link deposit">
         <span>DEPOSIT</span>
       </a>
-      <a href='<%= "#{root_url}withdraw/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="withdraw">
+      <a href='<%= "#{root_url}withdraw/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="nav-link withdraw">
         <span>WITHDRAW</span>
       </a>
     </div>

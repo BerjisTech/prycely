@@ -2,7 +2,7 @@
   <div class="col-12 withdrawChoices">
     <div class="withdrawChoice panelCard">
       <span class="back-text-arrow-buttons" onclick="window.location.reload()"> Back</span>
-      <a href='<%= "#{root_url}withdraw/mpesa/#{@level}/#{@account}" %>' class="wd-debitCard">
+      <a href='<%= "#{root_url}withdraw/mpesa/#{@level}/#{@account}" %>' class="nav-link wd-debitCard">
         <span class="material-icons">security_update_good</span>
         <div class="withdrawChoiceDescription">
           <span>Mpesa</span>
@@ -10,7 +10,7 @@
         </div>
         <span class="wd-checkbox material-icons">east</span>
       </a>
-      <a href='<%= "#{root_url}withdraw/bank/#{@level}/#{@account}" %>' class="wd-debitCard">
+      <a href='<%= "#{root_url}withdraw/bank/#{@level}/#{@account}" %>' class="nav-link wd-debitCard">
         <span class="material-icons">account_balance</span>
         <div class="withdrawChoiceDescription">
           <span>Bank</span>
@@ -18,7 +18,7 @@
         </div>
         <span class="wd-checkbox material-icons">east</span>
       </a>
-      <a href='<%= "#{root_url}withdraw/paypal/#{@level}/#{@account}" %>' class="wd-debitCard">
+      <a href='<%= "#{root_url}withdraw/paypal/#{@level}/#{@account}" %>' class="nav-link wd-debitCard">
         <span class="material-icons">paypal</span>
         <div class="withdrawChoiceDescription">
           <span>PayPal</span>

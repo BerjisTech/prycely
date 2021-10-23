@@ -2,7 +2,7 @@
   <div class="user_group_margin">
     <div class="groups_section_top">
       <span>My Groups (<%= @my_groups.count %>)</span>
-      <%= link_to groups_path do %>All groups<em class="material-icons">chevron_right</em><% end %>
+      <%= link_to groups_path, class: "nav-link" do %>All groups<em class="material-icons">chevron_right</em><% end %>
     </div>
     <div class="group_section_data">
       <div class="mrr_data">

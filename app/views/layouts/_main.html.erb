@@ -3,7 +3,6 @@
     <% if Account.mine(current_user.id).present? %>
       <%= render "/layouts/top_bar" %>
     <% end %>
-    <hr />
   <% end %>
   <%= yield %>
 <% else %>

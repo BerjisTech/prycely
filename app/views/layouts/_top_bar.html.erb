@@ -1,36 +1,20 @@
-<div class="row">
-  <div class="col-md-6 col-sm-8 clearfix">
-    <ul class="user-info pull-left pull-none-xsm">
-      <li class="profile-info dropdown">
-        <%= controller_name.humanize %> /
-        <% if controller_name == "groups" && action_name == "show" %>
-          <%= @group.name %>
-        <% else %>
-          <%= action_name.humanize %>
-        <% end %>
-        <% if controller_name == "members" || controller_name == "projects" || controller_name == "loans" || controller_name == "assets" || controller_name == "liabilities" || action_name == "contirbution" %>
-          <%= Group.find(session[:current_group]).name if session[:current_group].present? %>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-    <ul class="list-inline links-list pull-right">
+<div class="row" style="margin: 0px !important; padding: 0px !important; border-bottom: 1px solid #c0c0c0;">
+  <div class="col-md-12" style="margin : 0px !important; padding: 0px !important;">
+    <ul class="d-flex justify-content-end list-inline links-list pull-right" style="margin : 0px !important; padding: 0px !important;">
 
       <% if Account.mine(current_user.id).present? %>
-        <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get %></li>
+        <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), class: "nav-link", method: :get %></li>
       <% end %>
       <li class="sep"></li>
 
-      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1" data-animate="1"> <i class="entypo-chat"></i>
+      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1" data-animate="1" class="nav-link"> <i class="entypo-chat"></i>
           My Groups
           <span class="badge badge-success chat-notifications-badge"><%= Group.mine(current_user.id).count %></span> </a> </li>
 
       <li class="sep"></li>
 
       <li>
-        <%= link_to destroy_user_session_path, method: :delete, style: "display:  flex; align-items: center;" do %>
+        <%= link_to destroy_user_session_path, class: "nav-link", method: :delete, style: "display:  flex; align-items: center;" do %>
           Log Out <i class="material-icons right" style="font-size: 15px;">logout</i>
         <% end %>
       </li>
