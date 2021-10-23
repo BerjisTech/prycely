@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
     @my_groups_numbers = OpenStruct.new Dashboard.group_numbers(current_user.id)
     @groups = Member.where.not(status: '0').where(user_id: current_user.id).joins(:group).select(:id, :name, :accepted_on,
                                                                                                  :membership, :group_id, :created_by, :currency, :group_type)
+    # render json: @my_group_transactions
   end
 
   # GET /groups/1 or /groups/1.json

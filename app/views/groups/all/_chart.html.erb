@@ -8,8 +8,8 @@
             <% @my_group_transactions.map do |transaction| %>
                 {
                     y: "<%= transaction.date.strftime("%Y-%m-%d") %>",
-                    a: <%= Currency.amount_from_cents(transaction.debit).round(2) %>,
-                    b: <%= Currency.amount_from_cents(transaction.credit).round(2) %>
+                    a: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>,
+                    b: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>
                 },
             <% end %>
         ],

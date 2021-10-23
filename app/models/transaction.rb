@@ -14,7 +14,7 @@ class Transaction < ApplicationRecord
 
   def self.my_group_transactions(user_id)
     Transaction.where(user_id: user_id,
-                      level: 1).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, DATE(created_at) as date').group('date')
+                      level: 1).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date').group('date, currency')
   end
 
   def self.create_from_stk(amount, response, user, description, level, account, currency)
