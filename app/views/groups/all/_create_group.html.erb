@@ -1,8 +1,22 @@
-<div class="card my-3 d-flex flex-row p-2 align-items-center">
-  <span class="material-icons bg-warning rounded-circle d-flex align-items-center justify-content-center p-3 text-white fs-4" style="width: 40px; height: 40px;">group_add</span>
-  <div class="d-flex flex-column p-2">
-    <span class="fs-5">Create your own group</span>
-    <span style="font-size: 10px;">Create a new group with the currency of your choice, invite friends and collaborate with other groups</span>
+<div class="card my-3 d-flex flex-column p-2 align-items-center">
+  <div class="d-flex flex-row p-2 align-items-center">
+    <span class="material-icons bg-warning rounded-circle d-flex align-items-center justify-content-center p-3 text-white fs-4" style="width: 40px; height: 40px;">group_add</span>
+    <div class="d-flex flex-column p-2">
+      <span class="fs-5">Create your own group</span>
+      <span style="font-size: 10px;">Create a new group with the currency of your choice, invite friends and collaborate with other groups</span>
+    </div>
+    <span class="btn btn-primary flex-grow-1">Let's do it!</span>
   </div>
-  <%= link_to "Let's do it!", new_group_path, class:"btn btn-primary flex-grow-1" %>
+  <form class="new_group_form border rounded d-flex flex-column p-2 align-items-end jusify-content-end" style="width: 100%;" action="/groups" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="input-group">
+      <input type="text" name="group[name]" class="form-control m-2" placeholder="Group Name">
+      <%= currency_select(:group, :currency, {}, {include_blank: "Select a currency"}, { class: "form-control select2 m-2" }) %>
+    </div>
+    <div class="input-group">
+      <input type="text" name="group[group_type]" class="form-control m-2" placeholder="Group type">
+      <input type="number" name="group[membership]" class="form-control m-2" placeholder="Group membership fee">
+    </div>
+    <button class="btn btn-primary flex-grow-1">Create Group</button>
+  </form>
 </div>
