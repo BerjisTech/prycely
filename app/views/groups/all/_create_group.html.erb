@@ -16,7 +16,7 @@
         <%= currency_select(:group, :currency, {}, {include_blank: "Select a currency"}, { class: "form-control select2 m-2", required: "required" }) %>
       </div>
       <div class="input-group">
-        <input type="text" name="group[group_type]" class="form-control m-2" placeholder="Group type" required="required">
+        <%= select_tag("group[group_type]", options_from_collection_for_select(Grouptype.all, :id, :name), { :class => "form-control select2 m-2", prompt: "Group Type", required: "required" }) %>
         <input type="number" name="group[membership]" class="form-control m-2" placeholder="Group membership fee">
       </div>
       <div class="d-flex flex-row align-items-center justify-content-between p-2" style="width: 100%;">
