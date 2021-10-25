@@ -34,7 +34,9 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     respond_to do |format|
-      if @group.save
+      if @group.created_by.nil? || @group.name.nil? || @group.group_type.nil?
+        format.html { redirect_to groups_path, notice: "Some info is missing.#{@group.inspect}" }
+      elsif @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else

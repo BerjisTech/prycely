@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :payment_methods
-  get 'dashboard/index'
   get 'api', controller: :api, action: :index
 
   get 'index', controller: :home, action: :index
@@ -38,30 +36,31 @@ Rails.application.routes.draw do
   match 'stk-callback', to: 'mpesa#callback_stk', via: %i[get post]
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
 
-  resources :liabilities
-  resources :assets
-  resources :activities
-  resources :loans
-  resources :loancategories
-  resources :paymentcategories
-  resources :projects
-  resources :errors
-  resources :paybills
-  resources :stks
-  resources :logins
-  resources :currencies
-  resources :countries
-  resources :transactions
-  resources :members
-  resources :requests
-  resources :redeems
-  resources :invites
-  resources :accounts
-  resources :grouptypes
-  resources :siris
-  resources :logs
-  resources :groups
-  resources :wallets
+  resources :liabilities,
+            :assets,
+            :activities,
+            :loans,
+            :loancategories,
+            :paymentcategories,
+            :projects,
+            :errors,
+            :paybills,
+            :stks,
+            :logins,
+            :currencies,
+            :countries,
+            :transactions,
+            :members,
+            :requests,
+            :redeems,
+            :invites,
+            :accounts,
+            :grouptypes,
+            :siris,
+            :logs,
+            :groups,
+            :wallets,
+            :payment_methods
 
   devise_for :admins
   devise_for :users, controllers: { confirmations: 'confirmations' }, path: '',
