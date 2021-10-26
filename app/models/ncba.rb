@@ -1,0 +1,2 @@
+class Ncba < ApplicationRecord
+end

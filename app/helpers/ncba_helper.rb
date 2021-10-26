@@ -1,0 +1,2 @@
+module NcbaHelper
+end
