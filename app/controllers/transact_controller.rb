@@ -31,7 +31,7 @@ class TransactController < ApplicationController
     @level = params[:level]
     @active_currency = Transact.active_currency(@level, @account)
     @active_flag = @active_currency[0...2].downcase
-    @assets_path = 'https://assets.prycely.com/images/flags/'
+    @assets_path = 'https://assets.prycely.ams3.digitaloceanspaces.com/images/flags/'
     @currencies = Transact.all_currencies(Money::Currency.table)
     @acount_name = Transact.acount_name(@level, @account)
   end

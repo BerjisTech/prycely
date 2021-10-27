@@ -4,9 +4,9 @@
       <% if @account.image.attached? %>
         <%= image_tag @account.image.variant(resize: "500x500") %>
       <% else %>
-        <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
+        <img class="img rounded" src="https://assets.prycely.ams3.digitaloceanspaces.com/images/Default-avatar.jpg" alt="" />
       <% end %>
-      <img class="country_image" src="https://assets.prycely.com/images/flags/<%= @account.country.downcase %>.svg" />
+      <img class="country_image" src="https://assets.prycely.ams3.digitaloceanspaces.com/images/flags/<%= @account.country.downcase %>.svg" />
       <div class="groups_and_wallets">
         <div class="groups">
           <span><%= Group.mine(current_user.id).count %></span>

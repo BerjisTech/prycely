@@ -4,7 +4,7 @@ Rails.application.config.after_initialize do
   require 'active_storage/service/s3_service'
 
   module SimpleCDNUrlReplacement
-    CDN_HOST = 'assets.prycely.com'
+    CDN_HOST = 'assets.prycely.ams3.digitaloceanspaces.com'
 
     def url(...)
       url = super

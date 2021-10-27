@@ -45,6 +45,9 @@ gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
 gem 'shrine'
 
+gem 'braintree'
+gem 'libxml-ruby'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
