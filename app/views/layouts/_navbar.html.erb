@@ -42,7 +42,7 @@
             <% if my_account.image.attached? %>
               <%= image_tag my_account.image.variant(resize: "500x500"), width: "70", alt: "", style: "border-radius: 10px;" %>
             <% else %>
-              <img class="img rounded" src="https://assets.prycely.ams3.digitaloceanspaces.com/images/Default-avatar.jpg" alt="" />
+              <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
             <% end %>
             <span>Welcome,</span>
             <strong><%= my_account.first_name %></strong> </a>
@@ -138,7 +138,7 @@
           <li>
             <% Wallet.mine(current_user.id).map do |wallet| %>
               <%= link_to wallet_path(wallet.id), class: "nav-link" do %>
-                <img src="https://assets.prycely.ams3.digitaloceanspaces.com/images/flags/<%= wallet.currency[0...2].downcase %>.svg" style="width: 30px;"/>
+                <img src="https://assets.prycely.com/images/flags/<%= wallet.currency[0...2].downcase %>.svg" style="width: 30px;"/>
                 <span class="title"><%= wallet.currency.upcase %></span>
               <% end %>
             <% end %>

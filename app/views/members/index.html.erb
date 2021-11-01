@@ -27,7 +27,7 @@
                   <% if member_account.image.attached? %>
                     <%= image_tag member_account.image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
                   <% else %>
-                    <img class="img rounded" src="https://assets.prycely.ams3.digitaloceanspaces.com/images/Default-avatar.jpg" alt="" />
+                    <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
                   <% end %>
                 <% end %>
               </td>

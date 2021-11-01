@@ -21,7 +21,7 @@
             <span class="select_image">Choose Photo</span>
             <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", direct_upload: true %>
           <% else %>
-            <img id="img_prev" class="img rounded" src="https://assets.prycely.ams3.digitaloceanspaces.com/images/Default-avatar.jpg" alt="" />
+            <img id="img_prev" class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
             <span class="select_image">Choose Photo</span>
             <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required", direct_upload: true %>
           <% end %>
