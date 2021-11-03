@@ -25,6 +25,13 @@ Rails.application.routes.draw do
   get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
   get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
 
+  post 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
+  post 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
+  post 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
+  post 'bank/ncba/mpesa_verification', controller: :ncba, action: :mpesa_verification
+  post 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
+  post 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
+
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
   match 'c2b', to: 'mpesa#c2b', via: %i[get post]
