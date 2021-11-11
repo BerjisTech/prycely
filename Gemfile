@@ -32,6 +32,7 @@ gem 'faraday_middleware'
 gem 'image_processing', '~> 1.2'
 gem 'pgcrypto'
 gem 'rufo'
+gem 'savon', '~> 2.12.0'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-passenger', '~> 0.2.0'
