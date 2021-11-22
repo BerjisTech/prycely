@@ -6,41 +6,86 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <% if (controller_name != "home") %>
-      <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
-      <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
-      <%= render "/layouts/header" %>
-    <% else %>
-      <%= render "/home/header" %>
-    <% end %>
+    <meta name="google-site-verification" content="9CfRZ-PGNA6VgRKsM4YA_3OtNE90Wqa_JC96nMX6x4Q" />
+    <meta content="always" name="referrer">
+    <meta name="keywords"
+    content="group savings, bank, online banking, personal banking, personal loans, savings accounts, payment solutions, business banking, commercial lending">
+    <meta name="description"
+    content="The simpler way to save, pay and get paid. Create or join groups and save together with friends and family! Add wallets in different currencies! Accept payments on any platform">
 
-  </head>
+    <meta
+    content="The simpler way to save, pay and get paid. Create or join groups and save together with friends and family! Add wallets in different currencies! Accept payments on any platform"
+    property="og:description">
+      <meta content="website" property="og:type">
+      <meta content="Prycely" property="og:site_name">
+      <meta content="Prycely" property="og:title">
+      <meta content="https://prycely.com/" property="og:url">
+      <meta content="en_US" property="og:locale">
+      <meta content="@prycely_finance" name="twitter:site">
+      <meta content="https://assets.prycely.com/images/d6f18dcdfc48ef9c283fa8e68a5c7a9e.png" name="twitter:image:src">
 
-  <body class="page-body page-fade" data-url="<%= root_url %>">
-    <div class="page-container sidebar-collapsed">
+      <link href="https://assets.prycely.com/images/d6f18dcdfc48ef9c283fa8e68a5c7a9e.png" rel="icon" type="image/png">
 
-      <% if controller_name != "home" && user_signed_in? %>
-        <% if Account.mine(current_user.id).present? %>
-          <%= render "/layouts/navbar" %>
-        <% end %>
+      <% if (controller_name != "home") %>
+        <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+        <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+        <%= render "/layouts/header" %>
+      <% else %>
+        <%= render "/home/header" %>
       <% end %>
 
-      <div class="main-content">
-        <%= render "/layouts/main" %>
-      </div>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHVTMLHJF0"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-NHVTMLHJF0');
+      </script>
 
-      <% if controller_name != "home" %>
-        <% if user_signed_in? %>
+      <!-- Google Tag Manager -->
+      <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K7DWXTJ');
+      </script>
+      <!-- End Google Tag Manager -->
+
+    </head>
+
+    <body class="page-body page-fade" data-url="<%= root_url %>">
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7DWXTJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <div class="page-container sidebar-collapsed">
+
+        <% if controller_name != "home" && user_signed_in? %>
           <% if Account.mine(current_user.id).present? %>
-            <%= render "/layouts/chat" %>
+            <%= render "/layouts/navbar" %>
           <% end %>
         <% end %>
-        <%= render "/layouts/footer" %>
-      <% else %>
-        <%= render "/home/footer" %>
-      <% end %>
 
-      <%= render "/layouts/alerts" %>
-    </div>
-  </body>
-</html>
+        <div class="main-content">
+          <%= render "/layouts/main" %>
+        </div>
+
+        <% if controller_name != "home" %>
+          <% if user_signed_in? %>
+            <% if Account.mine(current_user.id).present? %>
+              <%= render "/layouts/chat" %>
+            <% end %>
+          <% end %>
+          <%= render "/layouts/footer" %>
+        <% else %>
+          <%= render "/home/footer" %>
+        <% end %>
+
+        <%= render "/layouts/alerts" %>
+      </div>
+    </body>
+  </html>
