@@ -78,7 +78,7 @@ Rails.application.configure do
   # Specify that we are using the MailJet API for transactional emails
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :mailjet
-  config.action_mailer.default_url_options = { host: 'ltvsaasgrowth.com' }
+  config.action_mailer.default_url_options = { host: 'prycely.com' }
   config.action_mailer.perform_deliveries = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
