@@ -34,6 +34,8 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :digitalocean
+  # Specify that we are using the MailJet API for transactional emails
+  config.action_mailer.delivery_method = :mailjet_api
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -77,14 +79,4 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts = 'lordsombo.ngrok.io', 'localhost'
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    user_name: 'prycely@gmail.com',
-    password: 'Fankulo26@^',
-    authentication: 'plain',
-    enable_starttls_auto: true
-  }
 end
