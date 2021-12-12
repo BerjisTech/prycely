@@ -1,31 +1,33 @@
 <hr />
 <div class="col-sm-12">
   <h3>Recent Transactions</h3>
-  <table>
+  <table class="table table-hover">
     <thead>
       <tr>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>User</th>
+        <th>Amount</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
-      <% @recent_transactions.map do |transaction| %>
+      <% @recent_transactions %>
+      <% Transaction.all.map do |transaction| %>
         <tr>
           <td>
-            <span class="transaction-type">
-              <%= if transaction.transaction_type == 1
-                    "+"
-                  else
-                    "-"
-                  end %>
+            <%= link_to Account.full_names(transaction.user_id), account_path(transaction.user_id), class: "nav-link" %>
+          </td>
+          <td>
+            <span class="fw-bold
+              <% if transaction.transaction_type == 1 %>
+               text-success
+              <% else %>
+                text-danger
+              <% end %>">
+                <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
             </span>
           </td>
           <td>
-            <%= transaction.description %>
-          </td>
-          <td>
-            <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
+            <%= transaction.updated_at.strftime("%a, %b #{transaction.updated_at.day.ordinalize} %Y") %>
           </td>
         </tr>
       <% end %>
