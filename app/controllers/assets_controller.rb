@@ -9,6 +9,8 @@ class AssetsController < ApplicationController
     @assets = Asset.all
   end
 
+  def group; end
+
   # GET /assets/1 or /assets/1.json
   def show; end
 

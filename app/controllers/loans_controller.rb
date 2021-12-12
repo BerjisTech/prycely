@@ -9,6 +9,8 @@ class LoansController < ApplicationController
     @loans = Loan.all
   end
 
+  def group; end
+
   # GET /loans/1 or /loans/1.json
   def show; end
 

@@ -15,6 +15,8 @@ class MembersController < ApplicationController
     # render json: @me
   end
 
+  def group; end
+
   # GET /members/1 or /members/1.json
   def show; end
 

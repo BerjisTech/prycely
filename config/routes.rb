@@ -43,6 +43,14 @@ Rails.application.routes.draw do
   match 'stk-callback', to: 'mpesa#callback_stk', via: %i[get post]
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
 
+  # GROUP MANAGEMENT LINKS
+  get 'members/:group_id_digest/:group_id', controller: :members, action: :group
+  get 'contributions/:group_id_digest/:group_id', controller: :transactions, action: :group
+  get 'projects/:group_id_digest/:group_id', controller: :projects, action: :group
+  get 'loans/:group_id_digest/:group_id', controller: :loans, action: :group
+  get 'assets/:group_id_digest/:group_id', controller: :assets, action: :group
+  get 'liabilities/:group_id_digest/:group_id', controller: :liabilities, action: :group
+
   resources :liabilities,
             :assets,
             :activities,

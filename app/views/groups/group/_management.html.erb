@@ -1,0 +1,19 @@
+<h3>Management</h3>
+<%= link_to "#{members_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">group</i><span class="title">Members</span>
+<% end %>
+<%= link_to "#{contributions_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">savings</i><span class="title">Savings & Contributions</span>
+<% end %>
+<%= link_to "#{projects_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">business_center</i><span class="title">Projects</span>
+<% end %>
+<%= link_to "#{loans_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">credit_score</i><span class="title">Loans</span>
+<% end %>
+<%= link_to "#{assets_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">maps_home_work</i><span class="title">Assets</span>
+<% end %>
+<%= link_to "#{liabilities_path}/#{Digest::SHA1.hexdigest(@group.id.to_s)}/#{@group.id}", class: "nav-link shadowed mb-3 fs-5" do %>
+  <i class="material-icons me-2">money_off_csred</i><span class="title">Liabilities</span>
+<% end %>

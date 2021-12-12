@@ -1,10 +1,17 @@
 <%= render "groups/group/js" %>
-<div class="group-top-bar">
-</div>
 <div class="row">
-  <%= render "groups/group/overview" %>
-  <%= render "groups/group/balance_flow" %>
-</div>
-<div class="row">
-  <%= render "groups/group/recent_transactions" %>
+  <div class="col-sm-9">
+    <div class="group-top-bar">
+    </div>
+    <div class="row">
+      <%= render "groups/group/overview" %>
+      <%= render "groups/group/balance_flow" %>
+    </div>
+    <div class="row">
+      <%= render "groups/group/recent_transactions" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <%= render "groups/group/management" %>
+  </div>
 </div>

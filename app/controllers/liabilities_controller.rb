@@ -9,6 +9,8 @@ class LiabilitiesController < ApplicationController
     @liabilities = Liability.all
   end
 
+  def group; end
+
   # GET /liabilities/1 or /liabilities/1.json
   def show; end
 
