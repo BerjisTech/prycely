@@ -15,7 +15,11 @@ class MembersController < ApplicationController
     # render json: @me
   end
 
-  def group; end
+  def group
+    @members = Member.where(group_id: params[:group_id]).where(status: '1').joins(user: :accounts).limit(10).select(
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    )
+  end
 
   # GET /members/1 or /members/1.json
   def show; end

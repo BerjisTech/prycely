@@ -429,9 +429,21 @@
 
     .user_tasks,
     .user_apps,
+    .user_groups,
     .user_tasks_margin,
-    .user_app_margin {
+    .user_app_margin,
+    .user_groups_margin {
         width: 100% !important;
+    }
+
+    .user_tasks_margin,
+    .user_app_margin,
+    .user_groups_margin {
+        margin: 0px !important;
+    }
+
+    .overview-numbers-graphic {
+        display: none !important;
     }
 }
 
