@@ -1,8 +1,11 @@
-<% monthly_transactions = transactions(@group.id, Date.today - 30.days, Date.today)%>
+<% monthly_transactions = transactions(@group.id, Date.today - 6.months, Date.today) %>
 <% if monthly_transactions.present? %>
   <script>
     jQuery(document).ready(($) => {
       var line_chart_demo = $("#bar-chart-demo");
+      <% if monthly_transactions.blank? %>
+        $(line_chart_demo).html('<div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">You have no transactions</div>')
+      <% end %>
       var line_chart = Morris.Bar({
           element: 'line-chart-demo',
           data: [
