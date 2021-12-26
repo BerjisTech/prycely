@@ -1,27 +1,27 @@
-<script type="text/javascript">
-  jQuery(document).ready(function ($) {
-      // bar Charts
-      var bar_chart_demo = $("#bar-chart-demo");
-      var bar_chart = Morris.Bar({
-          element: 'bar-chart-demo',
+<% monthly_transactions = transactions(@group.id, Date.today - 30.days, Date.today)%>
+<% if monthly_transactions.present? %>
+  <script>
+    jQuery(document).ready(($) => {
+      var line_chart_demo = $("#line-chart-demo");
+      var line_chart = Morris.Bar({
+          element: 'line-chart-demo',
           data: [
-              { y: '2006', a: 100, b: 90 },
-              { y: '2007', a: 75, b: 65 },
-              { y: '2008', a: 50, b: 40 },
-              { y: '2009', a: 75, b: 65 },
-              { y: '2010', a: 50, b: 40 },
-              { y: '2011', a: 75, b: 65 },
-              { y: '2012', a: 100, b: 90 }
+              <% monthly_transactions.map do |transaction| %>
+                  {
+                      y: "<%= transaction.date.strftime("%Y-%m-%d") %>",
+                      a: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>,
+                      b: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>
+                  },
+              <% end %>
           ],
           xkey: 'y',
-          ykeys: ['a', 'b'],
-          labels: ['October 2013', 'November 2013'],
-          redraw: true
+          ykeys: ['a','b'],
+          labels: ['Debit','Credit'],
+          barColors: ['#149DA8'],
+          redraw: true,
+          stacked: true
       });
-      bar_chart_demo.parent().attr('style', '');
-  });
-  
-  function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-</script>
+      line_chart_demo.parent().attr('style', '');
+    })
+  </script>
+<% end %>

@@ -102,6 +102,10 @@ Siri.create([
                 name: 'CONCURENCY',
                 value: '15773eb789916eeadc02'
               }
+              {
+                name: 'BREX_TOKEN',
+                value: 'bxt_AZqvu9RkihZ8s128H1ZpkarOlaSDeiAFyaSC'
+              }
             ])
 
 p "Created #{Siri.count} Kronus"

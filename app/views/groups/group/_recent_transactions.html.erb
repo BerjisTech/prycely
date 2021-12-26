@@ -14,7 +14,7 @@
       <% Transaction.all.map do |transaction| %>
         <tr>
           <td>
-            <%= link_to Account.full_names(transaction.user_id), account_path(transaction.user_id), class: "nav-link" %>
+            <%= link_to Account.full_names(transaction.user_id), account_path(Account.find_by(user_id: transaction.user_id).id), class: "nav-link" %>
           </td>
           <td>
             <span class="fw-bold
