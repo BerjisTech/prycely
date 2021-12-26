@@ -17,8 +17,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    # check_account(current_user.id, params[:id], current_user.email, @account, @group)
-    render json: Group.transactions(@group.id, Date.today - 300.days, Date.today)
+    check_account(current_user.id, params[:id], current_user.email, @account, @group)
+    # render json: Group.transactions(@group.id, Date.today - 300.days, Date.today)
   end
 
   # GET /groups/new
