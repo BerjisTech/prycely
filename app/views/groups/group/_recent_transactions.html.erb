@@ -10,8 +10,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @recent_transactions %>
-      <% Transaction.all.map do |transaction| %>
+      <% Transaction.all.map %>
+      <% @recent_transactions do |transaction| %>
         <tr>
           <td>
             <%= link_to Account.full_names(transaction.user_id), account_path(Account.find_by(user_id: transaction.user_id).id), class: "nav-link" %>
