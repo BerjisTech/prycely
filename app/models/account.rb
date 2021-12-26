@@ -37,7 +37,7 @@ class Account < ApplicationRecord
     account = Account.find_by(user_id: user_id)
     if account.nil?
       account = {first_name: "--", last_name: "--"}
-    else
+    end
     "#{account.first_name.humanize} #{account.last_name.humanize}"
   end
 end
