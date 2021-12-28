@@ -31,7 +31,7 @@
           <%= transaction.updated_at.strftime("%b, #{transaction.updated_at.day.ordinalize} %Y") %>
         </td>
         <td>
-        <%= link_to 'View', transaction_path(transaction.link) %>
+          <%= link_to 'View', transaction_path(transaction.id) %>
         </td>
       </tr>
     <% end %>
