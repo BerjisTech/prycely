@@ -82,7 +82,7 @@ class Group < ApplicationRecord
   def self.table_transactions(group_id, from, to)
     date_start = Date.today - from.to_i.days
     date_end = Date.today - to.to_i.days
-    Transaction.where(group_id: group_id, level: 1)
+    Transaction.where(group_id: group_id, level: 1, status: 1)
                .where(created_at: date_start..date_end)
                .select('*')
   end
