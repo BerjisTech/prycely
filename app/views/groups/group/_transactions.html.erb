@@ -6,6 +6,7 @@
       <th>Type</th>
       <th>Category</th>
       <th>Date</th>
+      <td></td>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,9 @@
         <td><%= transaction.category %></td>
         <td>
           <%= transaction.updated_at.strftime("%b, #{transaction.updated_at.day.ordinalize} %Y") %>
+        </td>
+        <td>
+        <%= link_to 'View', transaction_path(transaction.link) %>
         </td>
       </tr>
     <% end %>
