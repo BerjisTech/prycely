@@ -86,6 +86,39 @@ class GroupsController < ApplicationController
     render inline: output_file
   end
 
+  def bar_line_charts
+    if params[:group_id].blank? || params[:from].blank? || params[:to].blank?
+      output = {
+        type: 'error',
+        message: 'Some attributes are missing'
+      }
+    else
+      group_id = params[:group_id]
+      from = params[:from]
+      to = params[:to]
+
+      transactions = Group.graph_transactions(group_id, from, to, Account.find_by(user_id: current_user.id))
+      if transactions.count.positive?
+        output =  {
+          type: 'data',
+          data: transactions
+        }
+      else
+        @start_date = Date.today - from.to_i.days
+        @end_date = Date.today - to.to_i.days
+        output = {
+          type: 'info',
+          message: "You have no transactions records between 
+                    <span class='text-info'>#{@start_date.strftime("%A #{@start_date.day.ordinalize}, %B %Y")}</span> 
+                    and 
+                    <span class='text-info'>#{@end_date.strftime("%A #{@end_date.day.ordinalize}, %B %Y")}</span>"
+        }
+      end
+    end
+
+    render json: output
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

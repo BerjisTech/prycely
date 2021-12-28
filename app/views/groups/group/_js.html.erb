@@ -1,22 +1,12 @@
-<% monthly_transactions = graph_transactions(@group.id, 30, 0) %>
-<% if monthly_transactions.present? %>
-  <script>
-    jQuery(document).ready(($) => {
-      var line_chart_demo = $("#bar-chart-demo");
-      <% if monthly_transactions.blank? %>
-        $(line_chart_demo).html('<div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">You have no transactions</div>')
-      <% end %>
+<script>
+  jQuery(document).ready(($) => {
+    var line_chart_demo = $("#bar-chart-demo");
+  
+    let draw_graph = (transactions) => {
+      $(line_chart_demo).empty()
       var line_chart = Morris.Bar({
           element: 'bar-chart-demo',
-          data: [
-              <% monthly_transactions.map do |transaction| %>
-                  {
-                      y: "<%= transaction.date.strftime("%Y-%m-%d") %>",
-                      a: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>,
-                      b: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>
-                  },
-              <% end %>
-          ],
+          data: transactions,
           xkey: 'y',
           ykeys: ['a','b'],
           labels: ['Debit','Credit'],
@@ -25,6 +15,38 @@
           stacked: true
       });
       line_chart_demo.parent().attr('style', '');
+    }
+  
+    let fetch_graph_data = (group_id, from, to) => {
+        $(line_chart_demo).html('<img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+        $.ajax({
+            url: '<%= fetch_group_graph_data_path %>',
+            method: 'POST',
+            data: {
+                'authenticity_token': $('[name="csrf-token"]')[0].content,
+                'group_id': group_id,
+                'from': from,
+                'to': to
+            },
+            success: (response) => {
+                console.log(response)
+                if (response.type == 'error' || response.type == 'info') {
+                  $(line_chart_demo).html(`<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">${response.message}</div>`)
+                }
+                else{
+                  draw_graph(response.data)
+                }
+            },
+            error: (response) => {
+                $(line_chart_demo).html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
+            }
+        })
+    }
+  
+    $('.fetch_transactions').on('change', (e) => {
+        fetch_graph_data('<%= @group.id %>', $(e.target).val(), 0)
     })
-  </script>
-<% end %>
+  
+    fetch_graph_data('<%= @group.id %>', 300, 200)
+  })
+</script>

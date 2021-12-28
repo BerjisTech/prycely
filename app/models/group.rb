@@ -70,13 +70,28 @@ class Group < ApplicationRecord
     user_credit(group_id, user_id) - user_debit(group_id, user_id)
   end
 
-  def self.graph_transactions(group_id, from, to)
+  def self.graph_transactions(group_id, from, to, account)
     date_start = Date.today - from.to_i.days
     date_end = Date.today - to.to_i.days
-    Transaction.where(group_id: group_id, level: 1, status: 1)
-               .where(created_at: date_start..date_end)
-               .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
-               .group('date, currency')
+    transactions = Transaction.where(group_id: group_id, level: 1, status: 1)
+                              .where(created_at: date_start..date_end)
+                              .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
+                              .group('date, currency')
+    format_transaftions(transactions, account)
+  end
+
+  def self.format_transaftions(transactions, account)
+    graph_data = []
+    transactions.map do |transaction|
+      graph_data << {
+        y: transaction.date.strftime('%Y-%m-%d'),
+        a: Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2),
+                                          transaction.currency.upcase, account.default_currency.upcase),
+        b: Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2),
+                                          transaction.currency.upcase, account.default_currency.upcase)
+      }
+    end
+    graph_data
   end
 
   def self.table_transactions(group_id, from, to)
