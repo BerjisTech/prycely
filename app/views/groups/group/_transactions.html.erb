@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.map do |transaction| %>
+      <tr>
+        <td>
+          <%= link_to Account.full_names(transaction.user_id), account_path(Account.find_by(user_id: transaction.user_id).id) %>
+        </td>
+        <td>
+          <span class="fw-bold
+              <% if transaction.transaction_type == 1 %>
+               text-success
+              <% else %>
+                text-danger
+              <% end %>">
+            <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
+          </span>
+        </td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.category %></td>
+        <td>
+          <%= transaction.updated_at.strftime("%a, %b #{transaction.updated_at.day.ordinalize} %Y") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

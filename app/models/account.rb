@@ -38,7 +38,7 @@ class Account < ApplicationRecord
     if account.present?
       "#{account.first_name.humanize} #{account.last_name.humanize}"
     else
-      "-- --"
+      '-- --'
     end
   end
 end

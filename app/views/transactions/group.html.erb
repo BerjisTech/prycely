@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <h3 class="my-3 py-3">Recent Transactions</h3>
+    <div class="bg-white shadow border rounded">
+      <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
+        <span>Group Transactions</span>
+        <div>
+          <select class="form-control fetch_transactions">
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 3 months</option>
+            <option value="180">Last 6 months</option>
+            <option value="365">Last 365 days</option>
+          </select>
+        </div>
+      </div>
+      <div class="group_transactions">
+        <img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<style>
+  .main-content{ background: #F4F6F8 !important; }
+</style>
+
+<script>
+  $(document).ready(()=>{
+      let fetch_transactions = (group_id, from, to) => {
+          $('.group_transactions').html('<img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+          $.ajax({
+              url: '<%= fetch_group_transactions_path %>',
+              method: 'POST',
+              data: {
+                  'authenticity_token': $('[name="csrf-token"]')[0].content,
+                  'group_id': group_id,
+                  'from': from,
+                  'to': to
+              },
+              success: (response) => {
+                  $('.group_transactions').html(response)
+              },
+              error: (response) => {
+                  $('.group_transactions').html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
+              }
+          })
+      }
+
+      $('.fetch_transactions').on('change', (e) => {
+          fetch_transactions('<%= @group.id %>', $(e.target).val(), 0)
+      })
+  
+      fetch_transactions('<%= @group.id %>', 300, 200)
+  })
+</script>

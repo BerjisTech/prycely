@@ -1,0 +1,6 @@
+<div class="m-4 p-4">
+    You have no transactions records between 
+    <span class="text-info"><%=  @start_date.strftime("%A #{@start_date.day.ordinalize}, %B %Y") %></span> 
+    and 
+    <span class="text-info"><%= @end_date.strftime("%A #{@end_date.day.ordinalize}, %B %Y") %></span>
+</div>

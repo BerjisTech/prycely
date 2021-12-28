@@ -57,7 +57,9 @@ class Group < ApplicationRecord
   end
 
   def self.mine(user_id, limit = 10, offset = 0)
-    Member.limit(limit).offset(offset).order(created_at: :desc).where.not(status: '0').where(user_id: user_id).joins(:group).select('members.id', 'groups.id', :name, :accepted_on,:membership, :group_id, :created_by, :currency, :group_type)
+    Member.limit(limit).offset(offset).order(created_at: :desc).where.not(status: '0').where(user_id: user_id).joins(:group).select(
+      'members.id', 'groups.id', :name, :accepted_on, :membership, :group_id, :created_by, :currency, :group_type
+    )
   end
 
   def self.me(user_id, group_id)
@@ -68,10 +70,20 @@ class Group < ApplicationRecord
     user_credit(group_id, user_id) - user_debit(group_id, user_id)
   end
 
-  def self.transactions(group_id, date_start, date_end)
+  def self.graph_transactions(group_id, from, to)
+    date_start = Date.today - from.to_i.days
+    date_end = Date.today - to.to_i.days
     Transaction.where(group_id: group_id, level: 1, status: 1)
-                .where(created_at: date_start..date_end)
-                .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
-                .group('date, currency')
+               .where(created_at: date_start..date_end)
+               .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
+               .group('date, currency')
+  end
+
+  def self.table_transactions(group_id, from, to)
+    date_start = Date.today - from.to_i.days
+    date_end = Date.today - to.to_i.days
+    Transaction.where(group_id: group_id, level: 1)
+               .where(created_at: date_start..date_end)
+               .select('*')
   end
 end

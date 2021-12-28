@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get 'loans/:group_id_digest/:group_id', controller: :loans, action: :group
   get 'assets/:group_id_digest/:group_id', controller: :assets, action: :group
   get 'liabilities/:group_id_digest/:group_id', controller: :liabilities, action: :group
+  post 'fetch_group_transactions', controller: :groups, action: :transactions
 
   resources :liabilities,
             :assets,

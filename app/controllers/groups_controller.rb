@@ -65,6 +65,27 @@ class GroupsController < ApplicationController
     end
   end
 
+  def transactions
+    if params[:group_id].blank? || params[:from].blank? || params[:to].blank?
+      output_file = '<%= render "layouts/common/missing_attribute" %>'
+    else
+      group_id = params[:group_id]
+      from = params[:from]
+      to = params[:to]
+
+      @transactions = Group.table_transactions(group_id, from, to)
+
+      if @transactions.count.positive?
+      output_file = '<%= render "groups/group/transactions" %>'
+      else
+        @start_date = Date.today - from.to_i.days
+        @end_date = Date.today - to.to_i.days
+        output_file = '<%= render "groups/group/no_transactions" %>'
+      end
+    end
+    render inline: output_file
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

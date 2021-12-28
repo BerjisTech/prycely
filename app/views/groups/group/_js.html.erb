@@ -1,4 +1,4 @@
-<% monthly_transactions = transactions(@group.id, Date.today - 6.months, Date.today) %>
+<% monthly_transactions = graph_transactions(@group.id, 30, 0) %>
 <% if monthly_transactions.present? %>
   <script>
     jQuery(document).ready(($) => {

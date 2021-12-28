@@ -14,9 +14,21 @@
  *= require_self
  */
 
+a {
+    text-decoration: none !important;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.full-height {
+    height: 100% !important;
+}
+
 body {
-    color    : #373E4F !important;
-    width    : 100% !important;
+    color: #373E4F !important;
+    width: 100% !important;
 }
 
 html {

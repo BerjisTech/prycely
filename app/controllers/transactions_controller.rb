@@ -10,7 +10,9 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.all
   end
 
-  def group; end
+  def group
+    @group = Group.find(params[:group_id])
+  end
 
   # GET /transactions/1 or /transactions/1.json
   def show; end
