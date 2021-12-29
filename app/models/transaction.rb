@@ -5,7 +5,7 @@ class Transaction < ApplicationRecord
   # belongs_to :wallet
 
   def self.for_group(group_id, limit = 0, offset = 0)
-    Transaction.where(group_id: group_id, status: 1).limit(limit).offset(offset).order(created_at: :asc)
+    Transaction.where(group_id: group_id, status: 1).limit(limit).offset(offset).order(created_at: :desc)
   end
 
   def self.total(group_id)

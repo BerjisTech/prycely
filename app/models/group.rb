@@ -100,7 +100,7 @@ class Group < ApplicationRecord
     date_end = Date.today - to.to_i.days
     Transaction.where(group_id: group_id, level: 1, status: 1)
                .where(created_at: date_start..date_end)
-               .order(created_at: :asc)
+               .order(created_at: :desc)
                .select('*')
   end
 end
