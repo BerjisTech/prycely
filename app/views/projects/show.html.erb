@@ -1,49 +1,63 @@
-<!--p id="notice"><%= notice %></p-->
+<% project = @project %>
+<div class="row py-3">
+  <div class="col">
+    <h3><%= @project.title.humanize %></h3>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-sm-3">
+    <div class="d-flex">
+      <span class="width-150">Budget:</span>
+      <span class="border-start ps-2 py-2"><%= number_with_precision(Transact.amount_from_cents(project.amount), precision: 2, delimiter: ",") %></span>
+    </div>
+    <div class="d-flex">
+      <span class="width-150">Status:</span>
+      <span class="border-start ps-2 py-2">
+        <% if project.status.present?  %>
+          <%= project.status %>%
+        <% else %>
+          --
+        <% end %>
+      </span>
+    </div>
+    <div class="d-flex">
+      <span class="width-150">Start Date:</span>
+      <span class="border-start ps-2 py-2">
+        <% if project.project_start.present? %>
+          <%= project.project_start.strftime("%b, #{project.project_start.day.ordinalize} %Y") %>
+        <% else %>
+          --
+        <% end %>
+      </span>
+    </div>
+    <div class="d-flex">
+      <span class="width-150">End Date:</span>
+      <span class="border-start ps-2 py-2">
+        <% if project.project_end.present? %>
+          <%= project.project_end.strftime("%b, #{project.project_end.day.ordinalize} %Y") %>
+        <% else %>
+          --
+        <% end %>
+      </span>
+    </div>
+    <div class="d-flex">
+      <span class="width-150">Project created by:</span>
+      <span class="border-start ps-2 py-2"><%= link_to Account.full_names(project.created_by), account_path(Account.find_by(user_id: project.created_by).id) %></span>
+    </div>
+    <div>
+      <%= link_to "Edit", edit_project_path(@project) %> |
+      <%= link_to "Back", projects_path %>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="d-flex flex-column align-items-start justify-content-start bg-white shadow border rounded p-3">
+      <%= @project.description %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @project.amount %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @project.status %>
-</p>
-
-<p>
-  <strong>Project start:</strong>
-  <%= @project.project_start %>
-</p>
-
-<p>
-  <strong>Project end:</strong>
-  <%= @project.project_end %>
-</p>
-
-<p>
-  <strong>Created by:</strong>
-  <%= @project.created_by %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= @project.group_id %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @project.currency %>
-</p>
-
-<%= link_to "Edit", edit_project_path(@project) %> |
-<%= link_to "Back", projects_path %>
+<style>
+  .main-content{
+    background: #F4F6F8 !important;
+  }
+</style>

@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.width-150 {
+    width: 150px !important;
+}
 
 a {
     text-decoration: none !important;
