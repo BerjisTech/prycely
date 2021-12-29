@@ -5,16 +5,16 @@ class Transaction < ApplicationRecord
   # belongs_to :wallet
 
   def self.for_group(group_id, limit = 0, offset = 0)
-    Transaction.where(group_id: group_id, status: 1).limit(limit).offset(offset)
+    Transaction.where(group_id: group_id, status: 1).limit(limit).offset(offset).order(created_at: :asc)
   end
 
   def self.total(group_id)
-    Transaction.where(group_id: group_id, status: 1).pluck('count(id)').first
+    Transaction.where(group_id: group_id, status: 1).order(created_at: :asc).pluck('count(id)').first
   end
 
   def self.my_group_transactions(user_id)
     Transaction.where(user_id: user_id,
-                      level: 1, status: 1).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date').group('date, currency')
+                      level: 1, status: 1).order(created_at: :asc).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date').group('date, currency')
   end
 
   def self.create_from_stk(amount, response, user, description, level, account, currency)
