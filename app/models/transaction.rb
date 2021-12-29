@@ -9,7 +9,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.total(group_id)
-    Transaction.where(group_id: group_id, status: 1).order(created_at: :asc).pluck('count(id)').first
+    Transaction.where(group_id: group_id, status: 1).pluck('count(id)').first
   end
 
   def self.my_group_transactions(user_id)
