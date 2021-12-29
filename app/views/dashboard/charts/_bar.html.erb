@@ -1,18 +1,18 @@
 <div id="line-chart-demo" class="col-sm-6 morrischart" style="height: 300px">
-  <% if @monthly_transactions.blank? %>
+  <% if @recent_transactions.blank? %>
     <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
       You have no transactions
     </div>
   <% end %>
 </div>
-<% if @monthly_transactions.present? %>
+<% if @recent_transactions.present? %>
   <script>
     jQuery(document).ready(($) => {
       var line_chart_demo = $("#line-chart-demo");
       var line_chart = Morris.Bar({
           element: 'line-chart-demo',
           data: [
-              <% @monthly_transactions.map do |transaction| %>
+              <% @recent_transactions.map do |transaction| %>
                   {
                       y: "<%= transaction.date.strftime("%Y-%m-%d") %>",
                       a: <%= Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2), transaction.currency.upcase, @account.default_currency.upcase) %>,

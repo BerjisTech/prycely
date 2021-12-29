@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
   before_action :check_default_wallets
 
   def index
-    @monthly_transactions = Dashboard.all_user_transactions_per_month(current_user.id)
+    @recent_transactions = Dashboard.recent_transactions(current_user.id)
   end
 
   def join
