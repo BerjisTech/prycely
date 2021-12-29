@@ -76,7 +76,7 @@ class GroupsController < ApplicationController
       @transactions = Group.table_transactions(group_id, from, to)
 
       if @transactions.count.positive?
-      output_file = '<%= render "groups/group/transactions/transactions" %>'
+        output_file = '<%= render "groups/group/transactions/transactions" %>'
       else
         @start_date = Date.today - from.to_i.days
         @end_date = Date.today - to.to_i.days
@@ -99,7 +99,7 @@ class GroupsController < ApplicationController
 
       transactions = Group.graph_transactions(group_id, from, to, Account.find_by(user_id: current_user.id))
       if transactions.count.positive?
-        output =  {
+        output = {
           type: 'data',
           data: transactions
         }
@@ -108,9 +108,9 @@ class GroupsController < ApplicationController
         @end_date = Date.today - to.to_i.days
         output = {
           type: 'info',
-          message: "You have no transactions records between 
-                    <span class='text-info'>#{@start_date.strftime("%A #{@start_date.day.ordinalize}, %B %Y")}</span> 
-                    and 
+          message: "You have no transactions records between
+                    <span class='text-info'>#{@start_date.strftime("%A #{@start_date.day.ordinalize}, %B %Y")}</span>
+                    and
                     <span class='text-info'>#{@end_date.strftime("%A #{@end_date.day.ordinalize}, %B %Y")}</span>"
         }
       end
@@ -120,17 +120,16 @@ class GroupsController < ApplicationController
   end
 
   def projects
-
     if params[:group_id].blank?
       output = '<%= render "layouts/common/missing_attribute" %>'
     else
       @projects = Project.where(group_id: params[:group_id]).order(:created_at)
       @group = Group.find(params[:group_id])
-      if @projects.count.positive?
-        output = '<%= render "groups/group/projects/projects" %>'
-      else
-        output = '<%= render "groups/group/alerts/no_projects" %>'
-      end
+      output = if @projects.count.positive?
+                 '<%= render "groups/group/projects/projects" %>'
+               else
+                 '<%= render "groups/group/alerts/no_projects" %>'
+               end
     end
 
     render inline: output
