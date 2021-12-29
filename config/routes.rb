@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'liabilities/:group_id_digest/:group_id', controller: :liabilities, action: :group
   post 'fetch_group_transactions', controller: :groups, action: :transactions
   post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
+  post 'fetch_group_projects', controller: :groups, action: :projects
 
   resources :liabilities,
             :assets,

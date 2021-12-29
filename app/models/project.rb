@@ -2,4 +2,5 @@
 
 class Project < ApplicationRecord
   belongs_to :group
+  has_rich_text :description
 end

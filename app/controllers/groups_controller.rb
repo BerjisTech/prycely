@@ -76,11 +76,11 @@ class GroupsController < ApplicationController
       @transactions = Group.table_transactions(group_id, from, to)
 
       if @transactions.count.positive?
-      output_file = '<%= render "groups/group/transactions" %>'
+      output_file = '<%= render "groups/group/transactions/transactions" %>'
       else
         @start_date = Date.today - from.to_i.days
         @end_date = Date.today - to.to_i.days
-        output_file = '<%= render "groups/group/no_transactions" %>'
+        output_file = '<%= render "groups/group/alerts/no_transactions" %>'
       end
     end
     render inline: output_file
@@ -117,6 +117,23 @@ class GroupsController < ApplicationController
     end
 
     render json: output
+  end
+
+  def projects
+
+    if params[:group_id].blank?
+      output = '<%= render "layouts/common/missing_attribute" %>'
+    else
+      @projects = Project.where(group_id: params[:group_id]).order(:created_at)
+      @group = Group.find(params[:group_id])
+      if @projects.count.positive?
+        output = '<%= render "groups/group/projects/projects" %>'
+      else
+        output = '<%= render "groups/group/alerts/no_projects" %>'
+      end
+    end
+
+    render inline: output
   end
 
   private

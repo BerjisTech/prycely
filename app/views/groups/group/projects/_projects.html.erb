@@ -1,0 +1,40 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created by</th>
+      <th>Budget</th>
+      <th>Status</th>
+      <th>Start Date</th>
+      <th>End date</th>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.map do |project| %>
+      <tr>
+        <td>
+          <%= link_to project.title, project_path(project.id) %>
+        </td>
+        <td>
+          <%= link_to Account.full_names(project.created_by), account_path(Account.find_by(user_id: project.created_by).id) %>
+        </td>
+        <td>
+          <span class="fw-bold">
+            <%= number_with_precision(Transact.amount_from_cents(project.amount), precision: 2, delimiter: ",") %>
+          </span>
+        </td>
+        <td><%= project.status %></td>
+        <td>
+            <%= project.project_start.strftime("%b, #{project.project_start.day.ordinalize} %Y") if project.project_start.present? %>
+        </td>
+        <td>
+          <%= project.project_end.strftime("%b, #{project.project_end.day.ordinalize} %Y") if project.project_end.present? %>
+        </td>
+        <td>
+          <%= link_to 'View', project_path(project.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

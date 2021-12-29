@@ -9,7 +9,9 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def group; end
+  def group
+    @group = Group.find(params[:group_id])
+  end
 
   # GET /projects/1 or /projects/1.json
   def show; end
@@ -17,6 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @group = Group.find(session[:current_group])
   end
 
   # GET /projects/1/edit
