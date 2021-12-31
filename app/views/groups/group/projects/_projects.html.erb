@@ -21,7 +21,7 @@
         </td>
         <td>
           <span class="fw-bold">
-            <%= number_with_precision(Transact.amount_from_cents(project.amount), precision: 2, delimiter: ",") %>
+            <%= number_with_precision(project.amount, precision: 2, delimiter: ",") %>
           </span>
         </td>
         <td><%= project.status %></td>

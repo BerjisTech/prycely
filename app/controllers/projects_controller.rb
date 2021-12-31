@@ -23,7 +23,9 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit; end
+  def edit
+    @group = Group.find(session[:current_group])
+  end
 
   # POST /projects or /projects.json
   def create

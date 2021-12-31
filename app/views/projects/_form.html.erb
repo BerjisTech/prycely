@@ -1,3 +1,4 @@
+
 <%= form_with(model: project) do |form| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
@@ -10,26 +11,30 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="field col-sm-6">
+      <div class="form-floating">
+        <%= form.text_field :title, class: "form-control", placeholder: "Placholder" %>
+        <%= form.label :title %>
+      </div>
+    </div>
+    <div class="field col-sm-6">
+      <div class="form-floating">
+        <%= form.number_field :amount, class: "form-control", placeholder: "Placholder" %>
+        <%= form.label :budget %>
+      </div>
+    </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="field form-group col-sm-12 mt-3">
+      <%= form.label :description, class: "fs-4 mb-2" %>
+      <%= form.rich_text_area :description %>
+    </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
-  </div>
+    <%= form.hidden_field :created_by, value: current_user.id %>
+    <%= form.hidden_field :group_id, value: @group.id %>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :budget %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <%= form.text_field :created_by, value: current_user.id %>
-  <%= form.text_field :group_id, value: @group.id %>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary btn-lg mt-4 mb-3"%>
+    </div>
   </div>
 <% end %>

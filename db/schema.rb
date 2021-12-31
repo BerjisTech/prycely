@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_026_102_707) do
+ActiveRecord::Schema.define(version: 20_211_231_090_625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20_211_026_102_707) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.float 'selling_price'
+    t.uuid 'project_id'
   end
 
   create_table 'countries', force: :cascade do |t|
@@ -186,6 +187,7 @@ ActiveRecord::Schema.define(version: 20_211_026_102_707) do
     t.float 'price'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.uuid 'project_id'
   end
 
   create_table 'loancategories', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
