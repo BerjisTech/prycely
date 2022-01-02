@@ -9,7 +9,9 @@ class LoansController < ApplicationController
     @loans = Loan.all
   end
 
-  def group; end
+  def group
+    @group = Group.find(params[:group_id])
+  end
 
   # GET /loans/1 or /loans/1.json
   def show; end
