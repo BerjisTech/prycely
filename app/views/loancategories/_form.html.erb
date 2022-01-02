@@ -31,9 +31,19 @@
         <%= form.label :amount %>
       </div>
 
-      <div class="field my-2 form-floating">
-        <%= form.number_field :interest, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :interest %>
+      <div class="row">
+        <div class="col-6">
+          <div class="field my-2 form-floating">
+            <%= form.number_field :interest, placeholder: "Placeholder", class: "form-control" %>
+            <%= form.label :interest %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="field field my-2 form-floating">
+            <%= form.text_field :interest_rule, placeholder: "Placeholder", class: "form-control" %>
+            <%= form.label :interest_rule %>
+          </div>
+        </div>
       </div>
 
       <div class="field my-2 form-floating">
@@ -45,11 +55,6 @@
       <div class="field form-group">
         <%= form.label :decsription %>
         <%= form.rich_text_area :decsription %>
-      </div>
-
-      <div class="field field my-2 form-floating">
-        <%= form.text_field :interest_rule, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :interest_rule %>
       </div>
 
       <div class="field form-group ">
