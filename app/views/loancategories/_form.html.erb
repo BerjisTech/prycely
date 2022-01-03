@@ -27,7 +27,7 @@
       </div>
 
       <div class="field my-2 form-floating">
-        <%= form.text_area :amount, placeholder: "Placeholder", class: "form-control" %>
+        <%= form.text_field :amount, placeholder: "Placeholder", class: "form-control" %>
         <%= form.label :amount %>
       </div>
 
@@ -54,12 +54,12 @@
     <div class="col-sm-6">
       <div class="field form-group">
         <%= form.label :decsription %>
-        <%= form.rich_text_area :decsription %>
+        <%= form.rich_text_area :decsription, value: " " %>
       </div>
 
       <div class="field form-group ">
         <%= form.label :requirements %>
-        <%= form.rich_text_area :requirements %>
+        <%= form.rich_text_area :requirements, value: " " %>
       </div>
     </div>
 

@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
     reset_session
     request.referrer || root_path
   end
+
+  def has_active_group?
+    if session[:current_group].blank? || session[:current_group].empty?
+      redirect_to groups_path, notice: 'You need to pick a group before doing that'
+    end
+  end
 end

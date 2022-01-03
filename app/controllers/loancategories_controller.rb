@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LoancategoriesController < ApplicationController
+  before_action :has_active_group?
   before_action :authenticate_user!
   before_action :set_loancategory, only: %i[show edit update destroy]
 
