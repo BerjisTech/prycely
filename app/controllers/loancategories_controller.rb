@@ -67,7 +67,7 @@ class LoancategoriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def loancategory_params
-    params.require(:loancategory).permit(:group_id, :created_by, :name, :period, :decsription, :amount, :interest,
-                                         :interest_rule, :required_guarantos, :requirements)
+    params.require(:loancategory).permit(:group_id, :created_by, :name, :period, :decsription, :pegged_to, :amount, :interest,
+                                         :interest_rule, :required_guarantos, :membership_durantion_requirement, :requirements)
   end
 end

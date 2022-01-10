@@ -1,7 +1,15 @@
 <div class="row">
   <div class="col-sm-1"></div>
   <div class="col-sm-10">
-    <h3 class="my-3 py-3"><%= @group.name.humanize %> Projects</h3>
+    <div class="d-flex full-width align-items-center justify-content-between">
+      <span class="fs-3 my-3 py-3"><%= @group.name.humanize %> Projects</span>
+      <% if Member.is_manager(current_user.id) %>
+        <div>
+          <%= link_to 'Add New Loan', new_loan_path, class: "btn btn-primary px-2" %>
+          <%= link_to 'Add New Loan Category', new_loancategory_path, class: "btn btn-primary px-2" %>
+        </div>
+      <% end %>
+    </div>
     <div class="bg-white shadow border rounded">
       <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
         <span></span>
@@ -42,7 +50,7 @@
               }
           })
       }
-
+  
       $('.fetch_projects').on('change', (e) => {
           fetch_projects('<%= @group.id %>', $(e.target).val(), 0)
       })

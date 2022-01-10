@@ -18,29 +18,41 @@
     <div class="col-sm-6">
       <div class="field my-2 form-floating">
         <%= form.text_field :name, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :name %>
+        <%= form.label 'Name eg Emergency Loan'.humanize %>
       </div>
 
       <div class="field my-2 form-floating">
         <%= form.number_field :period, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :period %>
+        <%= form.label 'Period in Months' %>
       </div>
 
-      <div class="field my-2 form-floating">
-        <%= form.text_field :amount, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :amount %>
+      <div class="row">
+        <div class="col-6">
+          <div class="field field my-2 form-floating">
+            <%= form.select( :pegged_to, ['nothing', 'balance', 'total user and guarantor balance'] , {}, {placeholder: "Placeholder", class: "form-control" } )%>
+            <%= form.label :pegged_to %>
+            <small>What is this looan tied to?</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="field my-2 form-floating">
+            <%= form.text_field :amount, placeholder: "Placeholder", class: "form-control" %>
+            <%= form.label :amount %>
+            <small>Max loan amount eg 3x (for 3 times user balance) or 600000</small>
+          </div>
+        </div>
       </div>
 
       <div class="row">
         <div class="col-6">
           <div class="field my-2 form-floating">
             <%= form.number_field :interest, placeholder: "Placeholder", class: "form-control" %>
-            <%= form.label :interest %>
+            <%= form.label 'Interest (%)' %>
           </div>
         </div>
         <div class="col-6">
           <div class="field field my-2 form-floating">
-            <%= form.text_field :interest_rule, placeholder: "Placeholder", class: "form-control" %>
+            <%= form.select( :interest_rule, ['fixed rate', 'per month', 'per annum'] , {}, {placeholder: "Placeholder", class: "form-control" } )%>
             <%= form.label :interest_rule %>
           </div>
         </div>
@@ -48,10 +60,16 @@
 
       <div class="field my-2 form-floating">
         <%= form.number_field :required_guarantos, placeholder: "Placeholder", class: "form-control" %>
-        <%= form.label :required_guarantos %>
+        <%= form.label 'Number of required guarantors' %>
       </div>
     </div>
     <div class="col-sm-6">
+      <div class="field my-2 form-floating">
+        <%= form.number_field :membership_durantion_requirement, placeholder: "Placeholder", class: "form-control" %>
+        <%= form.label :membership_durantion_requirement %>
+        <small>How mamny months do members have to be active before accessing this loan?</small>
+      </div>
+      <hr />
       <div class="field form-group">
         <%= form.label :decsription %>
         <%= form.rich_text_area :decsription, value: " " %>
