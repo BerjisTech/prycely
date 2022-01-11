@@ -14,6 +14,7 @@
     <%= form.hidden_field :group_id, value: session[:current_group] %>
     <%= form.hidden_field :created_by, value: current_user.id %>
     <%= form.hidden_field :date_paid %>
+    <%= form.hidden_field :amount_due %>
 
     <div class="col-sm-6">
       <div class="field form-floating my-2">
@@ -29,11 +30,6 @@
       <div class="field form-floating my-2">
         <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
         <%= form.label :loan_type %>
-      </div>
-
-      <div class="field form-floating my-2">
-        <%= form.text_field :amount_due, class: "form-control", placeholder: "Placeholder" %>
-        <%= form.label :amount_due %>
       </div>
 
       <div class="field form-floating my-2">
