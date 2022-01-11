@@ -23,7 +23,13 @@ class Member < ApplicationRecord
   end
 
   def self.for_group(group_id, limit = 0, offset = 0)
-    Member.where(group_id: group_id).limit(limit).offset(offset)
+    members = Member.where(group_id: group_id)
+    member_limit = if limit.to_i.zero?
+      limit
+    else
+      members.count
+    end
+    members.limit(member_limit).offset(offset)
   end
 
   def self.total_members(group_id)

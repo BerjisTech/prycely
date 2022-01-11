@@ -20,6 +20,7 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
+    @group = Group.find(session[:current_group])
   end
 
   # GET /loans/1/edit

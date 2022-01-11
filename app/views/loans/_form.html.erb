@@ -11,73 +11,65 @@
     </div>
   <% end %>
   <div class="row">
-    <div class="field form-group col-sm-12">
-      <%= form.label :group_id %>
-      <%= form.text_field :group_id, value: session[:current_group] %>
-    </div>
+    <%= form.hidden_field :group_id, value: session[:current_group] %>
+    <%= form.hidden_field :created_by, value: current_user.id %>
+    <%= form.hidden_field :date_paid %>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :created_by %>
-      <%= form.text_field :created_by, value: current_user.id %>
-    </div>
+    <div class="col-sm-6">
+      <div class="field form-floating my-2">
+        <%= select_tag("loan[user_id]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, Account.full_names(:user_id)), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= form.label 'Member' %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :user_id %>
-      <%= form.number_field :user_id %>
-    </div>
+      <div class="field form-floating my-2">
+        <%= form.text_field :amount, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :amount %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :amount %>
-      <%= form.text_field :amount %>
-    </div>
+      <div class="field form-floating my-2">
+        <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= form.label :loan_type %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :loan_type %>
-      <%= form.number_field :loan_type %>
-    </div>
+      <div class="field form-floating my-2">
+        <%= form.text_field :amount_due, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :amount_due %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :amount_due %>
-      <%= form.text_field :amount_due %>
+      <div class="field form-floating my-2">
+        <%= form.number_field :interest, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :interest %>
+      </div>
     </div>
+    <div class="col-sm-6">
+      <div class="field form-floating my-2">
+        <%= form.number_field :status, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :status %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :interest %>
-      <%= form.number_field :interest %>
-    </div>
+      <div class="field form-floating my-2">
+        <%= form.text_area :guarantors, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :guarantors %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :status %>
-      <%= form.number_field :status %>
-    </div>
+      <div class="field form-floating my-2">
+        <input type="date" name="loan[date_granted]" id="loan[date_granted]" class="form-control" placeholder="placeholder">
+        <%= form.label :date_granted %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :guarantors %>
-      <%= form.text_area :guarantors %>
-    </div>
+      <div class="field form-floating my-2">
+        <input type="date" name="loan[date_due]" id="loan[date_due]" class="form-control" placeholder="placeholder">
+        <%= form.label :date_due %>
+      </div>
 
-    <div class="field form-group col-sm-12">
-      <%= form.label :date_granted %>
-      <%= form.datetime_select :date_granted %>
-    </div>
-
-    <div class="field form-group col-sm-12">
-      <%= form.label :date_due %>
-      <%= form.datetime_select :date_due %>
-    </div>
-
-    <div class="field form-group col-sm-12">
-      <%= form.label :date_paid %>
-      <%= form.datetime_select :date_paid %>
-    </div>
-
-    <div class="field form-group col-sm-12">
-      <%= form.label :requirements %>
-      <%= form.text_area :requirements %>
+      <div class="field form-group my-2">
+        <%= form.label :requirements %>
+        <%= form.rich_text_area :requirements, class: "form-control", placeholder: "Placeholder" %>
+      </div>
     </div>
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit 'Create Loan', class: "btn btn-primary my-2" %>
     </div>
   </div>
 <% end %>
