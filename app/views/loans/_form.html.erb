@@ -15,6 +15,9 @@
     <%= form.hidden_field :created_by, value: current_user.id %>
     <%= form.hidden_field :date_paid %>
     <%= form.hidden_field :amount_due %>
+    <%= form.hidden_field :status %>
+    <%= form.hidden_field :interest %>
+    <%= form.hidden_field :guarantors %>
 
     <div class="col-sm-6">
       <div class="field form-floating my-2">
@@ -28,34 +31,34 @@
       </div>
 
       <div class="field form-floating my-2">
-        <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Loan Type", required: "required" }) %>
         <%= form.label :loan_type %>
       </div>
 
       <div class="field form-floating my-2">
-        <%= form.number_field :interest, class: "form-control", placeholder: "Placeholder" %>
-        <%= form.label :interest %>
+        <%= select_tag("loan[guarantors]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, Account.full_names(:user_id)), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= form.label :guarantors %>
+        <div>
+          <span class="d-flex align-item-center justify-content-center p-2 rounded border m-2" style="background: #DADCDD;">Gabby Onga <span class="material-icons">cancel</span></span>
+        </div>
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="field form-floating my-2">
-        <%= form.number_field :status, class: "form-control", placeholder: "Placeholder" %>
-        <%= form.label :status %>
-      </div>
 
-      <div class="field form-floating my-2">
-        <%= form.text_area :guarantors, class: "form-control", placeholder: "Placeholder" %>
-        <%= form.label :guarantors %>
-      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="field form-floating my-2">
+            <input type="date" name="loan[date_granted]" id="loan[date_granted]" class="form-control" placeholder="placeholder">
+            <%= form.label :date_granted %>
+          </div>
+        </div>
 
-      <div class="field form-floating my-2">
-        <input type="date" name="loan[date_granted]" id="loan[date_granted]" class="form-control" placeholder="placeholder">
-        <%= form.label :date_granted %>
-      </div>
-
-      <div class="field form-floating my-2">
-        <input type="date" name="loan[date_due]" id="loan[date_due]" class="form-control" placeholder="placeholder">
-        <%= form.label :date_due %>
+        <div class="col-sm-6">
+          <div class="field form-floating my-2">
+            <input type="date" name="loan[date_due]" id="loan[date_due]" class="form-control" placeholder="placeholder">
+            <%= form.label :date_due %>
+          </div>
+        </div>
       </div>
 
       <div class="field form-group my-2">
