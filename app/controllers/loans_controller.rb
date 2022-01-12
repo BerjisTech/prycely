@@ -4,6 +4,7 @@ class LoansController < ApplicationController
   before_action :has_active_group?
   before_action :authenticate_user!
   before_action :set_loan, only: %i[show edit update destroy]
+  before_action :set_group
 
   # GET /loans or /loans.json
   def index
@@ -20,7 +21,6 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
-    @group = Group.find(session[:current_group])
   end
 
   # GET /loans/1/edit
@@ -74,5 +74,13 @@ class LoansController < ApplicationController
   def loan_params
     params.require(:loan).permit(:group_id, :created_by, :user_id, :amount, :loan_type, :amount_due, :interest,
                                  :status, :guarantors, :date_granted, :date_due, :date_paid, :requirements)
+  end
+
+  def set_group
+    if session[:current_group].present?
+      @group = Group.find(session[:current_group])
+    else
+      redirect_to groups_path, notice: 'Select a group to see the transactions'
+    end
   end
 end

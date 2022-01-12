@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_135721) do
+ActiveRecord::Schema.define(version: 2022_01_12_134000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -206,11 +206,11 @@ ActiveRecord::Schema.define(version: 2022_01_10_135721) do
   end
 
   create_table "loans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "created_by"
-    t.integer "user_id"
+    t.uuid "group_id"
+    t.uuid "created_by"
+    t.uuid "user_id"
     t.float "amount"
-    t.integer "loan_type"
+    t.uuid "loan_type"
     t.float "amount_due"
     t.integer "interest"
     t.integer "status"
