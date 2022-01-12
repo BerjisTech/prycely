@@ -1,0 +1,45 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Loan</th>
+      <th>Amount</th>
+      <th>Given to</th>
+      <th>Interest (current)</th>
+      <th>Amount Due</th>
+      <th>Status</th>
+      <th>Guarantors</th>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @loans.map do |loan| %>
+      <% loan_category = Loancategory.find(loan.loan_type) %>
+      <tr>
+        <td>
+          <%= link_to loan_category.name.humanize, loancategory_path(loan.loan_type) %>
+        </td>
+        <td>
+          <%= number_with_precision(loan.amount, precision: 2, delimiter: ",") %>
+        </td>
+        <td>
+          <span class="fw-bold">
+            <%= link_to Account.full_names(loan.user_id), account_path(Account.find_by(user_id: loan.user_id).id) %>
+          </span>
+        </td>
+        <td><%= loan.interest %> (<%= loan_category.interest %>%)</td>
+        <td>
+          <%= number_with_precision(loan.amount_due, precision: 2, delimiter: ",") %>
+        </td>
+        <td>
+          <%= Loan.status(loan.status) %>
+        </td>
+        <td>
+          <%= Loan.guarantors(loan.guarantors) %>
+        </td>
+        <td>
+          <%= link_to 'View', loan_path(loan.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

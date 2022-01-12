@@ -135,6 +135,22 @@ class GroupsController < ApplicationController
     render inline: output
   end
 
+  def loans
+    if params[:group_id].blank?
+      output = '<%= render "layouts/common/missing_attribute" %>'
+    else
+      @loans = Loan.where(group_id: params[:group_id]).order(:created_at)
+      @group = Group.find(params[:group_id])
+      output = if @loans.count.positive?
+                 '<%= render "groups/group/loans/loans" %>'
+               else
+                 '<%= render "groups/group/alerts/no_loans" %>'
+               end
+    end
+
+    render inline: output
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
