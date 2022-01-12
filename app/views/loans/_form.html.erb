@@ -21,7 +21,7 @@
 
     <div class="col-sm-6">
       <div class="field form-floating my-2">
-        <%= select_tag("loan[user_id]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, Account.full_names(:user_id)), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= select_tag("loan[user_id]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
         <%= form.label 'Member' %>
       </div>
 
@@ -36,11 +36,11 @@
       </div>
 
       <div class="field form-floating my-2">
-        <%= select_tag("loan[guarantors]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, Account.full_names(:user_id)), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= select_tag("guarantor_select", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "guarantor_select form-control", :placeholder => "Placeholder", prompt: "Select Guarantors", required: "required", onclick: "add_gurantor($(this).val())" }) %>
         <%= form.label :guarantors %>
-        <div>
-          <span class="d-flex align-item-center justify-content-center p-2 rounded border m-2" style="background: #DADCDD;">Gabby Onga <span class="material-icons">cancel</span></span>
-        </div>
+      </div>
+
+      <div class="guarantor_list_block my-2">
       </div>
     </div>
     <div class="col-sm-6">
@@ -72,3 +72,59 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  let guarantors = $('[name="loan[guarantors]"]')
+  
+    function add_gurantor(id){
+      let current_guarantors = guarantors.val()
+  
+      let name = $(`option[value='${id}']`).text().replace(id, '')
+  
+      if (!current_guarantors.includes(id)){
+  
+        if (current_guarantors == ''){
+          guarantors.val(id)
+        }else{
+          guarantors.val(`${current_guarantors},${id}`)
+        }
+    
+        console.log(guarantors.val())
+    
+        $('.guarantor_list_block').append(`
+              <span class="guarantor_span guarantor_${id}">
+                <span>${name} <em class="material-icons" onclick="remove_guarantor('${id}')">cancel</em></span>
+              </span>
+            `)
+      }
+    }
+  
+    function remove_guarantor(id){
+      let current_guarantors = guarantors.val()
+      console.log(current_guarantors)
+      let new_guarantor_list = current_guarantors
+      console.log(new_guarantor_list)
+  
+      if (current_guarantors.includes(`,${id},`)){
+        new_guarantor_list = current_guarantors.replace(`,${id},`, '')
+        console.log(new_guarantor_list)
+      }
+      if (current_guarantors.includes(`,${id}`)){
+        new_guarantor_list = current_guarantors.replace(`,${id}`, '')
+        console.log(new_guarantor_list)
+      }
+      if (current_guarantors.includes(`${id},`)){
+        new_guarantor_list = current_guarantors.replace(`${id},`, '')
+        console.log(new_guarantor_list)
+      }
+      if (current_guarantors.includes(`${id}`)){
+        new_guarantor_list = current_guarantors.replace(`${id}`, '')
+        console.log(new_guarantor_list)
+      }
+  
+      console.log(new_guarantor_list)
+      guarantors.val(new_guarantor_list)
+  
+      $(`.guarantor_${id}`).remove()
+    }
+</script>

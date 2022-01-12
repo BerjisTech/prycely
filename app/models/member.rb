@@ -23,13 +23,16 @@ class Member < ApplicationRecord
   end
 
   def self.for_group(group_id, limit = 0, offset = 0)
-    members = Member.where(group_id: group_id)
+    members = Member.where(group_id: group_id).where(status: '1').joins(user: :accounts)
     member_limit = if limit.to_i.zero?
-      limit
-    else
       members.count
+    else
+      limit
     end
     members.limit(member_limit).offset(offset)
+    members.select(
+      "concat_ws(' ', first_name, last_name) AS full_names", :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    )
   end
 
   def self.total_members(group_id)

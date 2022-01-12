@@ -1,3 +1,26 @@
 // Place all the styles related to the loans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.guarantor_list_block {
+    .guarantor_span {
+        display       : inline-table;
+        vertical-align: middle;
+        background    : #DADCDD;
+        padding       : 5px;
+        margin        : 5px;
+        border-radius : 7px;
+
+        span {
+            display        : flex;
+            height         : 100%;
+            align-items    : center;
+            justify-content: center;
+
+            em {
+                margin: 0px 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
