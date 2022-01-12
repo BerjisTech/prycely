@@ -26,8 +26,8 @@
       </div>
 
       <div class="field form-floating my-2">
-        <%= form.text_field :amount, class: "form-control", placeholder: "Placeholder" %>
-        <%= form.label :amount %>
+        <%= form.number_field :amount, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label "Amount in #{Money::Currency.find(@group.currency).name}s (#{Money::Currency.find(@group.currency).symbol})" %>
       </div>
 
       <div class="field form-floating my-2">
