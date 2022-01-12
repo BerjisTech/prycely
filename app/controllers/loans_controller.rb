@@ -29,6 +29,8 @@ class LoansController < ApplicationController
   # POST /loans or /loans.json
   def create
     @loan = Loan.new(loan_params)
+    @loan.group_id = session[:current_group]
+    @loan.user_id = current_user.id
     @loan.status = 0
     @loan.interest = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
     @loan.amount_due = @loan.amount + @loan.interest
