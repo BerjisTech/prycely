@@ -18,6 +18,7 @@
     <%= form.hidden_field :status %>
     <%= form.hidden_field :interest %>
     <%= form.hidden_field :guarantors %>
+    <%= form.hidden_field :date_due %>
 
     <div class="col-sm-6">
       <div class="field form-floating my-2">
@@ -44,21 +45,9 @@
       </div>
     </div>
     <div class="col-sm-6">
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="field form-floating my-2">
-            <input type="date" name="loan[date_granted]" id="loan[date_granted]" class="form-control" placeholder="placeholder">
-            <%= form.label :date_granted %>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="field form-floating my-2">
-            <input type="date" name="loan[date_due]" id="loan[date_due]" class="form-control" placeholder="placeholder">
-            <%= form.label :date_due %>
-          </div>
-        </div>
+      <div class="field form-floating my-2">
+        <input type="date" name="loan[date_granted]" id="loan[date_granted]" class="form-control" placeholder="placeholder">
+        <%= form.label :date_granted %>
       </div>
 
       <div class="field form-group my-2">
@@ -88,9 +77,9 @@
         }else{
           guarantors.val(`${current_guarantors},${id}`)
         }
-    
+  
         console.log(guarantors.val())
-    
+  
         $('.guarantor_list_block').append(`
               <span class="guarantor_span guarantor_${id}">
                 <span>${name} <em class="material-icons" onclick="remove_guarantor('${id}')">cancel</em></span>

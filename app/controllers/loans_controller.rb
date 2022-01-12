@@ -29,6 +29,11 @@ class LoansController < ApplicationController
   # POST /loans or /loans.json
   def create
     @loan = Loan.new(loan_params)
+    @loan.status = 0
+    @loan.interest = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
+    @loan.amount_due = @loan.amount + @loan.interest
+
+    @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
 
     respond_to do |format|
       if @loan.save
