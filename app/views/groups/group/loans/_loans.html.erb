@@ -33,8 +33,12 @@
         <td>
           <%= Loan.status(loan.status) %>
         </td>
-        <td>
-          <%= Loan.guarantors(loan.guarantors) %>
+        <td class="guarantor_list_block">
+          <% Loan.guarantors(loan.guarantors).map do |guarantor| %>
+            <span class="guarantor_span">
+              <span class="p-1"><%= Account.full_names(guarantor)%></span>
+            </span>
+          <% end %>
         </td>
         <td>
           <%= link_to 'View', loan_path(loan.id) %>

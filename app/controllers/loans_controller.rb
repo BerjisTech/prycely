@@ -36,9 +36,14 @@ class LoansController < ApplicationController
     @loan.amount_due = @loan.amount + @loan.interest
 
     @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
+    verified_guarantors = Loan.verify_guarantors(@loan.guarantors, @loan.user_id)
 
     respond_to do |format|
-      if @loan.save
+      if verified_guarantors != true
+        @loan.errors.add(:guarantors, ': You cannot be your own guarantor')
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @loan.errors, status: :unprocessable_entity }
+      elsif @loan.save
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else

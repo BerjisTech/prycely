@@ -7,19 +7,25 @@ class Loan < ApplicationRecord
 
   class << self
     def status(status)
-      if status == 0
+      case status
+      when 0
         'Pending'
-        elsif status == 1
-          'Approved'
-        elsif status == 2
-          'Declined'
-        else
-          'N/A'
-        end
+      when 1
+        'Approved'
+      when 2
+        'Declined'
+      else
+        'N/A'
+      end
     end
 
     def guarantors(guarantors)
-      guarantors.include? ','
+      guarantors.split(',')
+    end
+
+    def verify_guarantors(guarantors, requester)
+      guarantor_list = guarantors(guarantors)
+      false if guarantor_list.include? requester
     end
   end
 end

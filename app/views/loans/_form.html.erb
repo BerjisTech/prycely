@@ -1,13 +1,15 @@
 <%= form_with(model: loan) do |form| %>
   <% if loan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
-
-      <ul>
+    <div id="error_explanation d-flex flex-column align-items-start justify-content-start">
+      <br />
+      <span class="alert alert-warning"><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</span>
+      <br />
+      <hr />
+      <div div class="d-flex flex-column align-items-start justify-content-start">
         <% loan.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <div class="alert alert-danger"><%= error.full_message %></div>
         <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
   <div class="row">
