@@ -39,7 +39,7 @@ class LoansController < ApplicationController
     verified_guarantors = Loan.verify_guarantors(@loan.guarantors, @loan.user_id)
 
     respond_to do |format|
-      if verified_guarantors == false
+      if own_guarantor(@loan.guarantos)
         @loan.errors.add(:guarantors, ': You cannot be your own guarantor')
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @loan.errors, status: :unprocessable_entity }

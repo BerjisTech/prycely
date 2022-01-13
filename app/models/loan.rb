@@ -23,12 +23,8 @@ class Loan < ApplicationRecord
       guarantors.split(',')
     end
 
-    def verify_guarantors(guarantors, requester)
-      if guarantors.include? requester
-        false
-      else
-        true
-      end
+    def not_own_guarantor(guarantors, requester)
+      guarantors.include? requester
     end
   end
 end
