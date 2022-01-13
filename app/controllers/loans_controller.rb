@@ -38,7 +38,7 @@ class LoansController < ApplicationController
     @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
 
     respond_to do |format|
-      if own_guarantor(@loan.guarantors,  @loan.user_id)
+      if Loan.own_guarantor(@loan.guarantors,  @loan.user_id)
         @loan.errors.add(:guarantors, ': You cannot be your own guarantor')
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @loan.errors, status: :unprocessable_entity }

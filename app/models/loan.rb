@@ -23,7 +23,7 @@ class Loan < ApplicationRecord
       guarantors.split(',')
     end
 
-    def not_own_guarantor(guarantors, requester)
+    def own_guarantor(guarantors, requester)
       guarantors.include? requester
     end
   end
