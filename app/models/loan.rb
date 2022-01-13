@@ -24,7 +24,11 @@ class Loan < ApplicationRecord
     end
 
     def verify_guarantors(guarantors, requester)
-      false if guarantors.include? requester
+      if guarantors.include? requester
+        false
+      else
+        true
+      end
     end
   end
 end
