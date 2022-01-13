@@ -24,7 +24,11 @@ class Loan < ApplicationRecord
     end
 
     def own_guarantor(guarantors, requester)
-      guarantors.include? requester
+      if guarantors.include? requester
+        1
+      else
+        0
+      end
     end
   end
 end
