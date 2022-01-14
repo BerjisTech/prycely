@@ -151,21 +151,7 @@
     let current_guarantors = guarantors.val()
     let new_guarantor_list = current_guarantors
   
-    if (current_guarantors.includes(`,${id},`)){
-      new_guarantor_list = current_guarantors.replace(`,${id},`, '')
-    }
-    if (current_guarantors.includes(`,${id}`)){
-      new_guarantor_list = current_guarantors.replace(`,${id}`, '')
-    }
-    if (current_guarantors.includes(`${id},`)){
-      new_guarantor_list = current_guarantors.replace(`${id},`, '')
-    }
-    if (current_guarantors.includes(`${id}`)){
-      new_guarantor_list = current_guarantors.replace(`${id}`, '')
-    }
-    if (current_guarantors.includes(`,,`)){
-      new_guarantor_list = current_guarantors.replace(`${id}`, '')
-    }
+    new_guarantor_list = current_guarantors.replace(`,${id},`, '').replace(`,${id}`, '').replace(`${id},`, '').replace(`${id}`, '').replace(`,,`, '')
   
     guarantors.val(new_guarantor_list)
   
