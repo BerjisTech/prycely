@@ -39,6 +39,7 @@ class LoancategoriesController < ApplicationController
 
   # PATCH/PUT /loancategories/1 or /loancategories/1.json
   def update
+    @loancategory.name = "#{@loancategory.name} Loan" unless @loancategory.name.downcase.include? 'loan'
     respond_to do |format|
       if @loancategory.update(loancategory_params)
         format.html { redirect_to @loancategory, notice: 'Loancategory was successfully updated.' }
