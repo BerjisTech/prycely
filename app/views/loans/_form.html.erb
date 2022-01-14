@@ -24,7 +24,7 @@
       </div>
 
       <div class="field form-floating my-2">
-        <%= form.number_field :amount, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.number_field :amount, class: "form-control", placeholder: "Placeholder", required: "required" %>
         <%= form.label "Amount in #{Money::Currency.find(@group.currency).name}s (#{Money::Currency.find(@group.currency).symbol})" %>
       </div>
 

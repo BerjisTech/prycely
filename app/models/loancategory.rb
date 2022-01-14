@@ -11,7 +11,7 @@ class Loancategory < ApplicationRecord
 
     def calculate_total_with_interest(amount, loan_category_id)
       loan_category = Loancategory.find(loan_category_id)
-      interest = loan_category.interest.to_i
+      interest = loan_category.interest.to_f
       interest_rule = loan_category.interest_rule
       duration = loan_category.period
 
@@ -30,7 +30,7 @@ class Loancategory < ApplicationRecord
     end
 
     def get_fixed_interest(amount, interest)
-      ((interest.to_f / 100) * amount)
+      ((interest / 100) * amount)
     end
 
     def get_pa_interest(amount, interest, duration)
