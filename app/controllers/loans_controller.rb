@@ -39,8 +39,7 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       if Loan.own_guarantor(@loan.guarantors,  @loan.user_id).positive?
-        @loan.guarantors = ''
-        format.html { redirect_to new_loan_path, flash: {error: 'You cannot be your own guarantor' }
+        format.html { redirect_to new_loan_path, flash: {error: 'You cannot be your own guarantor' } }
       elsif @loan.save
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
