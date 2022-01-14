@@ -88,8 +88,10 @@
         if (success == 0)
           guarantor_limit(guarantors)
   
-        if (success == 1)
+        if (success == 1){
           alert('Not Ok')
+          $('[type="submit"]').prop('disabled', true)
+        }
       },
       error: (success) => {
         alert('Very not Ok')
