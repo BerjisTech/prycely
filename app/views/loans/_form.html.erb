@@ -163,6 +163,9 @@
     if (current_guarantors.includes(`${id}`)){
       new_guarantor_list = current_guarantors.replace(`${id}`, '')
     }
+    if (current_guarantors.includes(`,,`)){
+      new_guarantor_list = current_guarantors.replace(`${id}`, '')
+    }
   
     guarantors.val(new_guarantor_list)
   
