@@ -24,6 +24,7 @@ class LoancategoriesController < ApplicationController
   # POST /loancategories or /loancategories.json
   def create
     @loancategory = Loancategory.new(loancategory_params)
+    @loancategory.name = "#{@loancategory.name} Loan" unless @loancategory.name.downcase.include? 'loan'
 
     respond_to do |format|
       if @loancategory.save

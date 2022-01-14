@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
   post 'fetch_group_projects', controller: :groups, action: :projects
   post 'fetch_group_loans', controller: :groups, action: :loans
+  get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
+  get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
 
   resources :liabilities,
             :assets,

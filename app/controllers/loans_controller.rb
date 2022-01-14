@@ -38,9 +38,7 @@ class LoansController < ApplicationController
     @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
 
     respond_to do |format|
-      if Loan.own_guarantor(@loan.guarantors,  @loan.user_id).positive?
-        format.html { redirect_to new_loan_path, flash: {error: 'You cannot be your own guarantor' } }
-      elsif @loan.save
+      if @loan.save
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else
@@ -48,6 +46,26 @@ class LoansController < ApplicationController
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def own_guarantor
+    render json: Loan.own_guarantor(params[:guarantors], params[:user_id])
+  end
+
+  def guarantor_limit
+    loan_category = Loancategory.find(params[:loan_category])
+    guarantors = loan_category.required_guarantos.to_i
+    render json: if guarantors > params[:guarantor_count].to_i
+                   {
+                     status: 'error',
+                     message: "You need at least #{guarantors} guarantors to get #{loan_category.name.humanize}"
+                   }
+                 else
+                   {
+                     status: 'success',
+                     message: "You have reached the minimum required guarantors to get #{loan_category.name.humanize}"
+                   }
+                 end
   end
 
   # PATCH/PUT /loans/1 or /loans/1.json

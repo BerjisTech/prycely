@@ -14,12 +14,12 @@
     <%= form.hidden_field :amount_due %>
     <%= form.hidden_field :status %>
     <%= form.hidden_field :interest %>
-    <%= form.hidden_field :guarantors %>
+    <%= form.hidden_field :guarantors, class: "guarantor_input" %>
     <%= form.hidden_field :date_due %>
 
     <div class="col-sm-6">
       <div class="field form-floating my-2">
-        <%= select_tag("loan[user_id]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
+        <%= select_tag("loan[user_id]", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "user_field form-control", :placeholder => "Placeholder", prompt: "Giving Loan to?", required: "required" }) %>
         <%= form.label 'Member' %>
       </div>
 
@@ -28,12 +28,12 @@
         <%= form.label "Amount in #{Money::Currency.find(@group.currency).name}s (#{Money::Currency.find(@group.currency).symbol})" %>
       </div>
 
-      <div class="field form-floating my-2">
-        <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Loan Type", required: "required" }) %>
+      <div class="field form-floating my-2 hidden loan_category_field">
+        <%= select_tag("loan[loan_type]", options_from_collection_for_select(Loancategory.where(group_id: @group.id), :id, :name), { :class => "form-control loan_category_select", :placeholder => "Placeholder", prompt: "Loan Type", required: "required" }) %>
         <%= form.label :loan_type %>
       </div>
 
-      <div class="field form-floating my-2">
+      <div class="field form-floating my-2 hidden guarantor_field">
         <%= select_tag("guarantor_select", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "guarantor_select form-control", :placeholder => "Placeholder", prompt: "Select Guarantors", required: "required", onclick: "add_gurantor($(this).val())" }) %>
         <%= form.label :guarantors %>
       </div>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit 'Create Loan', class: "btn btn-primary my-2" %>
+      <%= form.submit 'Create Loan', class: "btn btn-primary my-2", disabled: "true" %>
     </div>
   </div>
 <% end %>
@@ -62,55 +62,115 @@
 <script>
   let guarantors = $('[name="loan[guarantors]"]')
   
-    function add_gurantor(id){
-      let current_guarantors = guarantors.val()
+  $('.user_field').on('change', (e) => {
+    if ($(e.target).val() != ""){
+      $('.loan_category_field').removeClass('hidden')
+    }
+    else{
+      $('.loan_category_field').addClass('hidden')
+    }
+  })
   
-      let name = $(`option[value='${id}']`).text().replace(id, '')
+  $('.loan_category_select').on('change', (e) => {
+    if ($(e.target).val() != ""){
+      $('.guarantor_field').removeClass('hidden')
+    }
+    else{
+      $('.guarantor_field').addClass('hidden')
+    }
+  })
   
-      if (!current_guarantors.includes(id)){
+  function own_gurantor(guarantors, user_id){
+    $.ajax({
+      url: `/own_guarantor/${guarantors}/${user_id}`,
+      method: 'GET',
+      success: (success) => {
+        if (success == 0)
+          guarantor_limit(guarantors)
   
-        if (current_guarantors == ''){
-          guarantors.val(id)
-        }else{
-          guarantors.val(`${current_guarantors},${id}`)
+        if (success == 1)
+          alert('Not Ok')
+      },
+      error: (success) => {
+        alert('Very not Ok')
+      }
+    })
+  }
+  
+  function guarantor_limit(guarantors){
+    let loan_category = $('.loan_category_select').val()
+    guarantor_list = guarantors.split(',')
+    let gc = 0
+    if (guarantor_list[0] != '')
+      gc = guarantor_list.length
+
+    $.ajax({
+      url: `/guarantor_limit/${gc}/${loan_category}`,
+      method: 'GET',
+      success: (response) => {
+        if (response.status == 'success'){
+          $('[type="submit"]').prop('disabled', false)
+          alert(response.message)
         }
   
-        console.log(guarantors.val())
-  
-        $('.guarantor_list_block').append(`
-              <span class="guarantor_span guarantor_${id}">
-                <span>${name} <em class="material-icons" onclick="remove_guarantor('${id}')">cancel</em></span>
-              </span>
-            `)
+        if (response.status == 'error'){
+          $('[type="submit"]').prop('disabled', true)
+          alert(response.message)
+        }
+      },
+      error: (error) => {
+        console.log(error)
+        alert('Very not Ok')
       }
+    })
+  }
+  
+  function add_gurantor(id){
+    let current_guarantors = guarantors.val()
+  
+    let name = $(`option[value='${id}']`).text().replace(id, '')
+  
+    if (!current_guarantors.includes(id)){
+  
+      if (current_guarantors == ''){
+        guarantors.val(id)
+      }else{
+        guarantors.val(`${current_guarantors},${id}`)
+      }
+  
+      $('.guarantor_list_block').append(`
+            <span class="guarantor_span guarantor_${id}">
+              <span>${name} <em class="material-icons" onclick="remove_guarantor('${id}')">cancel</em></span>
+            </span>
+          `)
+      own_gurantor(guarantors.val(), $('.user_field').val())
+    }
+  }
+  
+  function remove_guarantor(id){
+    let current_guarantors = guarantors.val()
+    let new_guarantor_list = current_guarantors
+  
+    if (current_guarantors.includes(`,${id},`)){
+      new_guarantor_list = current_guarantors.replace(`,${id},`, '')
+    }
+    if (current_guarantors.includes(`,${id}`)){
+      new_guarantor_list = current_guarantors.replace(`,${id}`, '')
+    }
+    if (current_guarantors.includes(`${id},`)){
+      new_guarantor_list = current_guarantors.replace(`${id},`, '')
+    }
+    if (current_guarantors.includes(`${id}`)){
+      new_guarantor_list = current_guarantors.replace(`${id}`, '')
     }
   
-    function remove_guarantor(id){
-      let current_guarantors = guarantors.val()
-      console.log(current_guarantors)
-      let new_guarantor_list = current_guarantors
-      console.log(new_guarantor_list)
+    guarantors.val(new_guarantor_list)
   
-      if (current_guarantors.includes(`,${id},`)){
-        new_guarantor_list = current_guarantors.replace(`,${id},`, '')
-        console.log(new_guarantor_list)
-      }
-      if (current_guarantors.includes(`,${id}`)){
-        new_guarantor_list = current_guarantors.replace(`,${id}`, '')
-        console.log(new_guarantor_list)
-      }
-      if (current_guarantors.includes(`${id},`)){
-        new_guarantor_list = current_guarantors.replace(`${id},`, '')
-        console.log(new_guarantor_list)
-      }
-      if (current_guarantors.includes(`${id}`)){
-        new_guarantor_list = current_guarantors.replace(`${id}`, '')
-        console.log(new_guarantor_list)
-      }
-  
-      console.log(new_guarantor_list)
-      guarantors.val(new_guarantor_list)
-  
-      $(`.guarantor_${id}`).remove()
+    $(`.guarantor_${id}`).remove()
+    if (guarantors.val() == ''){
+      guarantor_limit('')
+    } else {
+      own_gurantor(guarantors.val(), $('.user_field').val())
     }
+  }
 </script>
