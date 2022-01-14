@@ -39,9 +39,8 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       if Loan.own_guarantor(@loan.guarantors,  @loan.user_id).positive?
-        @loan.errors.add(:guarantors, ': You cannot be your own guarantor')
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @loan.errors, status: :unprocessable_entity }
+        @loan.guarantors = ''
+        format.html { redirect_to new_loan_path, notice: 'You cannot be your own guarantor' }
       elsif @loan.save
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
