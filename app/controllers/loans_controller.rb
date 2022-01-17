@@ -16,7 +16,9 @@ class LoansController < ApplicationController
   end
 
   # GET /loans/1 or /loans/1.json
-  def show; end
+  def show
+    @loan_payments = Transaction.all
+  end
 
   # GET /loans/new
   def new
@@ -24,7 +26,21 @@ class LoansController < ApplicationController
   end
 
   # GET /loans/1/edit
-  def edit; end
+  def edit
+    if !Member.is_manager(current_user.id) || @loan.user_id == current_user.id
+      back_url = if request.referer.present?
+                   request.referer
+                 else
+                   loans_path
+                 end
+      message = if @loan.user_id == current_user.id
+                  'You cannot edit your own loan'
+                elsif !Member.is_manager(current_user.id)
+                  'You are not allowed to perform this action'
+                end
+      redirect_to back_url, notice: message
+    end
+  end
 
   # POST /loans or /loans.json
   def create
@@ -32,6 +48,7 @@ class LoansController < ApplicationController
     @loan.group_id = session[:current_group]
     @loan.user_id = current_user.id
     @loan.status = 0
+    @loan.amount_paid = 0
     @loan.interest = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
     @loan.amount_due = @loan.amount + @loan.interest
 
@@ -99,7 +116,7 @@ class LoansController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def loan_params
-    params.require(:loan).permit(:group_id, :created_by, :user_id, :amount, :loan_type, :amount_due, :interest,
+    params.require(:loan).permit(:group_id, :created_by, :user_id, :amount, :ammount_paid, :loan_type, :amount_due, :interest,
                                  :status, :guarantors, :date_granted, :date_due, :date_paid, :requirements)
   end
 
