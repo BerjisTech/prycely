@@ -35,6 +35,12 @@
             <strong>Requirements:</strong>
             <%= @loan.requirements %>
           </span>
+
+          <span class="my-2">
+            <% if Member.is_manager(current_user.id) && current_user.id != @loan.user_id %>
+              <%= link_to "Edit", edit_loan_path(@loan) %>
+            <% end %>
+          </span>
         </div>
       </div>
       <div class="col-sm-9 border-start">
@@ -95,9 +101,6 @@
   </div>
   <div class="col-sm-1"></div>
 </div>
-
-<%= link_to "Edit", edit_loan_path(@loan) %> |
-<%= link_to "Back", loans_path %>
 
 <style>
   .main-content{ background: #F4F6F8 !important; }
