@@ -84,17 +84,23 @@
     $.ajax({
       url: `/own_guarantor/${guarantors}/${user_id}`,
       method: 'GET',
-      success: (success) => {
-        if (success == 0)
+      success: (response) => {
+        if (response == 0)
           guarantor_limit(guarantors)
   
-        if (success == 1){
-          alert('Not Ok')
+        if (response == 1){
+          $(`<div class="alert alert-danger custom_alert_divs">You can not be your own guarantor</div>`).insertBefore($('.guarantor_field'))
           $('[type="submit"]').prop('disabled', true)
+          setTimeout(() => {
+            $('.custom_alert_divs').remove()
+          }, 6000);
         }
       },
-      error: (success) => {
-        alert('Very not Ok')
+      error: (response) => {
+        $(`<div class="alert alert-danger custom_alert_divs">Something went wrong. Please reload the page</div>`).insertAfter($('.guarantor_field'))
+        setTimeout(() => {
+          $('.custom_alert_divs').remove()
+        }, 6000);
       }
     })
   }
@@ -105,24 +111,28 @@
     let gc = 0
     if (guarantor_list[0] != '')
       gc = guarantor_list.length
-
+  
     $.ajax({
       url: `/guarantor_limit/${gc}/${loan_category}`,
       method: 'GET',
       success: (response) => {
         if (response.status == 'success'){
           $('[type="submit"]').prop('disabled', false)
-          alert(response.message)
         }
   
         if (response.status == 'error'){
           $('[type="submit"]').prop('disabled', true)
-          alert(response.message)
+          $(`<div class="alert alert-danger custom_alert_divs">${response.message}</div>`).insertBefore($('.guarantor_field'))
+          setTimeout(() => {
+            $('.custom_alert_divs').remove()
+          }, 3000);
         }
       },
       error: (error) => {
-        console.log(error)
-        alert('Very not Ok')
+        $(`<div class="alert alert-danger custom_alert_divs">Something went wrong. Please reload the page</div>`).insertAfter($('.guarantor_field'))
+        setTimeout(() => {
+          $('.custom_alert_divs').remove()
+        }, 3000);
       }
     })
   }
