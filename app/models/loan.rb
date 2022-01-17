@@ -34,7 +34,7 @@ class Loan < ApplicationRecord
     end
 
     def mine(user_id)
-      Loan.where(user_id: user_id)
+      Loan.where(user_id: user_id).order(created_at: :desc)
     end
   end
 end
