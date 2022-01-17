@@ -8,7 +8,7 @@ class LoansController < ApplicationController
 
   # GET /loans or /loans.json
   def index
-    @loans = Loan.all
+    @loans = Loan.mine(current_user.id)
   end
 
   def group

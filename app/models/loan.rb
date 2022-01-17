@@ -32,5 +32,9 @@ class Loan < ApplicationRecord
         0
       end
     end
+
+    def mine(user_id)
+      Loan.where(user_id: user_id)
+    end
   end
 end
