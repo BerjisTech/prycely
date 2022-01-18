@@ -3,7 +3,7 @@ $(document).ready(() => {
     let fetch_data = (from, to) => {
         $('.group_projects').html('<img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
         $.ajax({
-            url: `${base_url}/fetch_group_${page_title}`,
+            url: `${base_url}fetch_group_${page_title}`,
             method: 'POST',
             data: {
                 'authenticity_token': $('[name="csrf-token"]')[0].content,

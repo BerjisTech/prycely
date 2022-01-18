@@ -45,7 +45,7 @@ Rails.application.routes.draw do
 
   # GROUP MANAGEMENT LINKS
   get 'members/g/:group_id_digest/:group_id', controller: :members, action: :group
-  get 'contributions/g/:group_id_digest/:group_id', controller: :transactions, action: :group
+  get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group
   get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group
   get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group
   get 'assets/g/:group_id_digest/:group_id', controller: :assets, action: :group
