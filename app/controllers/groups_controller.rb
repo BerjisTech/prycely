@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: %i[show edit update destroy]
   before_action :set_account
+  before_action :has_active_group?, except: :index
 
   # GET /groups or /groups.json
   def index
@@ -66,10 +67,10 @@ class GroupsController < ApplicationController
   end
 
   def transactions
-    if params[:group_id].blank? || params[:from].blank? || params[:to].blank?
+    if session[:current_group].blank? || params[:from].blank? || params[:to].blank?
       output_file = '<%= render "layouts/common/missing_attribute" %>'
     else
-      group_id = params[:group_id]
+      group_id = session[:current_group]
       from = params[:from]
       to = params[:to]
 
@@ -87,13 +88,13 @@ class GroupsController < ApplicationController
   end
 
   def bar_line_charts
-    if params[:group_id].blank? || params[:from].blank? || params[:to].blank?
+    if session[:current_group].blank? || params[:from].blank? || params[:to].blank?
       output = {
         type: 'error',
         message: 'Some attributes are missing'
       }
     else
-      group_id = params[:group_id]
+      group_id = session[:current_group]
       from = params[:from]
       to = params[:to]
 
@@ -120,11 +121,11 @@ class GroupsController < ApplicationController
   end
 
   def projects
-    if params[:group_id].blank?
+    if session[:current_group].blank?
       output = '<%= render "layouts/common/missing_attribute" %>'
     else
-      @projects = Project.where(group_id: params[:group_id]).order(:created_at)
-      @group = Group.find(params[:group_id])
+      @projects = Project.where(group_id: session[:current_group]).order(:created_at)
+      @group = Group.find(session[:current_group])
       output = if @projects.count.positive?
                  '<%= render "groups/group/projects/projects" %>'
                else
@@ -136,11 +137,11 @@ class GroupsController < ApplicationController
   end
 
   def loans
-    if params[:group_id].blank?
+    if session[:current_group].blank?
       output = '<%= render "layouts/common/missing_attribute" %>'
     else
-      @loans = Loan.where(group_id: params[:group_id]).order(:created_at)
-      @group = Group.find(params[:group_id])
+      @loans = Loan.where(group_id: session[:current_group]).order(:created_at)
+      @group = Group.find(session[:current_group])
       output = if @loans.count.positive?
                  '<%= render "groups/group/loans/loans" %>'
                else
@@ -166,10 +167,6 @@ class GroupsController < ApplicationController
     @last_log = Log.last_of_group(params[:id])
     @me = Group.me(current_user.id, params[:id])
     session[:current_group] = @group.id
-  end
-
-  def set_account
-    @account = Account.find_by(user_id: current_user.id)
   end
 
   def check_account(user_id, group_id, user_email, account, group)

@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
       redirect_to groups_path, notice: 'You need to pick a group before doing that'
     end
   end
+
+  def set_account
+    @account = Account.find_by(user_id: current_user.id)
+  end
 end
