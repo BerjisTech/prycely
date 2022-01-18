@@ -14,17 +14,20 @@ Rails.application.routes.draw do
   get 'contributions', controller: :transactions, action: :contributions
   post 'convert', controller: :transact, action: :conversions
 
+  #WITHDRAWALS
   get 'withdraw/:level/:account', controller: :transact, action: :withdraw
   get 'withdraw/mpesa/:level/:account', controller: :withdraw, action: :mpesa
   get 'withdraw/bank/:level/:account', controller: :withdraw, action: :bank
   get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
 
+  # DEPOSITS
   get 'deposit/:level/:account', controller: :transact, action: :deposit
   get 'deposit/:platform/:level/:account', controller: :deposit, action: :amount_and_currency
   get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
   get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
   get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
 
+  #NCBA
   post 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
   post 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
   post 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
   post 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
   post 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
 
+  # MPESA
   match 'activation', to: 'mpesa#activation', via: %i[get post]
   match 'b2c', to: 'mpesa#b2c', via: %i[get post]
   match 'c2b', to: 'mpesa#c2b', via: %i[get post]
@@ -44,16 +48,21 @@ Rails.application.routes.draw do
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
 
   # GROUP MANAGEMENT LINKS
-  get 'members/g/:group_id_digest/:group_id', controller: :members, action: :group
-  get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group
-  get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group
-  get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group
-  get 'assets/g/:group_id_digest/:group_id', controller: :assets, action: :group
-  get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group
+  get 'members/g/:group_id_digest/:group_id', controller: :members, action: :group, as: :group_members
+  get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group, as: :group_transactions
+  get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group, as: :group_projects
+  get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans
+  get 'assets/g/:group_id_digest/:group_id', controller: :assets, action: :group, as: :group_assets
+  get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group, as: :group_liabilities
+
+  # FETCH GROUP DATA
   post 'fetch_group_transactions', controller: :groups, action: :transactions
   post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
   post 'fetch_group_projects', controller: :groups, action: :projects
   post 'fetch_group_loans', controller: :groups, action: :loans
+  
+  # LOANS
+  get 'loan/payment', controller: :loans, action: :pay, as: :loan_payment
   get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
   get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
 

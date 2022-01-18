@@ -107,6 +107,10 @@ class LoansController < ApplicationController
     end
   end
 
+  def pay
+    render json: group_members_path('hex','gid')
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
