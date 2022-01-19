@@ -85,6 +85,57 @@ class LoansController < ApplicationController
                  end
   end
 
+  def i_approve
+    response = []
+
+    response << if LoanApproval.find_by(loan_id: params[:loan_id], user_id: params[:user_id]).present?
+                  {
+                    type: 'failed',
+                    message: 'You already approved this loan'
+                  }
+                elsif params[:user_id] != current_user.id
+                  {
+                    type: 'failed',
+                    message: 'Bitch ass'
+                  }
+                elsif Member.is_admin(params[:user_id])
+                  LoanApproval.find_or_create_by(loan_id: params[:loan_id], user_id: params[:user_id])
+                  {
+                    type: 'success',
+                    message: 'Loan approved'
+                  }
+                else
+                  {
+                    type: 'failed',
+                    message: 'Fuck off'
+                  }
+                end
+
+    render json: response
+  end
+
+  def i_disapprove
+    loan_approval = LoanApproval.find_by(loan_id: params[:loan_id], user_id: params[:user_id])
+    response = []
+    response << if loan_approval.blank?
+                  { type: 'failed',
+                    message: 'Can\'t do dat',
+                    loan_approval: loan_approval }
+                elsif params[:user_id] != current_user.id
+                  { type: 'failed',
+                    message: 'Fuck off' }
+                elsif Member.is_admin(params[:user_id])
+                  loan_approval.destroy
+                  { type: 'success',
+                    message: 'Loan disapproved' }
+                else
+                  { type: 'failed',
+                    message: 'Fuck off' }
+                end
+
+    render json: response
+  end
+
   # PATCH/PUT /loans/1 or /loans/1.json
   def update
     respond_to do |format|
@@ -108,7 +159,7 @@ class LoansController < ApplicationController
   end
 
   def pay
-    render json: group_members_path('hex','gid')
+    render json: group_members_path('hex', 'gid')
   end
 
   private

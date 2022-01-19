@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLoanPayments < ActiveRecord::Migration[6.1]
   def change
     create_table :loan_payments, id: :uuid do |t|

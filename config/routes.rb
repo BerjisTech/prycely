@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'contributions', controller: :transactions, action: :contributions
   post 'convert', controller: :transact, action: :conversions
 
-  #WITHDRAWALS
+  # WITHDRAWALS
   get 'withdraw/:level/:account', controller: :transact, action: :withdraw
   get 'withdraw/mpesa/:level/:account', controller: :withdraw, action: :mpesa
   get 'withdraw/bank/:level/:account', controller: :withdraw, action: :bank
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
   get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
 
-  #NCBA
+  # NCBA
   post 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
   post 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
   post 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
@@ -60,11 +60,13 @@ Rails.application.routes.draw do
   post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
   post 'fetch_group_projects', controller: :groups, action: :projects
   post 'fetch_group_loans', controller: :groups, action: :loans
-  
+
   # LOANS
   get 'loan/payment', controller: :loans, action: :pay, as: :loan_payment
   get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
   get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
+  post 'i_approve', controller: :loans, action: :i_approve
+  post 'i_disapprove', controller: :loans, action: :i_disapprove
 
   resources :liabilities,
             :assets,
