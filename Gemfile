@@ -53,8 +53,8 @@ gem 'mailjet'
 gem 'activeadmin'
 
 # Plus integrations with:
-gem 'devise'
 gem 'cancancan'
+gem 'devise'
 gem 'draper'
 gem 'pundit'
 
