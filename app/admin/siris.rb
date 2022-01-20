@@ -11,7 +11,7 @@ ActiveAdmin.register Siri do
   # or
   #
   permit_params do
-    permitted = [:name, :value]
+    permitted = %i[name value]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

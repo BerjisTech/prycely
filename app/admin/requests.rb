@@ -11,7 +11,7 @@ ActiveAdmin.register Request do
   # or
   #
   permit_params do
-    permitted = [:group_id, :user_id, :account_id, :emai, :accept]
+    permitted = %i[group_id user_id account_id emai accept]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

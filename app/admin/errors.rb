@@ -11,7 +11,7 @@ ActiveAdmin.register Error do
   # or
   #
   permit_params do
-    permitted = [:error, :time, :method, :referer, :message]
+    permitted = %i[error time method referer message]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

@@ -11,18 +11,17 @@ ActiveAdmin.register Group do
   # or
   #
   permit_params do
-    permitted = [:created_by, :currency, :group_type, :membership, :name, :description, :requirements]
+    permitted = %i[created_by currency group_type membership name description requirements]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end
 
   form do |form|
     div do
-
       div style: 'display: inline-table;' do
         form.label :name
         form.text_field :name, required: 'required', style: 'width: 100%;'
-        form.number_field :created_by, value: current_user.id, type: :hidden
+        form.number_field :created_by, value: current_user.id, type: :hidden, class: 'form-control'
       end
 
       div style: 'display: inline-table;' do
@@ -33,12 +32,8 @@ ActiveAdmin.register Group do
 
       div style: 'display: inline-table;' do
         form.label :group_type
-        form.select :group_type, [
-          ['Freinds & Family Groups', '1'],
-          ['Temporary Or Mid sized (Church, Fundraisers etc)', '2'],
-          ['Sacco & Co-operative', '3'],
-          ['Wash Wash', '4']
-        ], { prompt: 'Choose Group Type' }, required: 'required', style: 'width: 100%; border: 1px solid #c9d0d6; height: 28px; background: #ffffff;'
+        form.select(:group_type, options_from_collection_for_select(Grouptype.all, :id, :name), {},
+                    { class: 'user_field form-control', placeholder: 'Placeholder', required: 'required', style: 'width: 100%; border: 1px solid #c9d0d6; height: 28px; background: #ffffff;' })
       end
 
       div style: 'display: inline-table;' do

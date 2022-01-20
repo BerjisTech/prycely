@@ -11,7 +11,7 @@ ActiveAdmin.register PaymentMethod do
   # or
   #
   permit_params do
-    permitted = [:name, :description]
+    permitted = %i[name description]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

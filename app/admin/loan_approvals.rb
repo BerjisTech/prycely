@@ -11,7 +11,7 @@ ActiveAdmin.register LoanApproval do
   # or
   #
   permit_params do
-    permitted = [:user_id, :loan_id]
+    permitted = %i[user_id loan_id]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

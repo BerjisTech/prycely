@@ -11,7 +11,8 @@ ActiveAdmin.register Asset do
   # or
   #
   permit_params do
-    permitted = [:name, :description, :group_id, :date_bought, :date_sold, :added_by, :price, :selling_price, :project_id]
+    permitted = %i[name description group_id date_bought date_sold added_by price selling_price
+                   project_id]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

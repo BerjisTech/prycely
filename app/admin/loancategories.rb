@@ -11,7 +11,8 @@ ActiveAdmin.register Loancategory do
   # or
   #
   permit_params do
-    permitted = [:group_id, :created_by, :name, :period, :decsription, :amount, :interest, :interest_rule, :required_guarantos, :requirements, :pegged_to, :membership_durantion_requirement, :approvals]
+    permitted = %i[group_id created_by name period decsription amount interest interest_rule
+                   required_guarantos requirements pegged_to membership_durantion_requirement approvals]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end

@@ -11,7 +11,8 @@ ActiveAdmin.register Stk do
   # or
   #
   permit_params do
-    permitted = [:transaction_reference, :merchant_request_id, :checkout_request_id, :response_code, :response_description, :custom_message, :status, :response_result_code, :response_result_description, :phone]
+    permitted = %i[transaction_reference merchant_request_id checkout_request_id response_code
+                   response_description custom_message status response_result_code response_result_description phone]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end
