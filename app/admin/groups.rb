@@ -17,25 +17,36 @@ ActiveAdmin.register Group do
   # end
 
   form do |form|
-    form.number_field :created_by, value: current_user.id, type: :hidden
+    div do
 
-    form.label :name, style: "display: block;"
-    form.text_field :name, class: 'form-control form-control-sm', required: 'required', style: "display: block; margin-bottom: 10px;"
+      div style: 'display: inline-table;' do
+        form.label :name
+        form.text_field :name, required: 'required', style: 'width: 100%;'
+        form.number_field :created_by, value: current_user.id, type: :hidden
+      end
 
-    form.label :currency, style: "display: block;"
-    form.currency_select(:currency, {}, { include_blank: 'Select Group Currency' },
-                         { class: 'form-control', required: 'required', style: "display: block; margin-bottom: 10px;" })
+      div style: 'display: inline-table;' do
+        form.label :currency
+        form.currency_select(:currency, {}, { include_blank: 'Select Group Currency' },
+                             { class: 'form-control', required: 'required', style: 'width: 100%; border: 1px solid #c9d0d6; height: 28px; background: #ffffff;' })
+      end
 
-    form.label :group_type, style: "display: block;"
-    form.select :group_type, [
-      ['Freinds & Family Groups', '1'],
-      ['Temporary Or Mid sized (Church, Fundraisers etc)', '2'],
-      ['Sacco & Co-operative', '3'],
-      ['Wash Wash', '4']
-    ], { prompt: 'Choose Group Type' }, class: 'form-control form-select', required: 'required', style: "display: block; margin-bottom: 10px;"
+      div style: 'display: inline-table;' do
+        form.label :group_type
+        form.select :group_type, [
+          ['Freinds & Family Groups', '1'],
+          ['Temporary Or Mid sized (Church, Fundraisers etc)', '2'],
+          ['Sacco & Co-operative', '3'],
+          ['Wash Wash', '4']
+        ], { prompt: 'Choose Group Type' }, required: 'required', style: 'width: 100%; border: 1px solid #c9d0d6; height: 28px; background: #ffffff;'
+      end
 
-    form.label :membership, style: "display: block;"
-    form.number_field :membership, class: 'form-control', required: 'required', value: 0, step: '0.01', style: "display: block; margin-bottom: 10px;"
+      div style: 'display: inline-table;' do
+        form.label :membership
+        form.number_field :membership, class: 'form-control', required: 'required', value: 0, step: '0.01',
+                                       style: 'width: 100%; margin-bottom: 10px;'
+      end
+    end
 
     form.submit
   end
