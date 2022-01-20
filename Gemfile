@@ -50,6 +50,14 @@ gem 'braintree'
 gem 'libxml-ruby'
 gem 'mailjet'
 
+gem 'activeadmin'
+
+# Plus integrations with:
+gem 'devise'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
