@@ -10,11 +10,11 @@ ActiveAdmin.register Group do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:created_by, :currency, :group_type, :membership, :name, :description, :requirements]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:created_by, :currency, :group_type, :membership, :name, :description, :requirements]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 
   form do |form|
     div do

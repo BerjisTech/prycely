@@ -10,9 +10,9 @@ ActiveAdmin.register Log do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:activity, :user_id, :wallet_id, :group_id, :referer]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:activity, :user_id, :wallet_id, :group_id, :referer]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

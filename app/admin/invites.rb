@@ -10,9 +10,9 @@ ActiveAdmin.register Invite do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:group_id, :invite_key, :max_redeem, :invite_email, :active, :total_redeemed, :user_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:group_id, :invite_key, :max_redeem, :invite_email, :active, :total_redeemed, :user_id]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

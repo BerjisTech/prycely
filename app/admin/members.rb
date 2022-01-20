@@ -10,9 +10,9 @@ ActiveAdmin.register Member do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:invited_by, :user_id, :group_id, :designation, :status, :invited_on, :accepted_on, :paid_member, :amount, :account_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:invited_by, :user_id, :group_id, :designation, :status, :invited_on, :accepted_on, :paid_member, :amount, :account_id]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

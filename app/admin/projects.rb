@@ -10,9 +10,9 @@ ActiveAdmin.register Project do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:title, :description, :amount, :status, :project_start, :project_end, :created_by, :group_id, :currency]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:title, :description, :amount, :status, :project_start, :project_end, :created_by, :group_id, :currency]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

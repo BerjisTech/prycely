@@ -10,9 +10,9 @@ ActiveAdmin.register Country do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:phone_code, :country_code, :country_name]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:phone_code, :country_code, :country_name]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

@@ -10,9 +10,9 @@ ActiveAdmin.register Currency do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:currency, :code, :country, :country_code]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:currency, :code, :country, :country_code]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end

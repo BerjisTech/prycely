@@ -10,9 +10,9 @@ ActiveAdmin.register Paymentcategory do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:group_id, :created_by, :payment_category_type, :name]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:group_id, :created_by, :payment_category_type, :name]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 end
