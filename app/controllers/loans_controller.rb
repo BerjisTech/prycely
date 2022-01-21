@@ -102,7 +102,11 @@ class LoansController < ApplicationController
                   LoanApproval.find_or_create_by(loan_id: params[:loan_id], user_id: params[:user_id])
                   {
                     type: 'success',
-                    message: 'Loan approved'
+                    message: 'Loan approved',
+                    approval_path: i_disapprove_path,
+                    icon: 'cancel',
+                    remove_color: 'text-primary',
+                    add_color: 'text-danger'
                   }
                 else
                   {
@@ -127,7 +131,11 @@ class LoansController < ApplicationController
                 elsif Member.is_admin(params[:user_id])
                   loan_approval.destroy
                   { type: 'success',
-                    message: 'Loan disapproved' }
+                    message: 'Loan disapproved',
+                  approval_path: i_approve_path,
+                  icon: 'check',
+                  remove_color: 'text-danger',
+                  add_color: 'text-primary' }
                 else
                   { type: 'failed',
                     message: 'Fuck off' }
