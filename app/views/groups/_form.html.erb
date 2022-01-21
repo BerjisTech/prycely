@@ -1,14 +1,11 @@
 <div class="row">
   <%= form_with(model: group) do |form| %>
-    <% if group.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-        <ul>
-          <% group.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
+    <% if loan.errors.any? %>
+      <div id="error_explanation d-flex flex-column align-items-start justify-content-start">
+        <div class="alert alert-warning"><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</div>
+        <% loan.errors.each do |error| %>
+          <div class="alert alert-danger"><%= error.full_message %></div>
+        <% end %>
       </div>
     <% end %>
     <div class="col-sm-6">

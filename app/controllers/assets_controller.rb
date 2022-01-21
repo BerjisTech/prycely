@@ -3,6 +3,7 @@
 class AssetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_asset, only: %i[show edit update destroy]
+  before_action :set_group_by_session, only: %i[group new edit create update destroy]
 
   # GET /assets or /assets.json
   def index

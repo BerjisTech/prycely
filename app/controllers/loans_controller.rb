@@ -132,10 +132,10 @@ class LoansController < ApplicationController
                   loan_approval.destroy
                   { type: 'success',
                     message: 'Loan disapproved',
-                  approval_path: i_approve_path,
-                  icon: 'check',
-                  remove_color: 'text-danger',
-                  add_color: 'text-primary' }
+                    approval_path: i_approve_path,
+                    icon: 'check',
+                    remove_color: 'text-danger',
+                    add_color: 'text-primary' }
                 else
                   { type: 'failed',
                     message: 'Fuck off' }

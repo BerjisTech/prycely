@@ -31,4 +31,8 @@ class ApplicationController < ActionController::Base
   def set_account
     @account = Account.find_by(user_id: current_user.id)
   end
+
+  def set_group_by_session
+    @group = Group.find(session[:current_group])
+  end
 end
