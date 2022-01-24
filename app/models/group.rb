@@ -7,7 +7,7 @@ class Group < ApplicationRecord
   has_many :projects
   # has_many :transactions
   has_many :paymentcategories
-  has_many :assets
+  has_many :group_assets
   has_many :liabilities
   has_many :activities
   has_many :invites

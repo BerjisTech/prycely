@@ -26,7 +26,6 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'country_select', '~> 6.0'
 gem 'currency_select'
-gem 'devise'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'image_processing', '~> 1.2'

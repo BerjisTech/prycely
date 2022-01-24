@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group, as: :group_transactions
   get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group, as: :group_projects
   get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans
-  get 'assets/g/:group_id_digest/:group_id', controller: :assets, action: :group, as: :group_assets
+  get 'group_assets/g/:group_id_digest/:group_id', controller: :group_assets, action: :group, as: :active_group_assets
   get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group, as: :group_liabilities
 
   # FETCH GROUP DATA
@@ -73,7 +73,6 @@ Rails.application.routes.draw do
   post 'i_disapprove', controller: :loans, action: :i_disapprove
 
   resources :liabilities,
-            :assets,
             :activities,
             :loans,
             :loancategories,
@@ -96,7 +95,8 @@ Rails.application.routes.draw do
             :logs,
             :groups,
             :wallets,
-            :payment_methods
+            :payment_methods,
+            :group_assets
 
   devise_for :admins
   devise_for :users, controllers: { confirmations: 'confirmations' }, path: '',

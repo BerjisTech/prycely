@@ -1,9 +1,9 @@
 <div class="row">
   <%= form_with(model: group) do |form| %>
-    <% if loan.errors.any? %>
+    <% if group.errors.any? %>
       <div id="error_explanation d-flex flex-column align-items-start justify-content-start">
-        <div class="alert alert-warning"><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</div>
-        <% loan.errors.each do |error| %>
+        <div class="alert alert-warning"><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</div>
+        <% group.errors.each do |error| %>
           <div class="alert alert-danger"><%= error.full_message %></div>
         <% end %>
       </div>
@@ -23,12 +23,7 @@
       </div>
 
       <div class="field form-group form-floating my-4">
-        <%= form.select :group_type, [
-                          ["Freinds & Family Groups", "1"],
-                          ["Temporary Or Mid sized (Church, Fundraisers etc)", "2"],
-                          ["Sacco & Co-operative", "3"],
-                          ["Wash Wash", "4"],
-                        ], { prompt: "Choose Group Type" }, class: "form-control form-select", required: "required" %>
+        <%= select_tag("group[group_type]", options_from_collection_for_select(Grouptype.all, :id, :name), { :class => "form-control select2 m-2", prompt: "Group Type", required: "required" }) %>
         <%= form.label :group_type %>
       </div>
 

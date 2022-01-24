@@ -4,8 +4,8 @@ one:
   name: MyString
   description: MyText
   group_id: 1
-  date_bought: 2021-07-17 20:08:31
-  date_sold: 2021-07-17 20:08:31
+  date_bought: 2022-01-24 11:56:42
+  date_sold: 2022-01-24 11:56:42
   added_by: 1
   price: 1.5
 
@@ -13,7 +13,7 @@ two:
   name: MyString
   description: MyText
   group_id: 1
-  date_bought: 2021-07-17 20:08:31
-  date_sold: 2021-07-17 20:08:31
+  date_bought: 2022-01-24 11:56:42
+  date_sold: 2022-01-24 11:56:42
   added_by: 1
   price: 1.5

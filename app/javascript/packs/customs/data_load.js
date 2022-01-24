@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     let fetch_data = (from, to) => {
         $.ajax({
-            url: `${base_url}fetch_group_${page_title}`,
+            url: `${base_url}fetch_group_${page_title.replace('group_', '')}`,
             method: 'POST',
             data: {
                 'authenticity_token': $('[name="csrf-token"]')[0].content,

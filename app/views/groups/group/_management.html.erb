@@ -11,7 +11,7 @@
 <%= link_to group_loans_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
   <i class="material-icons me-2">credit_score</i><span class="title">Loans</span>
 <% end %>
-<%= link_to group_assets_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to active_group_assets_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
   <i class="material-icons me-2">maps_home_work</i><span class="title">Assets</span>
 <% end %>
 <%= link_to group_liabilities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>

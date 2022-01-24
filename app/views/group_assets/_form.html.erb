@@ -1,0 +1,61 @@
+<div class="rounded bg-white border shadow p-4">
+  <%= form_with(model: group_asset) do |form| %>
+    <% if group_asset.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group_asset.errors.count, "error") %> prohibited this group_asset from being saved:</h2>
+
+        <ul>
+          <% group_asset.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :group_id, value: @group.id %>
+    <%= form.hidden_field :added_by, value: current_user.id %>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="field form-floating my-2">
+          <%= form.text_field :name, class: "form-control", placeholder: "Placeholder" %>
+          <%= form.label :name %>
+        </div>
+        <div class="field form-floating my-2">
+          <%= form.number_field :price, class: "form-control", placeholder: "Placeholder" %>
+          <%= form.label :price %>
+        </div>
+        <% if action_name == "new" %>
+          <div class="field form-floating my-2">
+            <%= form.date_field :date_bought, class: "form-control", placeholder: "Placeholder" %>
+            <%= form.label :date_bought %>
+          </div>
+        <% end %>
+
+        <% if action_name == "edit" %>
+          <div class="field form-floating my-2">
+            <%= form.date_field :date_sold, class: "form-control", placeholder: "Placeholder" %>
+            <%= form.label :date_sold %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.rich_text_area :description %>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
+
+<style>
+  trix-editor{
+    min-height: 140px !important;
+  }
+</style>

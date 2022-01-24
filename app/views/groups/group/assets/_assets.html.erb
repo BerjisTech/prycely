@@ -1,58 +1,30 @@
-<table class="table table-hover">
+<table class="table hover" id="datatable">
   <thead>
     <tr>
-      <th>Loan</th>
-      <th>Amount</th>
-      <th>Given to</th>
-      <th>Interest (current)</th>
-      <th>Amount Due</th>
-      <th>Status</th>
-      <th>Guarantors</th>
-      <td></td>
+      <th>Asset</th>
+      <th>Added by</th>
+      <th></th>
+      <th>Price</th>
+      <th>Date bought</th>
+      <% if Member.is_manager(current_user.id) %>
+        <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
+
   <tbody>
-    <% @loans.map do |loan| %>
-      <% loan_category = Loancategory.find(loan.loan_type) %>
+    <% @assets.map do |asset| %>
       <tr>
-        <td>
-          <%= link_to loan_category.name.humanize, loancategory_path(loan.loan_type) %>
-        </td>
-        <td>
-          <%= number_with_precision(loan.amount, precision: 2, delimiter: ",") %>
-        </td>
-        <td>
-          <span class="fw-bold">
-            <%= link_to Account.full_names(loan.user_id), account_path(Account.find_by(user_id: loan.user_id).id) %>
-          </span>
-        </td>
-        <td><%= number_with_precision(loan.interest, precision: 2, delimiter: ",") %> (<%= loan_category.interest %>%)</td>
-        <td>
-          <%= number_with_precision(loan.amount_due, precision: 2, delimiter: ",") %>
-        </td>
-        <td>
-          <%= Loan.status(loan.status) %>
-        </td>
-        <td class="guarantor_list_block">
-          <% Loan.guarantors(loan.guarantors).map do |guarantor| %>
-            <span class="guarantor_span">
-              <span class="p-1"><%= Account.full_names(guarantor)%></span>
-            </span>
-          <% end %>
-        </td>
-        <td>
-          <div class="d-flex align-items-center justify-content-center px-3">
-            <%= link_to 'View', loan_path(loan.id) %>
-            <% if Member.is_manager(current_user.id) %>
-              <% if !LoanApproval.i_approved(loan.id, current_user.id, loan.loan_type) %>
-                <a class="material-icons px-3 l_<%= loan.id %> l_approval" loan_manager="<%= current_user.id %>" loan_approval_path="<%= i_approve_path %>" loan_id="<%= loan.id %>">check</a>
-              <% end %>
-              <% if LoanApproval.i_approved(loan.id, current_user.id, loan.loan_type) %>
-                <a class="material-icons text-danger px-3 l_<%= loan.id %> l_approval" loan_manager="<%= current_user.id %>" loan_approval_path="<%= i_disapprove_path %>" loan_id="<%= loan.id %>">cancel</a>
-              <% end %>
-            <% end %>
-          </div>
-        </td>
+        <td><%= asset.name.humanize %></td>
+        <td><%= link_to Account.full_names(asset.added_by), asset.added_by %></td>
+        <td><%= asset.description %></td>
+        <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(asset.price, precision: 2, delimitor: ",") %></td>
+        <td><%= asset.date_bought.strftime("#{asset.date_bought.day.ordinalize} %b, %Y") %></td>
+        <% if Member.is_manager(current_user.id) %>
+          <td><%= link_to "Show", asset %></td>
+          <td><%= link_to "Edit", edit_group_asset_path(asset) %></td>
+          <td><%= link_to "Destroy", asset, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

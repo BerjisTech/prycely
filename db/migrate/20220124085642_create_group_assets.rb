@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateAssets < ActiveRecord::Migration[6.1]
+class CreateGroupAssets < ActiveRecord::Migration[6.1]
   def change
-    create_table :assets do |t|
+    create_table :group_assets, id: :uuid do |t|
       t.string :name
       t.text :description
       t.integer :group_id

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group_asset.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @group_asset.description %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_asset.group_id %>
+</p>
+
+<p>
+  <strong>Date bought:</strong>
+  <%= @group_asset.date_bought %>
+</p>
+
+<p>
+  <strong>Date sold:</strong>
+  <%= @group_asset.date_sold %>
+</p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @group_asset.added_by %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @group_asset.price %>
+</p>
+
+<%= link_to 'Edit', edit_group_asset_path(@group_asset) %> |
+<%= link_to 'Back', group_assets_path %>

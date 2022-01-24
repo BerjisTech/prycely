@@ -5,7 +5,7 @@
       <span class="fs-3 my-3 py-3"><%= @group.name.humanize %> Assets</span>
       <% if Member.is_manager(current_user.id) %>
         <div>
-          <%= link_to 'Add New Asset', new_asset_path, class: "btn btn-primary px-2" %>
+          <%= link_to 'Add New Asset', new_group_asset_path, class: "btn btn-primary px-2" %>
         </div>
       <% end %>
     </div>
@@ -13,7 +13,7 @@
       <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
         <span></span>
         <div>
-          <input type="search" placeholder="Search assets by name" class="form-control fetched_data_js_select">
+          <input type="search" placeholder="Search for projects by name" class="form-control fetched_data_js_select">
         </div>
       </div>
       <div class="group_projects fetched_data_js_block">
@@ -24,6 +24,4 @@
   <div class="col-sm-1"></div>
 </div>
 
-<style>
-  .main-content{ background: #F4F6F8 !important; }
-</style>
+

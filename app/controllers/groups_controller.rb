@@ -156,9 +156,9 @@ class GroupsController < ApplicationController
     if session[:current_group].blank?
       output = '<%= render "layouts/common/missing_attribute" %>'
     else
-      @loans = Asset.where(group_id: session[:current_group]).order(:created_at)
+      @assets = GroupAsset.where(group_id: session[:current_group]).order(:created_at)
       @group = Group.find(session[:current_group])
-      output = if @loans.count.positive?
+      output = if @assets.count.positive?
                  '<%= render "groups/group/assets/assets" %>'
                else
                  '<%= render "groups/group/alerts/no_assets" %>'
