@@ -5,7 +5,7 @@
       <span class="fs-3 my-3 py-3">My Groups' Assets</span>
       <% if Member.is_manager(current_user.id) %>
         <div>
-          <%= link_to 'Request New Loan', new_group_asset_path, class: "btn btn-primary px-2" %>
+          <%= link_to 'Add Asset', new_group_asset_path, class: "btn btn-primary px-2" %>
         </div>
       <% end %>
     </div>
@@ -53,8 +53,8 @@
       <% else %>
         <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
           <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 400px;" />
-          You haven't requested any loans yet
-          <%= link_to 'Request a loan', new_loan_path %>
+          You don't have any assets yet
+          <%= link_to 'Add Asset', new_group_asset_path %>
         </div>
       <% end %>
     </div>
