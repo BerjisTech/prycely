@@ -13,7 +13,7 @@
     <% end %>
 
     <%= form.hidden_field :group_id, value: @group.id %>
-    <%= form.hidden_field :added_by, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
 
     <div class="row">
       <div class="col-sm-6">

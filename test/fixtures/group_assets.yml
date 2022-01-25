@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyText
   description: MyText
-  group_id: 1
-  date_bought: 2022-01-24 11:56:42
-  date_sold: 2022-01-24 11:56:42
-  added_by: 1
+  group_id: 
+  date_bought: 2022-01-25 12:02:02
+  date_sold: 2022-01-25 12:02:02
+  user_id: 
   price: 1.5
 
 two:
-  name: MyString
+  name: MyText
   description: MyText
-  group_id: 1
-  date_bought: 2022-01-24 11:56:42
-  date_sold: 2022-01-24 11:56:42
-  added_by: 1
+  group_id: 
+  date_bought: 2022-01-25 12:02:02
+  date_sold: 2022-01-25 12:02:02
+  user_id: 
   price: 1.5

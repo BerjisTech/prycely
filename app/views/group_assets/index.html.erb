@@ -23,7 +23,6 @@
               <tr>
                 <th>Asset</th>
                 <th>Added by</th>
-                <th></th>
                 <th>Price</th>
                 <th>Date bought</th>
                 <% if Member.is_manager(current_user.id) %>
@@ -36,9 +35,8 @@
               <% @group_assets.map do |asset| %>
                 <tr>
                   <td><%= asset.name.humanize %></td>
-                  <td><%= link_to Account.full_names(asset.added_by), asset.added_by %></td>
-                  <td><%= asset.description %></td>
-                  <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(asset.price, precision: 2, delimitor: ",") %></td>
+                  <td><%= link_to Account.full_names(asset.user_id), asset.user_id %></td>
+                  <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(asset.price, precision: 2, delimiter: ",") %></td>
                   <td><%= asset.date_bought.strftime("#{asset.date_bought.day.ordinalize} %b, %Y") %></td>
                   <% if Member.is_manager(current_user.id) %>
                     <td><%= link_to "Show", asset %></td>
