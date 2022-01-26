@@ -1,52 +1,47 @@
 <%= form_with(model: liability) do |form| %>
   <% if liability.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(liability.errors.count, "error") %> prohibited this liability from being saved:</h2>
-
-      <ul>
-        <% liability.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div id="error_explanation d-flex flex-column align-items-start justify-content-start">
+      <div class="alert alert-warning"><%= pluralize(liability.errors.count, "error") %> prohibited this liability from being saved:</div>
+      <% liability.errors.each do |error| %>
+        <div class="alert alert-danger"><%= error.full_message %></div>
+      <% end %>
     </div>
   <% end %>
+  <div class="row">
+    <%= form.hidden_field :group_id, value: session[:current_group] %>
+    <%= form.hidden_field :added_by, value: current_user.id %>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="col-sm-6">
+      <div class="field form-floating my-2">
+        <%= form.text_field :name, class: "form-control", placeholder: "Placeholder", required: "required" %>
+        <%= form.label :name %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+      <div class="field form-floating my-2">
+        <%= form.number_field :price, class: "form-control", placeholder: "Placeholder", required: "required" %>
+        <%= form.label "Price in #{Money::Currency.find(@group.currency).name}s (#{Money::Currency.find(@group.currency).symbol})" %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :group_id %>
-    <%= form.number_field :group_id %>
-  </div>
+      <div class="field form-floating my-2">
+        <%= form.date_field :date_bought, class: "form-control", placeholder: "Placeholder", required: "Required", value: Date.today %>
+        <%= form.label :date_bought %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="field form-group my-2">
+        <%= form.label :description %>
+        <%= form.rich_text_area :description, class: "form-control", placeholder: "Placeholder" %>
+      </div>
+    </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :date_bought %>
-    <%= form.datetime_select :date_bought %>
-  </div>
-
-  <div class="field form-group col-sm-12">
-    <%= form.label :date_sold %>
-    <%= form.datetime_select :date_sold %>
-  </div>
-
-  <div class="field form-group col-sm-12">
-    <%= form.label :added_by %>
-    <%= form.number_field :added_by %>
-  </div>
-
-  <div class="field form-group col-sm-12">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit 'Add Liability', class: "btn btn-primary my-2" %>
+    </div>
   </div>
 <% end %>
+
+<style>
+  trix-editor{
+    min-height: 130px !important;
+  }
+</style>

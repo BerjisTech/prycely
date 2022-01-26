@@ -168,6 +168,22 @@ class GroupsController < ApplicationController
     render inline: output
   end
 
+  def liabilities
+    if session[:current_group].blank?
+      output = '<%= render "layouts/common/missing_attribute" %>'
+    else
+      @liabilities = Liability.where(group_id: session[:current_group]).order(:created_at)
+      @group = Group.find(session[:current_group])
+      output = if @liabilities.count.positive?
+                 '<%= render "groups/group/liabilities/liabilities" %>'
+               else
+                 '<%= render "groups/group/alerts/no_liabilities" %>'
+               end
+    end
+
+    render inline: output
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

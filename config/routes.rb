@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
   post 'fetch_group_projects', controller: :groups, action: :projects
   post 'fetch_group_loans', controller: :groups, action: :loans
+  post 'fetch_group_liabilities', controller: :groups, action: :liabilities
   post 'fetch_group_assets', controller: :groups, action: :assets
 
   # LOANS

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="d-flex full-width align-items-center justify-content-between">
+      <span class="fs-3 my-3 py-3"><%= @group.name.humanize %> Loabilities</span>
+      <% if Member.is_manager(current_user.id) %>
+        <div>
+          <%= link_to 'Add New Liability', new_liability_path, class: "btn btn-primary px-2" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="bg-white shadow border rounded">
+      <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
+        <span></span>
+        <div>
+          <input type="search" placeholder="Search for liability by name" class="form-control fetched_data_js_select">
+        </div>
+      </div>
+      <div class="group_projects fetched_data_js_block">
+        <img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+
