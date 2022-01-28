@@ -5,6 +5,8 @@ class DepositController < ApplicationController
   before_action :set_global
   before_action :set_amount_currency, except: %i[amount_and_currency]
   skip_before_action :verify_authenticity_token, only: %i[conversions]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   def amount_and_currency
     @platform = params[:platform]

@@ -1,6 +1,6 @@
 class GroupAssetsController < ApplicationController
   before_action :set_group_asset, only: %i[ show edit update destroy ]
-  before_action :has_active_group?, only: %i[ group new create edit update destroy show ]
+  before_action :has_active_group?, except: :index
   before_action :set_group_by_session
 
   # GET /group_assets or /group_assets.json

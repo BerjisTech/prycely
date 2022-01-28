@@ -2,6 +2,8 @@
 
 class PaymentMethodsController < ApplicationController
   before_action :set_payment_method, only: %i[show edit update destroy]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   # GET /payment_methods or /payment_methods.json
   def index

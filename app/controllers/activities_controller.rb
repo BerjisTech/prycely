@@ -3,6 +3,8 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   # GET /activities or /activities.json
   def index
@@ -19,6 +21,8 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit; end
+
+  def group; end
 
   # POST /activities or /activities.json
   def create

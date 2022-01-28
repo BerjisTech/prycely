@@ -3,7 +3,7 @@
 class LiabilitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_liability, only: %i[show edit update destroy]
-  before_action :has_active_group?, only: %i[ group show edit update destroy]
+  before_action :has_active_group?, except: :index
   before_action :set_group_by_session
 
   # GET /liabilities or /liabilities.json

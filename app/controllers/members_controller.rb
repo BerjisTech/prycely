@@ -5,7 +5,8 @@ class MembersController < ApplicationController
   before_action :set_member, only: %i[show edit update destroy]
   before_action :set_global_for_index, only: %i[index]
   before_action :set_global
-  before_action :check_group_session, only: %i[index]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   # GET /members or /members.json
   def index
@@ -97,13 +98,6 @@ class MembersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_member
     @member = Member.find(params[:id])
-  end
-
-  def check_group_session
-    if session[:current_group]
-    else
-      redirect_to groups_path, notice: "You need to access a group first to see it's members"
-    end
   end
 
   def set_global

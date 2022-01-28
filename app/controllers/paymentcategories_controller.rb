@@ -3,6 +3,8 @@
 class PaymentcategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_paymentcategory, only: %i[show edit update destroy]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   # GET /paymentcategories or /paymentcategories.json
   def index

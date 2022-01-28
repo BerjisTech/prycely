@@ -3,6 +3,8 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[show edit update destroy]
+  before_action :has_active_group?, except: :index
+  before_action :set_group_by_session
 
   # GET /projects or /projects.json
   def index
@@ -23,9 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit
-    @group = Group.find(session[:current_group])
-  end
+  def edit; end
 
   # POST /projects or /projects.json
   def create
