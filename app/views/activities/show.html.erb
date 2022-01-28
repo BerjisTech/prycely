@@ -1,49 +1,56 @@
-<!--p id="notice"><%= notice %></p-->
+<% activity = @activity%>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="d-flex align-items-center justify-content-between mt-4">
+      <h1><%= activity.title.humanize %></h1>
+      <div>
+        <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="border rounded shadow bg-white p-4">
 
-<p>
-  <strong>Title:</strong>
-  <%= @activity.title %>
-</p>
+      <div class="row">
+        <div class="col-sm-3">
+          <p>
+            <strong>Created by:</strong>
+            <%= link_to Account.full_names(activity.created_by), activity.created_by %>
+          </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @activity.description %>
-</p>
+          <p>
+            <strong>Group:</strong>
+            <%= link_to Group.find(activity.group_id).name, group_path(activity.group_id) %>
+          </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @activity.date %>
-</p>
+          <p>
+            <strong>Date:</strong>
+            <%= activity.date.strftime("#{activity.date.day.ordinalize} %b, %Y") %>
+          </p>
 
-<p>
-  <strong>Created by:</strong>
-  <%= @activity.created_by %>
-</p>
+          <p>
+            <strong>Price:</strong>
+            <%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(activity.price, precision: 2, delimiter: ",") %>
+          </p>
 
-<p>
-  <strong>Group:</strong>
-  <%= @activity.group_id %>
-</p>
+          <p>
+            <strong>Fine:</strong>
+            <%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(activity.fine, precision: 2, delimiter: ",") %>
+          </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @activity.price %>
-</p>
+          <p>
+            <strong>Host:</strong>
+            <%= activity.host.humanize %>
+          </p>
 
-<p>
-  <strong>Fine:</strong>
-  <%= @activity.fine %>
-</p>
+          <p>
+            <strong>Host contact:</strong>
+            <%= activity.host_contact %>
+          </p>
+        </div>
 
-<p>
-  <strong>Host:</strong>
-  <%= @activity.host %>
-</p>
+        <div class="col-sm-9 border-start"><%= activity.description %></div>
+      </div>
+    </div>
 
-<p>
-  <strong>Host contact:</strong>
-  <%= @activity.host_contact %>
-</p>
-
-<%= link_to "Edit", edit_activity_path(@activity) %> |
-<%= link_to "Back", activities_path %>
+  </div>
+</div>

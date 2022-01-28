@@ -32,7 +32,7 @@
               <td><%= activity.title.humanize %></td>
               <td><%= link_to Account.full_names(activity.created_by), activity.created_by %></td>
               <td><%= activity.host.humanize%></dt>
-              <td><%= activity.host_contact %></dt>
+              <td><%= activity.host_contact %></td>
               <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(activity.price, precision: 2, delimiter: ",") %></td>
               <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(activity.fine, precision: 2, delimiter: ",") %></td>
               <td><%= activity.date.strftime("#{activity.date.day.ordinalize} %b, %Y") %></td>
