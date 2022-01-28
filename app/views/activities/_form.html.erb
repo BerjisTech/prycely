@@ -10,53 +10,66 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :group_id, value: @group.id %>
+  <%= form.hidden_field :created_by, value: current_user.id %>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="row">
+    <div class="col-sm-6">
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+      <div class="field form-floating my-2">
+        <%= form.text_field :title, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :title %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
+      <div class="field form-floating my-2">
+        <%= form.date_field :date, value: Date.today, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :date %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :created_by %>
-    <%= form.number_field :created_by %>
-  </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="field form-floating my-2">
+            <%= form.number_field :price, class: "form-control", placeholder: "Placeholder" %>
+            <%= form.label :price %>
+          </div>
+        </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :group_id %>
-    <%= form.number_field :group_id %>
-  </div>
+        <div class="col-sm-6">
+          <div class="field form-floating my-2">
+            <%= form.number_field :fine, class: "form-control", placeholder: "Placeholder" %>
+            <%= form.label :fine %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
+      <div class="field form-floating my-2">
+        <%= form.text_field :host, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :host %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :fine %>
-    <%= form.text_field :fine %>
-  </div>
+      <div class="field form-group my-2">
+        <%= form.label :host_contact %>
+        <%= form.rich_text_area :host_contact %>
+      </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :host %>
-    <%= form.text_area :host %>
-  </div>
+    </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :host_contact %>
-    <%= form.text_area :host_contact %>
+    <div class="col-sm-6">
+      <div class="field form-group activity_description_field_block">
+        <%= form.label :description %>
+        <%= form.rich_text_area :description %>
+      </div>
+    </div>
+
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Activity", class: "btn btn-primary my-2"%>
   </div>
 <% end %>
+
+<style>
+  .activity_description_field_block trix-editor{
+    min-height: 365px;
+  }
+</style>

@@ -17,3 +17,6 @@
 <%= link_to group_liabilities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
   <i class="material-icons me-2">money_off_csred</i><span class="title">Liabilities</span>
 <% end %>
+<%= link_to group_activities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+  <i class="material-icons me-2">psychology</i><span class="title">Activities</span>
+<% end %>

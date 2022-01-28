@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans
   get 'group_assets/g/:group_id_digest/:group_id', controller: :group_assets, action: :group, as: :active_group_assets
   get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group, as: :group_liabilities
+  get 'activities/g/:group_id_digest/:group_id', controller: :activities, action: :group, as: :group_activities
 
   # FETCH GROUP DATA
   post 'fetch_group_transactions', controller: :groups, action: :transactions
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
   post 'fetch_group_loans', controller: :groups, action: :loans
   post 'fetch_group_liabilities', controller: :groups, action: :liabilities
   post 'fetch_group_assets', controller: :groups, action: :assets
+  post 'fetch_group_activities', controller: :groups, action: :activities
 
   # LOANS
   get 'loan/payment', controller: :loans, action: :pay, as: :loan_payment
