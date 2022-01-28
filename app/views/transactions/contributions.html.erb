@@ -1,48 +1,63 @@
-<!--p id="notice"><%= notice %></p-->
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <h3 class="my-3 py-3">Recent Transactions</h3>
+    <div class="bg-white shadow border rounded">
+      <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
+        <span>Group Transactions</span>
+        <div>
+          <select class="form-control fetch_transactions fetched_data_js_select">
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 3 months</option>
+            <option value="180">Last 6 months</option>
+            <option value="365">Last 365 days</option>
+          </select>
+        </div>
+      </div>
+      <div class="group_transactions fetched_data_js_block">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Date</th>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @transactions.map do |transaction| %>
+              <tr>
+                <td>
+                  <%= link_to Account.full_names(transaction.user_id), account_path(Account.find_by(user_id: transaction.user_id).id) %>
+                </td>
+                <td>
+                  <span class="fw-bold
+              <% if transaction.transaction_type == 1 %>
+               text-success
+              <% else %>
+                text-danger
+              <% end %>">
+                    <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
+                  </span>
+                </td>
+                <td><%= transaction.transaction_type %></td>
+                <td><%= transaction.category %></td>
+                <td>
+                  <%= transaction.updated_at.strftime("%b, #{transaction.updated_at.day.ordinalize} %Y") %>
+                </td>
+                <td>
+                  <%= link_to 'View', transaction_path(transaction.id) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-<h1>Transactions</h1>
-
-<table class="table table-bordered datatable" id="datatable">
-  <thead class="table-dark bg-dark">
-    <tr>
-      <th>User</th>
-      <th>Amount</th>
-      <th>Transaction reference</th>
-      <th>Transaction type</th>
-      <th>Group</th>
-      <th>Wallet</th>
-      <th>Status</th>
-      <th>Transaction mode</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Sub category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.map do |transaction| %>
-      <% user_account = Account.find_by(user_id: transaction.user_id)%>
-      <tr>
-        <td><%= link_to "#{user_account.first_name.humanize} #{user_account.last_name.humanize}", account_path(user_account.id) %></td>
-        <td><%= Transact.amount_from_cents(transaction.amount) %></td>
-        <td><%= transaction.transaction_reference %></td>
-        <td><%= transaction.transaction_type %></td>
-        <td><%= transaction.group_id %></td>
-        <td><%= transaction.wallet_id %></td>
-        <td><%= transaction.status %></td>
-        <td><%= transaction.transaction_mode %></td>
-        <td><%= transaction.description %></td>
-        <td><%= transaction.category %></td>
-        <td><%= transaction.sub_category %></td>
-        <td><%= link_to "Show", transaction %></td>
-        <td><%= link_to "Edit", edit_transaction_path(transaction) %></td>
-        <td><%= link_to "Destroy", transaction, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to "New Transaction", new_transaction_path %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
