@@ -10,7 +10,7 @@
     <% end %>
     <div class="col-sm-6">
 
-      <%= form.number_field :created_by, value: current_user.id, type: :hidden %>
+      <%= form.text_field :created_by, value: current_user.id, type: :hidden %>
 
       <div class="field form-group form-floating my-4">
         <%= form.text_field :name, class: "form-control form-control-sm", required: "required" %>

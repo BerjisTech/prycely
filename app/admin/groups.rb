@@ -21,7 +21,7 @@ ActiveAdmin.register Group do
       div style: 'display: inline-table;' do
         form.label :name
         form.text_field :name, required: 'required', style: 'width: 100%;'
-        form.number_field :created_by, value: current_user.id, type: :hidden, class: 'form-control'
+        form.text_field :created_by, value: current_user.id, type: :hidden, class: 'form-control'
       end
 
       div style: 'display: inline-table;' do

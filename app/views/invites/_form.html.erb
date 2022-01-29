@@ -12,7 +12,7 @@
       </div>
     <% end %>
     <div class="col-sm-5">
-      <%= form.number_field :group_id, value: session[:current_group], type: :hidden %>
+      <%= form.text_field :group_id, value: session[:current_group], type: :hidden %>
 
       <%= form.text_field :invite_key, value: @invite_key, type: :hidden %>
 
