@@ -13,29 +13,44 @@ class Member < ApplicationRecord
 
   ADMIN = ['admin'].freeze
   MANAGER = %w[admin secretary treasurer].freeze
+  STATUS = %w[pending approved denied derigestered].freeze
+  class << self
+    def is_admin(user_id)
+      ADMIN.include? Member.find_by(user_id: user_id).designation.to_s
+    end
 
-  def self.is_admin(user_id)
-    ADMIN.include? Member.find_by(user_id: user_id).designation.to_s
-  end
+    def is_manager(user_id)
+      MANAGER.include? Member.find_by(user_id: user_id).designation.to_s
+    end
 
-  def self.is_manager(user_id)
-    MANAGER.include? Member.find_by(user_id: user_id).designation.to_s
-  end
+    def is_in_group(user)
+      @check = Member.where(user_id: user).where(group_id: session[:current_group])
+      result = if @check.count.positive?
+                 true
+               else
+                 false
+               end
+    end
 
-  def self.for_group(group_id, limit = 0, offset = 0)
-    members = Member.where(group_id: group_id).where(status: '1').joins(user: :accounts)
-    member_limit = if limit.to_i.zero?
-                     members.count
-                   else
-                     limit
-                   end
-    members.limit(member_limit).offset(offset)
-    members.select(
-      "concat_ws(' ', first_name, last_name) AS full_names", :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
-    )
-  end
+    def for_group(group_id, limit = 0, offset = 0)
+      members = Member.where(group_id: group_id).where(status: '1').joins(user: :accounts)
+      member_limit = if limit.to_i.zero?
+                       members.count
+                     else
+                       limit
+                     end
+      members.limit(member_limit).offset(offset)
+      members.select(
+        "concat_ws(' ', first_name, last_name) AS full_names", :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+      )
+    end
 
-  def self.total_members(group_id)
-    Member.where(group_id: group_id).pluck('count(id)').first
+    def total_members(group_id)
+      Member.where(group_id: group_id).pluck('count(id)').first
+    end
+
+    def status(status)
+      STATUS[status]
+    end
   end
 end

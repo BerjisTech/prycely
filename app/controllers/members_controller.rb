@@ -17,7 +17,10 @@ class MembersController < ApplicationController
   end
 
   def group
-    @members = Member.where(group_id: params[:group_id]).where(status: '1').joins(user: :accounts).limit(10).select(
+    @members = Member.where(group_id: params[:group_id], status: '1', designation: 'member').joins(user: :accounts).limit(10).select(
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    )
+    @managers = Member.where.not(designation: 'member').where(group_id: params[:group_id], status: '1').joins(user: :accounts).limit(10).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
     )
   end
@@ -38,10 +41,21 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
 
     # respond_to do |format|
-    @invite_email = @member.designation
-    check_member_in_system(@invite_email)
+    @invite_email = @member.user_id.gsub(/\s+/, '')
 
-    check_member_in_group(@member.user_id)
+    unless User.is_in_system(@invite_email)
+      redirect_to new_invite_path,
+                  alert: "This member does not exist in our records. Would you like to send them an invite link to join #{@group.name}"
+    end
+
+    @member.user_id = User.find_by(email: user).id
+    @check_account = Account.find_by(user_id: @member.user_id)
+    @member.account_id = @check_account.id
+
+    if Member.is_in_group(@member.user_id)
+      redirect_to new_member_path,
+                  notice: "This member already exists in #{@group.name}"
+    end
 
     @invite_key = Digest::SHA1.hexdigest("#{DateTime.now}/#{session[:current_group]}")
     @invite = Invite.new(group_id: @member.group_id, invite_key: @invite_key, max_redeem: 1,
@@ -54,9 +68,11 @@ class MembersController < ApplicationController
       if @redeem.save
         @member.invited_on = DateTime.now
         @member.status = 0
-        @member.designation = 'member'
+        @member.group_id = @group.id
+        @member.invited_by = current_user.id
 
         if @member.save
+          UserMailer.new_group_email('accounts@prycely.com', @invite_email, 'Big invite subject')
           redirect_to @member, notice: 'Member was successfully created.'
         else
           render json: @member
@@ -110,24 +126,6 @@ class MembersController < ApplicationController
 
   def set_global_for_index
     @me = Member.where(user_id: current_user.id).where(group_id: session[:current_group]).select(:designation)
-  end
-
-  def check_member_in_group(user)
-    @check = Member.where(user_id: user).where(group_id: session[:current_group])
-    redirect_to new_member_path, notice: "This member already exists in #{@group.name}" if @check.count.positive?
-  end
-
-  def check_member_in_system(user)
-    @check = User.find_by(email: user)
-
-    if @check.nil?
-      redirect_to new_invite_path,
-                  alert: "This member does not exist in our records. Would you like to send them an invite link to join #{@group.name}"
-    else
-      @member.user_id = @check.id
-      @check_account = Account.find_by(user_id: @check.id)
-      @member.account_id = @check_account.id
-    end
   end
 
   # Only allow a list of trusted parameters through.

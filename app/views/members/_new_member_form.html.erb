@@ -11,18 +11,21 @@
     </div>
   <% end %>
 
-  <%= form.number_field :invited_by, value: current_user.id, type: :hidden %>
+  <div class="bg-white rounded border shadow p-4">
+    <div class="field form-floating">
+      <%= form.email_field :user_id, class: "form-control my-3", placeholder: "Search by email, username or phone number", required: "required" %>
+      <%= form.label :user_id do %>
+        Enter user's email adress
+      <% end %>
+    </div>
 
-  <div class="field form-group col-sm-12">
-    <%= form.email_field :designation, class: "form-control my-3", placeholder: "Search by email, username or phone number", required: "required" %>
-    <%= form.label :designation do %>
-      Enter user email to search
-    <% end %>
-  </div>
+    <div class="field form-floating">
+      <%= form.select :designation, options_from_collection_for_select(Designation.all, :id, :name), {}, class: "form-control select2" %>
+      <%= form.label :designation %>
+    </div>
 
-  <%= form.number_field :group_id, value: session[:current_group], type: :hidden %>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary my-3" %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary my-3" %>
-  </div>
-<% end %>
+  <% end %>

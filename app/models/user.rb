@@ -23,42 +23,51 @@ class User < ApplicationRecord
   # def confirmation_required?
   #   false
   # end
-
-  def self.range_credit(user_id, _start_date, _range)
-    amount = 0
-    Transaction
-      .where(user_id: user_id, transaction_type: 1, status: 1)
-      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
-      .all.map do |transaction|
-      amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
-                                               transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
-      p "#{transaction.amount} converted to a sum of #{amount}"
+  class << self
+    def range_credit(user_id, _start_date, _range)
+      amount = 0
+      Transaction
+        .where(user_id: user_id, transaction_type: 1, status: 1)
+        .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+        .all.map do |transaction|
+        amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
+                                                 transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
+        p "#{transaction.amount} converted to a sum of #{amount}"
+      end
+      amount
     end
-    amount
-  end
 
-  def self.range_debit(user_id, _start_date, _range)
-    amount = 0
-    Transaction
-      .where(user_id: user_id, transaction_type: 2, status: 1)
-      .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
-      .all.map do |transaction|
-      amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
-                                               transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
-      p "#{transaction.amount} converted to a sum of #{amount}"
+    def range_debit(user_id, _start_date, _range)
+      amount = 0
+      Transaction
+        .where(user_id: user_id, transaction_type: 2, status: 1)
+        .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+        .all.map do |transaction|
+        amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
+                                                 transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
+        p "#{transaction.amount} converted to a sum of #{amount}"
+      end
+      amount
     end
-    amount
-  end
 
-  def self.range_savings(user_id, start_date, range)
-    range_credit(user_id, start_date, range) - range_debit(user_id, start_date, range)
-  end
+    def range_savings(user_id, start_date, range)
+      range_credit(user_id, start_date, range) - range_debit(user_id, start_date, range)
+    end
 
-  def self.loans(_user_id)
-    {
-      requested: 0,
-      received: 0,
-      paid: 0
-    }
+    def loans(_user_id)
+      {
+        requested: 0,
+        received: 0,
+        paid: 0
+      }
+    end
+
+    def is_in_system(user)
+      if User.find_by(email: user).nil?
+        false
+      else
+        true
+      end
+    end
   end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class GroupAsset < ApplicationRecord
-    belongs_to :group
-    belongs_to :user
-    has_rich_text :description
+  belongs_to :group
+  belongs_to :user
+  has_rich_text :description
 end

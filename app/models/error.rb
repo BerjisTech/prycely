@@ -2,13 +2,15 @@
 
 # Errors model
 class Error < ApplicationRecord
-  def self.add_error(method, error, referer, message)
-    Error.create(
-      method: method,
-      error: error,
-      time: DateTime.now,
-      referer: referer,
-      message: message
-    )
-  end
+  class << self
+    def add_error(method, error, referer, message)
+      Error.create(
+        method: method,
+        error: error,
+        time: DateTime.now,
+        referer: referer,
+        message: message
+      )
+    end
+end
 end

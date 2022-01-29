@@ -11,28 +11,28 @@
     </div>
   <% end %>
 
-  <%= form.number_field :invited_by, value: current_user.id, type: :hidden %>
+  <%= form.hidden_field :invited_by %>
+  <%= form.hidden_field :user_id %>
 
-  <div class="field form-group col-sm-12">
-    <%= form.text_field :user_id, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
-    <%= form.label :user_id do %>
-      Enter user email to search
-    <% end %>
-  </div>
-  <div class="field form-group col-sm-12">
-    <%= form.text_field :designation, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
-    <%= form.label :designation do %>
-      Member status
-    <% end %>
-  </div>
-  <div class="field form-group col-sm-12">
-    <%= form.text_field :status, class: "form-control my-3", placeholder: "Search by email, username or phone number" %>
-    <%= form.label :staus do %>
-      Member status
-    <% end %>
-  </div>
+  <div class="bg-white rounded border shadow p-4">
+    <div class="field form-floating">
+      <%= form.text_field :designation, class: "form-control my-2", placeholder: "Placeholder" %>
+      <%= form.label :designation %>
+    </div>
+    <div class="field form-floating">
+      <%= form.select :status, options_for_select({
+        'Pending' => '0', 
+        'Approved' => '1', 
+        'Denied' => '2', 
+        'Deregistered' => '3'
+      }, member.status), {}, class: "form-control my-2 select2", placeholder: "Placeholder" %>
+      <%= form.label :staus do %>
+        Member status
+      <% end %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary my-3" %>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary my-3" %>
+    </div>
   </div>
 <% end %>
