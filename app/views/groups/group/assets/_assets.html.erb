@@ -5,7 +5,7 @@
       <th>Added by</th>
       <th>Price</th>
       <th>Date bought</th>
-      <% if Member.is_manager(current_user.id) %>
+      <% if Member.is_manager(current_user.id, @group.id) %>
         <th colspan="3"></th>
       <% end %>
     </tr>
@@ -18,7 +18,7 @@
         <td><%= link_to Account.full_names(asset.user_id), asset.user_id %></td>
         <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(asset.price, precision: 2, delimiter: ",") %></td>
         <td><%= asset.date_bought.strftime("#{asset.date_bought.day.ordinalize} %b, %Y") %></td>
-        <% if Member.is_manager(current_user.id) %>
+        <% if Member.is_manager(current_user.id, @group.id) %>
           <td><%= link_to "Show", asset %></td>
           <td><%= link_to "Edit", edit_group_asset_path(asset) %></td>
           <td><%= link_to "Destroy", asset, method: :delete, data: { confirm: "Are you sure?" } %></td>

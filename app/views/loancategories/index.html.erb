@@ -4,7 +4,7 @@
   <div class="col-sm-10">
     <div class="d-flex full-width align-items-center justify-content-between">
       <span class="fs-3 my-3 py-3">Loancategories</span>
-      <% if Member.is_manager(current_user.id) %>
+      <% if Member.is_manager(current_user.id, @group.id) %>
 
         <%= link_to "New Loancategory", new_loancategory_path %>
       <% end %>

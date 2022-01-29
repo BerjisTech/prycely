@@ -44,16 +44,7 @@ class RedeemsController < ApplicationController
         session[:current_group] = @invite.group_id
         session[:invite_key] = @invite_key
 
-        @grouptype = case @invite.group_type
-                     when '1'
-                       'Friends and Family'
-                     when '2'
-                       'Temporary or Mid-sized (Church, Fundraiser etc)'
-                     when '3'
-                       'Cooperative & Saccos'
-                     else
-                       'Wash Wash'
-                     end
+        @grouptype = Grouptype.find(@invite.group_type).name
       end
     end
   end

@@ -16,7 +16,7 @@
 
   <div class="bg-white rounded border shadow p-4">
     <div class="field form-floating">
-      <%= form.text_field :designation, class: "form-control my-2", placeholder: "Placeholder" %>
+      <%= form.select :designation, options_from_collection_for_select(Designation.all, :id, :name), {}, class: "form-control select2" %>
       <%= form.label :designation %>
     </div>
     <div class="field form-floating">

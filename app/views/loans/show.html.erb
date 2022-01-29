@@ -46,7 +46,7 @@
           </span>
 
           <span class="my-2">
-            <% if Member.is_manager(current_user.id) && current_user.id != @loan.user_id %>
+            <% if Member.is_manager(current_user.id, @group.id) && current_user.id != @loan.user_id %>
               <%= link_to "Edit", edit_loan_path(@loan) %>
             <% end %>
           </span>

@@ -3,7 +3,7 @@
   <div class="col-sm-10">
     <div class="d-flex full-width align-items-center justify-content-between">
       <span class="fs-3 my-3 py-3"><%= @group.name.humanize %> Loans</span>
-      <% if Member.is_manager(current_user.id) %>
+      <% if Member.is_manager(current_user.id, @group.id) %>
         <div>
           <%= link_to 'Add New Loan', new_loan_path, class: "btn btn-primary px-2" %>
           <%= link_to 'Add New Loan Category', new_loancategory_path, class: "btn btn-primary px-2" %>

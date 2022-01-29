@@ -1,11 +1,11 @@
 <table class="table hover" id="datatable">
   <thead>
     <tr>
-      <th>liability</th>
+      <th>Liability</th>
       <th>Added by</th>
       <th>Price</th>
       <th>Date bought</th>
-      <% if Member.is_manager(current_user.id) %>
+      <% if Member.is_manager(current_user.id, @group.id) %>
         <th colspan="3"></th>
       <% end %>
     </tr>
@@ -18,7 +18,7 @@
         <td><%= link_to Account.full_names(liability.added_by), liability.added_by %></td>
         <td><%= Money::Currency.find(@group.currency).symbol %> <%= number_with_precision(liability.price, precision: 2, delimiter: ",") %></td>
         <td><%= liability.date_bought.strftime("#{liability.date_bought.day.ordinalize} %b, %Y") %></td>
-        <% if Member.is_manager(current_user.id) %>
+        <% if Member.is_manager(current_user.id, @group.id) %>
           <td><%= link_to "Show", liability %></td>
           <td><%= link_to "Edit", edit_liability_path(liability) %></td>
           <td><%= link_to "Destroy", liability, method: :delete, data: { confirm: "Are you sure?" } %></td>

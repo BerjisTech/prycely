@@ -5,7 +5,7 @@
   <div class="col-sm-10">
     <div class="d-flex full-width align-items-center justify-content-between">
       <span class="fs-3 my-3 py-3">My Loans</span>
-      <% if Member.is_manager(current_user.id) %>
+      <% if Member.is_manager(current_user.id, @group.id) %>
         <div>
           <%= link_to 'Request New Loan', new_loan_path, class: "btn btn-primary px-2" %>
         </div>
@@ -69,7 +69,7 @@
                   </td>
                   <td>
                     <%= link_to 'View', loan_path(loan.id) %>
-                    <% if Member.is_manager(current_user.id) %>
+                    <% if Member.is_manager(current_user.id, @group.id) %>
                       <% if !LoanApproval.i_approved(loan.id, current_user.id, loan.loan_type) %>
                         <a class="material-icons px-3 l_<%= loan.id %> l_approval" loan_manager="<%= current_user.id %>" loan_approval_path="<%= i_approve_path %>" loan_id="<%= loan.id %>">check</a>
                       <% end %>

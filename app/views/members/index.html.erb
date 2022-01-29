@@ -1,10 +1,12 @@
 <div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
   <div class="members_holder">
     <div class="member_top">
       <h3><%= @group.name %> Members</h3>
       <%= render "members/invite_buttons" %>
     </div>
-    <div class="members_table">
+    <div class="members_table rounded bg-white border shadow">
       <table class="table table-bordered datatable" id="datatable" style="font-size: 16px !important;">
         <thead>
           <tr>
@@ -34,11 +36,11 @@
               <td>
                 <%= member.first_name.humanize %> <%= member.last_name.humanize %>
                 <% if member.designation == "admin" %>
-                  <em class="text-success"><small>(<%= member.designation %>)</small></em>
+                  <em class="text-success"><small>(<%= Designation.find(member.designation).name %>)</small></em>
                 <% end %>
               </td>
               <td><%= member.email %></td>
-              <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
+              <% if Member.is_manager(current_user.id, member.group_id) %>
                 <td>
                   <span class="admin_member_actions">
                     <%= link_to "recent_actors", member, class: "material-icons" %>
@@ -64,6 +66,8 @@
       </table>
     </div>
   </div>
+  </div>
+  <div class="col-sm-1"></div>
 </div>
 
 <script>

@@ -12,19 +12,19 @@ class Member < ApplicationRecord
   scope :select_for_invites, -> { select(:id, :name, :membership, :created_by, :currency, :group_type, :group_id) }
 
   ADMIN = ['admin'].freeze
-  MANAGER = %w[admin secretary treasurer].freeze
+  MANAGER = %w[admin secretary treasurer chairperson].freeze
   STATUS = %w[pending approved denied derigestered].freeze
   class << self
-    def is_admin(user_id)
-      ADMIN.include? Member.find_by(user_id: user_id).designation.to_s
+    def is_admin(user_id, group_id)
+      ADMIN.include? Designation.find(Member.find_by(user_id: user_id, group_id: group_id).designation).name.downcase.to_s
     end
 
-    def is_manager(user_id)
-      MANAGER.include? Member.find_by(user_id: user_id).designation.to_s
+    def is_manager(user_id, group_id)
+      MANAGER.include? Designation.find(Member.find_by(user_id: user_id, group_id: group_id).designation).name.downcase.to_s
     end
 
-    def is_in_group(user)
-      @check = Member.where(user_id: user).where(group_id: session[:current_group])
+    def is_in_group(user, group_id)
+      @check = Member.where(user_id: user).where(group_id: group_id)
       result = if @check.count.positive?
                  true
                else

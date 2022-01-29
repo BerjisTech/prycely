@@ -1,3 +1,6 @@
+
+<% invite = Invite.find_by(invite_key: session[:invite_key]) %>
+<% inviter = Account.find_by(user_id: invite.user_id) %>
 <div class="d-flex flex-row align-items-start justify-content-start py-3 flex-wrap">
   <div class="d-flex flex-column justify-content-center align-items-center" style="width: auto; min-width: 300px;">
     <%= link_to root_url + "accept", class: "btn btn-primary btn-md mt-2 join_group" do %>
@@ -26,7 +29,7 @@
     </div>
     <hr />
 
-    <span>You were invited by: <%= @inviter.first_name.humanize %> <%= @inviter.last_name.humanize %></span>
+    <span>You were invited by: <%= Account.full_names(inviter) %></span>
     <%= link_to root_url + "accept", class: "btn btn-primary btn-md mt-2 join_group" do %>
       Join <%= @group.name %> now
     <% end %>
