@@ -1,10 +1,12 @@
-document.addEventListener("DOMContentLoaded", function (event) {
-    if (window.location.href.includes('loan')) {
-        let manager = ''
-        let approval_path = ''
-        let loan_id = ''
-        let approval_class = ''
+// ES6
 
+if (window.location.href.includes('loan')) {
+    let manager = ''
+    let approval_path = ''
+    let loan_id = ''
+    let approval_class = ''
+
+    const initiate_approval_buttons = () => {
         document.querySelector('.l_approval').addEventListener('click', (e) => {
             e.preventDefault()
             e.stopPropagation()
@@ -40,4 +42,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             })
         })
     }
+}
+
+document.addEventListener("DOMContentLoaded", function (event) {
+
 })

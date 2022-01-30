@@ -25,7 +25,7 @@ class RedeemsController < ApplicationController
 
       @new_redeem_count = @invite.total_redeemed.to_i + 1
       if user_signed_in?
-        @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id).where.not(status: '0')
+        @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id)
         @group = Group.find(@invite.group_id)
 
         if @already_invited.nil?
@@ -37,6 +37,9 @@ class RedeemsController < ApplicationController
           Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)
 
           redirect_to @group, notice: "You have succesfully joined #{@group.name}"
+        elsif @already_invited.status.to_i.zero?
+          redirect_to @group,
+                      notice: "You've been invited to #{@group.name} by #{Account.full_names(@already_invited.invited_by)}"
         else
           redirect_to @group, notice: "You're already a member of this group"
         end

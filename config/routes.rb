@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
 
   # GROUP MANAGEMENT LINKS
-  get 'members/g/:group_id_digest/:group_id', controller: :members, action: :group, as: :group_members
+  get 'members/:group/:group_id_digest/:group_id', controller: :members, action: :group, as: :group_members
   get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group, as: :group_transactions
   get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group, as: :group_projects
   get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans

@@ -35,8 +35,8 @@ class Invite < ApplicationRecord
       end
     end
 
-    def already_sent(user_id, group_id)
-      Invite.find_by(user_id: user_id, group_id: group_id).present?
+    def already_sent(user_email, group_id)
+      Invite.find_by(invite_email: user_email, group_id: group_id).present?
     end
   end
 end

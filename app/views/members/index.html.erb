@@ -37,7 +37,7 @@
               <td><%= Member.status(member.status.to_i) %></td>
               <td>
                 <%= member.first_name.humanize %> <%= member.last_name.humanize %>
-                <% if member.designation == "admin" %>
+                <% if Member.is_manager(member.user_id, member.group_id) %>
                   <em class="text-success"><small>(<%= Designation.find(member.designation).name %>)</small></em>
                 <% end %>
               </td>

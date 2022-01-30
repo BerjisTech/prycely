@@ -23,7 +23,7 @@
       <div class="tab-pane fade show active" id="active_owners_list" role="tabpanel" arialabelledby="active_owners">
         <table class="table table-hover">
           <% @managers.each_with_index.map do |member, index| %>
-            <% if Member.is_manager(member.user_id, member.group_id) %>
+            <% if member.status == '1' %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -35,7 +35,21 @@
           <% end %>
         </table>
       </div>
-      <div class="tab-pane fade" id="invited_owners_list" role="tabpanel" arialabelledby="invited_owners">Invited</div>
+      <div class="tab-pane fade" id="invited_owners_list" role="tabpanel" arialabelledby="invited_owners">
+        <table class="table table-hover">
+          <% @managers.each_with_index.map do |member, index| %>
+            <% if member.status == '0' %>
+              <tr border="0">
+                <td>
+                  <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
+                </td>
+                <td><%= "#{member.first_name} #{member.last_name}" %></td>
+                <td><%= Designation.find(member.designation).name.humanize %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -60,7 +74,7 @@
       <div class="tab-pane fade show active" id="active_members_list" role="tabpanel" arialabelledby="active_members">
         <table class="table table-hover">
           <% @members.each_with_index.map do |member, index| %>
-            <% if !Member.is_manager(member.user_id, member.group_id) %>
+            <% if member.status == '1' %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -72,8 +86,21 @@
           <% end %>
         </table>
       </div>
-      <div class="tab-pane fade" id="invited_members_list" role="tabpanel" arialabelledby="invited_members">Invited</div>
+      <div class="tab-pane fade" id="invited_members_list" role="tabpanel" arialabelledby="invited_members">
+        <table class="table table-hover">
+          <% @members.each_with_index.map do |member, index| %>
+            <% if member.status == '0' %>
+              <tr border="0">
+                <td>
+                  <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
+                </td>
+                <td><%= "#{member.first_name} #{member.last_name}" %></td>
+                <td><%= Designation.find(member.designation).name.humanize %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-

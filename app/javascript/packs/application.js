@@ -14,7 +14,7 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+require("packs/customs/commons")
 require("packs/customs/data_load")
 require("packs/customs/loans")
 require("packs/customs/transactions")
-require("packs/customs/commons")

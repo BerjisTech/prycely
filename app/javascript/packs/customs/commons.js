@@ -1,5 +1,11 @@
 // ES6
 
+let extra_functions = () => {
+    if (window.location.href.includes('loan')) {
+        initiate_approval_buttons()
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function (event) {
     const inform = (type, message) => {
         var opts = {

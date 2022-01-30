@@ -9,7 +9,9 @@ class Member < ApplicationRecord
     select('members.id', 'groups.id', :name, :membership, :created_by, :group_id, :currency, :group_type)
   }
   scope :select_for_current_user, ->(user_id) { where(user_id: user_id) }
-  scope :select_for_invites, -> { select(:id, :name, :membership, :created_by, :currency, :group_type, :group_id, :invited_by, 'members.created_at') }
+  scope :select_for_invites, lambda {
+                               select(:id, :name, :membership, :created_by, :currency, :group_type, :group_id, :invited_by, 'members.created_at')
+                             }
 
   ADMIN = ['admin'].freeze
   MANAGER = %w[admin secretary treasurer chairperson].freeze

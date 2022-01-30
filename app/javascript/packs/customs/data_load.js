@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             },
             success: (response) => {
                 document.querySelector('.fetched_data_js_block').innerHTML = response
+                extra_functions()
             },
             error: (response) => {
                 inform(`There has been an error fetching your ${page_title}`, 'Error')

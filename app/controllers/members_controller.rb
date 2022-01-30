@@ -10,17 +10,17 @@ class MembersController < ApplicationController
   # GET /members or /members.json
   def index
     @members = Member.where(group_id: session[:current_group]).joins(user: :accounts).limit(10).select(
-      '*'
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
-    # render json: @me
+    # render json: @members
   end
 
   def group
-    @members = Member.where(group_id: session[:current_group], status: '1', designation: Designation.find_by(name: 'Member').id).joins(user: :accounts).limit(10).select(
-      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    @members = Member.where(group_id: session[:current_group], designation: Designation.find_by(name: 'Member').id).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
-    @managers = Member.where.not(designation: Designation.find_by(name: 'Member').id).where(group_id: session[:current_group], status: '1').joins(user: :accounts).limit(10).select(
-      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    @managers = Member.where.not(designation: Designation.find_by(name: 'Member').id).where(group_id: session[:current_group]).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
   end
 
@@ -51,11 +51,10 @@ class MembersController < ApplicationController
       @member.account_id = @check_account.id
 
       if Invite.already_sent(invite_email, @group.id)
-        redirect_to group_members_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id),
+        redirect_to group_members_path(@group.name, Digest::SHA1.hexdigest(@group.id.to_s), @group.id),
                     notice: "#{Account.full_names(@member.user_id)} was already invited to #{@group.name}"
-      end
+      elsif Member.is_in_group(@member.user_id, @group.id)
 
-      if Member.is_in_group(@member.user_id, @group.id)
         redirect_to new_member_path,
                     notice: "This member already exists in #{@group.name}"
       else

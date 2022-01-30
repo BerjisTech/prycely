@@ -1,5 +1,5 @@
 <h3>Management</h3>
-<%= link_to group_members_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
+<%= link_to group_members_path(@group.name, Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">group</i><span class="title">Members</span>
 <% end %>
 <%= link_to group_transactions_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
