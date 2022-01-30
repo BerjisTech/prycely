@@ -9,8 +9,8 @@ class MembersController < ApplicationController
 
   # GET /members or /members.json
   def index
-    @members = Member.where(group_id: session[:current_group]).where(status: '1').joins(user: :accounts).limit(10).select(
-      :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation
+    @members = Member.where(group_id: session[:current_group]).joins(user: :accounts).limit(10).select(
+      '*'
     )
     # render json: @me
   end
@@ -49,6 +49,11 @@ class MembersController < ApplicationController
       @member.user_id = User.find_by(email: invite_email).id
       @check_account = Account.find_by(user_id: @member.user_id)
       @member.account_id = @check_account.id
+
+      if Invite.already_sent(invite_email, @group.id)
+        redirect_to group_members_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id),
+                    notice: "#{Account.full_names(@member.user_id)} was already invited to #{@group.name}"
+      end
 
       if Member.is_in_group(@member.user_id, @group.id)
         redirect_to new_member_path,

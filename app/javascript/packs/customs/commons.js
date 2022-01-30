@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             url: `${base_url}dashboard/load/${data_set}`,
             method: 'GET',
             success: (result) => {
-                console.log(result)
+                // console.log(result)
                 document.querySelector('.dashboard_content_block').innerHTML = result
             },
             error: (result) => {
-                console.log(result)
+                // console.log(result)
                 inform(`There has been an error loading your ${data_set}`, 'Error')
                 document.querySelector('.dashboard_content_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
             }

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/load/:data_set', controller: :dashboard, action: :load
 
-  match 'join/:id', to: 'redeems#redeem', via: %i[get post]
+  match 'join/:id', to: 'redeems#redeem', via: %i[get post], as: :join_group
   match 'accept', to: 'redeems#accept_invite', via: %i[get post]
   get 'contributions', controller: :transactions, action: :contributions
   post 'convert', controller: :transact, action: :conversions

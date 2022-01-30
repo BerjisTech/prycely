@@ -25,7 +25,7 @@ class RedeemsController < ApplicationController
 
       @new_redeem_count = @invite.total_redeemed.to_i + 1
       if user_signed_in?
-        @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id)
+        @already_invited = Member.find_by(group_id: @invite.group_id, user_id: current_user.id).where.not(status: '0')
         @group = Group.find(@invite.group_id)
 
         if @already_invited.nil?

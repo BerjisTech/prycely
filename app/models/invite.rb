@@ -7,7 +7,8 @@ class Invite < ApplicationRecord
 
   class << self
     def mine(user_id)
-      Member.where(status: '0').where(user_id: user_id).joins(:group).select_for_invites
+      email = User.find(user_id).email
+      Invite.where(invite_email: email, total_redeemed: '0')
     end
 
     def details(invite_key)
@@ -33,5 +34,9 @@ class Invite < ApplicationRecord
         render json: @invite_update.errors
       end
     end
-end
+
+    def already_sent(user_id, group_id)
+      Invite.find_by(user_id: user_id, group_id: group_id).present?
+    end
+  end
 end

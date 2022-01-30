@@ -26,6 +26,7 @@ class DashboardController < ApplicationController
                   '<%= render "dashboard/data/requests" %>'
                 end
     render inline: html_file
+    # render json: @data
   end
 
   def set_dashboard

@@ -1,8 +1,30 @@
 <% if @data.present? %>
-<% else %>
+  <div class="my_invites">
 
+    <span class="sidebar_section_titles">Showing <%= @data.count %> invitations</span>
+
+    <% @data.map do |invite| %>
+      <% index = rand(0...Wallet.dashboard_colors.count) %>
+      <% invited_by = Member.find_by(user_id: current_user.id, group_id: invite.group_id, status: '0').invited_by %>
+      <% name = Group.find(invite.group_id).name %>
+      <div class="wallet-holder" onclick="window.location.href='<%= join_group_path(invite.invite_key) %>'" style="cursor: pointer;">
+        <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+          <%= "#{name.first.upcase}#{name[1].downcase}" %>
+        </span>
+        <span class="wallet-currency"><%= name %> <small class="fs-s fw-1">invited by</small> <%= Account.full_names(invited_by) %></span>
+        <span class="wallet-balance">
+          <span class="wallet-change grow">Join</span>
+        </span>
+      </div>
+    <% end %>
+
+    <%= link_to invites_path, class: "nav-link" do %>
+      View all invites
+    <% end %>
+  </div>
+<% else %>
   <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
     <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 400px;" />
-    You have no pending group invites.
+    You have no pending invite invites.
   </div>
 <% end %>

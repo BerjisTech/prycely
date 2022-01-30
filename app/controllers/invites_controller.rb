@@ -7,7 +7,7 @@ class InvitesController < ApplicationController
   # GET /invites or /invites.json
   def index
     @invites = Invite.where(invite_email: current_user.email).joins(:group).joins(user: :accounts).select('invites.id',
-                                                                                                          :first_name, :last_name, :name, :email, :group_id, :group_type, :description, :user_id, :invite_key, :max_redeem, :total_redeemed, :invite_email)
+                                                                                                          :first_name, :last_name, :name, :email, :group_id, :group_type, :description, :user_id, :invite_key, :max_redeem, :total_redeemed, :invite_email, :created_at, :updated_at)
   end
 
   # GET /invites/1 or /invites/1.json

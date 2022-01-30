@@ -103,25 +103,6 @@ html {
     }
 }
 
-.dataTables_wrapper {
-    >div {
-        input[type="text"] {
-            padding  : 6px 10px !important;
-            font-size: 12px !important;
-        }
-
-        input[type="search"] {
-            padding  : 6px 10px !important;
-            font-size: 12px !important;
-        }
-
-        input[type="number"] {
-            padding  : 6px 10px !important;
-            font-size: 12px !important;
-        }
-    }
-}
-
 .select2 {
     visibility: visible !important;
 }
