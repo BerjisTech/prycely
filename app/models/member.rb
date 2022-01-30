@@ -16,11 +16,13 @@ class Member < ApplicationRecord
   STATUS = %w[pending approved denied derigestered].freeze
   class << self
     def is_admin(user_id, group_id)
-      ADMIN.include? Designation.find(Member.find_by(user_id: user_id, group_id: group_id).designation).name.downcase.to_s
+      ADMIN.include? Designation.find(Member.find_by(user_id: user_id,
+                                                     group_id: group_id).designation).name.downcase.to_s
     end
 
     def is_manager(user_id, group_id)
-      MANAGER.include? Designation.find(Member.find_by(user_id: user_id, group_id: group_id).designation).name.downcase.to_s
+      MANAGER.include? Designation.find(Member.find_by(user_id: user_id,
+                                                       group_id: group_id).designation).name.downcase.to_s
     end
 
     def is_in_group(user, group_id)

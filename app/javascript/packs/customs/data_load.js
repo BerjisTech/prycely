@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 document.querySelector('.fetched_data_js_block').innerHTML = response
             },
             error: (response) => {
-                document.querySelector('.fetched_data_js_block').innerHTML = `<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your ${page_title}</div>`
+                inform(`There has been an error fetching your ${page_title}`, 'Error')
+                document.querySelector('.fetched_data_js_block').innerHTML = document.querySelector('.dashboard_content_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
             }
         })
     }

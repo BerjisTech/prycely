@@ -15,6 +15,8 @@ class Loan < ApplicationRecord
       when 2
         'Declined'
       when 3
+        'Paid'
+      when 4
         'Defaulted'
       else
         'N/A'

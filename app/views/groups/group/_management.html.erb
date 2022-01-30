@@ -1,22 +1,22 @@
 <h3>Management</h3>
-<%= link_to group_members_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_members_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">group</i><span class="title">Members</span>
 <% end %>
-<%= link_to group_transactions_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_transactions_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">savings</i><span class="title">Accounting</span>
 <% end %>
-<%= link_to group_projects_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_projects_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">business_center</i><span class="title">Projects</span>
 <% end %>
-<%= link_to group_loans_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_loans_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">credit_score</i><span class="title">Loans</span>
 <% end %>
-<%= link_to active_group_assets_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to active_group_assets_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">maps_home_work</i><span class="title">Assets</span>
 <% end %>
-<%= link_to group_liabilities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_liabilities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">money_off_csred</i><span class="title">Liabilities</span>
 <% end %>
-<%= link_to group_activities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5" do %>
+<%= link_to group_activities_path(Digest::SHA1.hexdigest(@group.id.to_s),@group.id), class: "nav-link shadow border mb-3 fs-5 bg-white" do %>
   <i class="material-icons me-2">psychology</i><span class="title">Activities</span>
 <% end %>

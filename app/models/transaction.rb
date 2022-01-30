@@ -83,5 +83,32 @@ class Transaction < ApplicationRecord
 
       Stk.update_pending_with_merchant_request_id(transaction)
     end
+
+    def my_numbers(user_id, level)
+      my_transactions = Transaction.where(user_id: user_id).where(level: level, status: 1)
+
+      credit, debit, loan = 0
+
+      my_transactions.map do |trans|
+        if trans.transaction_type == 1
+          credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                   Account.find_by_user_id(user_id).default_currency.upcase)
+        end
+        if trans.transaction_type == 2
+          debit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                  Account.find_by_user_id(user_id).default_currency.upcase)
+        end
+        if trans.transaction_type == 3
+          loan += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                 Account.find_by_user_id(user_id).default_currency.upcase)
+        end
+      end
+
+      {
+        credit: credit,
+        debit: debit,
+        loan: loan
+      }
+    end
   end
 end

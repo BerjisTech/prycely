@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div class="row form_accounts">
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
 
     <div class="field col-sm-3">
       <div class="account_inputs_section fileinput fileinput-new" data-provides="fileinput">
