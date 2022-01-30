@@ -1,18 +1,27 @@
-<div class="my_wallets">
-  <span class="sidebar_section_titles">Showing <%= @data.count %> wallets</span>
-  <% @data.each_with_index.map do |wallet, index| %>
-    <div class="wallet-holder" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
-      <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
-        <%= "#{wallet.currency.first.upcase}#{wallet.currency[1].downcase}" %>
-      </span>
-      <span class="wallet-currency"><%= wallet.currency %></span>
-      <span class="wallet-balance">
-        <span class="wallet-amount"><%= Money.new(wallet.balance || 0) %></span>
-        <span class="wallet-change grow">+3.5%</span>
-      </span>
-    </div>
-  <% end %>
-  <%= link_to wallets_path, class: "nav-link" do %>
-    View all wallets
-  <% end %>
-</div>
+<% if @data.present? %>
+  <div class="my_wallets">
+    <span class="sidebar_section_titles">Showing <%= @data.count %> wallets</span>
+    <% @data.each_with_index.map do |wallet, index| %>
+      <div class="wallet-holder" onclick="window.location.href='<%= wallet_path(wallet) %>'" style="cursor: pointer;">
+        <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+          <%= "#{wallet.currency.first.upcase}#{wallet.currency[1].downcase}" %>
+        </span>
+        <span class="wallet-currency"><%= wallet.currency %></span>
+        <span class="wallet-balance">
+          <span class="wallet-amount"><%= Money.new(wallet.balance || 0) %></span>
+          <span class="wallet-change grow">+3.5%</span>
+        </span>
+      </div>
+    <% end %>
+    <%= link_to wallets_path, class: "nav-link" do %>
+      View all wallets
+    <% end %>
+  </div>
+<% else %>
+
+  <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+    <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 400px;" />
+    You have no wallets yet.
+    <%= link_to 'Start by creating a new one', new_wallet_path %>
+  </div>
+<% end %>

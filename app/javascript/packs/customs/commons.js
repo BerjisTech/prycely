@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 e.target.classList.add("active")
                 document.querySelector('.dashboard_content_block').innerHTML = '<img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">'
                 data_set = e.target.innerText.toLowerCase()
-                console.log(data_set)
+                // console.log(data_set)
                 load_dashboard_data(data_set)
             }
         [].map.call(dashboard_data_selectors, function (elem) {

@@ -1,21 +1,30 @@
-<div class="my_groups">
+<% if @data.present? %>
+  <div class="my_groups">
 
-  <span class="sidebar_section_titles">Showing <%= @data.count %> groups</span>
+    <span class="sidebar_section_titles">Showing <%= @data.count %> groups</span>
 
-  <% @data.each_with_index.map do |group, index| %>
-    <div class="wallet-holder" onclick="window.location.href='<%= group_path(group.id) %>'" style="cursor: pointer;">
-      <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
-        <%= "#{group.name.first.upcase}#{group.name[1].downcase}" %>
-      </span>
-      <span class="wallet-currency"><%= group.name %></span>
-      <span class="wallet-balance">
-        <span class="wallet-amount"><%= Group.balance(group.id) %></span>
-        <span class="wallet-change grow">+3.5%</span>
-      </span>
-    </div>
-  <% end %>
+    <% @data.each_with_index.map do |group, index| %>
+      <div class="wallet-holder" onclick="window.location.href='<%= group_path(group.id) %>'" style="cursor: pointer;">
+        <span class="wallet-dp dp-<%= index %>" style="background: #<%= Wallet.dashboard_colors[index].first %>; color: #<%= Wallet.dashboard_colors[index].last %>">
+          <%= "#{group.name.first.upcase}#{group.name[1].downcase}" %>
+        </span>
+        <span class="wallet-currency"><%= group.name %></span>
+        <span class="wallet-balance">
+          <span class="wallet-amount"><%= Group.balance(group.id) %></span>
+          <span class="wallet-change grow">+3.5%</span>
+        </span>
+      </div>
+    <% end %>
 
-  <%= link_to groups_path, class: "nav-link" do %>
-    View all groups
-  <% end %>
-</div>
+    <%= link_to groups_path, class: "nav-link" do %>
+      View all groups
+    <% end %>
+  </div>
+<% else %>
+
+  <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+    <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 400px;" />
+    You're not in any groups yet.
+    <%= link_to 'Start by creating a new one', new_group_path %>
+  </div>
+<% end %>
