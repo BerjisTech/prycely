@@ -72,8 +72,8 @@ class Group < ApplicationRecord
     end
 
     def graph_transactions(group_id, from, to, account)
-      date_start = Date.today - from.to_i.days
-      date_end = Date.today - to.to_i.days
+      date_start = Time.now - from.to_i.days
+      date_end = Time.now - to.to_i.days
       transactions = Transaction.where(group_id: group_id, level: 1, status: 1)
                                 .where(created_at: date_start..date_end)
                                 .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
@@ -97,8 +97,8 @@ class Group < ApplicationRecord
     end
 
     def table_transactions(group_id, from, to)
-      date_start = Date.today - from.to_i.days
-      date_end = Date.today - to.to_i.days
+      date_start = Time.now - from.to_i.days
+      date_end = Time.now - to.to_i.days
       Transaction.where(group_id: group_id, level: 1, status: 1)
                  .where(created_at: date_start..date_end)
                  .order(created_at: :desc)

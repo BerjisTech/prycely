@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/1 or /groups/1.json
   def show
     check_account(current_user.id, params[:id], current_user.email, @account, @group)
-    # render json: Group.transactions(@group.id, Date.today - 300.days, Date.today)
+    # render json: Group.transactions(@group.id, Time.now - 300.days, Date.today)
   end
 
   # GET /groups/new
@@ -79,8 +79,8 @@ class GroupsController < ApplicationController
       if @transactions.count.positive?
         output_file = '<%= render "groups/group/transactions/transactions" %>'
       else
-        @start_date = Date.today - from.to_i.days
-        @end_date = Date.today - to.to_i.days
+        @start_date = Time.now - from.to_i.days
+        @end_date = Time.now - to.to_i.days
         output_file = '<%= render "groups/group/alerts/no_transactions" %>'
       end
     end
@@ -99,14 +99,15 @@ class GroupsController < ApplicationController
       to = params[:to]
 
       transactions = Group.graph_transactions(group_id, from, to, Account.find_by(user_id: current_user.id))
+
       if transactions.count.positive?
         output = {
           type: 'data',
           data: transactions
         }
       else
-        @start_date = Date.today - from.to_i.days
-        @end_date = Date.today - to.to_i.days
+        @start_date = Time.now - from.to_i.days
+        @end_date = Time.now - to.to_i.days
         output = {
           type: 'info',
           message: "You have no transactions records between
