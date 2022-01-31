@@ -99,7 +99,7 @@ class LoansController < ApplicationController
                     type: 'failed',
                     message: 'Bitch ass'
                   }
-                elsif Member.is_admin(params[:user_id])
+                elsif Member.is_admin(params[:user_id], session[:current_group])
                   LoanApproval.find_or_create_by(loan_id: params[:loan_id], user_id: params[:user_id])
                   {
                     type: 'success',
@@ -129,7 +129,7 @@ class LoansController < ApplicationController
                 elsif params[:user_id] != current_user.id
                   { type: 'failed',
                     message: 'Fuck off' }
-                elsif Member.is_admin(params[:user_id])
+                elsif Member.is_admin(params[:user_id], session[:current_group])
                   loan_approval.destroy
                   { type: 'success',
                     message: 'Loan disapproved',

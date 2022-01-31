@@ -31,6 +31,7 @@
         <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
         <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
       <% else %>
+
         <%= render "/home/header" %>
       <% end %>
 
@@ -40,7 +41,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        
+
         gtag('config', 'G-NHVTMLHJF0');
       </script>
 
@@ -85,6 +86,7 @@
             <% end %>
           <% end %>
           <%= render "/layouts/footer" %>
+          <%= javascript_pack_tag 'ltv', 'data-turbolinks-track': "true" %>
         <% else %>
           <%= render "/home/footer" %>
         <% end %>

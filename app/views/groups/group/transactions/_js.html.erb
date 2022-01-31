@@ -18,7 +18,7 @@
     }
   
     let fetch_graph_data = (group_id, from, to) => {
-        $(line_chart_demo).html('<img src="http://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+        $(line_chart_demo).html('<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
         $.ajax({
             url: '<%= fetch_group_graph_data_path %>',
             method: 'POST',
