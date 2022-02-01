@@ -125,7 +125,7 @@ class LoansController < ApplicationController
                     approval_path: i_disapprove_path,
                     icon: 'cancel',
                     remove_color: 'text-primary',
-                    add_color: 'text-danger'
+                    add_color: 'text-danger',
                     loan_status:Loan.find(params[:loan_id]).status
                   }
                 else
