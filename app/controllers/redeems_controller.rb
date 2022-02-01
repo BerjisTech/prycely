@@ -31,7 +31,7 @@ class RedeemsController < ApplicationController
         if @already_invited.nil?
           @account = Account.where(user_id: current_user.id).pluck(:id)
           Member.new(invited_by: @invite.user_id, user_id: current_user.id, group_id: @invite.group_id,
-                     designation: 'member', status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: @account[0]).save
+                     designation: Designation.find_by(name: 'Member').id, status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: @account[0]).save
           Redeem.new(invite_id: @invite.id, user_id: current_user.id, group_id: @invite.group_id,
                      complete: 1).save
           Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)

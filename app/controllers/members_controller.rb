@@ -74,8 +74,8 @@ class MembersController < ApplicationController
             @member.invited_by = current_user.id
 
             if @member.save
-              UserMailer.new_group_email('accounts@prycely.com', invite_email,
-                                         "You have been invited to #{@group.name}")
+              PrycelyMailer.new_group_email('accounts@prycely.com', invite_email,
+                                            "You have been invited to #{@group.name}")
               redirect_to @member, notice: 'Member was successfully created.'
             else
               render json: @member

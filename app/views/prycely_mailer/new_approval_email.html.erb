@@ -1,0 +1,2 @@
+Your <%= Loancategory.find(@loan.loan_type).name %> has received a new approval.
+You now need <%= Loancategory.find(@loan.loan_type).approvals - LoanApproval.where(loan_id: @loan.id).count %> more approvals

@@ -35,9 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         if (window.location.href.includes(`/${page_title}/g/`))
             fetch_data(7, 0)
-
-
-
+            
         let initiate_approval_buttons = () => {
             let manager = ''
             let approval_path = ''

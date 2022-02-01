@@ -47,16 +47,21 @@ class LoansController < ApplicationController
   def create
     @loan = Loan.new(loan_params)
     @loan.group_id = session[:current_group]
-    @loan.user_id = current_user.id
     @loan.status = 0
     @loan.amount_paid = 0
     @loan.interest = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
     @loan.amount_due = @loan.amount + @loan.interest
+    @loan.date_granted = Time.now if @loan.date_granted.nil?
 
     @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
 
     respond_to do |format|
-      if @loan.save
+      if Loan.own_guarantor(@loan.guarantors, @loan.user_id) == 1
+        @loan.errors.add(:guarantors, 'You cannot guarantor yourself')
+        @loan.guarantors = ''
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @loan.errors, status: :unprocessable_entity }
+      elsif @loan.save
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else
@@ -87,9 +92,15 @@ class LoansController < ApplicationController
   end
 
   def i_approve
+    loan = Loan.find(params[:loan_id])
     response = []
 
-    response << if LoanApproval.find_by(loan_id: params[:loan_id], user_id: params[:user_id]).present?
+    response << if loan.status == 1
+                  {
+                    type: 'failed',
+                    message: 'This loan has already been approved'
+                  }
+                elsif LoanApproval.find_by(loan_id: params[:loan_id], user_id: params[:user_id]).present?
                   {
                     type: 'failed',
                     message: 'You already approved this loan'
@@ -99,7 +110,14 @@ class LoansController < ApplicationController
                     type: 'failed',
                     message: 'Bitch ass'
                   }
-                elsif Member.is_admin(params[:user_id], session[:current_group])
+                elsif Member.is_manager(params[:user_id], session[:current_group])
+                  PrycelyMailer.new_approval_email('accounts@prycely.com',
+                                                   User.find(loan.user_id).email, "New Approval for your #{Loancategory.find(loan.loan_type).name}", params[:user_id], loan)
+                  if (LoanApproval.where(loan_id: params[:loan_id]).count + 1) == Loancategory.find(loan.loan_type).approvals
+                    loan.update(status: 1)
+                    PrycelyMailer.loan_approved_email('accounts@prycely.com',
+                                                     User.find(loan.user_id).email, "Your #{Loancategory.find(loan.loan_type).name} loan has been approved.", params[:user_id], loan)
+                  end
                   LoanApproval.find_or_create_by(loan_id: params[:loan_id], user_id: params[:user_id])
                   {
                     type: 'success',
@@ -108,6 +126,7 @@ class LoansController < ApplicationController
                     icon: 'cancel',
                     remove_color: 'text-primary',
                     add_color: 'text-danger'
+                    loan_status:Loan.find(params[:loan_id]).status
                   }
                 else
                   {
@@ -121,6 +140,8 @@ class LoansController < ApplicationController
 
   def i_disapprove
     loan_approval = LoanApproval.find_by(loan_id: params[:loan_id], user_id: params[:user_id])
+    loan = Loan.find(params[:loan_id])
+
     response = []
     response << if loan_approval.blank?
                   { type: 'failed',
@@ -131,6 +152,8 @@ class LoansController < ApplicationController
                     message: 'Fuck off' }
                 elsif Member.is_admin(params[:user_id], session[:current_group])
                   loan_approval.destroy
+                  loan.update(status: 0) if loan.status != 0
+
                   { type: 'success',
                     message: 'Loan disapproved',
                     approval_path: i_approve_path,
@@ -180,7 +203,7 @@ class LoansController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def loan_params
-    params.require(:loan).permit(:group_id, :created_by, :user_id, :amount, :ammount_paid, :loan_type, :amount_due, :interest,
+    params.require(:loan).permit(:group_id, :created_by, :user_id, :amount, :amount_paid, :loan_type, :amount_due, :interest,
                                  :status, :guarantors, :date_granted, :date_due, :date_paid, :requirements)
   end
 
