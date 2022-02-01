@@ -116,7 +116,7 @@ class LoansController < ApplicationController
                   if (LoanApproval.where(loan_id: params[:loan_id]).count + 1) == Loancategory.find(loan.loan_type).approvals
                     loan.update(status: 1)
                     PrycelyMailer.loan_approved_email('accounts@prycely.com',
-                                                     User.find(loan.user_id).email, "Your #{Loancategory.find(loan.loan_type).name} loan has been approved.", params[:user_id], loan)
+                                                      User.find(loan.user_id).email, "Your #{Loancategory.find(loan.loan_type).name} loan has been approved.", params[:user_id], loan)
                   end
                   LoanApproval.find_or_create_by(loan_id: params[:loan_id], user_id: params[:user_id])
                   {
@@ -126,7 +126,7 @@ class LoansController < ApplicationController
                     icon: 'cancel',
                     remove_color: 'text-primary',
                     add_color: 'text-danger',
-                    loan_status:Loan.find(params[:loan_id]).status
+                    loan_status: Loan.find(params[:loan_id]).status
                   }
                 else
                   {
