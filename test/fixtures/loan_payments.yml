@@ -2,12 +2,12 @@
 
 one:
   amount: 1.5
-  balance: 1.5
   group_id: 
   user_id: 
+  loan_id: 
 
 two:
   amount: 1.5
-  balance: 1.5
   group_id: 
   user_id: 
+  loan_id: 

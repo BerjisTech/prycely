@@ -7,7 +7,7 @@
       <span class="fs-3 my-3 py-3"></span>
       <% if @loan.user_id == current_user.id || Member.is_manager(current_user.id, @loan.group_id) %>
         <div>
-          <%= link_to 'Make Payment', new_loan_path, class: "btn btn-primary px-2 make_loan_payment_btn" %>
+          <%= link_to 'Make Payment', pay_loan_path(@loan.id), class: "btn btn-primary px-2 make_loan_payment_btn" %>
           <%= link_to 'Print Report', new_loan_path, class: "btn btn-primary px-2" %>
         </div>
       <% end %>

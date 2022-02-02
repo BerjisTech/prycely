@@ -141,8 +141,11 @@ class GroupsController < ApplicationController
     if @group.id.blank?
       output = '<%= render "layouts/common/missing_attribute" %>'
     else
-      @loans = Loan.where(group_id: @group.id).order(:created_at)
-      @group = Group.find(@group.id)
+      @loans = if Member.is_manager(current_user.id, @group.id)
+                 Loan.where(group_id: @group.id).order(:created_at)
+               else
+                 Loan.where(group_id: @group.id, user_id: current_user.id).order(:created_at)
+               end
       output = if @loans.count.positive?
                  '<%= render "groups/group/loans/loans" %>'
                else

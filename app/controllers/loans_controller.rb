@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class LoansController < ApplicationController
-  before_action :has_active_group?
   before_action :authenticate_user!
-  before_action :set_loan, only: %i[show edit update destroy]
+  before_action :set_loan, only: %i[show edit update destroy pay pay_loan]
   before_action :has_active_group?, except: :index
   before_action :set_group_by_session
 
@@ -18,7 +17,7 @@ class LoansController < ApplicationController
 
   # GET /loans/1 or /loans/1.json
   def show
-    @loan_payments = Transaction.all
+    @loan_payments = LoanPayment.where(loan_id: @loan.id)
   end
 
   # GET /loans/new
@@ -188,10 +187,6 @@ class LoansController < ApplicationController
       format.html { redirect_to loans_url, notice: 'Loan was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def pay
-    render json: group_members_path('hex', 'gid')
   end
 
   private

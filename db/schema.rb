@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_201_073_310) do
+ActiveRecord::Schema.define(version: 20_220_202_160_416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -229,9 +229,9 @@ ActiveRecord::Schema.define(version: 20_220_201_073_310) do
 
   create_table 'loan_payments', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.float 'amount'
-    t.float 'balance'
     t.uuid 'group_id'
     t.uuid 'user_id'
+    t.uuid 'loan_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end

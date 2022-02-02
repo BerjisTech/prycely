@@ -87,6 +87,12 @@ html {
     }
 }
 
+.form-control {
+    border       : none !important;
+    border-bottom: 2px solid #eee !important;
+    font-weight  : 600 !important;
+}
+
 .select2-search {
     input {
         padding           : 4px 20px 4px 5px !important;

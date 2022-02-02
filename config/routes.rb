@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :designations
-  resources :group_assets
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -73,11 +71,11 @@ Rails.application.routes.draw do
   post 'fetch_group_activities', controller: :groups, action: :activities
 
   # LOANS
-  get 'loan/payment', controller: :loans, action: :pay, as: :loan_payment
   get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
   get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
   post 'i_approve', controller: :loans, action: :i_approve
   post 'i_disapprove', controller: :loans, action: :i_disapprove
+  get 'loan/pay/:group_id', controller: :loan_payments, action: :pay, as: :pay_loan
 
   resources :liabilities,
             :activities,
@@ -103,6 +101,9 @@ Rails.application.routes.draw do
             :groups,
             :wallets,
             :payment_methods,
+            :group_assets,
+            :loan_payments,
+            :designations,
             :group_assets
 
   devise_for :admins
