@@ -10,9 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :group_id, value: @group_id %>
-  <%= form.hidden_field :user_id, value: @user_id %>
-  <%= form.hidden_field :loan_id, value: @loan_id %>
+
+  <%= form.hidden_field :group_id, value: @group.id %>
+  <%= form.hidden_field :user_id, value: @loan.user_id %>
+  <%= form.hidden_field :loan_id, value: @loan.id %>
 
   <div class="px-3">
     <div class="field form-floating">
@@ -22,7 +23,7 @@
   </div>
   <div class="px-3">
     <div class="field form-floating">
-      <%= form.select :payment_method, options_for_select(["card", "mpesa"]), {}, class: "form-control select2", placeholder: "Placeholder" %>
+      <%= form.select :payment_method, options_for_select(["Card", "Mpesa", "Manual"]), {}, class: "form-control select2", placeholder: "Placeholder" %>
       <%= form.label :payment_method %>
     </div>
   </div>

@@ -22,9 +22,6 @@ class LoanPaymentsController < ApplicationController
   def pay
     @loan_payment = LoanPayment.new
     @loan = Loan.find(params[:group_id])
-    @group_id = @group.id
-    @user_id = current_user.id
-    @loan_id = @loan.id
   end
 
   # GET /loan_payments/1/edit
