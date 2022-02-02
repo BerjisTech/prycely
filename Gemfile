@@ -48,6 +48,7 @@ gem 'shrine'
 gem 'braintree'
 gem 'libxml-ruby'
 gem 'mailjet'
+gem 'slim-rails'
 
 gem 'activeadmin'
 

@@ -13,21 +13,22 @@
   <%= form.hidden_field :group_id, value: @group_id %>
   <%= form.hidden_field :user_id, value: @user_id %>
   <%= form.hidden_field :loan_id, value: @loan_id %>
-  
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+
+  <div class="px-3">
+    <div class="field form-floating">
+      <%= form.text_field :amount, class: "form-control", placeholder: "Placeholder" %>
+      <%= form.label :amount %>
+    </div>
   </div>
-  <div class="field">
-    <%= form.label :payment_method %>
-    <%= form.select :payment_method, options_for_select(["card", "mpesa"]), {}, class: "form-control select2"%>
-  </div>
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+  <div class="px-3">
+    <div class="field form-floating">
+      <%= form.select :payment_method, options_for_select(["card", "mpesa"]), {}, class: "form-control select2", placeholder: "Placeholder" %>
+      <%= form.label :payment_method %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= render '/loan_payments/reusables/card' %>
+
+  <div class="mt-4 mb-4 d-flex justify-content-between"> <span>Previous step</span> <%= form.submit "Pay #{Money::Currency.find(@group.currency).symbol} #{number_with_precision(@loan.amount_due, precision: 2, delimiter: ',')}", class: "btn btn-primary"%></div>
+
 <% end %>
