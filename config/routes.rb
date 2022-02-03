@@ -33,12 +33,12 @@ Rails.application.routes.draw do
   get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
 
   # NCBA
-  post 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
-  post 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
-  post 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
-  post 'bank/ncba/mpesa_verification', controller: :ncba, action: :mpesa_verification
-  post 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
-  post 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
+  get 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
+  get 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
+  get 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
+  get 'bank/ncba/mpesa_verification', controller: :ncba, action: :mpesa_verification
+  get 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
+  get 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
 
   # MPESA
   match 'activation', to: 'mpesa#activation', via: %i[get post]
