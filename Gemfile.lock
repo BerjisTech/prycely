@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:BerjisTech/ncba.git
-  revision: 45b376395e07e80df1460a967f2aec82434d852b
+  revision: cbdd244ef10c059339f9565469bffd4870095ac4
   branch: main
   specs:
     ncba (0.1.0)
