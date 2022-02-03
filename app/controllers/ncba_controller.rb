@@ -32,7 +32,7 @@ class NcbaController < ApplicationController
       params[:customer_name],
       params[:status]
     )
-
+    
     render json: NO_PARAMS_ERROR
   end
 

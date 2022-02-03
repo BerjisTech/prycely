@@ -51,6 +51,7 @@ gem 'mailjet'
 gem 'slim-rails'
 
 gem 'activeadmin'
+gem 'ncba', git: 'git@github.com:BerjisTech/ncba.git', branch: 'main'
 
 # Plus integrations with:
 gem 'cancancan'
