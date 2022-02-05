@@ -35,5 +35,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 elem.addEventListener("click", dashboard_data, false)
             });
         }
+
+        if (window.location.href.includes('loan/pay/')) {
+            let hide_reusables = () => { $("[class$='_reusable']").addClass('hidden') }
+            let amount_on_ui = (amount) => {
+                amount = (amount).toLocaleString(
+                    undefined, // leave undefined to use the visitor's browser 
+                    // locale or a string like 'en-US' to override it.
+                    { minimumFractionDigits: 2 }
+                )
+                dot_count = amount.split(".")
+                console.log(dot_count)
+                $('.main_price').html(dot_count[0])
+                if (dot_count[1] !== undefined)
+                    $('.decimal_price').html(`.${dot_count[1]}`)
+                $('.pay_submit').val(`${loan_pay_currency} ${amount}`)
+            }
+            hide_reusables()
+            amount_on_ui(amount)
+            $("[name='loan_payment[payment_method]']").on("change", (e) => {
+                hide_reusables()
+                new_reusable = `${$(e.target).val().toLowerCase()}_reusable`
+                $(`.${new_reusable}`).removeClass('hidden')
+            })
+            $('[name="loan_payment[amount]"]').on('input', (e) => {
+                amount = parseFloat($(e.target).val())
+                amount_on_ui(amount)
+            })
+        }
     })
 })

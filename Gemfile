@@ -51,7 +51,6 @@ gem 'mailjet'
 gem 'slim-rails'
 
 gem 'activeadmin'
-gem 'ncba', git: 'git@github.com:BerjisTech/ncba.git', branch: 'main'
 
 # Plus integrations with:
 gem 'cancancan'
@@ -89,5 +88,6 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'ncba'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

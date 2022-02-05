@@ -1,0 +1,31 @@
+<div class="p-3 mpesa_reusable">
+  <h6 class="text-uppercase">Payment details</h6>
+  <div class="col-12">
+    <span class="payWith">Pay with MPesa</span>
+    <div class="field form-floating">
+      <input type="number" name="mpesa[mpesa_number]" class="form-control" placeholder="254712345678" value="">
+      <label for="mpesa_number">Enter MPesa phone number</label>
+    </div>
+    <label class="label_save_this"><input type="checkbox" name="mpesa[save_number]" class="save_number" style="height: 10px;"/> Make this number my primary MPesa number?</label>
+
+    <div class="d-table">
+      <span class="d-block divider"></span>
+      <span class="dividerOr">or</span>
+    </div>
+
+    <span class="payWith">Pay with payBill</span>
+    <ul>
+      <li>Go to your MPesa STK</li>
+      <li>Choose Lipa Na Mpesa</li>
+      <li>Select PayBill</li>
+      <li>Enter business number <strong>4072015</strong></li>
+      <li>Account number your <strong><%= @account_name %></strong></li>
+      <li>Enter your MPesa Pin and pay</li>
+      <li>Use the transaction code to cinfirm payment below</li>
+    </ul>
+    <div class="field form-floating">
+      <input type="text" class="form-control" name="mpesa[paybill_confirmation]" placeholder="PDT7DMW2U3" value="">
+      <label for="paybill_confirmation">Paybill confirmation code</label>
+    </div>
+  </div>
+</div>

@@ -58,6 +58,22 @@ html {
     font-size: 16px !important;
 }
 
+.divider {
+    display      : table;
+    margin       : 40px auto;
+    width        : 75%;
+    border       : none;
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+}
+
+.dividerOr {
+    position     : absolute;
+    margin       : -55px auto;
+    background   : #fff;
+    padding      : 5px 10px;
+    border-radius: 100%;
+}
+
 .page-body {
     .select2-drop {
         .select2-search {

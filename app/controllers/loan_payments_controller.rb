@@ -31,15 +31,16 @@ class LoanPaymentsController < ApplicationController
   def create
     @loan_payment = LoanPayment.new(loan_payment_params)
 
-    respond_to do |format|
-      if @loan_payment.save
-        format.html { redirect_to loan_payment_url(@loan_payment), notice: 'Loan payment was successfully created.' }
-        format.json { render :show, status: :created, location: @loan_payment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @loan_payment.errors, status: :unprocessable_entity }
-      end
-    end
+    render json: params
+    # respond_to do |format|
+    #   if @loan_payment.save
+    #     format.html { redirect_to loan_payment_url(@loan_payment), notice: 'Loan payment was successfully created.' }
+    #     format.json { render :show, status: :created, location: @loan_payment }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @loan_payment.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /loan_payments/1 or /loan_payments/1.json
