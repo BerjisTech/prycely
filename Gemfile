@@ -9,6 +9,7 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -31,7 +32,6 @@ gem 'faraday_middleware'
 gem 'image_processing', '~> 1.2'
 gem 'pgcrypto'
 gem 'rufo'
-gem 'savon', '~> 2.12.0'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-passenger', '~> 0.2.0'
@@ -45,8 +45,6 @@ gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
 gem 'shrine'
 
-gem 'braintree'
-gem 'libxml-ruby'
 gem 'mailjet'
 gem 'slim-rails'
 
