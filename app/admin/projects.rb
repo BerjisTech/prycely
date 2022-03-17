@@ -13,7 +13,7 @@ ActiveAdmin.register Project do
   permit_params do
     permitted = %i[title description amount status project_start project_end created_by group_id
                    currency]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

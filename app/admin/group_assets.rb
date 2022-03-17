@@ -12,7 +12,7 @@ ActiveAdmin.register GroupAsset do
   #
   # permit_params do
   #   permitted = [:name, :description, :group_id, :date_bought, :date_sold, :user_id, :price]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
+  #   permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
   #   permitted
   # end
 end

@@ -12,7 +12,7 @@ ActiveAdmin.register Wallet do
   #
   permit_params do
     permitted = %i[user_id currency balance]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

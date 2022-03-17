@@ -13,7 +13,7 @@ ActiveAdmin.register Loan do
   permit_params do
     permitted = %i[group_id created_by user_id amount loan_type amount_due interest status guarantors
                    date_granted date_due date_paid requirements ammount_paid]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

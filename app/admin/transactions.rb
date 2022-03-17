@@ -13,7 +13,7 @@ ActiveAdmin.register Transaction do
   permit_params do
     permitted = %i[user_id amount transaction_reference transaction_type group_id wallet_id status
                    transaction_mode description category sub_category currency level]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

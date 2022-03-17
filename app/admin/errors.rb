@@ -12,7 +12,7 @@ ActiveAdmin.register Error do
   #
   permit_params do
     permitted = %i[error time method referer message]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

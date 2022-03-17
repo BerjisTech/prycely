@@ -13,7 +13,7 @@ ActiveAdmin.register Member do
   permit_params do
     permitted = %i[invited_by user_id group_id designation status invited_on accepted_on paid_member
                    amount account_id]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

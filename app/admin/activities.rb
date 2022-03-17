@@ -12,7 +12,7 @@ ActiveAdmin.register Activity do
   #
   permit_params do
     permitted = %i[title description date created_by group_id price fine host host_contact]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

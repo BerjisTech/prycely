@@ -13,7 +13,7 @@ ActiveAdmin.register Paybill do
   permit_params do
     permitted = %i[request paybill_type transaction_reference paybill_balance third_party_transaction_id
                    invoice_number amount first_name last_name middle_name phone short_code account_number]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

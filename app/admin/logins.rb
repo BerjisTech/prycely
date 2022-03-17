@@ -12,7 +12,7 @@ ActiveAdmin.register Login do
   #
   permit_params do
     permitted = %i[user_id time ip success password_attempt]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

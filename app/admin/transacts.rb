@@ -12,7 +12,7 @@ ActiveAdmin.register Transact do
   #
   permit_params do
     permitted = []
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

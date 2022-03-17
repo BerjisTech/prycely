@@ -12,7 +12,7 @@ ActiveAdmin.register Invite do
   #
   permit_params do
     permitted = %i[group_id invite_key max_redeem invite_email active total_redeemed user_id]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

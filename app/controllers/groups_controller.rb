@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: %i[show edit update destroy]
   before_action :set_account
-  before_action :has_active_group?, except: :index
+  before_action :has_active_group?, except: %i[index new create]
 
   # GET /groups or /groups.json
   def index
@@ -235,7 +235,7 @@ class GroupsController < ApplicationController
   def create_group_admin(user_id, group_id, account, group)
     if user_id == group.created_by
       admin_account = Member.new(invited_by: user_id, user_id: user_id,
-                                 group_id: group_id, designation: 'admin', status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: account.id)
+                                 group_id: group_id, designation: Designation.find_by(name: 'Admin').id, status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: account.id)
 
       if admin_account.save
         redirect_to group_url(group_id), notice: 'Your admin account has succsefully been set up'

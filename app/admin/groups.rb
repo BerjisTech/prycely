@@ -12,7 +12,7 @@ ActiveAdmin.register Group do
   #
   permit_params do
     permitted = %i[created_by currency group_type membership name description requirements]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 

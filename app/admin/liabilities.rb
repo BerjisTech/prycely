@@ -12,7 +12,7 @@ ActiveAdmin.register Liability do
   #
   permit_params do
     permitted = %i[name description group_id date_bought date_sold added_by price project_id]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end

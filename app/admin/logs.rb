@@ -12,7 +12,7 @@ ActiveAdmin.register Log do
   #
   permit_params do
     permitted = %i[activity user_id wallet_id group_id referer]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' && current_user.try(:admin?)
     permitted
   end
 end
