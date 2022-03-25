@@ -1,0 +1,7 @@
+<script>
+  var base_url = '<%= root_url %>'
+  var page_title = '<%= controller_name %>'
+  <% if session[:current_group] %>
+  var active_group = '<%= session[:current_group] %>'
+  <% end %>
+</script>

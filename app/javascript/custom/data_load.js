@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         if (window.location.href.includes(`/${page_title}/g/`))
             fetch_data(7, 0)
-            
+
         let initiate_approval_buttons = () => {
             let manager = ''
             let approval_path = ''
@@ -75,6 +75,57 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     }
                 })
             })
+        }
+
+        if (window.location.href.includes('groups')) {
+            var line_chart_demo = $("#line-chart-demo");
+
+            let draw_graph = (transactions) => {
+                $(line_chart_demo).empty()
+                var dataChart = new Chart(transactions, {
+                    type: 'line',
+                    data: {
+                        labels: ['Debit', 'Credit'],
+                        datasets: [{
+                            data: transactions,
+                        }]
+                    },
+                });
+            }
+
+
+
+            let fetch_graph_data = (from, to, data_path) => {
+                $('#chart_area').html('<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+                $.ajax({
+                    url: data_path,
+                    method: 'POST',
+                    data: {
+                        'authenticity_token': $('[name="csrf-token"]')[0].content,
+                        'group_id': active_group,
+                        'from': from,
+                        'to': to
+                    },
+                    success: (response) => {
+                        console.log(response)
+                        if (response.type == 'error' || response.type == 'info') {
+                            $('#chart_area').html(`<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">${response.message}</div>`)
+                        }
+                        else {
+                            draw_graph(response.data)
+                        }
+                    },
+                    error: (response) => {
+                        $('#chart_area').html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
+                    }
+                })
+            }
+
+            $('.fetch_transactions').on('change', (e) => {
+                fetch_graph_data($(e.target).val(), 0, $(line_chart_demo).attr('data-path'))
+            })
+
+            fetch_graph_data(7, 0, $(line_chart_demo).attr('data-path'))
         }
     })
 })

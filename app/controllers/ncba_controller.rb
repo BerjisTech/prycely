@@ -102,7 +102,7 @@ class NcbaController < ApplicationController
       mobile_number: '0790494969',
       reference: 'reference'
     )
-    
+
     render json: phone
   end
 

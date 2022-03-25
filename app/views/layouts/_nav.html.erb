@@ -1,0 +1,20 @@
+<div class="nav-hider big-nav-hider full-width full-height"></div>
+<div class="main-nav border-end bg-white full-height">
+  <div class="nav-header">
+    <div class="d-flex align-items-center justify-content-between border-bottom whole-height">
+      <span class="nav-hider material-icons">close</span>
+      <% my_account = my_account %>
+      <% if my_account.present? %>
+        <% if my_account.image.attached? %>
+          <%= image_tag my_account.image.variant(resize: "500x500"), width: "70", alt: "", style: "border-radius: 10px;" %>
+        <% else %>
+          <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
+        <% end %>
+        <span>Welcome,</span>
+        <strong><%= my_account.first_name %></strong>
+      <% end %>
+    </div>
+  </div>
+  <div class="nav-body"></div>
+  <div class="nav-footer border-top"></div>
+</div>

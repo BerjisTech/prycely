@@ -1,0 +1,6 @@
+require('./clicks')
+require('./ui')
+require('./commons')
+require('./data_load')
+require('./loans')
+require('./transactions')

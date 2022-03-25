@@ -14,37 +14,130 @@
  *= require_self
  *= stub "active_admin"
  */
-.main-content {
-    background: #F4F6F8 !important;
-}
+
+@import "bootstrap/scss/bootstrap";
+@import "toastr/toastr";
 
 .width-150 {
     width: 150px !important;
 }
 
-.pointer {
-    cursor: pointer !important;
+html,
+body {
+    background-color: #FAFAFA !important;
+    margin          : 0px !important;
+    padding         : 0px !important;
+    font-size       : 13px !important;
 }
 
-a {
+.tiny-icons {
+    font-size: 10px !important;
+}
+
+.small-icons {
+    font-size: 16px !important;
+}
+
+.grey-text {
+    color: #919699;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
     text-decoration: none !important;
+    color          : #00B2F5 !important; // FUCK CHINA
+    background     : transparent !important;
+}
+
+.profiler-results {
+    display: none;
 }
 
 .full-width {
-    width: 100% !important;
+    width: 100vw !important;
 }
 
 .full-height {
+    height: 100vh !important;
+}
+
+.whole-width,
+.row,
+.form-floating,
+.main-content {
+    width: 100% !important;
+}
+
+.whole-height {
     height: 100% !important;
 }
 
-body {
-    color: #373E4F !important;
-    width: 100% !important;
+[class*="whole-"],
+[class*="full-"],
+.row {
+    margin-left : 0px !important;
+    margin-right: 0px !important;
+    padding     : 0px !important;
 }
 
-html {
-    width: 100% !important;
+.auto-height {
+    height: auto !important;
+}
+
+.auto-width {
+    width: auto !important;
+}
+
+.point_me,
+.pointer,
+.pointed {
+    cursor: pointer;
+}
+
+.account_bar {
+    display         : table !important;
+    position        : fixed;
+    height          : 6vh;
+    top             : 0px;
+    left            : 0px;
+    background-color: white;
+}
+
+.main-nav {
+    width     : 350px;
+    overflow-y: auto;
+    position  : fixed;
+    top       : 0;
+    transform : translate(-550px, 0px);
+    z-index   : 30;
+
+    .nav-header,
+    .nav-footer {
+        height: 6vh !important;
+    }
+
+    .nav-body {
+        height    : 88vh;
+        overflow-y: auto;
+    }
+}
+
+.big-nav-hider {
+    display   : none;
+    background: rgba(3, 3, 3, 0.3);
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    z-index   : 30;
+}
+
+.main-content {
+    display       : table;
+    margin        : 7vh auto;
+    padding-top   : 2vh;
+    padding-bottom: 2vh;
 }
 
 .card {

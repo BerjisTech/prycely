@@ -1,33 +1,3 @@
-<script type="text/javascript">
-  // Code used to add Todo Tasks
-  jQuery(document).ready(function($)
-  {
-    function escapeHtml(text) {
-        var map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return text.replace(/[&<>"']/g, (m) => { return map[m]; });
-    }
-    var $todo_tasks = $("#todo_tasks");
-    $todo_tasks.find('input[type="text"]').on('keydown', (ev) => {
-        if(ev.keyCode == 13) {
-            ev.preventDefault();
-            if($.trim($(this).val()).length) {
-                var $todo_entry = $('<li><div class="checkbox checkbox-replace color-white"><input type="checkbox" /><label>'+escapeHtml($(this).val())+'</label></div></li>');
-                $(this).val('');
-                $todo_entry.appendTo($todo_tasks.find('.todo-list'));
-                $todo_entry.hide().slideDown('fast');
-                replaceCheckboxes();
-            }
-        }
-    });
-  });
-</script>
-
 <div class="sidebar-menu">
   <div class="sidebar-menu-inner">
     <header class="logo-env">
