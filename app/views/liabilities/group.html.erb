@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-1"></div>
   <div class="col-sm-10">
-    <div class="d-flex full-width align-items-center justify-content-between">
+    <div class="d-flex whole-width align-items-center justify-content-between">
       <span class="fs-3 my-3 py-3"><%= @group.name.humanize %> Liabilities</span>
       <% if Member.is_manager(current_user.id, @group.id) %>
         <div>

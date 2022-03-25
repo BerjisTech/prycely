@@ -10,101 +10,145 @@
       </ul>
     </div>
   <% end %>
-  <div class="row form_accounts">
-    <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
 
-    <div class="field col-sm-3">
-      <div class="account_inputs_section fileinput fileinput-new" data-provides="fileinput">
-        <%= form.label(:image, class: "image_select_label") do %>
-          <% if @account.image.attached? %>
-            <%= image_tag @account.image.variant(resize: "500x500"), id: "img_prev", class: "img rounded", src: "", alt: "" %>
-            <span class="select_image">Choose Photo</span>
-            <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", direct_upload: true %>
-          <% else %>
-            <img id="img_prev" class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
-            <span class="select_image">Choose Photo</span>
-            <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required", direct_upload: true %>
-          <% end %>
-        <% end %>
-
-        <div class="alert alert-info alert-dismissable">
-          Update your account with your info to make it easier for your group and group members to keep records and contact you when needed
-        </div>
-      </div>
+  <div class="spacer clearfix mt-5"></div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="d-flex flex-column align-items-start jsutify-content-center mb-3"></div>
     </div>
+    <div class="col-sm-8">
+      <div class="border rounded bg-white p-4 shadow">
+        <div class="field">
+          <div class="d-flex flex-column align-items-center justify-content-center fileinput fileinput-new" data-provides="fileinput">
+            <%= form.label(:image, class: "image_select_label d-flex flex-column align-items-center justify-content-center") do %>
+              <% if @account.image.attached? %>
+                <%= image_tag @account.image.variant(resize: "500x500"), id: "img_prev", class: "img rounded", src: "", alt: "", width: 200 %>
+                <span class="select_image btn btn-warning my-2" style="width: 200px;">Change Photo</span>
+                <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", direct_upload: true %>
+              <% else %>
+                <img id="img_prev" class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" width="200" />
+                <span class="select_image btn btn-primary my-2" style="width: 200px;">Choose Photo</span>
+                <%= form.file_field :image, onchange: "readURL(this);", class: "account_image_to_hide", accept: "image/*", required: "required", direct_upload: true %>
+              <% end %>
+            <% end %>
 
-    <div class="col-sm-9">
-      <div class="account_inputs_section">
-        <div class="personal row">
-          <h3 class="text-info">Personal Info</h3>
-          <hr />
-          <div class="field form-group col-md-4 col-sm-6">
-            <%= form.label :first_name %>
-            <%= form.text_field :first_name, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field form-group col-md-4 col-sm-6">
-            <%= form.label :last_name %>
-            <%= form.text_field :last_name, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field form-group col-md-4 col-sm-6">
-            <%= form.label "Phone (Include country code)" %>
-            <%= form.text_field :phone, class: "form-control", required: "required", placeholder: "+254 7********" %>
-          </div>
-        </div>
-        <div class="address row">
-
-          <h3 class="text-info">Address</h3>
-          <hr/>
-          <div class="field col-sm-4">
-            <%= form.label :country %>
-            <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control select2", required: "required" }) %>
-          </div>
-
-          <div class="field form-group col-sm-4">
-            <%= form.label "County/Province/State" %>
-            <%= form.text_field :county, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field form-group col-sm-4">
-            <%= form.label :city %>
-            <%= form.text_field :city, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field col-sm-3">
-            <%= form.label :default_currency %>
-            <%= form.currency_select("default_currency", {}, {include_blank: "Select a currency"}, { class: "form-control select2", required: "required" }) %>
-          </div>
-
-          <div class="field form-group col-sm-3">
-            <%= form.label :street %>
-            <%= form.text_field :street, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field form-group col-sm-3">
-            <%= form.label :address %>
-            <%= form.text_field :address, class: "form-control", required: "required" %>
-          </div>
-
-          <div class="field form-group col-sm-3">
-            <%= form.label :postal %>
-            <%= form.text_field :postal, class: "form-control", required: "required" %>
+            <div class="alert alert-info alert-dismissable">
+              Update your account with your info to make it easier for your group and group members to keep records and contact you when needed
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-sm-12 my-5 border-bottom"></div>
+  </div>
 
-    <div class="actions col-xs-12">
-      <%= form.submit "Update Account", class: "submit_btn pull-right", data: { disable_with: "Updating..." } %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="d-flex flex-column align-items-start jsutify-content-center mb-3">
+        <span class="fs-2">Personal Details</span>
+        <span class="fs-6"></span>
+      </div>
     </div>
-  </div >
+    <div class="col-sm-8">
+      <div class="border rounded bg-white p-4 shadow">
+        <div class="field form-floating my-2">
+          <%= form.text_field :first_name, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :first_name %>
+        </div>
+
+        <div class="field form-floating my-2">
+          <%= form.text_field :last_name, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :last_name %>
+        </div>
+
+        <div class="field form-floating my-2">
+          <%= form.text_field :phone, class: "form-control", required: "required", placeholder: "+254 7********", placeholder: "Placeholder" %>
+          <%= form.label "Phone (Include country code)" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 my-5 border-bottom"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="d-flex flex-column align-items-start jsutify-content-center mb-3">
+        <span class="fs-2">Locale</span>
+        <span class="fs-6"></span>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="border rounded bg-white p-4 shadow">
+        <div class="field form-floating">
+          <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control select2", required: "required", placeholder: "Placeholder" }) %>
+          <%= form.label :country %>
+        </div>
+
+        <div class="field form-floating my-2">
+          <%= form.text_field :county, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label "County/Province/State" %>
+        </div>
+
+        <div class="field form-floating">
+          <%= form.text_field :city, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :city %>
+        </div>
+
+        <div class="field form-floating">
+          <%= form.currency_select("default_currency", {}, {include_blank: "Select a currency"}, { class: "form-control select2", required: "required", placeholder: "Placeholder" }) %>
+          <%= form.label :default_currency %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 my-5 border-bottom"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="d-flex flex-column align-items-start jsutify-content-center mb-3">
+        <span class="fs-2">Address</span>
+        <span class="fs-6"></span>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="border rounded bg-white p-4 shadow">
+        <div class="field form-floating my-2oup">
+          <%= form.text_field :street, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :street %>
+        </div>
+
+        <div class="field form-floating my-2up">
+          <%= form.text_field :address, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :address %>
+        </div>
+
+        <div class="field form-floating my-2oup">
+          <%= form.text_field :postal, class: "form-control", required: "required", placeholder: "Placeholder" %>
+          <%= form.label :postal %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 my-5 border-bottom"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="d-flex flex-column align-items-start jsutify-content-center mb-3"></div>
+    </div>
+    <div class="col-sm-8">
+      <div class="actions">
+        <%= form.submit "Update Account", class: "btn btn-primary pull-right", data: { disable_with: "Updating..." } %>
+      </div>
+    </div>
+    <div class="col-sm-12 my-5 border-bottom"></div>
+  </div>
+
 <% end %>
+
 <script>
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-  
+
       reader.onload = function (e) {
         $('#img_prev')
           .attr('src', e.target.result)
@@ -112,7 +156,7 @@
           .height(auto)
         $('.image_chooser').html('Change Profile Image')
       };
-  
+
       reader.readAsDataURL(input.files[0]);
     }
   }
