@@ -10,35 +10,6 @@ Rails.application.routes.draw do
   get 'about', controller: :home, action: :about
   get 'pricing', controller: :home, action: :pricing
   get 'about', controller: :home, action: :about
-  get 'purge/errors', controller: :errors, action: :clear
-
-  get 'dashboard/load/:data_set', controller: :dashboard, action: :load
-
-  match 'join/:id', to: 'redeems#redeem', via: %i[get post], as: :join_group
-  match 'accept', to: 'redeems#accept_invite', via: %i[get post]
-  get 'contributions', controller: :transactions, action: :contributions
-  post 'convert', controller: :transact, action: :conversions
-
-  # WITHDRAWALS
-  get 'withdraw/:level/:account', controller: :transact, action: :withdraw
-  get 'withdraw/mpesa/:level/:account', controller: :withdraw, action: :mpesa
-  get 'withdraw/bank/:level/:account', controller: :withdraw, action: :bank
-  get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
-
-  # DEPOSITS
-  get 'deposit/:level/:account', controller: :transact, action: :deposit
-  get 'deposit/:platform/:level/:account', controller: :deposit, action: :amount_and_currency
-  get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
-  get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
-  get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
-
-  # NCBA
-  get 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
-  get 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
-  get 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
-  get 'bank/ncba/mpesa_verification', controller: :ncba, action: :mpesa_verification
-  get 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
-  get 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
 
   # MPESA
   match 'activation', to: 'mpesa#activation', via: %i[get post]
@@ -52,59 +23,95 @@ Rails.application.routes.draw do
   match 'stk-callback', to: 'mpesa#callback_stk', via: %i[get post]
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
 
-  # GROUP MANAGEMENT LINKS
-  get 'members/:group/:group_id_digest/:group_id', controller: :members, action: :group, as: :group_members
-  get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group, as: :group_transactions
-  get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group, as: :group_projects
-  get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans
-  get 'group_assets/g/:group_id_digest/:group_id', controller: :group_assets, action: :group, as: :active_group_assets
-  get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group, as: :group_liabilities
-  get 'activities/g/:group_id_digest/:group_id', controller: :activities, action: :group, as: :group_activities
+  authenticated :user do
+    get 'purge/errors', controller: :errors, action: :clear
 
-  # FETCH GROUP DATA
-  post 'fetch_group_transactions', controller: :groups, action: :transactions
-  post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
-  post 'fetch_group_projects', controller: :groups, action: :projects
-  post 'fetch_group_loans', controller: :groups, action: :loans
-  post 'fetch_group_liabilities', controller: :groups, action: :liabilities
-  post 'fetch_group_assets', controller: :groups, action: :assets
-  post 'fetch_group_activities', controller: :groups, action: :activities
+    get 'dashboard/load/:data_set', controller: :dashboard, action: :load
 
-  # LOANS
-  get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
-  get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
-  post 'i_approve', controller: :loans, action: :i_approve
-  post 'i_disapprove', controller: :loans, action: :i_disapprove
-  get 'loan/pay/:group_id', controller: :loan_payments, action: :pay, as: :pay_loan
+    match 'join/:id', to: 'redeems#redeem', via: %i[get post], as: :join_group
+    match 'accept', to: 'redeems#accept_invite', via: %i[get post]
+    get 'contributions', controller: :transactions, action: :contributions
+    post 'convert', controller: :transact, action: :conversions
 
-  resources :liabilities,
-            :activities,
-            :loans,
-            :loancategories,
-            :paymentcategories,
-            :projects,
-            :errors,
-            :paybills,
-            :stks,
-            :logins,
-            :currencies,
-            :countries,
-            :transactions,
-            :members,
-            :requests,
-            :redeems,
-            :invites,
-            :accounts,
-            :grouptypes,
-            :siris,
-            :logs,
-            :groups,
-            :wallets,
-            :payment_methods,
-            :group_assets,
-            :loan_payments,
-            :designations,
-            :group_assets
+    # WITHDRAWALS
+    get 'withdraw/:level/:account', controller: :transact, action: :withdraw
+    get 'withdraw/mpesa/:level/:account', controller: :withdraw, action: :mpesa
+    get 'withdraw/bank/:level/:account', controller: :withdraw, action: :bank
+    get 'withdraw/paypal/:level/:account', controller: :withdraw, action: :paypal
+
+    # DEPOSITS
+    get 'deposit/:level/:account', controller: :transact, action: :deposit
+    get 'deposit/:platform/:level/:account', controller: :deposit, action: :amount_and_currency
+    get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
+    get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
+    get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
+
+    # NCBA
+    get 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
+    get 'bank/ncba/credit_details', controller: :ncba, action: :credit_details
+    get 'bank/ncba/credit_transfer', controller: :ncba, action: :credit_transfer
+    get 'bank/ncba/mpesa_verification', controller: :ncba, action: :mpesa_verification
+    get 'bank/ncba/transaction_query', controller: :ncba, action: :transaction_query
+    get 'bank/ncba/push_notif', controller: :ncba, action: :push_notif
+
+    # GROUP MANAGEMENT LINKS
+    get 'members/:group/:group_id_digest/:group_id', controller: :members, action: :group, as: :group_members
+    get 'transactions/g/:group_id_digest/:group_id', controller: :transactions, action: :group, as: :group_transactions
+    get 'projects/g/:group_id_digest/:group_id', controller: :projects, action: :group, as: :group_projects
+    get 'loans/g/:group_id_digest/:group_id', controller: :loans, action: :group, as: :group_loans
+    get 'group_assets/g/:group_id_digest/:group_id', controller: :group_assets, action: :group, as: :active_group_assets
+    get 'liabilities/g/:group_id_digest/:group_id', controller: :liabilities, action: :group, as: :group_liabilities
+    get 'activities/g/:group_id_digest/:group_id', controller: :activities, action: :group, as: :group_activities
+
+    # FETCH GROUP DATA
+    post 'fetch_group_transactions', controller: :groups, action: :transactions
+    post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
+    post 'fetch_group_projects', controller: :groups, action: :projects
+    post 'fetch_group_loans', controller: :groups, action: :loans
+    post 'fetch_group_liabilities', controller: :groups, action: :liabilities
+    post 'fetch_group_assets', controller: :groups, action: :assets
+    post 'fetch_group_activities', controller: :groups, action: :activities
+
+    # LOANS
+    get 'own_guarantor/:guarantors/:user_id', controller: :loans, action: :own_guarantor
+    get 'guarantor_limit/:guarantor_count/:loan_category', controller: :loans, action: :guarantor_limit
+    post 'i_approve', controller: :loans, action: :i_approve
+    post 'i_disapprove', controller: :loans, action: :i_disapprove
+    get 'loan/pay/:group_id', controller: :loan_payments, action: :pay, as: :pay_loan
+    post 'check_requested_amount/:loan_type/:amount/:active_group/:requester', controller: :loans,
+                                                                               action: :check_requested_amount
+    # get 'check_requested_amount/:loan_type/:amount/:active_group/:requester', controller: :loans,
+    #                                                                           action: :check_requested_amount
+
+    resources :liabilities,
+              :activities,
+              :loans,
+              :loancategories,
+              :paymentcategories,
+              :projects,
+              :errors,
+              :paybills,
+              :stks,
+              :logins,
+              :currencies,
+              :countries,
+              :transactions,
+              :members,
+              :requests,
+              :redeems,
+              :invites,
+              :accounts,
+              :grouptypes,
+              :siris,
+              :logs,
+              :groups,
+              :wallets,
+              :payment_methods,
+              :group_assets,
+              :loan_payments,
+              :designations,
+              :group_assets
+  end
 
   devise_for :admins
   devise_for :users, controllers: { confirmations: 'confirmations' }, path: '',

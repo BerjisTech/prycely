@@ -167,6 +167,44 @@ class LoansController < ApplicationController
     render json: response
   end
 
+  def check_requested_amount
+    loan_type = params[:loan_type]
+    amount = params[:amount]
+    active_group = params[:active_group]
+    requester = params[:requester]
+    loancategory = Loancategory.find(loan_type)
+    allowed_amount = if loancategory.amount.include? 'x'
+                       Currency.amount_from_cents(Member.savings(active_group,
+                                                                 requester)) * loancategory.amount.gsub('x', '').to_i
+                     else
+                       loancategory.amount
+                     end
+
+    can_borrow = if loancategory.amount.include? 'x'
+                   if Currency.amount_from_cents(Member.savings(active_group, requester)).positive?
+                     true
+                   else
+                     false
+                   end
+                 else
+                   amount.to_i > allowed_amount.to_i
+                 end
+    info = if loancategory.amount.include? 'x'
+             if Currency.amount_from_cents(Member.savings(active_group, requester)).positive?
+               "Allowed amount is #{allowed_amount}"
+             else
+               "#{Account.full_names(requester)} needs to make a contribution or have some savings before they can ccess this loan"
+             end
+           else
+             "Allowed amount is #{allowed_amount}"
+           end
+    message = {
+      allowed: can_borrow,
+      message: info
+    }
+    render json: message
+  end
+
   # PATCH/PUT /loans/1 or /loans/1.json
   def update
     respond_to do |format|

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     extra_functions()
                 },
                 error: (response) => {
-                    inform(`There has been an error fetching your ${page_title}`, 'Error')
+                    toastr.error(`There has been an error fetching your ${page_title}`)
                     document.querySelector('.fetched_data_js_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
                 }
             })
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         approval_class.html(response.icon)
                         approval_class.removeClass(response.remove_color)
                         approval_class.addClass(response.add_color)
-                        inform('info', response.message)
+                        toastr.info(response.message)
                     },
                     error: (error) => {
                         console.log(error)

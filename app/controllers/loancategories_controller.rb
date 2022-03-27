@@ -13,7 +13,9 @@ class LoancategoriesController < ApplicationController
   end
 
   # GET /loancategories/1 or /loancategories/1.json
-  def show; end
+  def show
+    @loan_category_data = Loan.where(loan_type: @loancategory.id, group_id: @loancategory.group_id)
+  end
 
   # GET /loancategories/new
   def new

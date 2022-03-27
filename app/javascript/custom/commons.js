@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 },
                 error: (result) => {
                     // console.log(result)
-                    inform(`There has been an error loading your ${data_set}`, 'Error')
+                    toastr.error(`There has been an error loading your ${data_set}`)
                     document.querySelector('.dashboard_content_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
                 }
             })

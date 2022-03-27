@@ -56,5 +56,10 @@ class Member < ApplicationRecord
     def status(status)
       STATUS[status]
     end
+
+    def savings(group_id, user_id)
+      Transaction.where(group_id: group_id, user_id: user_id, status: 1, level: 1,
+                        transaction_type: 1).pluck('SUM(amount)').first || 0
+    end
   end
 end

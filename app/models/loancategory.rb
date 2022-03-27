@@ -2,6 +2,8 @@
 
 class Loancategory < ApplicationRecord
   belongs_to :group
+  has_rich_text :decsription
+  has_rich_text :requirements
 
   class << self
     def get_date_due(date_taken, loan_category)
