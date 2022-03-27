@@ -79,6 +79,7 @@
     </div>
     <div class="col-sm-8">
       <div class="border rounded bg-white p-4 shadow">
+
         <div class="field form-floating">
           <%= form.country_select("country", { include_blank: "Select a country" }, { class: "form-control select2", required: "required", placeholder: "Placeholder" }) %>
           <%= form.label :country %>
@@ -98,6 +99,7 @@
           <%= form.currency_select("default_currency", {}, {include_blank: "Select a currency"}, { class: "form-control select2", required: "required", placeholder: "Placeholder" }) %>
           <%= form.label :default_currency %>
         </div>
+
       </div>
     </div>
     <div class="col-sm-12 my-5 border-bottom"></div>
