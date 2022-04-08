@@ -33,7 +33,7 @@
             <% if @loancategory.amount.include? 'x' %>
               <%= @loancategory.amount.gsub('x','') %> times member balance
             <% else %>
-              <%=  number_with_precision(@loancategory.amount.includes, precision: 2, delimiter: ",") %>%
+              <%=  number_with_precision(@loancategory.amount, precision: 2, delimiter: ",") %>
             <% end %>
           </p>
 

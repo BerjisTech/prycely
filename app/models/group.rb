@@ -83,15 +83,17 @@ class Group < ApplicationRecord
     end
 
     def format_transaftions(transactions, account)
-      graph_data = []
+      graph_data = {
+        dates: [],
+        debit: [],
+        credit: []
+      }
       transactions.map do |transaction|
-        graph_data << {
-          y: transaction.date.strftime('%Y-%m-%d'),
-          a: Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2),
-                                            transaction.currency.upcase, account.default_currency.upcase),
-          b: Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2),
-                                            transaction.currency.upcase, account.default_currency.upcase)
-        }
+        graph_data[:dates] << transaction.date.strftime('%Y-%m-%d')
+        graph_data[:debit] << Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2),
+                                                                    transaction.currency.upcase, account.default_currency.upcase)
+        graph_data[:credit] << Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2),
+                                                                     transaction.currency.upcase, account.default_currency.upcase)
       end
       graph_data
     end

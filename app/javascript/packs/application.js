@@ -10,6 +10,9 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import toastr from "toastr/toastr"
 import Chart from 'chart.js/auto';
+import $ from 'jquery'
+import 'select2'
+import 'select2/dist/css/select2.css'
 
 Rails.start()
 Turbolinks.start()
@@ -19,6 +22,9 @@ require("trix")
 require("@rails/actiontext")
 
 const jQuery = $
+window.jQuery = $;
+window.$ = $;
+
 global.toastr = require("toastr")
 
 require("custom")

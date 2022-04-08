@@ -91,7 +91,8 @@ class GroupsController < ApplicationController
     if @group.id.blank? || params[:from].blank? || params[:to].blank?
       output = {
         type: 'error',
-        message: 'Some attributes are missing'
+        message: 'Some attributes are missing',
+        params: params
       }
     else
       group_id = @group.id

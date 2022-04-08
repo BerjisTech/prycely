@@ -26,9 +26,9 @@
     </div>
   </div>
   <div class="px-3">
-    <div class="field form-floating">
-      <%= form.select :payment_method, options_for_select(["", "Card", "Mpesa", "Manual"]), {}, class: "form-control select2", placeholder: "Placeholder" %>
+    <div class="field form-group">
       <%= form.label :payment_method %>
+      <%= form.select :payment_method, options_for_select(["", "Card", "Mpesa", "Manual"]), {}, class: "form-control select2", placeholder: "Placeholder" %>
     </div>
   </div>
 

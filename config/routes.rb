@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     get 'deposit/mpesa/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :mpesa
     get 'deposit/bank/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :bank
     get 'deposit/paypal/:level/:account/:amount/:origin/:recepient', controller: :deposit, action: :paypal
+    get 'd/g/:group_id', controller: :transactions, action: :new, as: :group_deposit
 
     # NCBA
     get 'bank/ncba/account_opening', controller: :ncba, action: :account_opening
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
     # FETCH GROUP DATA
     post 'fetch_group_transactions', controller: :groups, action: :transactions
     post 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
+    get 'fetch_group_graph_data', controller: :groups, action: :bar_line_charts
     post 'fetch_group_projects', controller: :groups, action: :projects
     post 'fetch_group_loans', controller: :groups, action: :loans
     post 'fetch_group_liabilities', controller: :groups, action: :liabilities

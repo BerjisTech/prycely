@@ -1,4 +1,5 @@
 // ES6
+import Chart from 'chart.js/auto'
 
 document.addEventListener("DOMContentLoaded", (event) => {
     $(document).on('turbolinks:load', () => {
@@ -78,25 +79,42 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
 
         if (window.location.href.includes('groups')) {
-            var line_chart_demo = $("#line-chart-demo");
+            let chart_pane = document.getElementById("chart_pane");
+
+            if (chart_pane === undefined || chart_pane === null) return
+
+            let ctx = chart_pane.getContext('2d')
 
             let draw_graph = (transactions) => {
-                $(line_chart_demo).empty()
-                var dataChart = new Chart(transactions, {
-                    type: 'line',
+                console.log(transactions['data'])
+                console.log(transactions['dates'])
+                $(chart_pane).empty()
+                var dataChart = new Chart(ctx, {
+                    type: 'bar',
                     data: {
-                        labels: ['Debit', 'Credit'],
+                        labels: transactions.dates,
                         datasets: [{
-                            data: transactions,
+                            data: transactions.credit,
                         }]
                     },
+                    responsive: true,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                        }
+                    }
                 });
             }
 
 
 
             let fetch_graph_data = (from, to, data_path) => {
-                $('#chart_area').html('<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+                $('#chart_pane').hide()
+                $('#chart_image').show()
+                $('#chart_area').hide()
                 $.ajax({
                     url: data_path,
                     method: 'POST',
@@ -108,24 +126,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     },
                     success: (response) => {
                         console.log(response)
+                        $('#chart_image').hide()
                         if (response.type == 'error' || response.type == 'info') {
-                            $('#chart_area').html(`<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">${response.message}</div>`)
+                            $('#chart_area').show()
+                            $('#chart_area').html(response.message)
                         }
                         else {
+                            $('#chart_pane').show()
                             draw_graph(response.data)
                         }
                     },
-                    error: (response) => {
+                    error: (error) => {
+                        $('#chart_area').hide()
+                        $('#chart_image').hide()
+                        console.log(error.responseText)
+                        console.error(error.responseText)
                         $('#chart_area').html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
                     }
                 })
             }
 
             $('.fetch_transactions').on('change', (e) => {
-                fetch_graph_data($(e.target).val(), 0, $(line_chart_demo).attr('data-path'))
+                fetch_graph_data($(e.target).val(), 0, $(chart_pane).attr('data-path'))
             })
 
-            fetch_graph_data(7, 0, $(line_chart_demo).attr('data-path'))
+            fetch_graph_data(7, 0, $(chart_pane).attr('data-path'))
         }
     })
 })

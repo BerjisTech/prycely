@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     $(document).on('turbolinks:load', () => {
         console.log('UI Functions')
+        $('.select2').select2();
 
         $('.nav-hider').on('click', () => {
             hide_nav()
@@ -42,6 +43,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (type.toLowerCase() == 'error')
                 toastr.error(message, "Error:", opts)
+        }
+
+        if (window.location.href.includes(`/accounts/${account_id}/`)) {
+            $('.account_image_to_hide').on('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#img_prev')
+                            .attr('src', e.target.result)
+                            .width(200)
+                            .height('auto')
+                        $('.image_chooser').html('Change Profile Image')
+                    };
+
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            })
         }
     })
 })

@@ -38,6 +38,8 @@
                 }
             },
             error: (response) => {
+              console.log(response)
+              console.error(response)
                 $(line_chart_demo).html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
             }
         })

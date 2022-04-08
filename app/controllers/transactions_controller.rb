@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.for_group(session[:current_group])
   end
 
   def group
@@ -32,6 +32,8 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.amount = @transaction.amount * 100
+    @transaction.currency = Group.find(session[:current_group]).currency
 
     respond_to do |format|
       if @transaction.save

@@ -4,4 +4,8 @@
   <% if session[:current_group] %>
   var active_group = '<%= session[:current_group] %>'
   <% end %>
+  <% if user_signed_in? %>
+  var account_id = '<%= Account.find_by(user_id: current_user.id).id %>'
+  var user_id = '<%= current_user.id %>'
+  <% end %>
 </script>

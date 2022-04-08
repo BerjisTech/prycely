@@ -48,8 +48,8 @@ class LoansController < ApplicationController
     @loan.group_id = session[:current_group]
     @loan.status = 0
     @loan.amount_paid = 0
-    @loan.interest = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
-    @loan.amount_due = @loan.amount + @loan.interest
+    @loan.amount_due = Loancategory.calculate_total_with_interest(@loan.amount, @loan.loan_type)
+    @loan.interest = @loan.amount_due - @loan.amount
     @loan.date_granted = Time.now if @loan.date_granted.nil?
 
     @loan.date_due = Loancategory.get_date_due(@loan.date_granted, @loan.loan_type)
@@ -187,7 +187,7 @@ class LoansController < ApplicationController
                      false
                    end
                  else
-                   amount.to_i > allowed_amount.to_i
+                   amount.to_i <= allowed_amount.to_i
                  end
     info = if loancategory.amount.include? 'x'
              if Currency.amount_from_cents(Member.savings(active_group, requester)).positive?
