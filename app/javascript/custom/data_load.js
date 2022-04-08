@@ -94,16 +94,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     data: {
                         labels: transactions.dates,
                         datasets: [{
+                            label: 'Credit',
                             data: transactions.credit,
+                            backgroundColor: 'blue',
+                        }, {
+                            label: 'Debit',
+                            data: transactions.debit,
+                            backgroundColor: 'red',
                         }]
                     },
-                    responsive: true,
-                    scales: {
-                        x: {
-                            stacked: true,
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Group Transactions'
+                            },
                         },
-                        y: {
-                            stacked: true,
+                        responsive: true,
+                        scales: {
+                            x: {
+                                stacked: true,
+                            },
+                            y: {
+                                stacked: true
+                            }
                         }
                     }
                 });

@@ -95,7 +95,7 @@ class GroupsController < ApplicationController
         params: params
       }
     else
-      group_id = @group.id
+      group_id = Group.find(params[:group_id]).present? ? params[:group_id] : @group.id
       from = params[:from]
       to = params[:to]
 
