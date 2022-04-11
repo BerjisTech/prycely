@@ -4,7 +4,42 @@
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
-      
+      <div class="shadow border rounded bg-white my-3">
+        <div class="row">
+          <div class="col-sm-3 border-end">
+            <div class="d-flex align-items-center justify-content-center whole-width">
+              <span class="my-3">
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 1)[:credit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <small>Group Savings</small>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-3 border-end">
+            <div class="d-flex align-items-center justify-content-center whole-width">
+              <span class="my-3">
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 2)[:credit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <small>Wallets Balance</small>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-3 border-end">
+            <div class="d-flex align-items-center justify-content-center whole-width">
+              <span class="my-3">
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Loan.where(user_id: current_user.id, status: 1).pluck('sum(amount)').first || 0, precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <small>Loans Approved</small>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="d-flex align-items-center justify-content-center whole-width">
+              <span class="my-3">
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Loan.where(user_id: current_user.id, status: 3).pluck('sum(amount)').first || 0, precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <small>Loans Paid</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="shadow border rounded bg-white">
         <div class="dashboard_content_picker d-flex px-4 border-bottom">
           <div class="p-4 pointer active">Groups</div>
