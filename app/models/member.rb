@@ -30,7 +30,7 @@ class Member < ApplicationRecord
 
     def can_add_members(user_id, group_id)
       CAN_ADD_MEMBERS.include? Designation.find(Member.find_by(user_id: user_id,
-                                                       group_id: group_id).designation).name.downcase.to_s
+                                                               group_id: group_id).designation).name.downcase.to_s
     end
 
     def is_in_group(user, group_id)

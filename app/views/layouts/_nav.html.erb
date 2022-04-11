@@ -15,6 +15,85 @@
       <% end %>
     </div>
   </div>
-  <div class="nav-body"></div>
+  <div class="nav-body">
+    <ul id="main-menu" class="main-menu">
+      <li>
+        <%= link_to dashboard_path, class: "nav-link" do %>
+          <i class="material-icons">dashboard</i>
+          <span class="title">Dashboard</span>
+        <% end %>
+      </li>
+      <li class="has-sub 
+      <% if controller_name == "groups" || controller_name == "members" || controller_name == "projects" || controller_name == "loans" || controller_name == "assets" || controller_name == "liabilities" || controller_name == "groups" || action_name == "contributions" %>
+      opened
+      <% end %>
+      ">
+        <%= link_to groups_path, class: "nav-link" do %>
+          <i class="material-icons">groups</i>
+          <span class="title">
+            Group 
+            <% if session[:current_group] %>
+              (<%= Group.find(session[:current_group]).name %>)
+            <% end %>
+          </span>
+        <% end %>
+        <ul>
+          <% if session[:current_group] %>
+            <li>
+              <%= link_to group_path(session[:current_group]), class: "nav-link" do %>
+                <i class="material-icons">text_snippet</i><span class="title">Overview</span>
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to members_path, class: "nav-link" do %>
+              <i class="material-icons">group</i><span class="title">Members</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to contributions_path, class: "nav-link" do %>
+              <i class="material-icons">savings</i><span class="title">Savings & Contributions</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to projects_path, class: "nav-link" do %>
+              <i class="material-icons">business_center</i><span class="title">Projects</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to loans_path, class: "nav-link" do %>
+              <i class="material-icons">credit_score</i><span class="title">Loans</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to group_assets_path, class: "nav-link" do %>
+              <i class="material-icons">maps_home_work</i><span class="title">Assets</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to liabilities_path, class: "nav-link" do %>
+              <i class="material-icons">money_off_csred</i><span class="title">Liabilities</span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="has-sub <% if controller_name == "wallets" %>opened<% end %>">
+        <%= link_to wallets_path, class: "nav-link" do %>
+          <i class="material-icons">account_balance_wallet</i>
+          <span class="title">Wallets</span>
+        <% end %>
+        <ul>
+          <li>
+            <% Wallet.mine(current_user.id).map do |wallet| %>
+              <%= link_to wallet_path(wallet.id), class: "nav-link" do %>
+                <img src="https://assets.prycely.com/images/flags/<%= wallet.currency[0...2].downcase %>.svg" style="width: 30px;"/>
+                <span class="title"><%= wallet.currency.upcase %></span>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div class="nav-footer border-top"></div>
 </div>

@@ -160,8 +160,7 @@ class LoansController < ApplicationController
                     icon: 'check',
                     remove_color: 'text-danger',
                     add_color: 'text-primary',
-                    approval_text: 'rejected'
-                  }
+                    approval_text: 'rejected' }
                 else
                   { type: 'failed',
                     message: 'Fuck off' }

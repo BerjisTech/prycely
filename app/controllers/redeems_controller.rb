@@ -31,7 +31,7 @@ class RedeemsController < ApplicationController
         if @already_invited.nil?
           @account = Account.where(user_id: current_user.id).pluck(:id)
           Member.new(invited_by: @invite.user_id, user_id: current_user.id, group_id: @invite.group_id,
-                     designation: Designation.find_by(name: 'Member').id, status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: @account[0]).save
+                     designation: Designation.find_by(name: 'Member').id, status: '1', invited_on: Date.today, accepted_on: Date.today, paid_member: '', amount: 0, account_id: @account[0]).save
           Redeem.new(invite_id: @invite.id, user_id: current_user.id, group_id: @invite.group_id,
                      complete: 1).save
           Invite.where(invite_key: @invite_key).update_all(total_redeemed: @new_redeem_count)
@@ -56,7 +56,8 @@ class RedeemsController < ApplicationController
     @invite_key = session[:invite_key]
     @invite = Invite.find_by(invite_key: @invite_key)
     Invite.where(invite_key: @invite_key).update_all(total_redeemed: 1)
-    Member.where(group_id: session[:current_group]).where(user_id: current_user.id).update_all(status: '1')
+    Member.where(group_id: session[:current_group], user_id: current_user.id).update_all(status: '1')
+    Member.where(group_id: session[:current_group], user_id: current_user.id).update_all(accepted_on: DateTime.now)
     Redeem.where(invite_id: @invite_key).update_all(complete: 1)
     @group = Group.find(session[:current_group])
     redirect_to @group, notice: "You have succesfully joined #{@group.name}"

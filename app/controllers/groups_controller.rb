@@ -10,6 +10,9 @@ class GroupsController < ApplicationController
   def index
     # @groups = Group.all
     @groups = Group.mine(current_user.id)
+    # redirect_to invites_path, notice: 'You have groups you`ve been invited to' if @groups.filter do |g|
+    #                                                                                 g.accepted_on.nil?
+    #                                                                               end.size.positive?
   end
 
   # GET /groups/1 or /groups/1.json

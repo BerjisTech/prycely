@@ -52,11 +52,11 @@ class MembersController < ApplicationController
 
       if Invite.already_sent(invite_email, @group.id)
         redirect_to group_members_path(@group.name, Digest::SHA1.hexdigest(@group.id.to_s), @group.id),
-                    notice: "#{Account.full_names(@member.user_id)} was already invited to #{@group.name}"
+                    notice: "#{Member.full_names(@member.user_id)} is already a member of #{@group.name}"
       elsif Member.is_in_group(@member.user_id, @group.id)
 
         redirect_to new_member_path,
-                    notice: "This member already exists in #{@group.name}"
+                    notice: "#{Member.full_names(@member.user_id)} is already a member of #{@group.name}"
       else
 
         invite_key = Digest::SHA1.hexdigest("#{DateTime.now}/#{@group.id}")
