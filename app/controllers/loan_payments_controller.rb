@@ -31,7 +31,9 @@ class LoanPaymentsController < ApplicationController
   def create
     @loan_payment = LoanPayment.new(loan_payment_params)
 
-    render json: params
+    render json: LoanPayment.initiate_payment(params)
+
+    # render json: params
     # respond_to do |format|
     #   if @loan_payment.save
     #     format.html { redirect_to loan_payment_url(@loan_payment), notice: 'Loan payment was successfully created.' }

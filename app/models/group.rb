@@ -91,9 +91,9 @@ class Group < ApplicationRecord
       transactions.map do |transaction|
         graph_data[:dates] << transaction.date.strftime('%Y-%m-%d')
         graph_data[:debit] << Currency.calculate_and_convert(Currency.amount_from_cents(transaction.debit).round(2),
-                                                                    transaction.currency.upcase, account.default_currency.upcase)
+                                                             transaction.currency.upcase, account.default_currency.upcase)
         graph_data[:credit] << Currency.calculate_and_convert(Currency.amount_from_cents(transaction.credit).round(2),
-                                                                     transaction.currency.upcase, account.default_currency.upcase)
+                                                              transaction.currency.upcase, account.default_currency.upcase)
       end
       graph_data
     end

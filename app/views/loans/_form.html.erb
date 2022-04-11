@@ -34,7 +34,7 @@
       </div>
 
       <div class="field form-floating my-2 hidden guarantor_field">
-        <%= select_tag("guarantor_select", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "guarantor_select form-control", :placeholder => "Placeholder", prompt: "Select Guarantors", required: "required" }) %>
+        <%= select_tag("guarantor_select", options_from_collection_for_select(Member.for_group(@group.id), :user_id, :full_names), { :class => "guarantor_select form-control", :placeholder => "Placeholder", prompt: "Select Guarantors" }) %>
         <%= form.label :guarantors %>
       </div>
 

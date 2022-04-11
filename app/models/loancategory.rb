@@ -35,16 +35,16 @@ class Loancategory < ApplicationRecord
       ((interest / 100) * amount)
     end
 
-    def get_pa_interest(amount, interest, duration)
-      (amount * (interest.to_f / 100) * duration)
+    def get_pa_interest(balance, interest, duration)
+      ((interest.to_f / 100) * balance)
     end
 
-    def get_pd_interest(amount, interest, duration)
-      (amount * (interest.to_f / 100) * duration)
+    def get_pd_interest(balance, interest, duration)
+      ((interest.to_f / 100) * balance)
     end
 
-    def get_pm_interest(amount, interest, duration)
-      (amount * (interest.to_f / 100) * duration)
+    def get_pm_interest(balance, interest, duration)
+      ((interest.to_f / 100) * balance)
     end
 
     def get_rb_interest(balance, interest)
