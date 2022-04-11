@@ -125,7 +125,8 @@ class LoansController < ApplicationController
                     icon: 'cancel',
                     remove_color: 'text-primary',
                     add_color: 'text-danger',
-                    loan_status: Loan.find(params[:loan_id]).status
+                    loan_status: Loan.find(params[:loan_id]).status,
+                    approval_text: 'Approved'
                   }
                 else
                   {
@@ -158,7 +159,9 @@ class LoansController < ApplicationController
                     approval_path: i_approve_path,
                     icon: 'check',
                     remove_color: 'text-danger',
-                    add_color: 'text-primary' }
+                    add_color: 'text-primary',
+                    approval_text: 'rejected'
+                  }
                 else
                   { type: 'failed',
                     message: 'Fuck off' }

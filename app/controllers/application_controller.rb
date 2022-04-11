@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     if session[:current_group].blank? || session[:current_group].empty?
       redirect_to groups_path, notice: 'You need to pick a group before doing that'
     else
+      session[:active_group] = session[:current_group]
       @group = Group.find(session[:current_group])
     end
   end

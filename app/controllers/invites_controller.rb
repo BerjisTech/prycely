@@ -3,10 +3,11 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show]
+  before_action :has_active_group?
 
   # GET /invites or /invites.json
   def index
-    @invites = Invite.where(invite_email: current_user.email).joins(:group).joins(user: :accounts).select('invites.id',
+    @invites = Invite.where(group_id: session[:active_group]).joins(:group).joins(user: :accounts).select('invites.id',
                                                                                                           :first_name, :last_name, :name, :email, :group_id, :group_type, :description, :user_id, :invite_key, :max_redeem, :total_redeemed, :invite_email, :created_at, :updated_at)
   end
 

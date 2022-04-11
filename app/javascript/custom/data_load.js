@@ -4,9 +4,6 @@ import Chart from 'chart.js/auto'
 document.addEventListener("DOMContentLoaded", (event) => {
     $(document).on('turbolinks:load', () => {
         let extra_functions = () => {
-            if (window.location.href.includes('loan')) {
-                initiate_approval_buttons()
-            }
         }
 
         let fetch_data = (from, to) => {
@@ -20,7 +17,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 },
                 success: (response) => {
                     document.querySelector('.fetched_data_js_block').innerHTML = response
-                    extra_functions()
                 },
                 error: (response) => {
                     toastr.error(`There has been an error fetching your ${page_title}`)
@@ -36,47 +32,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         if (window.location.href.includes(`/${page_title}/g/`))
             fetch_data(7, 0)
-
-        let initiate_approval_buttons = () => {
-            let manager = ''
-            let approval_path = ''
-            let loan_id = ''
-            let approval_class = ''
-            $('.l_approval').on('click', (e) => {
-                e.preventDefault()
-                e.stopPropagation()
-
-                let l_approval = $(e.target)
-
-                manager = l_approval.attr('loan_manager')
-                approval_path = l_approval.attr('loan_approval_path')
-                loan_id = l_approval.attr('loan_id')
-                approval_class = $(`.l_${loan_id}`)
-
-                $.ajax({
-                    url: approval_path,
-                    data: {
-                        'authenticity_token': $('[name="csrf-token"]')[0].content,
-                        'user_id': manager,
-                        'loan_id': loan_id
-                    },
-                    method: 'POST',
-                    success: (response) => {
-                        console.log(response)
-                        response = response[0]
-                        if (!response.type == 'success') return
-                        approval_class.attr('loan_approval_path', response.approval_path)
-                        approval_class.html(response.icon)
-                        approval_class.removeClass(response.remove_color)
-                        approval_class.addClass(response.add_color)
-                        toastr.info(response.message)
-                    },
-                    error: (error) => {
-                        console.log(error)
-                    }
-                })
-            })
-        }
 
         if (window.location.href.includes('groups')) {
             let chart_pane = document.getElementById("chart_pane");

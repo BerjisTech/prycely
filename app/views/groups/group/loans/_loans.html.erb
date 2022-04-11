@@ -30,7 +30,7 @@
         <td>
           <%= number_with_precision(loan.amount_due, precision: 2, delimiter: ",") %>
         </td>
-        <td>
+        <td class="<%= loan.id %>_approval_text">
           <%= Loan.status(loan.status) %>
         </td>
         <td class="guarantor_list_block">

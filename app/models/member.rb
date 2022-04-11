@@ -15,6 +15,7 @@ class Member < ApplicationRecord
 
   ADMIN = ['admin'].freeze
   MANAGER = %w[admin secretary treasurer chairperson].freeze
+  CAN_ADD_MEMBERS = %w[admin secretary chairperson].freeze
   STATUS = %w[pending approved denied derigestered].freeze
   class << self
     def is_admin(user_id, group_id)
@@ -24,6 +25,11 @@ class Member < ApplicationRecord
 
     def is_manager(user_id, group_id)
       MANAGER.include? Designation.find(Member.find_by(user_id: user_id,
+                                                       group_id: group_id).designation).name.downcase.to_s
+    end
+
+    def can_add_members(user_id, group_id)
+      CAN_ADD_MEMBERS.include? Designation.find(Member.find_by(user_id: user_id,
                                                        group_id: group_id).designation).name.downcase.to_s
     end
 

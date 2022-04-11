@@ -3,7 +3,9 @@
   <div class="col-sm-10">
     <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
       <h3 class="my-3 py-3">Recent Transactions</h3>
-      <%= link_to "New Transaction", group_deposit_path(@group.id), class: "btn btn-success btn-md" %>
+      <% if Member.is_manager(current_user.id, params[:group_id]) %>
+        <%= link_to "New Transaction", group_deposit_path(@group.id), class: "btn btn-success btn-md" %>
+      <% end %>
     </div>
     <div class="bg-white shadow border rounded">
       <div class="d-flex align-items-center justify-content-between p-2 border-bottom">

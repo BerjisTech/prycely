@@ -21,9 +21,10 @@
     </ul>
     <div class="tab-content" id="owner_list">
       <div class="tab-pane fade show active" id="active_owners_list" role="tabpanel" arialabelledby="active_owners">
-        <table class="table table-hover">
-          <% @managers.each_with_index.map do |member, index| %>
-            <% if member.status == '1' %>
+        <% active_managers = @managers.filter{|m| m.status.to_i == 1}%>
+        <%- if active_managers.size.positive? %>
+          <table class="table table-hover">
+            <% active_managers.each_with_index.map do |member, index| %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -32,13 +33,22 @@
                 <td><%= Designation.find(member.designation).name.humanize %></td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
+          </table>
+        <% else %>
+          <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+            <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+            <%= @group.name.humanize %> has no active managers
+            <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
+              <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="tab-pane fade" id="invited_owners_list" role="tabpanel" arialabelledby="invited_owners">
-        <table class="table table-hover">
-          <% @managers.each_with_index.map do |member, index| %>
-            <% if member.status == '0' %>
+        <% invited_managers = @managers.filter{|m| m.status.to_i == 0}%>
+        <%- if invited_managers.size.positive?%>
+          <table class="table table-hover">
+            <% invited_managers.each_with_index.map do |member, index| %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -47,8 +57,19 @@
                 <td><%= Designation.find(member.designation).name.humanize %></td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
+          </table>
+        <% else %>
+          <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+            <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+            <%= @group.name.humanize %> has no invited managers
+            <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
+              <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
+            <% end %>
+          </div>
+        <% end %>
+        <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
+          <%= link_to "Add a Manager", new_member_path, class: "nav-link"%>
+        <% end %>
       </div>
     </div>
   </div>
@@ -73,8 +94,10 @@
     <div class="tab-content" id="owner_list">
       <div class="tab-pane fade show active" id="active_members_list" role="tabpanel" arialabelledby="active_members">
         <table class="table table-hover">
-          <% @members.each_with_index.map do |member, index| %>
-            <% if member.status == '1' %>
+
+          <% active_members = @members.filter{|m| m.status.to_i == 1} %>
+          <%- if active_members.size.positive? %>
+            <% active_members.each_with_index.map do |member, index| %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -83,13 +106,22 @@
                 <td><%= Designation.find(member.designation).name.humanize %></td>
               </tr>
             <% end %>
+          <% else %>
+            <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+              <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+              <%= @group.name.humanize %> has no active members
+              <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
+                <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
+              <% end %>
+            </div>
           <% end %>
         </table>
       </div>
       <div class="tab-pane fade" id="invited_members_list" role="tabpanel" arialabelledby="invited_members">
         <table class="table table-hover">
-          <% @members.each_with_index.map do |member, index| %>
-            <% if member.status == '0' %>
+          <% invited_members = @members.filter{|m| m.status.to_i == 0} %>
+          <%- if invited_members.size.positive? %>
+            <% invited_members.each_with_index.map do |member, index| %>
               <tr border="0">
                 <td>
                   <span class="d-flex align-items-center justify-content-center" style="height: 40px; width: 40px; font-size: 20px; background: #FDEDEE; color: #E14141; border-radius: 10px;"><%= member.first_name[0...2] %></span>
@@ -98,6 +130,14 @@
                 <td><%= Designation.find(member.designation).name.humanize %></td>
               </tr>
             <% end %>
+          <% else %>
+            <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
+              <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+              <%= @group.name.humanize %> has no new invites
+            </div>
+          <% end %>
+          <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
+            <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
           <% end %>
         </table>
       </div>
