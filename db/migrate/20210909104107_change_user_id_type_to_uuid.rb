@@ -9,10 +9,6 @@ class ChangeUserIdTypeToUuid < ActiveRecord::Migration[6.1]
     execute "ALTER TABLE activities ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
     execute "ALTER TABLE activities ALTER COLUMN created_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(created_by),'-',''), 32, '0')));"
 
-    # ASSETS TABLES
-    execute "ALTER TABLE assets ALTER COLUMN group_id SET DATA TYPE UUID USING (uuid(lpad(replace(text(group_id),'-',''), 32, '0')));"
-    execute "ALTER TABLE assets ALTER COLUMN added_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(added_by),'-',''), 32, '0')));"
-
     # GROUPS TABLES
     execute "ALTER TABLE groups ALTER COLUMN created_by SET DATA TYPE UUID USING (uuid(lpad(replace(text(created_by),'-',''), 32, '0')));"
 

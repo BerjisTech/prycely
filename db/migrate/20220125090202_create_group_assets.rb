@@ -10,6 +10,8 @@ class CreateGroupAssets < ActiveRecord::Migration[6.1]
       t.datetime :date_sold
       t.uuid :user_id
       t.float :price
+      t.uuid :project_id
+      t.float :selling_price
 
       t.timestamps
     end

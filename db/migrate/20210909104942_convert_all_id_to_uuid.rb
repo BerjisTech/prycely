@@ -14,10 +14,6 @@ class ConvertAllIdToUuid < ActiveRecord::Migration[6.1]
     execute "ALTER TABLE admins ALTER COLUMN id SET DATA TYPE UUID USING (uuid(lpad(replace(text(id),'-',''), 32, '0')));"
     execute 'ALTER TABLE admins ALTER COLUMN id SET DEFAULT gen_random_uuid();'
 
-    execute 'ALTER TABLE assets ALTER COLUMN id DROP DEFAULT;'
-    execute "ALTER TABLE assets ALTER COLUMN id SET DATA TYPE UUID USING (uuid(lpad(replace(text(id),'-',''), 32, '0')));"
-    execute 'ALTER TABLE assets ALTER COLUMN id SET DEFAULT gen_random_uuid();'
-
     execute 'ALTER TABLE errors ALTER COLUMN id DROP DEFAULT;'
     execute "ALTER TABLE errors ALTER COLUMN id SET DATA TYPE UUID USING (uuid(lpad(replace(text(id),'-',''), 32, '0')));"
     execute 'ALTER TABLE errors ALTER COLUMN id SET DEFAULT gen_random_uuid();'
