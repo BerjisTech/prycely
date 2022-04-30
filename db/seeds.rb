@@ -110,6 +110,6 @@ Siri.create([
 
 p "Created #{Siri.count} Kronus"
 if Rails.env.development?
-  AdminUser.create!(email: 'bo.kouru@gmail.com', password: '890Berjis*()',
-                    password_confirmation: '890Berjis*()')
+  AdminUser.create!(email: 'admin@example.com', password: 'password',
+                    password_confirmation: 'password')
 end
