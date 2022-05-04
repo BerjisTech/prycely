@@ -5,7 +5,7 @@ class PaybillsController < ApplicationController
   before_action :set_paybill, only: %i[show edit update destroy]
 
   # GET /paybills or /paybills.json
-  def index
+  def _index
     @paybills = Paybill.all
   end
 
@@ -13,7 +13,7 @@ class PaybillsController < ApplicationController
   def show; end
 
   # GET /paybills/new
-  def new
+  def _new
     @paybill = Paybill.new
   end
 

@@ -5,7 +5,7 @@ class StksController < ApplicationController
   before_action :set_stk, only: %i[show edit update destroy]
 
   # GET /stks or /stks.json
-  def index
+  def _index
     @stks = Stk.all
   end
 
@@ -13,7 +13,7 @@ class StksController < ApplicationController
   def show; end
 
   # GET /stks/new
-  def new
+  def _new
     @stk = Stk.new
   end
 

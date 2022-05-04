@@ -2,6 +2,8 @@
 
 class DesignationsController < ApplicationController
   before_action :set_designation, only: %i[show edit update destroy]
+  before_action :has_active_group?
+  before_action :check_if_manager
 
   # GET /designations or /designations.json
   def index

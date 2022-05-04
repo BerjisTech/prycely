@@ -4,6 +4,9 @@ class InvitesController < ApplicationController
   before_action :set_invite, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show]
 
+  before_action :has_active_group?
+  before_action :check_if_manager
+  
   # GET /invites or /invites.json
   def index
     @invites = if session[:active_group]

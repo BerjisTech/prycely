@@ -5,11 +5,12 @@ class LoancategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_loancategory, only: %i[show edit update destroy]
   before_action :has_active_group?, except: :index
+  before_action :check_if_manager
   before_action :set_group_by_session
 
   # GET /loancategories or /loancategories.json
   def index
-    @loancategories = Loancategory.all
+    @loancategories = Loancategory.where(group_id: session[:current_group])
   end
 
   # GET /loancategories/1 or /loancategories/1.json

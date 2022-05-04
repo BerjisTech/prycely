@@ -4,6 +4,7 @@ class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
   before_action :has_active_group?
+  before_action :check_if_manager
   before_action :set_group_by_session
 
   # GET /activities or /activities.json

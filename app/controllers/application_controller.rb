@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_if_manager
+    redirect_to group_path(session[:current_group]) unless Member.is_manager(current_user.id, session[:current_group])
+  end
+
   def set_account
     @account = Account.find_by(user_id: current_user.id)
   end

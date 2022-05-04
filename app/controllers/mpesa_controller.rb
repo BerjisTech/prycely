@@ -5,7 +5,7 @@ class MpesaController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[c2b callback_stk callback_b2c callback_c2b]
   before_action :set_mpesa
 
-  def index; end
+  def _index; end
 
   def b2c
     amount = 10
