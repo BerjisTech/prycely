@@ -239,7 +239,7 @@ class GroupsController < ApplicationController
   def create_group_admin(user_id, group_id, account, group)
     if user_id == group.created_by
       admin_account = Member.new(invited_by: user_id, user_id: user_id,
-                                 group_id: group_id, designation: Designation.find_by(name: 'Admin').id, status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: account.id)
+                                 group_id: group_id, designation: Designation.find_or_create_by(name: 'Admin').id, status: '1', invited_on: DateTime.now, accepted_on: DateTime.now, paid_member: '', amount: 0, account_id: account.id)
 
       if admin_account.save
         redirect_to group_url(group_id), notice: 'Your admin account has succsefully been set up'
