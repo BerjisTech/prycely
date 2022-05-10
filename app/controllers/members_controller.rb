@@ -16,10 +16,10 @@ class MembersController < ApplicationController
   end
 
   def group
-    @members = Member.where(group_id: session[:current_group], designation: Designation.find_by(name: 'Member').id).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+    @members = Member.where(group_id: session[:current_group], designation: Designation.find_or_create_by(name: 'Member').id).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
-    @managers = Member.where.not(designation: Designation.find_by(name: 'Member').id).where(group_id: session[:current_group]).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+    @managers = Member.where.not(designation: Designation.find_or_create_by(name: 'Member').id).where(group_id: session[:current_group]).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
   end

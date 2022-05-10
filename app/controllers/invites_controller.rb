@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
 
   before_action :has_active_group?
   before_action :check_if_manager
-  
+
   # GET /invites or /invites.json
   def index
     @invites = if session[:active_group]
