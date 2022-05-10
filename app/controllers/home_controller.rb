@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     payment_categories = hash.filter { |f| f['name'] == 'payment_categories' }.first['data']
 
     payroll = hash.filter { |f| f['name'] == 'payroll' }.first['data']
-    render json: [create_ufami_users(members), create_contributions(contributions)]
+    render json: create_contributions(contributions)
   end
 
   def create_ufami_users(members)
@@ -94,7 +94,8 @@ class HomeController < ApplicationController
                             sub_category: nil,
                             currency: 'KES',
                             level: 1,
-                            created_at: Time.at(contribution['date'].to_i).to_s(:db)
+                            created_at: Time.at(contribution['date'].to_i).to_s(:db),
+                            updated_at: Time.at(contribution['date'].to_i).to_s(:db)
                           })
     end
   end

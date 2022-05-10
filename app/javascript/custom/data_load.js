@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 fetch_graph_data($(e.target).val(), 0, $(chart_pane).attr('data-path'))
             })
 
-            fetch_graph_data(7, 0, $(chart_pane).attr('data-path'))
+            fetch_graph_data(30, 0, $(chart_pane).attr('data-path'))
         }
     })
 })
