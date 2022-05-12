@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   match 'c2b-callback', to: 'mpesa#callback_c2b', via: %i[get post]
   match 'stk-callback', to: 'mpesa#callback_stk', via: %i[get post]
   match 'access-token', to: 'mpesa#access_token', via: %i[get post]
-  get 'ufami', controller: :home, action: :ufami
+  # get 'ufami', controller: :home, action: :ufami
 
   authenticated :user do
     get 'purge/errors', controller: :errors, action: :clear
