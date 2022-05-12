@@ -6,6 +6,9 @@ class GroupsController < ApplicationController
   before_action :set_account
   before_action :has_active_group?, except: %i[index new create]
 
+  COLORS = ['#ea795d', '#de7412', '#8bf9f3', '#729782', '#6a65d2', '#57755b', '#49fdc4', '#422bda', '#3b5837',
+            '#2e50cc', '#2e50cc', '#26351c', '#1b5ca1', '#162bb1', '#0b0e06', '#0a5b76', '#050c8f'].freeze
+
   # GET /groups or /groups.json
   def index
     # @groups = Group.all
@@ -132,7 +135,29 @@ class GroupsController < ApplicationController
       end
     end
 
-    render json: output
+    render json: {
+      metrics: transactions,
+      type: '',
+      status: '',
+      message: '',
+      chart_type: 'line',
+      blocks: 2,
+      sets: [
+        {
+          title: 'Debit',
+          values: transactions[:debit],
+          color: '#1A6BAC'
+        },
+        {
+          title: 'Credit',
+          values: transactions[:credit],
+          color: '#F6002B'
+        }
+      ],
+      keys: transactions[:dates],
+      values: [],
+      title: 'Balance Flow'
+    }
   end
 
   def projects
