@@ -38,6 +38,7 @@ class GroupsController < ApplicationController
       if @group.created_by.nil? || @group.name.nil? || @group.group_type.nil?
         format.html { redirect_to groups_path, notice: "Some info is missing.#{@group.inspect}" }
       elsif @group.save
+        create_default_category(@group)
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -45,6 +46,15 @@ class GroupsController < ApplicationController
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_default_category(group)
+    Paymentcategory.find_or_create_by!({
+                                         group_id: group.id,
+                                         created_by: group.created_by,
+                                         payment_category_type: 1,
+                                         name: 'contribution'
+                                       })
   end
 
   # PATCH/PUT /groups/1 or /groups/1.json

@@ -25,8 +25,8 @@
             <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
           </span>
         </td>
-        <td><%= transaction.transaction_type %></td>
-        <td><%= transaction.category %></td>
+        <td><%= Paymentcategory.category_name[transaction.transaction_type] %></td>
+        <td><%= Paymentcategory.find(transaction.category).name %></td>
         <td>
           <%= transaction.updated_at.strftime("%b, #{transaction.updated_at.day.ordinalize} %Y") %>
         </td>
