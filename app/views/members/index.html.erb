@@ -10,30 +10,14 @@
       <table class="table table-hover" style="font-size: 16px !important;">
         <thead>
           <tr>
-            <th>ID</th>
-            <th></th>
             <th>Status</th>
             <th>NAME AND ROLE</th>
             <th>EMAIL</th>
-            <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-              <th>Action</th>
-            <% end %>
           </tr>
         </thead>
         <tbody>
           <% @members.each do |member| %>
             <tr>
-              <td><%= member.id %></td>
-              <td>
-                <% member_account = member_account %>
-                <% if member_account.present? %>
-                  <% if member_account.image.attached? %>
-                    <%= image_tag member_account.image.variant(resize: "500x500"), alt: "#{member.first_name.humanize} #{member.last_name.humanize}", class: "img-rounded" %>
-                  <% else %>
-                    <img class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" />
-                  <% end %>
-                <% end %>
-              </td>
               <td><%= Member.status(member.status.to_i) %></td>
               <td>
                 <%= member.first_name.humanize %> <%= member.last_name.humanize %>
@@ -42,29 +26,9 @@
                 <% end %>
               </td>
               <td><%= member.email %></td>
-              <% if Member.is_manager(current_user.id, member.group_id) %>
-                <td>
-                  <span class="admin_member_actions">
-                    <%= link_to "recent_actors", member, class: "material-icons" %>
-                    <%= link_to "manage_accounts", edit_member_path(member), class: "material-icons" %>
-                    <%= link_to "person_off", member, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons text-danger" %>
-                  </span>
-                </td>
-              <% end %>
             </tr>
           <% end %>
         </tbody>
-        <tfoot>
-          <tr>
-            <th>ID</th>
-            <th></th>
-            <th>NAME AND ROLE</th>
-            <th>EMAIL</th>
-            <% if @me.last.designation == "admin" || @me.last.designation == "secretary" %>
-              <th>Action</th>
-            <% end %>
-          </tr>
-        </tfoot>
       </table>
     </div>
   </div>
