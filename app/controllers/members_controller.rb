@@ -16,16 +16,19 @@ class MembersController < ApplicationController
   end
 
   def group
-    @members = Member.where(group_id: session[:current_group], designation: Designation.find_or_create_by(name: 'Member').id).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+    @members = Member.where(group_id: session[:current_group], designation: Designation.find_or_create_by(name: 'Member').id).where("status = '1' or status = '0'").joins(user: :accounts).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
-    @managers = Member.where.not(designation: Designation.find_or_create_by(name: 'Member').id).where(group_id: session[:current_group]).where("status = '1' or status = '0'").joins(user: :accounts).limit(10).select(
+    @managers = Member.where.not(designation: Designation.find_or_create_by(name: 'Member').id).where(group_id: session[:current_group]).where("status = '1' or status = '0'").joins(user: :accounts).select(
       :first_name, :last_name, :email, :group_id, :user_id, :id, :invited_on, :accepted_on, :invited_by, :designation, :status
     )
   end
 
   # GET /members/1 or /members/1.json
-  def show; end
+  def show
+    @account = Account.find_by(user_id: @member.user_id)
+    @my_group_numbers = Transaction.my_group_numbers(@member.user_id, @member.group_id)
+  end
 
   # GET /members/new
   def new

@@ -1,49 +1,74 @@
-<!--p id="notice"><%= notice %></p-->
-
-<p>
-  <strong>Invited by:</strong>
-  <%= @member.invited_by %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @member.user_id %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= @member.group_id %>
-</p>
-
-<p>
-  <strong>Designation:</strong>
-  <%= @member.designation %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @member.status %>
-</p>
-
-<p>
-  <strong>Invited on:</strong>
-  <%= @member.invited_on %>
-</p>
-
-<p>
-  <strong>Accepted on:</strong>
-  <%= @member.accepted_on %>
-</p>
-
-<p>
-  <strong>Paid member:</strong>
-  <%= @member.paid_member %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @member.amount %>
-</p>
-
-<%= link_to "Edit", edit_member_path(@member) %> |
-<%= link_to "Back", members_path %>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+  <span class="fs-3"><%= Account.full_names(@member.user_id) %> <%= Group.find(@member.group_id).name.classify %> details </span>
+    <div class="shadow border rounded bg-white my-3">
+      <div class="row">
+        <div class="col-sm-3 border-end">
+          <div class="d-flex align-items-center justify-content-center whole-width">
+            <span class="my-3">
+              <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(@my_group_numbers[:debit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+              <small>Group Savings</small>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-3 border-end">
+          <div class="d-flex align-items-center justify-content-center whole-width">
+            <span class="my-3">
+              <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(@my_group_numbers[:credit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+              <small>Credited to me</small>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-3 border-end">
+          <div class="d-flex align-items-center justify-content-center whole-width">
+            <span class="my-3">
+              <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Loan.where(user_id: @member.user_id, group_id: session[:active_group], status: 1).pluck('sum(amount)').first || 0, precision: 2, delimiter: ',', separator: '.') %></span><br />
+              <small>Loans Approved</small>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="d-flex align-items-center justify-content-center whole-width">
+            <span class="my-3">
+              <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Loan.where(user_id: @member.user_id, group_id: session[:active_group], status: 3).pluck('sum(amount)').first || 0, precision: 2, delimiter: ',', separator: '.') %></span><br />
+              <small>Loans Paid</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow border rounded bg-white">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Transaction type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Transaction.where(user_id: @member.user_id, group_id: session[:active_group]).order(created_at: :desc).map do |transaction| %>
+            <tr>
+              <td>
+                <span class="fw-bold
+              <% if transaction.transaction_type == 1 %>
+               text-success
+              <% else %>
+                text-danger
+              <% end %>">
+                  <%= number_with_precision(Transact.amount_from_cents(transaction.amount), precision: 2, delimiter: ",") %>
+                </span>
+              </td>
+              <td><%= transaction.updated_at.strftime("%a, %b #{transaction.updated_at.day.ordinalize} %Y") %></td>
+              <td>
+                <%= Paymentcategory.find(transaction.category).name %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>

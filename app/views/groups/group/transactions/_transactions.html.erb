@@ -6,14 +6,13 @@
       <th>Type</th>
       <th>Category</th>
       <th>Date</th>
-      <td></td>
     </tr>
   </thead>
   <tbody>
     <% @transactions.map do |transaction| %>
       <tr>
         <td>
-          <%= link_to Account.full_names(transaction.user_id), account_path(Account.find_by(user_id: transaction.user_id).id) %>
+          <%= link_to Account.full_names(transaction.user_id), member_path(Member.find_by(user_id: transaction.user_id).id) %>
         </td>
         <td>
           <span class="fw-bold
@@ -29,9 +28,6 @@
         <td><%= Paymentcategory.find(transaction.category).name %></td>
         <td>
           <%= transaction.updated_at.strftime("%b, #{transaction.updated_at.day.ordinalize} %Y") %>
-        </td>
-        <td>
-          <%= link_to 'View', transaction_path(transaction.id) %>
         </td>
       </tr>
     <% end %>

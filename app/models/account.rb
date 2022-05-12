@@ -37,7 +37,7 @@ class Account < ApplicationRecord
     def full_names(user_id)
       account = Account.find_by(user_id: user_id)
       if account.present?
-        "#{account.first_name.to_s.humanize} #{account.last_name.to_s.humanize}"
+        "#{account.first_name.to_s.classify} #{account.last_name.to_s.classify}"
       else
         '-- --'.to_s
       end
