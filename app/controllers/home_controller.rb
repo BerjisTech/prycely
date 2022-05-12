@@ -23,7 +23,12 @@ class HomeController < ApplicationController
     payment_categories = hash.filter { |f| f['name'] == 'payment_categories' }.first['data']
 
     payroll = hash.filter { |f| f['name'] == 'payroll' }.first['data']
-    render json: old_tables
+
+    render json: [
+      create_ufami_users(members),
+      create_contributions(contributions),
+      create_payment_categories(payment_categories, payments)
+    ]
   end
 
   def create_ufami_users(members)
@@ -91,7 +96,7 @@ class HomeController < ApplicationController
                                        status: 1,
                                        transaction_mode: 0,
                                        description: '',
-                                       category: nil,
+                                       category: Paymentcategory.find_by(group_id: UFAMI, name: 'contribution').id,
                                        sub_category: nil,
                                        currency: 'KES',
                                        level: 1,
