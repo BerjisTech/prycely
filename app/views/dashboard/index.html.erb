@@ -9,7 +9,7 @@
           <div class="col-sm-3 border-end">
             <div class="d-flex align-items-center justify-content-center whole-width">
               <span class="my-3">
-                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 1)[:credit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 1)[:debit], precision: 2, delimiter: ',', separator: '.') %></span><br />
                 <small>Group Savings</small>
               </span>
             </div>
@@ -17,7 +17,7 @@
           <div class="col-sm-3 border-end">
             <div class="d-flex align-items-center justify-content-center whole-width">
               <span class="my-3">
-                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 2)[:credit], precision: 2, delimiter: ',', separator: '.') %></span><br />
+                <span class="fs-2"><small class="fs-6"><%= Money::Currency.find(@account.default_currency).symbol %></small> <%= number_with_precision(Transaction.my_numbers(current_user.id, 2)[:debit], precision: 2, delimiter: ',', separator: '.') %></span><br />
                 <small>Wallets Balance</small>
               </span>
             </div>

@@ -2,21 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .group {
-    display                : flex;
-    align-items            : center;
-    background             : rgba(255, 255, 255, 0.3);
-    box-shadow             : 0px 0px 10px rgba(31, 38, 135, 0.17);
-    backdrop-filter        : blur(20px);
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 10px rgba(31, 38, 135, 0.17);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius          : 0px;
-    border                 : 1px solid rgba(255, 255, 255, 0.18);
-    cursor                 : pointer;
-    color                  : #272B2F;
-    transition             : all 0.56s;
-    margin-bottom          : 10px;
+    border-radius: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    color: #272B2F;
+    transition: all 0.56s;
+    margin-bottom: 10px;
 
     &:hover {
-        color     : #272B2F;
+        color: #272B2F;
         background: rgba(155, 155, 155, 0.1);
     }
 
@@ -25,36 +25,36 @@
     }
 
     .group_dp {
-        width           : 40px;
-        height          : 40px;
-        display         : flex;
-        align-items     : center;
-        justify-content : center;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: rgba(31, 38, 135, 0.7);
-        color           : #ffffff;
-        border-radius   : 100%;
-        font-size       : 30px;
+        color: #ffffff;
+        border-radius: 100%;
+        font-size: 30px;
     }
 
     .group_identity,
     .group_name,
     .group_amount_progress,
     .group_currency_progress {
-        display       : flex;
+        display: flex;
         flex-direction: column;
-        flex-grow     : 4;
-        padding       : 5px;
+        flex-grow: 4;
+        padding: 5px;
     }
 }
 
 .feature {
-    display        : flex;
-    align-items    : center;
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
-    color          : #272B2F;
-    border-bottom  : 1px solid rgba(155, 155, 155, 0.5);
-    padding        : 10px 5px;
-    transition     : all 0.56s;
+    color: #272B2F;
+    border-bottom: 1px solid rgba(155, 155, 155, 0.5);
+    padding: 10px 5px;
+    transition: all 0.56s;
 
     &:hover {
         background: rgba(155, 155, 155, 0.1);
@@ -70,32 +70,25 @@
 }
 
 .group-overview {
-    display       : flex;
-    flex-direction: column;
 
     .overview-numbers {
-        display        : flex;
-        flex-direction : row;
-        background     : #3B5998; // #6627FF;
-        box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        border-radius  : 0px;
-        border         : 1px solid rgba(255, 255, 255, 0.18);
-        padding        : 20px;
-        align-items    : center;
-        justify-content: center;
+        background: #3B5998; // #6627FF;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border-radius: 0px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
 
         * {
             color: #ffffff !important;
         }
 
         .overview-numbers-data {
-            display       : flex;
+            display: flex;
             flex-direction: column;
-            flex-grow     : 4;
+            flex-grow: 4;
 
             .available-numbers,
             .available-log {
-                display       : flex;
+                display: flex;
                 flex-direction: column;
             }
 
@@ -112,7 +105,7 @@
             }
 
             .available-transactions {
-                display       : flex;
+                display: flex;
                 flex-direction: row;
 
                 .transactions {
@@ -121,7 +114,7 @@
 
                 .transactions,
                 .members {
-                    display       : flex;
+                    display: flex;
                     flex-direction: column;
 
                     span {
@@ -136,42 +129,26 @@
                 }
             }
         }
-
-        .overview-numbers-graphic {
-            img {
-                max-width    : 150px;
-                border-radius: 10px;
-            }
-        }
     }
 
     .overview-extras {
-        display       : flex;
-        flex-direction: row;
-        cursor        : pointer;
+        cursor: pointer;
 
         .credit,
         .debit {
-            display        : flex;
-            flex-direction : column;
-            background     : rgba(255, 255, 255, 1);
-            box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border-radius  : 0px;
-            border         : 1px solid rgba(255, 255, 255, 0.18);
-            flex-grow      : 4;
-            margin-top     : 10px;
-            padding        : 10px;
-            text-align     : center;
-            align-items    : center;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            align-items: center;
             justify-content: center;
-            transition     : all 0.56s;
+            transition: all 0.56s;
 
             &:hover {
                 transform: scale(1.1);
-            }
-
-            * {
-                color: #10131A !important;
             }
 
             span {
@@ -184,36 +161,21 @@
                 }
             }
         }
-
-        .credit {
-            margin-right: 10px;
-        }
-
-        .debit {
-            margin-left: 10px;
-        }
     }
 
     .overview-transact {
-        display              : grid;
-        flex-direction       : row;
-        grid-template-columns: 1fr 1fr;
-        cursor               : pointer;
+        cursor: pointer;
 
         .deposit,
         .withdraw {
-            display        : flex;
-            flex-direction : column;
-            background     : rgba(255, 255, 255, 1);
-            box-shadow     : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border-radius  : 0px;
-            border         : 1px solid rgba(255, 255, 255, 0.18);
-            margin-top     : 10px;
-            padding        : 10px;
-            text-align     : center;
-            align-items    : center;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            align-items: center;
             justify-content: center;
-            transition     : all 0.56s;
+            transition: all 0.56s;
 
             &:hover {
                 transform: scale(1.1);
@@ -224,18 +186,6 @@
                     font-size: 20px;
                 }
             }
-        }
-
-        .deposit {
-            margin-right: 10px;
-            background  : #3B5998;
-            color       : #ffffff;
-        }
-
-        .withdraw {
-            margin-left: 10px;
-            background : #FDD673;
-            color      : #10131A;
         }
     }
 }

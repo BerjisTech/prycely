@@ -1,48 +1,44 @@
-<div class="col-sm-5">
+<div class="col-sm-5 group-overview">
   <h3>Overview</h3>
-  <div class="group-overview">
-    <div class="overview-numbers">
-      <div class="overview-numbers-data">
-        <div class="available-numbers">
-          <span>Available balance in <%= @group.currency %></span>
-          <span><%= number_with_precision(@balance, precision: 2, delimiter: ",") %></span>
-        </div>
-        <div class="available-transactions">
-          <div class="transactions">
-            <span>Transactions</span>
-            <span><%= @total_transactions %></span>
-          </div>
-          <div class="members">
-            <span>Members</span>
-            <span><%= @total_members %></span>
-          </div>
-        </div>
-        <div class="available-log">
-          <span><%= @last_log %></span>
-        </div>
+  <div class="overview-numbers d-flex flex-column p-3 m-2">
+    <span>Available balance in <%= @group.currency %></span>
+    <span class="fs-1 fw-bolder my-3"><%= number_with_precision(@balance, precision: 2, delimiter: ",") %></span>
+    <div class="row">
+      <div class="col-sm-6 d-flex flex-column">
+        <span>Transactions</span>
+        <span class="fs-3"><%= number_with_precision(@total_transactions, precision: 0, delimiter: ",") %></span>
       </div>
-      <div class="overview-numbers-graphic">
-        <img src="https://assets.prycely.com/images/d6f18dcdfc48ef9c283fa8e68a5c7a9e.png"/>
+      <div class="col-sm-6 d-flex flex-column">
+        <span>Members</span>
+        <span class="fs-3"><%= number_with_precision(@total_members, precision: 0, delimiter: ",") %></span>
       </div>
     </div>
-    <div class="overview-extras">
-      <div class="credit">
-        <span>Credit</span>
-        <span><%= "#{number_with_precision(@credit, precision: 2, delimiter: ",")} #{@group.currency}" %></span>
-      </div>
+    <div><span><%= @last_log %></span></div>
+  </div>
+  <div class="row overview-extras">
+    <div class="col-sm-6">
       <div class="debit">
         <span>Debit</span>
-        <span><%= "#{number_with_precision(@debit, precision: 2, delimiter: ",")} #{@group.currency}" %></span>
+        <span class="fs-3 text-success"><%= "#{number_with_precision(@debit, precision: 2, delimiter: ",")} #{@group.currency}" %></span>
       </div>
     </div>
-    <div class="overview-transact">
-      <a href='<%= "#{root_url}deposit/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="nav-link deposit">
+    <div class="col-sm-6">
+      <div class="credit">
+        <span>Credit</span>
+        <span class="fs-3 text-danger">-<%= "#{number_with_precision(@credit, precision: 2, delimiter: ",")} #{@group.currency}" %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row overview-transact">
+    <div class="col-sm-6">
+      <a href='<%= "#{root_url}deposit/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="d-flex  my-2 py-3 deposit">
         <span>DEPOSIT</span>
       </a>
-      <a href='<%= "#{root_url}withdraw/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="nav-link withdraw">
+    </div>
+    <div class="col-sm-6">
+      <a href='<%= "#{root_url}withdraw/#{Digest::SHA1.hexdigest(1.to_s)}/#{@group.id}" %>' class="d-flex  my-2 py-3 withdraw">
         <span>WITHDRAW</span>
       </a>
     </div>
   </div>
 </div>
-

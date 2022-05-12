@@ -85,9 +85,11 @@ class Transaction < ApplicationRecord
     end
 
     def my_numbers(user_id, level)
-      my_transactions = Transaction.where(user_id: user_id).where(level: level, status: 1)
+      my_transactions = Transaction.where(user_id: user_id, level: level, status: 1)
 
-      credit, debit, loan = 0
+      credit = 0
+      debit = 0
+      loan = 0
 
       my_transactions.map do |trans|
         if trans.transaction_type == 1
