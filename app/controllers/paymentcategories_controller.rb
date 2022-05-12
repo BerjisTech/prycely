@@ -25,11 +25,12 @@ class PaymentcategoriesController < ApplicationController
 
   # POST /paymentcategories or /paymentcategories.json
   def create
+    # render json: params
     @paymentcategory = Paymentcategory.new(paymentcategory_params)
 
     respond_to do |format|
       if @paymentcategory.save
-        format.html { redirect_to @paymentcategory, notice: 'Paymentcategory was successfully created.' }
+        format.html { redirect_to paymentcategories_path, notice: 'Paymentcategory was successfully created.' }
         format.json { render :show, status: :created, location: @paymentcategory }
       else
         format.html { render :new, status: :unprocessable_entity }

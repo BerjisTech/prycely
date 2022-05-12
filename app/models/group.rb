@@ -20,27 +20,14 @@ class Group < ApplicationRecord
 
   class << self
     def credit(group_id)
-      Transaction.where(group_id: group_id, level: 1, transaction_type: 1, status: 1).pluck('sum(amount)').first.to_f
-    end
-
-    def debit(group_id)
       Transaction.where(group_id: group_id, level: 1, transaction_type: 2, status: 1).pluck('sum(amount)').first.to_f
     end
 
-    def user_credit(group_id, user_id)
-      amount = 0
-      Transaction
-        .where(group_id: group_id, transaction_type: 1, level: 1, user_id: user_id, status: 1)
-        .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
-        .all.map do |transaction|
-        amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
-                                                 transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
-        p "#{transaction.amount} converted to a sum of #{amount}"
-      end
-      amount
+    def debit(group_id)
+      Transaction.where(group_id: group_id, level: 1, transaction_type: 1, status: 1).pluck('sum(amount)').first.to_f
     end
 
-    def user_debit(group_id, user_id)
+    def user_credit(group_id, user_id)
       amount = 0
       Transaction
         .where(group_id: group_id, transaction_type: 2, level: 1, user_id: user_id, status: 1)
@@ -53,8 +40,21 @@ class Group < ApplicationRecord
       amount
     end
 
+    def user_debit(group_id, user_id)
+      amount = 0
+      Transaction
+        .where(group_id: group_id, transaction_type: 1, level: 1, user_id: user_id, status: 1)
+        .where.not(level: nil, group_id: nil, wallet_id: nil, currency: nil)
+        .all.map do |transaction|
+        amount += Currency.calculate_and_convert(Currency.amount_from_cents(transaction.amount.to_f),
+                                                 transaction.currency.upcase, Account.find_by_user_id(user_id).default_currency.upcase)
+        p "#{transaction.amount} converted to a sum of #{amount}"
+      end
+      amount
+    end
+
     def balance(group_id)
-      Money.new(credit(group_id) - debit(group_id))
+      Money.new(debit(group_id) - credit(group_id))
     end
 
     def mine(user_id, limit = 10, offset = 0)
@@ -68,7 +68,7 @@ class Group < ApplicationRecord
     end
 
     def user_savings(user_id, group_id)
-      user_credit(group_id, user_id) - user_debit(group_id, user_id)
+      user_debit(group_id, user_id) - user_credit(group_id, user_id)
     end
 
     def graph_transactions(group_id, from, to, account)
@@ -76,7 +76,7 @@ class Group < ApplicationRecord
       date_end = Date.today - to.to_i.days
       transactions = Transaction.where(group_id: group_id, level: 1, status: 1)
                                 .where(created_at: date_start..date_end)
-                                .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date')
+                                .select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as debit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as credit, currency, DATE(created_at) as date')
                                 .order(created_at: :asc)
                                 .group('created_at, currency')
       format_transaftions(transactions, account)

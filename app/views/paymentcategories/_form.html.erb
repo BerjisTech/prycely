@@ -2,7 +2,6 @@
   <% if paymentcategory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(paymentcategory.errors.count, "error") %> prohibited this paymentcategory from being saved:</h2>
-
       <ul>
         <% paymentcategory.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,28 +9,18 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :group_id, value: session[:active_group] %>
+  <%= form.hidden_field :created_by, value: current_user.id %>
 
-  <div class="field form-group col-sm-12">
-    <%= form.label :group_id %>
-    <%= form.text_field :group_id %>
-  </div>
-
-  <div class="field form-group col-sm-12">
-    <%= form.label :created_by %>
-    <%= form.text_field :created_by %>
-  </div>
-
-  <div class="field form-group col-sm-12">
+  <div class="field form-floating my-2">
+    <%= form.select :payment_category_type, options_for_select([['Income','1'], ['expense','2']]), {}, class: "form-control", placeholder: "Placeholder" %>
     <%= form.label :payment_category_type %>
-    <%= form.number_field :payment_category_type %>
   </div>
-
-  <div class="field form-group col-sm-12">
+  <div class="field form-floating my-2">
+    <%= form.text_field :name, class: "form-control", placeholder: "Placeholder" %>
     <%= form.label :name %>
-    <%= form.text_area :name %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions my-2">
+    <%= form.submit class: "btn btn-md btn-primary" %>
   </div>
 <% end %>

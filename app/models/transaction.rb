@@ -15,7 +15,7 @@ class Transaction < ApplicationRecord
 
     def my_group_transactions(user_id)
       Transaction.where(user_id: user_id,
-                        level: 1, status: 1).order(date: :asc).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as credit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as debit, currency, DATE(created_at) as date').group('date, currency')
+                        level: 1, status: 1).order(date: :asc).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as debit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as credit, currency, DATE(created_at) as date').group('date, currency')
     end
 
     def create_from_stk(amount, response, user, description, level, account, currency)
@@ -91,12 +91,12 @@ class Transaction < ApplicationRecord
 
       my_transactions.map do |trans|
         if trans.transaction_type == 1
-          credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
-                                                   Account.find_by_user_id(user_id).default_currency.upcase)
-        end
-        if trans.transaction_type == 2
           debit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
                                                   Account.find_by_user_id(user_id).default_currency.upcase)
+        end
+        if trans.transaction_type == 2
+          credit += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,
+                                                   Account.find_by_user_id(user_id).default_currency.upcase)
         end
         if trans.transaction_type == 3
           loan += Currency.calculate_and_convert(Currency.amount_from_cents(trans.amount.to_f), trans.currency.upcase,

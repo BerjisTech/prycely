@@ -91,15 +91,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     type: 'bar',
                     data: {
                         labels: transactions.dates,
-                        datasets: [{
+                        datasets: [
+                            {
+                                label: 'Debit',
+                                data: transactions.debit,
+                                backgroundColor: '#1A6BAC',
+                            },
+                            {
                             label: 'Credit',
                             data: transactions.credit,
-                            backgroundColor: 'blue',
-                        }, {
-                            label: 'Debit',
-                            data: transactions.debit,
-                            backgroundColor: 'red',
-                        }]
+                            backgroundColor: '#F6002B',
+                        }
+                    ]
                     },
                     options: {
                         plugins: {
