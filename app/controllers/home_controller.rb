@@ -23,7 +23,7 @@ class HomeController < ApplicationController
     payment_categories = hash.filter { |f| f['name'] == 'payment_categories' }.first['data']
 
     payroll = hash.filter { |f| f['name'] == 'payroll' }.first['data']
-    render json: create_payment_categories(payment_categories, payments)
+    render json: old_tables
   end
 
   def create_ufami_users(members)
