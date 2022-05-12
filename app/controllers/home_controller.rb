@@ -100,6 +100,9 @@ class HomeController < ApplicationController
     end
   end
 
+  def create_payment_categories(payment_categories, payments)
+  end
+
   def about; end
 
   def pricing; end
