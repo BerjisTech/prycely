@@ -21,6 +21,10 @@
           <%= form.label 'Member' %>
           <%= form.select :user_id, options_from_collection_for_select(Member.for_group(params[:group_id]), :user_id, :full_names), { prompt: "Select Member"}, class: "form-control js-example-basic-single select2 select-2", placeholder: "Placeholder" %>
         </div>
+        <div class="field form-group my-4">
+          <%= form.label 'Transaction Type' %>
+          <%= form.select :category, options_from_collection_for_select(Paymentcategory.where(group_id: params[:group_id]), :id, :name), { prompt: "Select Payment Category"}, class: "form-control js-example-basic-single select2 select-2", placeholder: "Placeholder" %>
+        </div>
 
         <div class="field form-floating my-4">
           <%= form.number_field :amount, class: "form-control", placeholder: "Placeholder" %>
