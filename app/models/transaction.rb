@@ -91,7 +91,8 @@ class Transaction < ApplicationRecord
     end
 
     def my_numbers(user_id, level)
-      my_transactions = Transaction.where(user_id: user_id, level: level, status: 1)
+      contribution = Paymentcategory.where(name: 'contribution').group_by(&:id).keys
+      my_transactions = Transaction.where(user_id: user_id, level: level, status: 1, category: contribution)
       format_my_numbers(my_transactions, user_id)
     end
 
