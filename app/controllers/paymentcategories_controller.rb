@@ -9,7 +9,7 @@ class PaymentcategoriesController < ApplicationController
 
   # GET /paymentcategories or /paymentcategories.json
   def index
-    @paymentcategories = Paymentcategory.all
+    @paymentcategories = Paymentcategory.where(group_id: session[:active_group])
   end
 
   # GET /paymentcategories/1 or /paymentcategories/1.json
