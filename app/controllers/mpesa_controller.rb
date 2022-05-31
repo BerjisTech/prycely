@@ -46,6 +46,7 @@ class MpesaController < ApplicationController
     @desc = params[:description]
     @origin = params[:origin]
     @recepient = params[:recepient]
+    @category = params[:category]
 
     if @amount.present? && @amount != '' && @phone.present? && @phone != '' && @ref.present? && @ref != '' && @desc.present? && @desc != '' && @origin.present? && @origin != '' && @recepient.present? && @recepient != ''
       level = Transact.level_to_int(params[:level])
@@ -80,7 +81,7 @@ class MpesaController < ApplicationController
       response = JSON.parse(response.body)
 
       Stk.create_stk(response, "+#{@phone}", status)
-      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin)
+      Transaction.create_from_stk(@amount, response, current_user.id, @desc, level, account, @origin, @category)
 
       user_response = { type: 'Ok', title: 'Success',
                         message: "A #{@origin} #{@amount} transaction has been sent to #{@phone}" }

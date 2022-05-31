@@ -1,3 +1,4 @@
+<% category = Paymentcategory.find_by(group_id: @account, name: 'contribution') %>
 <script>
   const stk = (phone, save_number) => {
       $('.ctdp-stk').html(`<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>`)
@@ -13,7 +14,8 @@
               'level': '<%= @level %>',
               'account': '<%= @account %>',
               'origin': '<%= @origin %>',
-              'recepient': '<%= @recepient %>'
+              'recepient': '<%= @recepient %>',
+              'category': '<%= category.present? ? category.id : nil %>'
           },
           success: (response) => {
             if (response.type == 'Error'){

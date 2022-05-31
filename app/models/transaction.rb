@@ -18,7 +18,7 @@ class Transaction < ApplicationRecord
                         level: 1, status: 1).order(date: :asc).select('sum(CASE WHEN transaction_type = 1 THEN amount ELSE 0 END) as debit, sum(CASE WHEN transaction_type = 2 THEN amount ELSE 0 END) as credit, currency, DATE(created_at) as date').group('date, currency')
     end
 
-    def create_from_stk(amount, response, user, description, level, account, currency)
+    def create_from_stk(amount, response, user, description, level, account, currency, category)
       amount *= 100
       transaction = Transaction.new(
         user_id: user,
@@ -31,7 +31,7 @@ class Transaction < ApplicationRecord
         status: 0,
         transaction_mode: 1,
         description: description,
-        category: 'category',
+        category: category,
         currency: currency,
         sub_category: ''
       )
