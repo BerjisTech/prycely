@@ -14,7 +14,7 @@
       <% @recent_transactions.map do |transaction| %>
         <tr>
           <td>
-            <%= link_to Account.full_names(transaction.user_id), member_path(Member.find_by(user_id: transaction.user_id).id) %>
+            <%= link_to Account.full_names(transaction.user_id), member_path(Member.find_by(user_id: transaction.user_id, group_id: session[:active_group]).id) %>
           </td>
           <td>
             <span class="fw-bold
