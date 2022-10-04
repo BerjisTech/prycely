@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   def create_ufami_users(members)
     members.map do |member|
       User.where(email: "#{member['name'].gsub(' ', '_').downcase}@ufamisacco.com").destroy_all
-      user = User.find_or_create_by!({
+      user = User.create!({
                             email: "#{member['name'].gsub(' ', '_').downcase}@ufamisacco.com",
                             password: "Ufami_#{member['phone']}",
                             password_confirmation: "Ufami_#{member['phone']}",
@@ -96,7 +96,7 @@ class HomeController < ApplicationController
                                        status: 1,
                                        transaction_mode: 0,
                                        description: '',
-                                       category: Paymentcategory.find_or_create_by(group_id: UFAMI, name: 'contribution').id,
+                                       category: Paymentcategory.find_of_create_by(group_id: UFAMI, name: 'contribution').id,
                                        sub_category: nil,
                                        currency: 'KES',
                                        level: 1,
