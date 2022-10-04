@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  UFAMI = Group.find_by(name: 'Ufami Sacco').id
-  ADMIN = User.find_by(email: 'ufamisacco@gmail.com').id
+  # UFAMI = Group.find_by(name: 'Ufami Sacco').id
+  # ADMIN = User.find_by(email: 'ufamisacco@gmail.com').id
   def index; end
 
   def ufami
