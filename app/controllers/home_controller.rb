@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   def create_ufami_users(members)
     members.map do |member|
       User.where(email: "#{member['name'].gsub(' ', '_').downcase}@ufamisacco.com").destroy_all
-      user = User.create!({
+      user = User.find_or_create_by!({
                             email: "#{member['name'].gsub(' ', '_').downcase}@ufamisacco.com",
                             password: "Ufami_#{member['phone']}",
                             password_confirmation: "Ufami_#{member['phone']}",
