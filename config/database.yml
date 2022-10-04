@@ -83,7 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: prycely_production
-  host: localhost
-  username: prometheus
-  password: 890Berjis*()
+  database: d64nli9ojf28rn
+  host: ec2-3-92-98-129.compute-1.amazonaws.com:5432
+  username: xajyajvxenpami
+  password: f719a25b959814b3c651aaf480ed44356b620d4e97a506b15c93e402c8ee4113
