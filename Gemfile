@@ -44,7 +44,8 @@ gem 'rollbar'
 
 gem 'active_storage_validations'
 # gem 'aws-sdk-s3', require: false
-# gem 'shrine'
+gem 'aws-sdk', '~> 3', require: false
+gem 'shrine'
 
 gem 'mailjet'
 gem 'slim-rails'
