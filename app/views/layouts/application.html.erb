@@ -27,6 +27,9 @@
         <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
         <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
       <% else %>
+      <%# Include home.css and home.js %>
+        <%= stylesheet_link_tag "home", media: "all", 'data-turbolinks-track': "reload" %>
+        <%= javascript_include_tag "home", 'data-turbolinks-track': "reload" %>
         <%= render "/home/header" %>
       <% end %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
