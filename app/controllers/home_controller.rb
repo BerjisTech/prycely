@@ -96,7 +96,7 @@ class HomeController < ApplicationController
                                        status: 1,
                                        transaction_mode: 0,
                                        description: '',
-                                       category: Paymentcategory.find_by(group_id: UFAMI, name: 'contribution').id,
+                                       category: Paymentcategory.find_of_create_by(group_id: UFAMI, name: 'contribution').id,
                                        sub_category: nil,
                                        currency: 'KES',
                                        level: 1,
