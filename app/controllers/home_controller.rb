@@ -2,7 +2,7 @@
 
 class HomeController < ApplicationController
   UFAMI = Group.find_by(name: 'Ufami Sacco').id
-  ADMIN = User.find_by(email: 'ufamisacco@gmail.com').id
+  ADMIN = User.find_by(email: 'bo.kouru@gmail.com').id
   def index; end
 
   def ufami
