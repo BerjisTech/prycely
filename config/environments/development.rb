@@ -33,7 +33,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :digitalocean
+  config.active_storage.service = :local
   # Specify that we are using the MailJet API for transactional emails
   config.action_mailer.delivery_method = :mailjet_api
 
