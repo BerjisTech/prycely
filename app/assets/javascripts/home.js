@@ -1,1 +1,14 @@
-//= require_tree ./frontend
+//= require ./frontend/js/jquery-3.2.1.min.js
+//= require ./frontend/js/propper.js
+//= require ./frontend/js/bootstrap.min.js
+//= require ./frontend/vendors/wow/wow.min.js
+//= require ./frontend/vendors/sckroller/jquery.parallax-scroll.js
+//= require ./frontend/vendors/owl-carousel/owl.carousel.min.js
+//= require ./frontend/vendors/imagesloaded/imagesloaded.pkgd.min.js
+//= require ./frontend/vendors/isotope/isotope-min.js
+//= require ./frontend/vendors/magnify-pop/jquery.magnific-popup.min.js
+//= require ./frontend/vendors/bootstrap-selector/js/bootstrap-select.min.js
+//= require ./frontend/vendors/nice-select/jquery.nice-select.min.js
+//= require ./frontend/vendors/scroll/jquery.mCustomScrollbar.concat.min.js
+//= require ./frontend/js/plugins.js
+//= require ./frontend/js/main.js

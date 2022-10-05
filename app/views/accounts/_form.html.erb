@@ -27,7 +27,7 @@
                 <span class="select_image btn btn-warning my-2" style="width: 200px;">Change Photo</span>
                 <%= form.file_field :image, class: "account_image_to_hide", accept: "image/*", direct_upload: true %>
               <% else %>
-                <img id="img_prev" class="img rounded" src="https://assets.prycely.com/images/Default-avatar.jpg" alt="" width="200" />
+                <img id="img_prev" class="img rounded" src="assets/Default-avatar.jpg" alt="" width="200" />
                 <span class="select_image btn btn-primary my-2" style="width: 200px;">Choose Photo</span>
                 <%= form.file_field :image, class: "account_image_to_hide", accept: "image/*", direct_upload: true %>
               <% end %>

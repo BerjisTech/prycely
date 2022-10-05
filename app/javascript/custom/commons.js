@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 error: (result) => {
                     // console.log(result)
                     toastr.error(`There has been an error loading your ${data_set}`)
-                    document.querySelector('.dashboard_content_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
+                    document.querySelector('.dashboard_content_block').innerHTML = '<img src="assets/close-and-reply.gif" style="width: 100%; height: auto;">'
                 }
             })
         }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 dashboard_data = (e) => {
                     [].map.call(dashboard_data_selectors, function (elem) { elem.classList.remove("active") })
                     e.target.classList.add("active")
-                    document.querySelector('.dashboard_content_block').innerHTML = '<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">'
+                    document.querySelector('.dashboard_content_block').innerHTML = '<img src="assets/preloader.gif" style="width: 100%; height: auto;">'
                     data_set = e.target.innerText.toLowerCase()
                     // console.log(data_set)
                     load_dashboard_data(data_set)

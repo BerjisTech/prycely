@@ -1,4 +1,17 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-//= require_tree ./frontend
+
+
+//= require ./frontend/css/bootstrap.min.css
+//= require ./frontend/vendors/bootstrap-selector/css/bootstrap-select.min.css
+//= require ./frontend/vendors/themify-icon/themify-icons.css
+//= require ./frontend/vendors/flaticon/flaticon.css
+//= require ./frontend/vendors/animation/animate.css
+//= require ./frontend/vendors/owl-carousel/assets/owl.carousel.min.css
+//= require ./frontend/vendors/magnify-pop/magnific-popup.css
+//= require ./frontend/vendors/nice-select/nice-select.css
+//= require ./frontend/vendors/elagent/style.css
+//= require ./frontend/vendors/scroll/jquery.mCustomScrollbar.min.css
+//= require ./frontend/css/style.css
+//= require ./frontend/css/responsive.css

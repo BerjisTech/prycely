@@ -1,7 +1,7 @@
 <% category = Paymentcategory.find_by(group_id: @account, name: 'contribution') %>
 <script>
   const stk = (phone, save_number) => {
-      $('.ctdp-stk').html(`<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>`)
+      $('.ctdp-stk').html(`<img src="assets/loader.gif" style="width: 200px;"/>`)
       $.ajax({
           url: '<%= stk_url %>',
           method: 'POST',
@@ -24,17 +24,17 @@
             else{
               inform_stk(response)
             }
-  
+
             $('.ctdp-stk').html(`PAY NOW`)
           },
           error: (error) => {
             console.log(error)
             $('.ctdp-stk').html(`PAY NOW`)
           }
-  
+
       })
   }
-  
+
   const alert_stk = (alert) => {
       var opts = {
       "closeButton": true,
@@ -51,10 +51,10 @@
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     };
-  
+
     toastr.error(alert.message, `Error:${alert.title}`, opts)
   }
-  
+
   const inform_stk = (info) => {
       var opts = {
       "closeButton": true,
@@ -71,7 +71,7 @@
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     };
-  
+
     toastr.info(info.message, `Info:${info.title}`, opts)
   }
 </script>

@@ -1,7 +1,7 @@
 <script>
   jQuery(document).ready(($) => {
     var line_chart_demo = $("#bar-chart-demo");
-  
+
     let draw_graph = (transactions) => {
       $(line_chart_demo).empty()
       var line_chart = Morris.Bar({
@@ -16,9 +16,9 @@
       });
       line_chart_demo.parent().attr('style', '');
     }
-  
+
     let fetch_graph_data = (group_id, from, to) => {
-        $(line_chart_demo).html('<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+        $(line_chart_demo).html('<img src="assets/preloader.gif" style="width: 100%; height: auto;">')
         $.ajax({
             url: '<%= fetch_group_graph_data_path %>',
             method: 'POST',
@@ -44,11 +44,11 @@
             }
         })
     }
-  
+
     $('.fetch_transactions').on('change', (e) => {
         fetch_graph_data('<%= @group.id %>', $(e.target).val(), 0)
     })
-  
+
     fetch_graph_data('<%= @group.id %>', 7, 0)
   })
 </script>

@@ -36,7 +36,7 @@
           </table>
         <% else %>
           <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
-            <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+            <img src="depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
             <%= @group.name.humanize %> has no active managers
             <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
               <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
@@ -60,7 +60,7 @@
           </table>
         <% else %>
           <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
-            <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+            <img src="depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
             <%= @group.name.humanize %> has no invited managers
             <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
               <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
@@ -107,7 +107,7 @@
             <% end %>
           <% else %>
             <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
-              <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+              <img src="depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
               <%= @group.name.humanize %> has no active members
               <%- if Member.can_add_members(current_user.id, params[:group_id]) %>
                 <%= link_to "Add a Member", new_member_path %> or <%= link_to "Send Invite Link", new_invite_path %>
@@ -131,7 +131,7 @@
             <% end %>
           <% else %>
             <div class="m-4 p-4 d-flex align-items-center justify-content-center flex-column">
-              <img src="https://assets.prycely.com/depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
+              <img src="depositphotos_423476202-stock-illustration-businessmen-unlighted-light-bulb-concept.jpg" style="width: 300px;" />
               <%= @group.name.humanize %> has no new invites
             </div>
           <% end %>

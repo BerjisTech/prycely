@@ -1,7 +1,7 @@
 <script>
   topup_amount = $('.tu-amount').val()
     const get_conversion = (origin, recepient, topup_amount) => {
-        $('.goToPayChoice').html('<img src="https://assets.prycely.com/images/loader.gif" style="width: 200px;"/>')
+        $('.goToPayChoice').html('<img src="assets/loader.gif" style="width: 200px;"/>')
         $.ajax({
             url: '<%= convert_url %>',
             data: {
@@ -23,7 +23,7 @@
             }
         })
     }
-  
+
       $('.tu-wallet-details').attr('data-currency', '<%= @active_currency %>')
       $('.tu-title').html(`Topup <%= @account_name %>`)
       $('.tu-wallet-details img').attr('src', '<%= @assets_path %><%= @active_flag %>.svg')
@@ -32,19 +32,19 @@
       $('.twd img').attr('src', '<%= @assets_path %><%= @active_flag %>.svg')
       $('.twd span:first').html('<%= @active_currency %>')
       $('.sCurrency').attr('data-wallet', '<%= @active_currency %>')
-  
+
       function goToPayChoice(){
           window.location.href=`<%= root_url %>deposit/<%= @platform %>/<%= @level %>/<%= @account %>/${$('.tu-amount').val()}/<%= @active_currency %>/${$('.twd').attr('data-currency').toUpperCase()}`
       }
-  
+
       function currency_dropper(origin) {
             $('.tu-currency-drop').show()
             $('.tu-currency-drop').css('display', 'flex')
             $('.tu-currency-drop input').on('click', () => { return false; })
             $('.main-content').on('click', () => { $('.tu-currency-drop').hide() })
           }
-  
-  
+
+
       function change_tu_currency(origin, recepient, currency, flag) {
             topup_currency = recepient
             $('.tu-bottom-breakdown').css('display', 'none')

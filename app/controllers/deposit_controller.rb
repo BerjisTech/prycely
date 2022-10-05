@@ -30,7 +30,7 @@ class DepositController < ApplicationController
 
     @active_currency = Transact.active_currency(@level, @account)
     @active_flag = @active_currency[0...2].downcase
-    @assets_path = 'https://assets.prycely.com/images/flags/'
+    @assets_path = 'images/flags/'
     @currencies = Transact.all_currencies(Money::Currency.table)
     @account_name = Transact.acount_name(@level, @account)
   end

@@ -153,13 +153,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 },
                 error: (response) => {
                     toastr.error(`There has been an error fetching your ${page_title}`)
-                    document.querySelector('.fetched_data_js_block').innerHTML = '<img src="https://assets.prycely.com/images/close-and-reply.gif" style="width: 100%; height: auto;">'
+                    document.querySelector('.fetched_data_js_block').innerHTML = '<img src="assets/close-and-reply.gif" style="width: 100%; height: auto;">'
                 }
             })
         }
 
         $('.fetched_data_js_select').on('change', (e) => {
-            $('.fetched_data_js_block').html('<img src="https://assets.prycely.com/images/preloader.gif" style="width: 100%; height: auto;">')
+            $('.fetched_data_js_block').html('<img src="assets/preloader.gif" style="width: 100%; height: auto;">')
             fetch_data($(e.target).val(), 0)
         })
 
